@@ -4,8 +4,8 @@ Grupo 4
 Integrantes:
 Lambertucci Guido	58009
 Hrubisiuk 	Agustin	58311
-Mechoulam	Alan	28438
-Moriconi	Franco	28495
+Mechoulam	Alan	58438
+Moriconi	Franco	58495
 Este programa dada una variable, la imprimira de diversas formas
 */
 #include <stdio.h>

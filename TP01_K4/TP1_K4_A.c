@@ -4,8 +4,8 @@ Grupo 4
 Integrantes:
 Lambertucci Guido	58009
 Hrubisiuk 	Agustin	58311
-Mechoulam	Alan	28438
-Moriconi	Franco	28495
+Mechoulam	Alan	58438
+Moriconi	Franco	58495
 Este programa simula el puerto A del HC11, debera imprimir un 1 si los bits
 0 y 5 estan prendidos o cuando los bits 3 y 4 lo esten, caso contrario 0.
 */
