@@ -8,16 +8,20 @@ Mechoulam	Alan	58438
 Moriconi	Franco	58495
 Este programa imprimirá una matriz de n x m (fil, col). Imprimira en pantalla
 una matriz de números crecientes de izquierda a derecha y de arriba hacia abajo
+Nota 1: El programa no acepta numeros negativos para fila o columna
+Nota 2: El programa tiene un maximo definido de columnas y filas 
 */
 #include <stdio.h>
-#define FILAS 8
-#define COLUMNAS 4							//define que se usa para asignar las variables
-#define MAX_COL 25
-#define MAX_FIL 25
+#define FILAS 15
+#define COLUMNAS 15							
+#define MAX_COL 25							
+#define MAX_FIL 25						
+
+
 int main (void)
 {
 	unsigned int fil=FILAS,col=COLUMNAS;	//no signado asi ahorro el problema de numeros negativos
-	int aux_col,aux_cont=0;					//variables usadas para imprimir en pantalla
+	int aux_col,aux_cont=0;					//aux col varia columna aux cont varia numero inicia por fila
 	int screen;								//numero que ira a pantalla
 	
 	if ((col>MAX_COL) || (fil>MAX_FIL))
