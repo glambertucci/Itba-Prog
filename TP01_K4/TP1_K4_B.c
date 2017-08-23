@@ -15,7 +15,7 @@ int main (void)
 	double  var=-3.141592,parte_decimal,rendon_2dec,aux;	//aux: variable usada para la utilizacion de numeros negativos
 	int entero_redondeado,entero_sup,entero_inf;
 	
-	aux= var > 0 ? 0 :(-1+small);
+	aux= (var > 0 ? 0 :(-1+small));
 	entero_redondeado= (int) (aux+var+0.5);
 	entero_sup = (int) (aux+var+1.0-small);
 	entero_inf = (int) (aux+var);
