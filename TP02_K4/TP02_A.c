@@ -16,14 +16,14 @@ Nota 3: El numero 1 no es considerado primo ni compuesto.
 
 #include <stdio.h>
 #define CANDIDATO 104597 
-
+#define MAXIMO	15000000
 int main (void)
 {
 	int numero_a_evaluar=CANDIDATO;		
 	int divisor,cantidad_de_divisores=0;
 
 	//Verificaciones de entrada
-	if (numero_a_evaluar>15000000)		
+	if (numero_a_evaluar>MAXIMO)		
 	{
 		printf("El numero es demasiado grande, ingrese otro\n");
 	}	
