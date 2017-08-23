@@ -12,8 +12,8 @@ Nota 1: El programa no acepta numeros negativos para fila o columna
 Nota 2: El programa tiene un maximo definido de columnas y filas 
 */
 #include <stdio.h>
-#define FILAS 15
-#define COLUMNAS 15							
+#define FILAS 10
+#define COLUMNAS 10							
 #define MAX_COL 25							
 #define MAX_FIL 25						
 
