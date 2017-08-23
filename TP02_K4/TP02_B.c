@@ -11,7 +11,7 @@ una matriz de números crecientes de izquierda a derecha y de arriba hacia abajo
 */
 #include <stdio.h>
 #define FILAS 5
-#define COLUMNAS 5		//define que se usa para asignar las variables
+#define COLUMNAS 5							//define que se usa para asignar las variables
 
 int main (void)
 {
@@ -28,9 +28,9 @@ int main (void)
 	{	
 		aux_col=col;
 		screen=aux_cont++;
-		while(aux_col--)				//contador para aumentar el numero de fila a fila
+		while(aux_col--)					//contador para aumentar el numero de fila a fila
 		{
-			printf("%d\t",screen++);	//imprime las columnas luego las filas, usa un 
+			printf("%d\t",screen++);		//imprime las columnas luego las filas, usa un 
 					
 		}
 		printf("\n");

@@ -22,7 +22,7 @@ int main (void)
 	int numero_a_evaluar=CANDIDATO;		
 	int divisor,cantidad_de_divisores=0;
 
-//Verificaciones de entrada
+	//Verificaciones de entrada
 	if (numero_a_evaluar>15000000)		
 	{
 		printf("El numero es demasiado grande, ingrese otro\n");
