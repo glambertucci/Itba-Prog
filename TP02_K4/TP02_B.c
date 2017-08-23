@@ -28,7 +28,10 @@ int main (void)
 	{
 		printf("El numero de fila o columna es muy grande\n");
 	}
-
+	else if ((col==0)||(fil==0))
+	{
+		printf("Matrices de 0 filas o columnas no son validas\n");
+	}
 	else while (fil--)
 	{	
 		aux_col=col;
