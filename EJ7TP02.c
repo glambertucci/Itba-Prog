@@ -1,27 +1,25 @@
 #include <stdio.h>
 
+#define NUM 2147483629 //Este es el número que será evaluado.
+
 int main(void)
 {
-	int num = 981;//Numero a evaluar	//No hay tope del numero, entonces si le pones uno que supere 32k te da como negativo y te kb
-	int numev=0;
-	int divis = 2; //Números que dividen
+	long int num = NUM;//Numero a evaluar
+	long int divis = 2; //Variable que irá dividiendo al número a evaluar.
 	
-	if(num<=0)
-		printf("Solo los números naturales pueden ser primos\n");	//si le pones 1 no tira nada el output
-	else
-		numev=num;	//aca realmente no hace falta esto, podes trabajar directamente con num en ves de numev
-	for(;divis<numev;divis++)
+	if(num<=1 || num>2147483647) //Los números negativos o mayor a 2147483647 se descartan con esta misma condición.
+		printf("Su input no es válido o está fuera de rango.\nRecuerde que solo los números naturales distintos de 1 pueden ser primos.\n");
+	else 
+	for(;divis<(num/2);divis++) //Evalúa cada división entre 2 y la mitad del número a evaluar, evitando con esto último divisiones cuyo resultado sea menor a 1 y, al truncar la parte decimal, se interpreten como "0".
 		{
-			if (numev%divis == 0)
+			if (num%divis == 0) //Si la división es entera, entonces el número no es primo.
 			{
 				printf("No es un numero primo\n");
-				break;				//intenta hacerlo sin el break este raro ni el continue
+				break;
 			}
-			else
-				continue;
 		}
-	if(divis == numev)
-		printf("Es un numero primo\n");
+	if(divis == (num/2))
+		printf("Es un numero primo\n"); //Si nunca se produjo una división con resto 0, entonces esta condición se cumplirá ya que fue necesaria para salir del loop.
 
 	return 0; 
 }
