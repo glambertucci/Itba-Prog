@@ -15,7 +15,7 @@ Nota 3: El numero 1 no es considerado primo ni compuesto.
 
 
 #include <stdio.h>
-#define CANDIDATO 74
+#define CANDIDATO 104597 
 #define MAXIMO	15000000
 int main (void)
 {
@@ -41,7 +41,7 @@ int main (void)
 	//si el numero tiene mas de dos divisores automaticamente no es primo
 	else 
 	{	
-		for(divisor=1;((divisor)<=numero_a_evaluar) && !(cantidad_de_divisores==3);divisor++) 
+		for(divisor=1;(divisor<=numero_a_evaluar) || (cantidad_de_divisores==3);divisor++)
 		{
 			if((numero_a_evaluar%divisor)==0)
 			{

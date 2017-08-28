@@ -16,19 +16,19 @@ Nota 2: El programa tiene un maximo definido de columnas y filas
 #define COLUMNAS 10							
 #define MAX_COL 25							
 #define MAX_FIL 25						
-#define INVALIDO 0 
+
 
 int main (void)
 {
-	unsigned int fil=FILAS,col=COLUMNAS;			//no signado asi ahorro el problema de numeros negativos
-	int aux_col,aux_cont=0;							//aux col varia columna aux cont varia numero inicia por fila
-	int screen;										//numero que ira a pantalla
+	unsigned int fil=FILAS,col=COLUMNAS;	//no signado asi ahorro el problema de numeros negativos
+	int aux_col,aux_cont=0;					//aux col varia columna aux cont varia numero inicia por fila
+	int screen;								//numero que ira a pantalla
 	
 	if ((col>MAX_COL) || (fil>MAX_FIL))
 	{
 		printf("El numero de fila o columna es muy grande\n");
 	}
-	else if ((col==INVALIDO)||(fil==INVALIDO))
+	else if ((col==0)||(fil==0))
 	{
 		printf("Matrices de 0 filas o columnas no son validas\n");
 	}
