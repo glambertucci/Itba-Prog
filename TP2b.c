@@ -1,45 +1,46 @@
 #include <stdio.h>
 
-#define FILAS 4
-#define COLUMNAS 5
+#define FILAS 3
+#define COLUMNAS 3
+#define MAX 20	//Limite de dimension de matriz
 
 int main(void)
 {
+	int fil, col, auxfil, auxcol;
 
-	int m, n, auxfil, auxcol;	//ya se que el tp dice m y n pero eso es mas ilustrativo, es mejor ponerles nombres como fil y col para claridad de codigo, se que no les importa el nombrecito 
-
-	if(COLUMNAS>31)	//Magic Numbers!
-		printf("WARNING: La dimension de la matriz puede alterar su correcta presentacion\n");	//Pienso que no deberia dejarte imprimir
-	//aparte tambien deberias limitar las filas, sino cuando ponga un numero muy grande se va a ver una cascada de numeros hasta que termine de procesar
-	if(FILAS==0||COLUMNAS==0)
-		printf("WARNING: Dimension de matriz invalida \n");
-
-	if(FILAS<0)
-	{
-		printf("WARNING: No se aceptan numeros negativos.\nSe tomara el numero de filas positivo\n");	//Creo que quedaria mejor solo puteando al usuario y no tomar el positivo
-		auxfil=-FILAS;
-	}
-	
-	else		//estos dos if los podes poner en uno solo con un OR ||
-		auxfil=FILAS;
-
-	if(COLUMNAS<0)
-	{
-		printf("WARNING: No se aceptan numeros negativos.\nSe tomara el numero de columnas positivo\n");
-		auxcol=-COLUMNAS;
-	}
+	if(COLUMNAS>MAX||FILAS>MAX||FILAS<-MAX||COLUMNAS<-MAX)	//Comprueba que la dimension no exceda el limite
+		printf("ERROR: Dimension de la matriz excede el limite. (Limite = 20)\n");
+	else if(COLUMNAS==0||FILAS==0)	//Comprueba que la dimension no sea cero
+		printf("ERROR: La dimesion de la matriz no debe ser cero.\n");
 	else
-		auxcol=COLUMNAS;
-		
-	for(m=0;m<auxfil;m++)	//esto esta piolita
 	{
-		for(n=m;n<auxcol+m;n++)
+		if(FILAS<0)	//Comprueba que la dimension no sea negativa, si lo es, tira warning
 		{
-			printf("%d\t", n);
+			printf("WARNING: No se aceptan numeros negativos.\nSe tomara el numero de filas positivo\n");	//Creo que quedaria mejor solo puteando al usuario y no tomar el positivo
+			auxfil=-FILAS;
 		}
-		printf("\n");
-	}
-	
+		else
+			auxfil=FILAS;
+		
 
+		if(COLUMNAS<0)	//Comprueba que la dimension no sea negativa, si lo es, tira warning
+		{
+			printf("WARNING: No se aceptan numeros negativos.\nSe tomara el numero de columnas positivo\n");
+			auxcol=-COLUMNAS;
+		}
+		else
+			auxcol=COLUMNAS;
+		
+
+		for(fil=0;fil<auxfil;fil++)	//Algoritmo de creacion de matriz, itera el primer for por cada fila
+		{
+			for(col=fil;col<auxcol+fil;col++)	//y luego itera por cada numero en las columnas
+			{
+				printf("%d\t", col);
+			}
+			printf("\n");
+		}
+
+	}
 return 0;
 }
