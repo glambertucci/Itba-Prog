@@ -12,9 +12,6 @@ int main(void)
 	//***************************************//
 	//este divis es mejor definirlo en el for//
 	//***************************************//	
-	//*****************************************************//
-	//El or es lazy no te va  acorroborar la segunda opcion//
-	//*****************************************************//
 	
 	if(num<=1 || num>2147483647) //Los números negativos o mayor a 2147483647 se descartan con esta misma condición.
 	{
