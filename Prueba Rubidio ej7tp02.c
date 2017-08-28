@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#define NUM 11 //Este es el número que será evaluado.
+#define NUM 211 //Este es el número que será evaluado.
 #define MAX_NUM 2147483647
 int main(void)
 {
@@ -18,11 +18,12 @@ int main(void)
 			if (num%divis == 0) //Si la división es entera, entonces el número no es primo.
 			{
 				printf("No es un numero primo\n");
+				divis =+ num; //esto es para que salga del ciclo while porque ya se supo que no es un numero primo
             }
             divis++;
 		}
     if (num%divis == 0)
-    {
+    {   //esto es para que, si antes se dijo que era NO un numero primo, que no imprima ahora que ES un numero primo
 
     }
     else
