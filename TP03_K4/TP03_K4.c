@@ -44,7 +44,7 @@ int main(void)
 		}
 	}
 					//CERRADO EL FOR ACA ENTRA EL MODULO QUE CUENTA LOS DIAS
-				printf("La cantidad de dias entre las fechas compredidas es de %d\n", diastotales);
+				
 return 0;
 }
 
