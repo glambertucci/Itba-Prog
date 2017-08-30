@@ -4,7 +4,7 @@
 int main(void)
 {
 
-printf("putos");
+printf("puto el que lee ");
 
 
 
