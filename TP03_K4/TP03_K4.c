@@ -6,7 +6,7 @@ int check_input(int, int, int, int, int, int, int, int, int, int);
 
 int main(void)
 {
-	int diastotales;
+	int diastotales; //NO la usas nunca
 	int counter=0; char caracter; int i;
 	int d1, d2, b1, m1, m2, b2, a1, a2, a3, a4; //d: dia, m: mes, a: ano, b: barra
 
@@ -42,7 +42,7 @@ int main(void)
 			}
 					//ACA ESTARIAN LOS DEMAS MODULOS
 		}
-	}
+	}//no funca el corte con el enter
 					//CERRADO EL FOR ACA ENTRA EL MODULO QUE CUENTA LOS DIAS
 				
 return 0;
