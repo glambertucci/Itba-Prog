@@ -1,19 +1,26 @@
 #include <stdio.h>
-#define TERMINATOR 0
+#define DAY_MONTH 0
+#define YEAR -1
 #define ASCII '0'
 
 
 int make_num (char first,char second, char third, char fourth);
-//This program recives 4 chars, every number that lacks the third and fourth char must be sent with the terminator in those positions
+//This program recives 4 chars, every number that lacks the third and fourth char must be sent with the proper code in those positions
 //if the input is correct, you'll get the composed number   
+
+
 int make_num (char first,char second, char third, char fourth)
 {
 	int number;
 	
-	if (third == TERMINATOR)
+	if (third == DAY_MONTH )
 	{
 		number= (((first-ASCII)*10)+(second-ASCII));
-	}	
+	}
+        else if (third == YEAR)
+        {
+                number= (2000+((first-ASCII)*10)+(second-ASCII));
+        }	
 	
 	else 
 	{
