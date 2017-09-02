@@ -2,7 +2,7 @@
 
 //////Definiciones//////
 
-#define INCORRECTA (0)
+#define INCORRECT (0)
 #define START (0)					
 #define FINISH (1)
 #define DAY_MONTH 0
@@ -13,34 +13,39 @@
 
 
 //////Prototipos/////
-
+void reset_values(void);
+//Resets the global functions
 void get_input(void);			
-
+//This function gets the input from the user
 void get_date(int);
-
+//This function gets a validated input from the user
 int check_input(void);
-
+//This function validates the input from the user
 int make_num (char first,char second, char third, char fourth);
 //This function recives 4 chars, every number that lacks the third and fourth char must be sent with the proper code in those positions
 //if the input is correct, you'll get the composed number  
-
 long int calc_days(int, int, int, int, int, int);
-
+//This function uses an algorithm to calculate the amount of days between both dates
 void welcome_msg (void);
-//this function doesnt recive or return anything, it gives the welcoming message 
+//This function doesnt recive or return anything, it gives the welcoming message 
 void print_result (long int result);
-//this function recives the difference betwen the dates from input and prints them and doesnt return anything
+//This function recives the difference betwen the dates from input and prints them and doesnt return anything
 void print_orders (int order);
-//this function indicates the user which date type, it recives the number of the order and doesent return anything
+//This function indicates the user which date type, it recives the number of the order and doesent return anything
 void print_invalid (void);
-//this function doesnt recive or return anything, it prints the msg if theres a invalid input
+//This function doesnt recive or return anything, it prints the msg if theres a invalid input
 
-char d1=DAY_MONTH, d2=DAY_MONTH;	//Variables Globales: d=dia, m=mes, a=year
-char b1=DAY_MONTH, b2=DAY_MONTH;	//Se eligio la utilizacion de variables globales para facilitar el pasaje de informacion
-char m1=DAY_MONTH, m2=DAY_MONTH;	//a las funciones. Se inicializan todas en valor 0 menos las dos ultimas de year, las cuales
-char a1=YEAR, a2=YEAR, a3=YEAR, a4=YEAR;	//si no son modificadas en get_input, se entiende que el usuario eligio
-													//utilizar el formato corto de ano.
+char d1=DAY_MONTH, d2=DAY_MONTH;			//Global Variables: d=day, m=month, a=year
+char b1=DAY_MONTH, b2=DAY_MONTH;			//Global variables were chosen to facilitate the usage of functions in the program.
+char m1=DAY_MONTH, m2=DAY_MONTH;			//All the variables are inicializated with a 0 value except for the years, which
+char a1=YEAR, a2=YEAR, a3=YEAR, a4=YEAR;	//are inicializated with a -1 value.
 
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 int main(void)				//////Main function//////
 {
 	
@@ -50,7 +55,6 @@ int main(void)				//////Main function//////
 	long int daytotal;
 
 	welcome_msg();
-
 	get_date(startorfinish);		//Se toma la fecha y se verifica su validez.
 	
 	yearstart = make_num(a1, a2, a3, a4);						//Luego, se compone el numero.
@@ -58,6 +62,7 @@ int main(void)				//////Main function//////
 	daystart = make_num(d1, d2, DAY_MONTH, DAY_MONTH);
 
 	startorfinish = FINISH;			//Se informa que la fecha a recibir es ahora la final.
+	reset_values();
 	get_date(startorfinish);		//Se toma la fecha y se verifica su validez.
 
 	yearend = make_num(a1, a2, a3, a4);							//uego, se compone el numero.
@@ -70,9 +75,13 @@ int main(void)				//////Main function//////
 
 return 0;
 }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 
 ////////////////////////////MAKING THE NUMBER///////////////////////////////////////////////
-
 int make_num (char first,char second, char third, char fourth)
 {
 	int number;
@@ -100,9 +109,9 @@ void get_date(int startorfinish)
 
 	int verif;
 
-	do {								//Funcion de verificacion y pedido de input de fecha.
-										//No sale hasta que el usuario entregue una fecha valida.
-		if(startorfinish == START)		//Tambien se checkea si la fecha a pedir es la inicial o la final.
+	do {								//Asking and validating the input
+										//The flow is locked until the user inputs something valid.
+		if(startorfinish == START)		//Takes into consideration whether the program has to ask for final or starting date.
 			print_orders(INPUT_FIRST_DATE);
 		else
 			print_orders(INPUT_SECOND_DATE);
@@ -110,10 +119,10 @@ void get_date(int startorfinish)
 		get_input();
 		verif = check_input();
 		
-		if (verif == INCORRECTA)
+		if (verif == INCORRECT)
 			print_invalid();				
 
-	} while (verif != INCORRECTA);
+	} while (verif != INCORRECT);
 }
 
 ///////////////////////////////////SCREEN FUNCTIONS///////////////////////////////////////////////
@@ -146,86 +155,93 @@ void print_invalid (void)
 ///////////////////////////////////IMPUT FUNCTION/////////////////////////////////////////
 void get_input(void)
 {
-	int caracter, count=0, freno=0;
+	int character, count=0, brake=0;
 	int i;
-for(i=0 ; (i<10 && (freno <1)) ; i++)	//Si se recibe un enter, freno se activa y no itera.
+for(i=0 ; (i<10 && (brake <1)) ; i++)	//When enter is read, brake activates and the loop is broken.
 	{
-		caracter=getchar();
-		switch(++count)	//Un caso para cada variable
-		{				//Si el usuario apreta enter prematuramente, las variables no modificadas
-			case 1:		//quedan con su valor de inicializacion.
-				if(caracter== '\n' ) {
-					freno=1;
+		character=getchar();
+		switch(++count)	//A case for each variable
+		{				//If a variable is not modificated, it remains with the inicial value. This is important, as it
+			case 1:		//contributes to the flow of the program.
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					d1=caracter;
+					d1=character;
 				break;
 			case 2:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					d2=caracter;
+					d2=character;
 				break;
 			case 3:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					b1=caracter;
+					b1=character;
 				break;
 			case 4:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					m1=caracter;
+					m1=character;
 				break;
 			case 5:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					m2=caracter;
+					m2=character;
 				break;
 			case 6:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					b2=caracter;
+					b2=character;
 				break;
 			case 7:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					a1=caracter;
+					a1=character;
 				break;
 			case 8:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					a2=caracter;
+					a2=character;
 				break;
 			case 9:
-				if(caracter== '\n' ) {
-					freno=1;
+				if(character== '\n' ) {
+					brake=1;
 				}
 				else
-					a3=caracter;
+					a3=character;
 				break;
 			case 10:
-				if(caracter== '\n' )
+				if(character== '\n' )
 				{
-					freno=1;
-					a4=caracter;
+					brake=1;
+					a4=character;
 				}
 				else
-					a4=caracter;
+					a4=character;
 				break;
 		}
 	}
 }
 //////////////////////////////////////////////////////////////////////////////////////////
+
+void reset_values(void)
+{
+	d1=d2=b1=m1=m2=b2=DAY_MONTH;	//Resets global values
+	a1=a2=a3=a4=YEAR;
+	return;
+}
