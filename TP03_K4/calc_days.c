@@ -4,7 +4,7 @@ long int calc_days (int, int, int, int, int, int);   //Prototipo calc_days
 int main(void)
 {
  int vuelto;
-vuelto = calc_days( 17,5,1997,30,8,2017);
+vuelto = calc_days( 1,1,1996,30,8,2017);
 printf("Dias transcurridos : %d \n", vuelto);
 }
 
