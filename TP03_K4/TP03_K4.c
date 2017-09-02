@@ -1,23 +1,24 @@
 #include <stdio.h>
 #define INCORRECTA 0
-#define START 0
+#define START 0					//////Definiciones//////
 #define FINISH 1
 #define TERMINATOR 0
 #define YEAR -1
 #define ASCII '0'
 
-void get_input(void);
+void get_input(void);			//////Prototipos/////
 void get_date(int);
 int check_input(void);
 int make_num(int, int, int, int);
 long int calc_days(int, int, int, int, int, int);
 
-int d1=TERMINATOR, d2=TERMINATOR;
-int b1=TERMINATOR, b2=TERMINATOR;
-int m1=TERMINATOR, m2=TERMINATOR;
-int a1=TERMINATOR, a2=TERMINATOR, a3=YEAR, a4=YEAR;
+int d1=TERMINATOR, d2=TERMINATOR;	//Variables Globales: d=dia, m=mes, a=year
+int b1=TERMINATOR, b2=TERMINATOR;	//Se eligio la utilizacion de variables globales para facilitar el pasaje de informacion
+int m1=TERMINATOR, m2=TERMINATOR;	//a las funciones. Se inicializan todas en valor 0 menos las dos ultimas de year, las cuales
+int a1=TERMINATOR, a2=TERMINATOR, a3=YEAR, a4=YEAR;	//si no son modificadas en get_input, se entiende que el usuario eligio
+													//utilizar el formato corto de ano.
 
-int main(void)
+int main(void)				//////Funcion Main//////
 {
 	printf("Este programa calcula la cantidad de dias comprendidos entre una fecha
 		inicial y una fecha final. Se pide que el formato de entrada de los dias sea de
@@ -28,36 +29,37 @@ int main(void)
 	int yearend, monthend, dayend;
 	long int daytotal;
 
-	get_date(startorfinish);
+	get_date(startorfinish);		//Se toma la fecha y se verifica su validez.
 	
-	yearstart = make_num(a1, a2, a3, a4);
+	yearstart = make_num(a1, a2, a3, a4);						//Luego, se compone el numero.
 	monthstart = make_num(m1, m2, TERMINATOR, TERMINATOR);
 	daystart = make_num(d1, d2, TERMINATOR, TERMINATOR);
 
-	startorfinish = FINISH;
-	get_date(startorfinish);
+	startorfinish = FINISH;			//Se informa que la fecha a recibir es ahora la final.
+	get_date(startorfinish);		//Se toma la fecha y se verifica su validez.
 
-	yearend = make_num(a1, a2, a3, a4);
+	yearend = make_num(a1, a2, a3, a4);							//uego, se compone el numero.
 	monthend = make_num(m1, m2, TERMINATOR, TERMINATOR);
 	daystart = make_num(d1, d2, TERMINATOR, TERMINATOR);
 
-	daytotal = calc_days(daystart, monthstart, yearstart, dayend, monthend, yearend);
-
-	printf("El numero de dias comprendido entre las fechas es de: %ld dias.\n\n", daytotal);
+	daytotal = calc_days(daystart, monthstart, yearstart, dayend, monthend, yearend); //Mediante el algoritmo, se calcula
+																						//la cantidad totales de dias.
+	printf("El numero de dias comprendido entre las fechas es de: %ld dias.\n\n", daytotal);//Y se la informa al usuario.
 
 return 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+
 void get_date(int startorfinish)
 {
 
 	int verif;
 
-	do {
-
-		if(startorfinish == START)
+	do {								//Funcion de verificacion y pedido de input de fecha.
+										//No sale hasta que el usuario entregue una fecha valida.
+		if(startorfinish == START)		//Tambien se checkea si la fecha a pedir es la inicial o la final.
 			printf("Ingresar fecha inicial:\n");
 		else
 			printf("Ingresar fecha final:\n");	
@@ -77,6 +79,7 @@ return;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 
+
 void get_input(void)
 {
 
@@ -89,8 +92,8 @@ for(i=0 ; (i<10 && (freno <1)) ; i++)	//Si se recibe un enter, freno se activa y
 		count++;
 
 		switch(count)	//Un caso para cada variable
-		{
-			case 1:
+		{				//Si el usuario apreta enter prematuramente, las variables no modificadas
+			case 1:		//quedan con su valor de inicializacion.
 				if(caracter== '\n' ) {
 					freno=1;
 				}
