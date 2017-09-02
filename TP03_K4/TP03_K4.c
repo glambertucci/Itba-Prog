@@ -243,5 +243,5 @@ void reset_values(void)
 {
 	d1=d2=b1=m1=m2=b2=DAY_MONTH;	//Resets global values
 	a1=a2=a3=a4=YEAR;
-	return;
+	
 }
