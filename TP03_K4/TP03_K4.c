@@ -3,6 +3,7 @@
 #define START 0
 #define FINISH 1
 #define TERMINATOR 0
+#define YEAR -1
 #define ASCII '0'
 
 void get_input(void);
@@ -14,10 +15,13 @@ long int calc_days(int, int, int, int, int, int);
 int d1=TERMINATOR, d2=TERMINATOR;
 int b1=TERMINATOR, b2=TERMINATOR;
 int m1=TERMINATOR, m2=TERMINATOR;
-int a1=TERMINATOR, a2=TERMINATOR, a3=TERMINATOR, a4=TERMINATOR;
+int a1=TERMINATOR, a2=TERMINATOR, a3=YEAR, a4=YEAR;
 
 int main(void)
 {
+	printf("Este programa calcula la cantidad de dias comprendidos entre una fecha
+		inicial y una fecha final. Se pide que el formato de entrada de los dias sea de
+		dd/mm/aaaa o alternativamente de dd/mm/aa.\n");
 
 	int verif, startorfinish=START;
 	int yearstart, monthstart, daystart;
