@@ -1,9 +1,9 @@
 #include<stdio.h>
 
-#define ENE 1 //Estas definiciones me permitiran trabajar con los meses
-#define FEB 2 //El objetivo es determinar el mes componiendolo a partir de las variables m1 y m2
-#define MAR 3 //Una vez hecho esto, puedo determinar las condiciones de los días (EJ: Abril no puede tener mas de 30 días)
-#define ABR 4 //Si no hiciera esta composición con m1 y m2, evaluar los días en función de m1 y m2 sería mucho más difícil.
+#define ENE 1 //Estas definiciones existen para que se entienda, en el código, que se trabaja con meses.
+#define FEB 2 
+#define MAR 3 
+#define ABR 4 
 #define MAY 5
 #define JUN 6
 #define JUL 7
@@ -31,85 +31,27 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 	a1 = a1-ASCII;
 	a2 = a2-ASCII; //No modifico a3 y a4 porque si su valor en ASCII es 0, se trata del terminador, el cual debo discriminar.
 
-	int dia;
-	int mes;
+	int day;
+	int month;
 	int year;
 	int format;
 
-	switch(m1 == 1) //¿El primer dígito es 1?
+/***********************
+	Mes
+***********************/
+
+	if((m1 < 0) || (m1 > 1) || (m2 < 0) || (m2 > 9)) //Si m1 o m2 son distintos de 0/1 o 0-9 el input es erroneo
 	{
-	case 1:
-		if(m2 == 0) //Si lo es, evalúo si es octubre, noviembre o diciembre.
-		{
-			mes = OCT;
-		}
-		else if(m2 == 1)
-		{
-			mes = NOV;
-		}
-		else if(m2 == 2)
-		{
-			mes = DIC;
-		}
-		else 
-		{
-			return 0; // Si el primer dígito es 1 pero el segundo es mayor a 2, entonces el input es inválido.
-		}
-	case 0:
-		switch(m1 == 0) //Evalúo los casos en los que el primer dígito es 1.
-		{
-			case 1:
-				if(m2 == 0)
-				{
-					return 0;
-				}
-				else if(m2 == 1)
-				{
-					mes = ENE;
-				}
-				else if(m2 == 2)
-				{
-					mes = FEB;
-				}
-				else if(m2 == 3)
-				{
-					mes = MAR;
-				}
- 				else if(m2 == 4)
-				{
-					mes = ABR;
-				}
-				else if(m2 == 5)
-				{
-					mes = MAY;
-				}
-				else if(m2 == 6)
-				{
-					mes = JUN; 
-				}
-				else if(m2 == 7)
-				{
-					mes = JUL;
-				}
-				else if(m2 == 8)
-				{
-					mes = AGO;
-				}
-				else if(m2 == 9)
-				{
-					mes = SEP;
-				}
-			case 0:
-				{
-				return 0; //Si el primer dígito no es 0 o 1, el input es inválido.
-				}
-			default:
-				{
-				return 0;
-				}
-		}
+		return 1;
 	}
-	
+
+	month = (m1*10+m2); //Defino month como la suma de los números que el usuario haya introducido.
+
+	if((month > 12) || (month < 1)) //Si la suma de números no da un número de 1 a 12, el input es invalido (Ej: 00 o 17 no son meses)
+	{
+		return 1;
+	}
+
 
 /******************
 	Barras
@@ -117,34 +59,34 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 
 	if(b1 != 47) //Los caracteres 3 y 6 deben ser "/", cuyo valor en ASCII es 47, debido al formato dd/mm/aaaa o dd/mm/aa.
 	{
-		return 0;
+		return 1;
 	}
 	else if(b2 != 47) //Nuevamente , tiene que haber un slash en esta posición.
 	{
-		return 0;
+		return 1;
 	}
 
 /*******************
 	Años
 *******************/
 	
-	else if(a1 < 0 || a1 > 9) //Los años pueden tomar cualquier valor en cualquier cifra.
+	else if((a1 < 0) || (a1 > 9)) //Los años pueden tomar cualquier valor en cualquier cifra.
 	{
-		return 0;
+		return 1;
 	}
-	else if(a2 < 0 || a2 > 9) 
+	else if((a2 < 0) || (a2 > 9)) 
 	{
-		return 0;
+		return 1;
 	}
-	else if((a3 < 48 || a3 > 57) && a3 != 0) //Estos dos últimos pueden no estar (formato dd/mm/aa) por lo que evalúo...
+	else if((((a3 < 48) || (a3 > 57))) && (a3 != 0)) //Estos dos últimos pueden no estar (formato dd/mm/aa) por lo que evalúo...
 	{
-		return 0;
+		return 1;
 	}
-	else if((a4 < 48 || a4 > 57) && a4 != 0)//...que si no son números, entonces aún pueden ser el terminador.
+	else if((((a4 < 48) || (a4 > 57))) && (a4 != 0))//...que si no son números, entonces aún pueden ser el terminador.
 	{
-		return 0; //Si tampoco son el terminador, será falso, puesto que el input es incorrecto.
+		return 1; //Si tampoco son el terminador, será falso, puesto que el input es incorrecto.
 	}
-	else if (a3 == 0 && a4 == 0)
+	else if((a3 == 0) && (a4 == 0))
 	{
 		format = 2; //2 indica que el número es válido pero en formato dd/mm/aa
 	}
@@ -154,46 +96,60 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 	}
 
 	if(format == 1)
-	year = ((a1*1000+a2*100+(a3-ASCII)*10+(a4-ASCII))); /* Compongo el año multiplicando los valores traducidos desde ASCII
-							por 1000, 100, 10 y 1 correspondientementes y sumandolos. */
+	{
+		year = ((a1*1000+a2*100+(a3-ASCII)*10+(a4-ASCII))); /* Compongo el año multiplicando los valores traducidos desde 									ASCII por 1000, 100, 10 y 1 correspondientementes y sumandolos. */
+	}
 	else if(format==2) //Si es es el formato 2, asumo que es el siglo XXI y multiplico los componentes por 10 y 1 para sumarlos.
-	year = 2000+a1*10+a2;
+	{
+		year = 2000+a1*10+a2;
+	}
 
 /*********************
 	Días
 **********************/
-	if((mes == ENE) || (mes == MAR) || (mes == MAY) || (mes == JUL) || (mes == AGO) || (mes == OCT) || (mes == DIC))
+//Evaluación del día (Validez de la fecha introducida)
+
+	if(((d1 > 3) || (d1 < 0)) && ((d2 < 0) || (d2 > 1)))//Si d1 o d2 son distintos de 0-3 o 0-9 el input es erroneo
 	{
-		if((d1 == 3) && (d2 > 1)) //Si el primer dígito es 3, el segundo no puede ser mayor a 1.
-		{
-			return 0;
-		}
-		else if(d1 > 3) //Y si el primero es mayor a 3, el input es inválido.
-		{
-			return 0;
-		}
+		return 1;
 	}
-	else if((mes == FEB))
+
+	day = (d1*10+d2); //Defino day como la suma de los números que el usuario haya introducido.
+
+
+	if(day > 31 || day < 1) //Si la suma de números no da un número de 1 a 12, el input es invalido (Ej: 00 o 32 no son dias)
 	{
-		if(d1 == 3)
-		{
-			return 0;
-		}
-		else if((d1 == 2) && (d2 == 9) && (((year % BIS1) == 0)) && (((year%BIS2) != 0) || ((year%BIS3) == 0))) 
-		/* "Si es 29 y no es bisiesto, es error*/
-		{
-			return 0;
-		}
 	}
 	else //Todos los demás casos son meses de 30 días...
 	{
-		if(d1 == 3 && d2 > 0) //...Por lo que si el primer dígito es 3 y el segundo es mayor a 0, hay error.
+		if(day > 30) //...Por lo que si el valor de la variable day es mayor a 30, el input es inválido.
 		{
-		return 0;
+		return 1;
 		}
-		
+	}		
+
+//Evaluación del día (Valor en relación a los meses o años que pertenezca)
+
+	if((month == ENE) || (month == MAR) || (month == MAY) || (month == JUL) || (month == AGO) || (month == OCT) || (month == DIC))
+	{
+		if(day > 31) //Los meses dentro del if son aquellos con 31 días.
+		{
+			return 1;
+		}
 	}
-	dia = (d1*10+d2);
-	return 1;
+	else if((month == FEB))
+	{
+		if(day > 29) //Febrero tiene 28 días, 29 en bisiestos.
+		{
+			return 1;
+		}
+		else if((day = 29) && (((year % BIS1) == 0)) && (((year%BIS2) != 0) || ((year%BIS3) == 0))) 
+		/* "Si es 29 y no es bisiesto, es error*/
+		{
+			return 1;
+		}
+
+	}
+	return 0;
 
 }
