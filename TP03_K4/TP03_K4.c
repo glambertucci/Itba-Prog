@@ -2,7 +2,7 @@
 
 //////Definiciones//////
 
-#define INCORRECT (0)
+#define INCORRECT (1)
 #define START (0)					
 #define FINISH (1)
 #define DAY_MONTH 0
@@ -122,7 +122,7 @@ void get_date(int startorfinish)
 		if (verif == INCORRECT)
 			print_invalid();				
 
-	} while (verif != INCORRECT);
+	} while (verif == INCORRECT);
 }
 
 ///////////////////////////////////SCREEN FUNCTIONS///////////////////////////////////////////////
