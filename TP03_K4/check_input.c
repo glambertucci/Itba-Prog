@@ -91,7 +91,7 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 	{
 		return 1; //Si tampoco son el terminador, será falso, puesto que el input es incorrecto.
 	}
-	else if((a3 == 0) && (a4 == 0))
+	else if((a3 == 0))
 	{
 		format = 1; //1 indica que el número es válido pero en formato dd/mm/aa
 	}
