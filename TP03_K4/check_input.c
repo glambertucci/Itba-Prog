@@ -13,7 +13,12 @@
 #define NOV 11
 #define DIC 12
 
+
+#define YRMIN 1600 //Año mínimo en el que opera el programa
+#define YRMAX 2600 //Año máximo en el que opera el programa
+
 #define ASCII 48 //Útil para desplazar los valores de a1, a2, a3 y a4. EJ: SI a3 = 53, le resto 48 y su valor numérico es 6.
+#define BARRA 47 //ASCII de la barra. Es definida para mejor comprensión de lectura del código.
 
 #define BIS1 4 //Un año bisiesto son aquellos divisibles por 4 y no divisible por 100, excepto que sea divisible por 400
 #define BIS2 100
@@ -57,11 +62,11 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 	Barras
 ******************/
 
-	if(b1 != 47) //Los caracteres 3 y 6 deben ser "/", cuyo valor en ASCII es 47, debido al formato dd/mm/aaaa o dd/mm/aa.
+	if(b1 != BARRA) //Los caracteres 3 y 6 deben ser "/", cuyo valor en ASCII es 47, debido al formato dd/mm/aaaa o dd/mm/aa.
 	{
 		return 1;
 	}
-	else if(b2 != 47) //Nuevamente , tiene que haber un slash en esta posición.
+	else if(b2 != BARRA) //Nuevamente , tiene que haber un slash en esta posición.
 	{
 		return 1;
 	}
@@ -70,7 +75,7 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 	Años
 *******************/
 	
-	else if((a1 < 0) || (a1 > 9)) //Los años pueden tomar cualquier valor en cualquier cifra.
+	if((a1 < 0) || (a1 > 9)) //Los años pueden tomar cualquier valor en cualquier cifra.
 	{
 		return 1;
 	}
@@ -88,18 +93,23 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 	}
 	else if((a3 == 0) && (a4 == 0))
 	{
-		format = 2; //2 indica que el número es válido pero en formato dd/mm/aa
+		format = 1; //1 indica que el número es válido pero en formato dd/mm/aa
 	}
+	else if((a3 != 0) && (a4 != 0))
+	{
+		format = 2; //2 indica que el número es válido pero en formato dd/mm/aaaa
+	}	
 	else
 	{
-		format = 1; //1 indica que el número es válido pero en formato dd/mm/aaaa
+		return 1;
 	}
 
-	if(format == 1)
+
+	if(format == 2)
 	{
 		year = ((a1*1000+a2*100+(a3-ASCII)*10+(a4-ASCII))); /* Compongo el año multiplicando los valores traducidos desde 									ASCII por 1000, 100, 10 y 1 correspondientementes y sumandolos. */
 	}
-	else if(format==2) //Si es es el formato 2, asumo que es el siglo XXI y multiplico los componentes por 10 y 1 para sumarlos.
+	else if(format == 1) //Si es es el formato 1, asumo que es el siglo XXI y multiplico los componentes por 10 y 1 para sumarlos.
 	{
 		year = 2000+a1*10+a2;
 	}
@@ -109,7 +119,7 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 **********************/
 //Evaluación del día (Validez de la fecha introducida)
 
-	if(((d1 > 3) || (d1 < 0)) && ((d2 < 0) || (d2 > 1)))//Si d1 o d2 son distintos de 0-3 o 0-9 el input es erroneo
+	if(((d1 > 3) || (d1 < 0)) || ((d2 < 0) || (d2 > 9)))//Si d1 o d2 son distintos de 0-3 o 0-9 el input es erroneo
 	{
 		return 1;
 	}
@@ -143,12 +153,16 @@ int check_input(int d1, int d2, int b1, int m1, int m2, int b2, int a1, int a2, 
 		{
 			return 1;
 		}
-		else if((day = 29) && (((year % BIS1) == 0)) && (((year%BIS2) != 0) || ((year%BIS3) == 0))) 
+		else if((day == 29) && !((((year % BIS1) == 0)) && (((year%BIS2) != 0) || ((year%BIS3) == 0)))) 
 		/* "Si es 29 y no es bisiesto, es error*/
 		{
 			return 1;
 		}
 
+	}
+	if(year < YRMIN || year > YRMAX) //Limito el rango en el que opera el programa.
+	{
+		return 2; //Devuelvo un error diferente para indicar que el input es técnicamente válido, pero el programa no lo trabaja.
 	}
 	return 0;
 
