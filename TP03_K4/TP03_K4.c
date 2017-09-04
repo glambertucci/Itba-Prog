@@ -156,11 +156,7 @@ void get_date(int startorfinish)
 		printf("El programa opera entre los años %d y %d. Ingrese una fecha entre esos años.\n", YRMIN, YRMAX);
 		}
 
-<<<<<<< HEAD
 	} while((verif == INCORRECT) || (verif == 2));
-=======
-	} while (verif == INCORRECT);
->>>>>>> 5eb0fa5b5c2052f29d094011a644d1f69e565614
 }
 
 ///////////////////////////////////SCREEN FUNCTIONS///////////////////////////////////////////////
