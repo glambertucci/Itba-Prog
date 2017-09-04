@@ -10,7 +10,6 @@
 #define ASCII ('0')
 #define INPUT_FIRST_DATE 	(1)
 #define INPUT_SECOND_DATE (2)
-#include<stdio.h>
 
 #define ENE 1 //Estas definiciones existen para que se entienda, en el código, que se trabaja con meses.
 #define FEB 2 
@@ -156,19 +155,16 @@ void get_date(int startorfinish)
 		printf("El programa opera entre los años %d y %d. Ingrese una fecha entre esos años.\n", YRMIN, YRMAX);
 		}
 
-<<<<<<< HEAD
 	} while((verif == INCORRECT) || (verif == 2));
-=======
-	} while (verif == INCORRECT);
->>>>>>> 5eb0fa5b5c2052f29d094011a644d1f69e565614
+
 }
 
 ///////////////////////////////////SCREEN FUNCTIONS///////////////////////////////////////////////
 
 void welcome_msg (void)
 {
-	printf("Este programa calcula la cantidad de dias comprendidos entre una fecha");
-	printf("inicial y una fecha final. Se pide que el formato de entrada de los dias sea de");		
+	printf("Este programa calcula la cantidad de dias comprendidos entre una fecha ");
+	printf("inicial y una fecha final. Se pide que el formato de entrada de los dias sea de ");		
 	printf("dd/mm/aaaa o alternativamente de dd/mm/aa.\n");	
 }
 
@@ -193,11 +189,12 @@ void print_invalid (void)
 ///////////////////////////////////INPUT FUNCTION/////////////////////////////////////////
 void get_input(void)
 {
-	int character, count=0, brake=0;
+	int character=0, count=0, brake=0;
 	int i;
-for(i=0 ; (i<10 && (brake <1)) ; i++)	//When enter is read, brake activates and the loop is broken.
+	for(i=0 ; (i<10 && (brake != 1)) ; i++)	//When enter is read, brake activates and the loop is broken.
 	{
 		character=getchar();
+		
 		switch(++count)	//A case for each variable
 		{				//If a variable is not modificated, it remains with the inicial value. This is important, as it
 			case 1:		//contributes to the flow of the program.
@@ -279,8 +276,17 @@ for(i=0 ; (i<10 && (brake <1)) ; i++)	//When enter is read, brake activates and 
 
 void reset_values(void)
 {
-	d1=d2=b1=m1=m2=b2=DAY_MONTH;	//Resets global values
-	a1=a2=a3=a4=YEAR;
+	d1=DAY_MONTH;
+	d2=DAY_MONTH;
+	b1=DAY_MONTH;
+	m1=DAY_MONTH;
+	m2=DAY_MONTH;
+	b2=DAY_MONTH;
+
+	a1=YEAR;
+	a2=YEAR;
+	a3=YEAR;
+	a4=YEAR;
 	
 }
 
