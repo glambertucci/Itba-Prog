@@ -191,6 +191,7 @@ void get_input(void)
 {
 	int character=0, count=0, brake=0;
 	int i;
+
 	for(i=0 ; (i<10 && (brake != 1)) ; i++)	//When enter is read, brake activates and the loop is broken.
 	{
 		character=getchar();
@@ -265,12 +266,16 @@ void get_input(void)
 				{
 					brake=1;
 					a4=character;
+
 				}
-				else
+				else {
 					a4=character;
+					character=getchar();
+				}
 				break;
 		}
 	}
+
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 
