@@ -22,7 +22,7 @@ int CellStatus (int fila, int column, int matrix [HEIGHT][WIDTH])
         int aux_column = column-1;
 
 
-        Actual_Cell = matrix [fila] [column];
+        Actual_Cell = matrix [fila] [column];   //estado actual de la celula, Dead o Alive
 
         for(matrix [fila-1][aux_column]; aux column <= column+1; aux_column ++) //analizo el estado de las 3 celulas superiores a la actual:
             {if (matrix[fila-1][aux_column] == ALIVE)                           //diagonal superior izquierda, superior y
