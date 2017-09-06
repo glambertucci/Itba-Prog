@@ -1,39 +1,44 @@
+//TP PRACTICO N°3 . Funciones, entrada y salida de datos
+/*Fecha de creacion 1/9/2017
+Grupo 4
+Integrantes:
+Lambertucci Guido	58009
+Hrubisiuk 	Agustin	58311
+Mechoulam	Alan	58438
+Moriconi	Franco	58495
+Este programa recibe por linea de comando dos fechas en formato dd/mm/aa o dd/mm/aaaa y devuelve por pantalla
+la cantidad de dias comprendida entre ambas fechas
+Nota 1: El programa si recibe fecha 1 > a fecha 2 devolvera la cantidad de dias igualmente
+Nota 2: Los dias son tomados con dos cifras aunque sean < 10 ej: "2" debe ser ingresado como "02"
+*/
+
 #include <stdio.h>
 
-//////Definiciones//////
+//////CODIGOS DE ERROR//////
 
 #define INCORRECT (1)
+////////////FLAGS///////////////
+
 #define START (0)					
 #define FINISH (1)
 #define DAY_MONTH 0
 #define YEAR (-1)
-#define ASCII ('0')
-#define INPUT_FIRST_DATE 	(1)
-#define INPUT_SECOND_DATE (2)
-
-#define ENE 1 //Estas definiciones existen para que se entienda, en el código, que se trabaja con meses.
-#define FEB 2 
-#define MAR 3 
-#define ABR 4 
-#define MAY 5
-#define JUN 6
-#define JUL 7
-#define AGO 8
-#define SEP 9
-#define OCT 10
-#define NOV 11
-#define DIC 12
-
-
 #define YRMIN 1600 //Año mínimo en el que opera el programa
 #define YRMAX 2600 //Año máximo en el que opera el programa
-
-#define ASCII2 48 //Útil para desplazar los valores de a1, a2, a3 y a4. EJ: SI a3 = 53, le resto 48 y su valor numérico es 6.
 #define BARRA 47 //ASCII de la barra. Es definida para mejor comprensión de lectura del código.
 
+//Enum para reconocer los meses, que se trabaja con meses.
+enum {ENE=1,FEB,MAR,ABR,MAY,JUN,JUL,AGO,SET,OCT,NOV,DIC};
+
+
+////////////////UTILES//////////////
+#define ASCII ('0')
+#define ASCII2 48 //Útil para desplazar los valores de a1, a2, a3 y a4. EJ: SI a3 = 53, le resto 48 y su valor numérico es 6.
 #define BIS1 4 //Un año bisiesto son aquellos divisibles por 4 y no divisible por 100, excepto que sea divisible por 400
 #define BIS2 100
 #define BIS3 400
+#define INPUT_FIRST_DATE 	(1)
+#define INPUT_SECOND_DATE (2)
 
 //////Prototipos/////
 void reset_values(void);
@@ -55,6 +60,8 @@ void print_orders (int order);
 //This function indicates the user which date type, it recives the number of the order and doesn't return anything
 void print_invalid (void);
 //This function doesnt recive or return anything, it prints the msg if theres a invalid input
+void print_cota (void);
+//This function prints the max and min value for the year
 int check_input(char, char, char, char, char, char, char, char, char, char);
 //This functions checks if the input is valid
 
@@ -152,7 +159,7 @@ void get_date(int startorfinish)
 		}
 		else if(verif == 2)
 		{
-		printf("El programa opera entre los años %d y %d. Ingrese una fecha entre esos años.\n", YRMIN, YRMAX);
+		print_cota ();
 		}
 
 	} while((verif == INCORRECT) || (verif == 2));
@@ -182,6 +189,10 @@ void print_orders (int order)
 void print_invalid (void)
 {
 	printf("Formato de fecha invalido.\n");
+}
+void print_cota (void)
+{
+	printf("El programa opera entre los años %d y %d. Ingrese una fecha entre esos años.\n", YRMIN, YRMAX);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -281,18 +292,8 @@ void get_input(void)
 
 void reset_values(void)
 {
-	d1=DAY_MONTH;
-	d2=DAY_MONTH;
-	b1=DAY_MONTH;
-	m1=DAY_MONTH;
-	m2=DAY_MONTH;
-	b2=DAY_MONTH;
-
-	a1=YEAR;
-	a2=YEAR;
-	a3=YEAR;
-	a4=YEAR;
-	
+	b2=m2=m1=b1=d2=d1=DAY_MONTH;
+	a4=a3=a2=a1=YEAR;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
