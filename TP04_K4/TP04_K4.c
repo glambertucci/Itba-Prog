@@ -146,7 +146,7 @@ int cellStatus (int m, int n, char matrix[HEIGHT][WIDTH])
 
       current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
       
-      for(i=(n - OFFSET); i<=(n + OFFSET); i++)	//analizo el estado de las 3 celulas superiores a la actual:
+      /*for(i=(n - OFFSET); i<=(n + OFFSET); i++)	//analizo el estado de las 3 celulas superiores a la actual:
       {
             if (matrix[upperrow][n] == ALIVE)   //diagonal superior izquierda, superior y superior derecha.
             	neighbour_alive++;
@@ -168,7 +168,31 @@ int cellStatus (int m, int n, char matrix[HEIGHT][WIDTH])
 
       if(matrix[m][n+OFFSET] == ALIVE) //analizo el estado de la celula lateral derecha a la actual.
             neighbour_alive++;
-
+*/
+	if (matrix [m-OFFSET] [n-OFFSET] == ALIVE)	//analizo la celula diagonal superior izquierda
+		neighbour_alive++;
+	
+	if (matrix [m-OFFSET] [n] == ALIVE)	//analizo la celula superior central
+		neighbour_alive++;
+	
+	if (matrix [m-OFFSET] [n+OFFSET] == ALIVE)	//analizo la celula diagonal superior derecha 
+		neighbour_alive++;
+	
+	if (matrix [m] [n-OFFSET] == ALIVE)	//analizo la celula izquierda
+		neighbour_alive++;
+	
+	if (matrix [m] [n+OFFSET] == ALIVE)	//analizo la celula derecha
+		neighbour_alive++;
+	
+	if (matrix [m+OFFSET] [n-OFFSET] == ALIVE)	//analizo la celula diagonal inferior izquierda
+		neighbour_alive++;
+	
+	if (matrix [m+OFFSET] [n] == ALIVE)	//analizo la celula inferior central
+		neighbour_alive++;
+	
+	if (matrix [m+OFFSET] [n+OFFSET] == ALIVE)	//analizo la celula diagonal inferior derecha
+		neighbour_alive++;
+	
       destiny = cellFate (neighbour_alive, current_cell);
 
 	return destiny;
