@@ -132,20 +132,19 @@ int cellStatus (int row, int column, char matrix [HEIGHT][WIDTH])
       int actual_cell;
       int neighbour_alive = 0;
       int destiny;
-      int aux_column;
+      int aux_column = (column - OFFSET);
 
 
       actual_cell = matrix [row] [column];   //estado actual de la celula, Dead o Alive
-      aux_column = column-OFFSET;
 
-      for(matrix [row-OFFSET][aux_column]; aux_column <= column+1; aux_column++) //analizo el estado de las 3 celulas superiores a la actual:
+      for(matrix [row-OFFSET][aux_column]; aux_column <= (column+1); aux_column++) //analizo el estado de las 3 celulas superiores a la actual:
       {
             if (matrix[row-OFFSET][aux_column] == ALIVE)                           //diagonal superior izquierda, superior y
             	neighbour_alive++;                                             //diagonal superior derecha
       }
 
       aux_column = column-OFFSET;
-	for(matrix [row+OFFSET][aux_column]; aux_column <= column+1; aux_column++) //analizo el estado de las 3 celulas inferiores a la actual:
+	for(matrix [row+OFFSET][aux_column]; aux_column <= (column+1); aux_column++) //analizo el estado de las 3 celulas inferiores a la actual:
 	{
 		if (matrix[row+OFFSET][aux_column] == ALIVE)                           //diagonal inferior izquierda, inferior y
 	            neighbour_alive++;                                             //diagonal inferior derecha
