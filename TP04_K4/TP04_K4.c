@@ -84,9 +84,9 @@ void nextGen(char matrix[HEIGHT][WIDTH])
 	int m=1, n=1;
 	int cellstate;
 
-	for(m = 1; m < (HEIGHT)-(OUTERMATRIXCORRECTION); m++) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
+	for(m = 1; m < (HEIGHT-OUTERMATRIXCORRECTION); m++) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
 	{
-		for(n = 1; n < (WIDTH)-(OUTERMATRIXCORRECTION); n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
+		for(n = 1; n < (WIDTH-OUTERMATRIXCORRECTION); n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
 		{
 			cellstate=cellStatus(m, n, auxmatrix); //Se fija si la fila m columna n va a estar viva o muerta
 			if (cellstate == DEAD)	    	//Lo escribo en una matrix auxiliar, para no perturbar
