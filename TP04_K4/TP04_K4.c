@@ -11,6 +11,7 @@
 #define IS_ENTER '\n'
 #define BASE_NUM 10
 #define TIME 88889999
+#define MIN_INPUT 1
 
 void printMatrix(char mat[M][N]);
 //Printea una matriz
@@ -74,14 +75,11 @@ int main(void)
 	welcomeMsg();
 	num = readNumber();	
 
-	while(num >= 0)
-	{
-
-	nextGen(seed_matrix);
-	transferMat(seed_matrix, real_matrix);
+	do {
+	nextGen(real_matrix);
+	printMatrix(real_matrix);
 	--num;
-
-	}
+	} while (num<=MIN_INPUT);
 	
 	return 0;	
 
