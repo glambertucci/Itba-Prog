@@ -10,7 +10,7 @@
 #define FALSE 0
 #define IS_ENTER '\n'
 #define BASE_NUM 10
-#define TIME 88889999
+#define TIME 10
 #define MIN_INPUT 1
 #define INPUT_ENTER 1
 #define NOT_ENTER 0
@@ -60,6 +60,14 @@ int main(void)
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				};
 				/////////////////////////////////////////////
+
+			/*	char matrix[HEIGHT][WIDTH] = {
+				{' ',' ',' ',' '},
+				{' ','*','*',' '},
+				{' ','*','*',' '},
+				{' ',' ',' ',' '},
+				};
+			*/
 	
 
 	welcomeMsg(matrix);
