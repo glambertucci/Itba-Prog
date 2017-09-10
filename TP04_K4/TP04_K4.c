@@ -13,10 +13,11 @@
 #define TIME 88889999
 #define MIN_INPUT 1
 #define INPUT_ENTER 1
+#define NOT_ENTER 0
 #define BASE_NUM 10
 #define INPUT_ERR 0
 
-void printMatrix(char mat[M][N]);
+void printMatrix(char mat[][]);
 //Printea una matriz
 
 void delay (void);
@@ -79,7 +80,7 @@ int main(void)
 
 void nextGen(char matrix[HEIGHT][WIDTH])
 {
-	int auxmatrix[HEIGHT][WIDTH];
+	char auxmatrix[HEIGHT][WIDTH];
 	int m, n;
 	int cellstate;
 
@@ -115,7 +116,7 @@ void welcomeMsg (void)
 	printf("Configuracion: %dx%d \n",HEIGHT,WIDTH);
 	printf("\n");
 
-	printMatrix(seed_matrix[HEIGHT][WIDTH]);
+	printMatrix(matrix[HEIGHT][WIDTH]);
 
 	printf("\n");
 	printf("Para avanzar a la siguiente generacion\n");
@@ -218,12 +219,12 @@ int cellFate(int nalive, int status)
     return fate;
 }
 
-void printMatrix(char mat[M][N])
+void printMatrix(char mat[HEIGHT][WIDTH])
 {
 	int i, j;
 	printf("\n");
-	for (i = 0;i < N;i++){
-		for (j = 0;j < M;j++){
+	for (i = 0;i < WIDTH;i++){
+		for (j = 0;j < HEIGHT;j++){
 			printf("|%c",mat[i][j]);
 		}
 		printf("|\n");
