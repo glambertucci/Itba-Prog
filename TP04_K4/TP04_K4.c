@@ -124,7 +124,7 @@ void welcomeMsg (char matrix[HEIGHT][WIDTH])
 	printf("\n");
 	printf("Para avanzar a la siguiente generacion escriba el\n");
 	printf("numero de generaciones que desea ver y presione enter.\n\n");
-	printf("Si presiona enter se mostrara una sola generacion.\nSi escribe 0 se terminara el programa.\n");
+	printf("Si presiona enter se mostrara una sola generacion.\nSi escribe 0 o un numero negativo se terminara el programa.\n");
 }
 
 int cellStatus (int row, int column, char matrix [HEIGHT][WIDTH])
