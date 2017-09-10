@@ -89,8 +89,11 @@ void nextGen(char matrix[HEIGHT][WIDTH])
 		for(n = 1; n < (WIDTH)-(OUTERMATRIXCORRECTION); n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
 		{
 			cellstate=cellStatus(m, n, auxmatrix); //Se fija si la fila m columna n va a estar viva o muerta
-			auxmatrix[m][n] = cellstate; //Lo escribo en una matrix auxiliar, para no perturbar
-							     //el analisis siguiente. 
+			if (cellstate == DEAD)	    	//Lo escribo en una matrix auxiliar, para no perturbar
+				auxmatrix[m][n] = ' '; 	//el analisis siguiente. 
+			else
+				auxmatrix[m][n] = '*';
+
 		}//columna
 	}//fila
 
@@ -112,7 +115,7 @@ void transferMat(char copyfrom [HEIGHT][WIDTH], char copyto [HEIGHT][WIDTH])
 
 void welcomeMsg (char matrix[HEIGHT][WIDTH])
 {
-	printf("Bienvenido al juego de la vida! \n");
+	printf("\n\n\n\n\n\nBienvenido al juego de la vida! \n");
 	printf("Configuracion: %dx%d \n",HEIGHT,WIDTH);
 	printf("\n");
 
