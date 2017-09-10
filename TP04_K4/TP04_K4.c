@@ -17,20 +17,20 @@
 #define BASE_NUM 10
 #define INPUT_ERR 0
 
-void printMatrix(char mat[][]);
+void printMatrix(char mat[HEIGHT][WIDTH]);
 //Printea una matriz
 
 void delay (void);
 //Pierde el tiempo
 
-void welcomeMsg(void);
+void welcomeMsg (char matrix[HEIGHT][WIDTH]);
 //Esta función imprime un mensaje de bienvenida
 
 void nextGen(char[HEIGHT][WIDTH]);
 //Toma una matriz con una determinada generacion y la modifica acorde a las reglas del juego para avanzar una generacion.
 //Toma en consideracion que el cuadrado externo siempre son celulas externas.
 
-int cellStatus(int, int, int[HEIGHT][WIDTH]);
+int cellStatus(int, int, char[HEIGHT][WIDTH]);
 //Se fija si la celula definida por valor de fila y columna estara viva o muerta EN LA PROXIMA GENERACION.
 
 void transferMat(char[HEIGHT][WIDTH], char[HEIGHT][WIDTH]);
@@ -62,7 +62,7 @@ int main(void)
 				/////////////////////////////////////////////
 	
 
-	welcomeMsg();
+	welcomeMsg(matrix);
 
 	while ( (num = readNumber()) > INPUT_ERR)	//Mientras que el numero ingresado sea mayor a 0..
 	{					//Si se recibe un enter, eso es igual a un 1
@@ -110,13 +110,13 @@ void transferMat(char copyfrom [HEIGHT][WIDTH], char copyto [HEIGHT][WIDTH])
 	}
 }
 
-void welcomeMsg (void)
+void welcomeMsg (char matrix[HEIGHT][WIDTH])
 {
 	printf("Bienvenido al juego de la vida \n");
 	printf("Configuracion: %dx%d \n",HEIGHT,WIDTH);
 	printf("\n");
 
-	printMatrix(matrix[HEIGHT][WIDTH]);
+	printMatrix(matrix);
 
 	printf("\n");
 	printf("Para avanzar a la siguiente generacion\n");
@@ -124,7 +124,7 @@ void welcomeMsg (void)
 	printf("Si presiona enter se mostrara una sola generacion. Si escribe 0 se terminara el programa.\n");
 }
 
-int cellStatus (int row, int column, int matrix [HEIGHT][WIDTH])
+int cellStatus (int row, int column, char matrix [HEIGHT][WIDTH])
 {
       int actual_cell;
       int neighbour_alive = 0;
