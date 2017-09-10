@@ -12,11 +12,9 @@
 #define BASE_NUM 10
 #define TIME 88889999
 #define MIN_INPUT 1
-/*
 #define INPUT_ENTER 1 ??
-#define BASE_NUM 10 ??
+//#define BASE_NUM 10 ??
 #define INPUT_ERR 0 ??
-*/
 
 void printMatrix(char mat[M][N]);
 //Printea una matriz
@@ -38,8 +36,8 @@ void transferMat(char[HEIGHT][WIDTH], char[HEIGHT][WIDTH]);
 //En orden por argumento: transfiere los contenidos de la primera matriz a la segunda..
 
 int readNumber(); 
-/* readNumber: lee un entero de la entrada estandar (teclado), devuelve el numero 
-   ingresado en formato decimal. */
+//readNumber: lee un entero de la entrada estandar (teclado), devuelve el numero 
+//ingresado en formato decimal.
 
 int cellFate(int nalive, int status);
 //Esta función decide, en función de los vecinos de la celda, si esta se mantiene, o muere.
@@ -77,10 +75,10 @@ int main(void)
 	welcomeMsg();
 
 	while ( (num = readNumber()) > INPUT_ERR)	//Mientras que el numero ingresado sea mayor a 0..
-	{//Si se recibe un enter, eso es igual a un 1
+	{					//Si se recibe un enter, eso es igual a un 1
 		while (num>=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
 		{
-			nextGen(matrix);	//Calcula proxima generacion
+			nextGen(matrix);		//Calcula proxima generacion
 			printMatrix(matrix);	//La imprime
 			--num;		
 		}
@@ -96,13 +94,13 @@ void nextGen(char matrix[HEIGHT][WIDTH])
 	int m, n;
 	int cellstate;
 
-	for(m = 1; m < HEIGHT-OUTERMATRIXCORRECTION; m++) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
+	for(m = 1; m < (HEIGHT)-(OUTERMATRIXCORRECTION); m++) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
 	{
-		for(n = 1; n < WIDTH-OUTERMATRIXCORRECTION; n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
+		for(n = 1; n < (WIDTH)-(OUTERMATRIXCORRECTION); n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
 		{
 			cellstate=cellStatus(m, n, auxmatrix); //Se fija si la fila m columna n va a estar viva o muerta
 			auxmatrix[m][n] = cellstate; //Lo escribo en una matrix auxiliar, para no perturbar
-										  //El analisis siguiente. 
+							     //el analisis siguiente. 
 		}//columna
 	}//fila
 
