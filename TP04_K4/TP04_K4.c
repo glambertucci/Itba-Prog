@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define DEAD ' '
-#define ALIVE '*'
+#define DEAD 0
+#define ALIVE 1
 #define HEIGHT 10
 #define WIDTH 10
 #define OUTERMATRIXCORRECTION 2
