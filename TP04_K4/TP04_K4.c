@@ -11,7 +11,12 @@
 #define IS_ENTER '\n'
 #define BASE_NUM 10
 #define TIME 88889999
-#define MIN_INPUT 1
+#define MIN_INPUT 0
+/*
+#define INPUT_ENTER 1 ??
+#define BASE_NUM 10 ??
+#define INPUT_ERR 0 ??
+*/
 
 void printMatrix(char mat[M][N]);
 //Printea una matriz
@@ -42,10 +47,7 @@ int cellFate(int nalive, int status);
 int main(void)
 {
 	int num = 0;
-	char real_matrix[HEIGHT][WIDTH];
-
-
-	char seed_matrix[HEIGHT][WIDTH] = {
+	char matrix[HEIGHT][WIDTH] = {
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
@@ -71,18 +73,27 @@ int main(void)
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	};
 */
-	transferMat(seed_matrix, real_matrix);
+
 	welcomeMsg();
-	num = readNumber();	
+	num = readNumber();
 
-	do {
-	nextGen(real_matrix);
-	printMatrix(real_matrix);
-	--num;
-	} while (num<=MIN_INPUT);
-	
-	return 0;	
+	if(num==INPUT_ERR)
+	{
+		printf("Terminando programa..\n\n");
+		return 0;	
+	}
 
+	else
+	{
+		while (num<=MIN_INPUT)
+		{
+
+		nextGen(matrix);
+		printMatrix(matrix);
+		--num;
+		
+		}
+	}
 }
 
 void nextGen(char matrix[HEIGHT][WIDTH])
@@ -131,7 +142,7 @@ void welcomeMsg (void)
 	printf("Si presiona enter se mostrara una sola generacion. Si escribe 0 se terminara el programa.\n");
 }
 
-int CellStatus (int row, int column, int matrix [HEIGHT][WIDTH])
+int cellStatus (int row, int column, int matrix [HEIGHT][WIDTH])
 {
       int actual_cell;
       int neighbour_alive = 0;
