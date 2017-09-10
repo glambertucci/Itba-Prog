@@ -11,7 +11,7 @@
 #define IS_ENTER '\n'
 #define BASE_NUM 10
 #define TIME 88889999
-#define MIN_INPUT 0
+#define MIN_INPUT 1
 /*
 #define INPUT_ENTER 1 ??
 #define BASE_NUM 10 ??
@@ -75,25 +75,19 @@ int main(void)
 */
 
 	welcomeMsg();
-	num = readNumber();
 
-	if(num==INPUT_ERR)
-	{
-		printf("Terminando programa..\n\n");
-		return 0;	
-	}
-
-	else
-	{
-		while (num<=MIN_INPUT)
+	while ( (num = readNumber()) > INPUT_ERR)	//Mientras que el numero ingresado sea mayor a 0..
+	{//Si se recibe un enter, eso es igual a un 1
+		while (num>=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
 		{
-
-		nextGen(matrix);
-		printMatrix(matrix);
-		--num;
-		
+			nextGen(matrix);	//Calcula proxima generacion
+			printMatrix(matrix);	//La imprime
+			--num;		
 		}
 	}
+
+	printf("Terminando programa..\n\n"); //Al recibir algo menor o igual a un 0 se acaba el programa
+	return 0;	
 }
 
 void nextGen(char matrix[HEIGHT][WIDTH])
