@@ -112,16 +112,16 @@ void transferMat(char copyfrom [HEIGHT][WIDTH], char copyto [HEIGHT][WIDTH])
 
 void welcomeMsg (char matrix[HEIGHT][WIDTH])
 {
-	printf("Bienvenido al juego de la vida \n");
+	printf("Bienvenido al juego de la vida! \n");
 	printf("Configuracion: %dx%d \n",HEIGHT,WIDTH);
 	printf("\n");
 
 	printMatrix(matrix);
 
 	printf("\n");
-	printf("Para avanzar a la siguiente generacion\n");
-	printf("escriba el numero de generaciones que desea ver y presione enter.\n");
-	printf("Si presiona enter se mostrara una sola generacion. Si escribe 0 se terminara el programa.\n");
+	printf("Para avanzar a la siguiente generacion escriba el\n");
+	printf("numero de generaciones que desea ver y presione enter.\n\n");
+	printf("Si presiona enter se mostrara una sola generacion.\nSi escribe 0 se terminara el programa.\n");
 }
 
 int cellStatus (int row, int column, char matrix [HEIGHT][WIDTH])
