@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define DEAD 0
-#define ALIVE 1
+#define DEAD ' '
+#define ALIVE '*'
 #define HEIGHT 10
 #define WIDTH 10
 #define OUTERMATRIXCORRECTION 2
@@ -10,6 +10,13 @@
 #define FALSE 0
 #define IS_ENTER '\n'
 #define BASE_NUM 10
+#define TIME 88889999
+
+void printMatrix(char mat[M][N]);
+//Printea una matriz
+
+void delay (void);
+//Pierde el tiempo
 
 void welcomeMsg(void);
 //Esta función imprime un mensaje de bienvenida
@@ -24,20 +31,33 @@ int cellStatus(int, int, int[HEIGHT][WIDTH]);
 void transferMat(char[HEIGHT][WIDTH], char[HEIGHT][WIDTH]);
 //En orden por argumento: transfiere los contenidos de la primera matriz a la segunda..
 
-int leer_numero(); 
-/* leer_numero: lee un entero de la entrada estandar (teclado), devuelve el numero 
+int readNumber(); 
+/* readNumber: lee un entero de la entrada estandar (teclado), devuelve el numero 
    ingresado en formato decimal. */
 
-int cell_fate(int nalive, int status);
+int cellFate(int nalive, int status);
 //Esta función decide, en función de los vecinos de la celda, si esta se mantiene, o muere.
 
 int main(void)
 {
 	int num = 0;
-	char seed_matrix[HEIGHT][WIDTH];
+	char real_matrix[HEIGHT][WIDTH];
 
 
-	char real_matrix[HEIGHT][WIDTH] = {
+	char seed_matrix[HEIGHT][WIDTH] = {
+	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+	{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
+	{' ',' ','*','*','*',' ',' ', ' ',' ', ' '},
+	{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
+	{' ',' ','*',' ',' ',' ',' ', ' ',' ', ' '},
+	{' ',' ',' ','*','*',' ',' ', ' ',' ', ' '},
+	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+	};
+
+/*		char seed_matrix[HEIGHT][WIDTH] = {
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	{' ',' ',' ','*',' ',' ',' ', ' ',' ', ' '},
@@ -49,16 +69,18 @@ int main(void)
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 	};
-
-	transferMat(real_matrix, seed_matrix);
+*/
+	transferMat(seed_matrix, real_matrix);
 	welcomeMsg();
-	num = leer_numero();	
+	num = readNumber();	
 
 	while(num >= 0)
 	{
+
 	nextGen(seed_matrix);
 	transferMat(seed_matrix, real_matrix);
 	--num;
+
 	}
 	
 	return 0;	
@@ -68,12 +90,12 @@ int main(void)
 void nextGen(char matrix[HEIGHT][WIDTH])
 {
 	int auxmatrix[HEIGHT][WIDTH];
-	int cell, m, n;	
+	int m, n;
 	int cellstate;
 
-	for(m = 1; m < HEIGHT-OUTERMATRIXCORRECTION; ++m) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
+	for(m = 1; m < HEIGHT-OUTERMATRIXCORRECTION; m++) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
 	{
-		for(n = 1; n < WIDTH-OUTERMATRIXCORRECTION; ++n) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
+		for(n = 1; n < WIDTH-OUTERMATRIXCORRECTION; n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
 		{
 			cellstate=cellStatus(m, n, auxmatrix); //Se fija si la fila m columna n va a estar viva o muerta
 			auxmatrix[m][n] = cellstate; //Lo escribo en una matrix auxiliar, para no perturbar
@@ -88,9 +110,9 @@ void transferMat(char copyfrom [HEIGHT][WIDTH], char copyto [HEIGHT][WIDTH])
 {
 	int m, n;
 
-	for(m = 1; m<HEIGHT; m++) //Aunque el cuadrado exterior siempre sea cero, para reutilizar
+	for(m = 0; m<HEIGHT; m++) //Aunque el cuadrado exterior siempre sea cero, para reutilizar
 	{							//la funcion copia cualquier ancho y cualquier alto.
-		for(n = 1; n<WIDTH; n++)  //idem
+		for(n = 0; n<WIDTH; n++)  //idem
 		{
 			copyto[m][n]=copyfrom[m][n];
 		}
@@ -101,48 +123,55 @@ void welcomeMsg (void)
 {
 	printf("Bienvenido al juego de la vida \n");
 	printf("Configuracion: %dx%d \n",HEIGHT,WIDTH);
-	printf("-------------------- \n");
 	printf("\n");
-	printf("para avanzar a la siguiente generacion\n");
-	printf("toque cualquier tecla\n");
+
+	printMatrix(seed_matrix[HEIGHT][WIDTH]);
+
+	printf("\n");
+	printf("Para avanzar a la siguiente generacion\n");
+	printf("escriba el numero de generaciones que desea ver y presione enter.\n");
+	printf("Si presiona enter se mostrara una sola generacion. Si escribe 0 se terminara el programa.\n");
 }
 
-int CellStatus (int fila, int column, int matrix [HEIGHT][WIDTH])
-    {
-        int Actual_Cell;
-        int Neighbour_Alive = 0;
-        int destiny;
-        int aux_column = column-OFFSET;
+int CellStatus (int row, int column, int matrix [HEIGHT][WIDTH])
+{
+      int actual_cell;
+      int neighbour_alive = 0;
+      int destiny;
+      int aux_column;
 
 
-        Actual_Cell = matrix [fila] [column];   //estado actual de la celula, Dead o Alive
+      actual_cell = matrix [row] [column];   //estado actual de la celula, Dead o Alive
+      aux_column = column-OFFSET;
 
-        for(matrix [fila-OFFSET][aux_column]; aux_column <= column+1; aux_column ++) //analizo el estado de las 3 celulas superiores a la actual:
-            {if (matrix[fila-OFFSET][aux_column] == ALIVE)                           //diagonal superior izquierda, superior y
-                Neighbour_Alive++;                                             //diagonal superior derecha
-            }
-       aux_column = 0;
+      for(matrix [row-OFFSET][aux_column]; aux_column <= column+1; aux_column++) //analizo el estado de las 3 celulas superiores a la actual:
+      {
+            if (matrix[row-OFFSET][aux_column] == ALIVE)                           //diagonal superior izquierda, superior y
+            	neighbour_alive++;                                             //diagonal superior derecha
+      }
 
-        if(matrix[fila][column-OFFSET] == ALIVE) //analizo el estado de la celula laterale izquierda a la actual.
-                Neighbour_Alive++;
+      aux_column = column-OFFSET;
+	for(matrix [row+OFFSET][aux_column]; aux_column <= column+1; aux_column++) //analizo el estado de las 3 celulas inferiores a la actual:
+	{
+		if (matrix[row+OFFSET][aux_column] == ALIVE)                           //diagonal inferior izquierda, inferior y
+	            neighbour_alive++;                                             //diagonal inferior derecha
+	}
 
+      aux_column = 0;
 
-        if(matrix[fila][column+OFFSET] == ALIVE) //analizo el estado de la celula lateral derecha a la actual.
-                Neighbour_Alive++;
+      if(matrix[row][column-OFFSET] == ALIVE) //analizo el estado de la celula laterale izquierda a la actual.
+            neighbour_alive++;
 
+      if(matrix[row][column+OFFSET] == ALIVE) //analizo el estado de la celula lateral derecha a la actual.
+            neighbour_alive++;
 
-        for(matrix [fila+OFFSET][aux_column]; aux_column <= column+1; aux_column ++) //analizo el estado de las 3 celulas inferiores a la actual:
-            {if (matrix[fila+OFFSET][aux_column] == ALIVE)                           //diagonal inferior izquierda, inferior y
-                Neighbour_Alive++;                                             //diagonal inferior derecha
-            }
+      destiny = cellFate (neighbour_alive,actual_cell);
 
-        destiny = cell_fate (Neighbour_Alive,Actual_Cell);
+	return destiny;
 
-    return destiny;
+}
 
-    }
-
-int leer_numero(){
+int readNumber(){
 	int ans = 0; // En el caso de que el usuario solo presione enter
 	int abort = FALSE;
 	int f_enter = IS_ENTER; // Flag para controlar si el usuario solo escribe enter
@@ -166,11 +195,13 @@ int leer_numero(){
 	return ans;
 }
 
-int cell_fate(int nalive, int status)
+int cellFate(int nalive, int status)
 {
     int fate = 0;           //Esta variable contiene al destino de la celula analizada en función de la cantidad de vecinos 
-    switch(nalive){         //Que se decide con este break
+    switch(nalive)
+    {				         //Que se decide con este break
         		case 2:             //Se evalúa solo el 2 y el 3 ya que cualquier otro caso implica la muerte.
+                	{	
                 		if(status == ALIVE)
                 		{
                    			fate = ALIVE;
@@ -180,18 +211,47 @@ int cell_fate(int nalive, int status)
                 		{
                     			fate = DEAD;
                     			break;
-                		}
-        			case 3:
-				{
-                			fate = ALIVE; 
-                			break;
-				}
-        			default:
-				{
-                			fate = DEAD;
-                			break;
-				}
-    };
+				}                	
+                	}
+        		case 3:
+			{
+                		fate = ALIVE; 
+                		break;
+			}
+        			
+        		default:
+			{
+                		fate = DEAD;
+                		break;
+			}
+    }
     return fate;
 }
 
+void printMatrix(char mat[M][N])
+{
+	int i, j;
+	printf("\n");
+	for (i = 0;i < N;i++){
+		for (j = 0;j < M;j++){
+			printf("|%c",mat[i][j]);
+		}
+		printf("|\n");
+	}
+	printf ("\n");
+}
+
+void delay (void)
+{
+	int a, b;
+
+	a=b=TIME;
+	while(a)	//perdiendo el timepo
+	{
+		while(b)
+		{
+			b--;
+		}
+		a--;
+	}
+}
