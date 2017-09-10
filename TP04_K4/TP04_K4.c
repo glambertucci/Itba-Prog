@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#define DEAD 0
-#define ALIVE 1
+#define DEAD ' '
+#define ALIVE '*'
 #define HEIGHT 10
 #define WIDTH 10
 #define OUTERMATRIXCORRECTION 2
@@ -30,10 +30,10 @@ void nextGen(char[HEIGHT][WIDTH]);
 //Toma una matriz con una determinada generacion y la modifica acorde a las reglas del juego para avanzar una generacion.
 //Toma en consideracion que el cuadrado externo siempre son celulas externas.
 
-int cellStatus(int, int, char[HEIGHT][WIDTH]);
+int cellStatus(int, int, char [HEIGHT][WIDTH]);
 //Se fija si la celula definida por valor de fila y columna estara viva o muerta EN LA PROXIMA GENERACION.
 
-void transferMat(char[HEIGHT][WIDTH], char[HEIGHT][WIDTH]);
+void transferMat(char [HEIGHT][WIDTH], char [HEIGHT][WIDTH]);
 //En orden por argumento: transfiere los contenidos de la primera matriz a la segunda..
 
 int readNumber(); 
@@ -81,7 +81,7 @@ int main(void)
 void nextGen(char matrix[HEIGHT][WIDTH])
 {
 	char auxmatrix[HEIGHT][WIDTH];
-	int m, n;
+	int m=1, n=1;
 	int cellstate;
 
 	for(m = 1; m < (HEIGHT)-(OUTERMATRIXCORRECTION); m++) //Ignorando la primera fila, hasta la cantidad total de filas menos dos.
@@ -127,38 +127,41 @@ void welcomeMsg (char matrix[HEIGHT][WIDTH])
 	printf("Si presiona enter se mostrara una sola generacion.\nSi escribe 0 o un numero negativo se terminara el programa.\n");
 }
 
-int cellStatus (int row, int column, char matrix [HEIGHT][WIDTH])
+int cellStatus (int m, int n, char matrix[HEIGHT][WIDTH])
 {
-      int actual_cell;
+      char current_cell = 0;
       int neighbour_alive = 0;
-      int destiny;
-      int aux_column = (column - OFFSET);
+      int destiny = 0;
+      int i=0;
+      int upperrow = m-OFFSET;
+      int bottomrow = m+OFFSET;
 
-
-      actual_cell = matrix [row] [column];   //estado actual de la celula, Dead o Alive
-
-      for(matrix [row-OFFSET][aux_column]; aux_column <= (column+1); aux_column++) //analizo el estado de las 3 celulas superiores a la actual:
+      current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
+      
+      for(i=(n - OFFSET); i<=(n + OFFSET); i++)	//analizo el estado de las 3 celulas superiores a la actual:
       {
-            if (matrix[row-OFFSET][aux_column] == ALIVE)                           //diagonal superior izquierda, superior y
-            	neighbour_alive++;                                             //diagonal superior derecha
+            if (matrix[upperrow][n] == ALIVE)   //diagonal superior izquierda, superior y superior derecha.
+            	neighbour_alive++;
+
+            n++;
       }
 
-      aux_column = column-OFFSET;
-	for(matrix [row+OFFSET][aux_column]; aux_column <= (column+1); aux_column++) //analizo el estado de las 3 celulas inferiores a la actual:
-	{
-		if (matrix[row+OFFSET][aux_column] == ALIVE)                           //diagonal inferior izquierda, inferior y
-	            neighbour_alive++;                                             //diagonal inferior derecha
-	}
+      for(i=(n - OFFSET); i<=(n + OFFSET); i++)	//analizo el estado de las 3 celulas inferiore a la actual:
+      {
+            if (matrix[bottomrow][n] == ALIVE)  //diagonal inferior izquierda, inferior e inferior derecha.
+            	neighbour_alive++;
 
-      aux_column = 0;
+            n++;
+      }
+    
 
-      if(matrix[row][column-OFFSET] == ALIVE) //analizo el estado de la celula laterale izquierda a la actual.
+      if(matrix[m][n-OFFSET] == ALIVE) //analizo el estado de la celula laterale izquierda a la actual.
             neighbour_alive++;
 
-      if(matrix[row][column+OFFSET] == ALIVE) //analizo el estado de la celula lateral derecha a la actual.
+      if(matrix[m][n+OFFSET] == ALIVE) //analizo el estado de la celula lateral derecha a la actual.
             neighbour_alive++;
 
-      destiny = cellFate (neighbour_alive,actual_cell);
+      destiny = cellFate (neighbour_alive, current_cell);
 
 	return destiny;
 
