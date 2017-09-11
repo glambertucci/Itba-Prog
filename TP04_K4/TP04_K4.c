@@ -10,7 +10,7 @@
 #define FALSE 0
 #define IS_ENTER '\n'
 #define BASE_NUM 10
-#define TIME 10
+#define TIME 214483687
 #define MIN_INPUT 1
 #define INPUT_ENTER 1
 #define NOT_ENTER 0
@@ -26,7 +26,7 @@ void delay (void);
 void welcomeMsg (char matrix[HEIGHT][WIDTH]);
 //Esta función imprime un mensaje de bienvenida
 
-void nextGen(char[HEIGHT][WIDTH]);
+void nextGen(char[HEIGHT][WIDTH], char[HEIGHT][WIDTH]);
 //Toma una matriz con una determinada generacion y la modifica acorde a las reglas del juego para avanzar una generacion.
 //Toma en consideracion que el cuadrado externo siempre son celulas externas.
 
@@ -46,29 +46,34 @@ int cellFate(int nalive, int status);
 int main(void)
 {
 				/////////////////////////////////////////////
-				int num = 0;
+				int num;
 				char matrix[HEIGHT][WIDTH] = {
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
-				{' ',' ','*','*','*',' ',' ', ' ',' ', ' '},
-				{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
 				{' ',' ','*',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ','*','*',' ',' ', ' ',' ', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ','*',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ','*','*','*',' ', '*','*', ' '},
+				{' ',' ',' ',' ',' ','*',' ', '*','*', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				};
-				/////////////////////////////////////////////
 
-			/*	char matrix[HEIGHT][WIDTH] = {
-				{' ',' ',' ',' '},
-				{' ','*','*',' '},
-				{' ','*','*',' '},
-				{' ',' ',' ',' '},
+					char auxmatrix[HEIGHT][WIDTH] = {
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				};
-			*/
-	
+				// Se define auxmatrix con la finalidad de evitar que los bordes, los cuales no se modifican, contengan basura.
+
 
 	welcomeMsg(matrix);
 
@@ -76,7 +81,7 @@ int main(void)
 	{					//Si se recibe un enter, eso es igual a un 1
 		while (num>=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
 		{
-			nextGen(matrix);		//Calcula proxima generacion
+			nextGen(matrix, auxmatrix);		//Calcula proxima generacion
 			printMatrix(matrix);	//La imprime
 			--num;		
 		}
@@ -86,9 +91,9 @@ int main(void)
 	return 0;	
 }
 
-void nextGen(char matrix[HEIGHT][WIDTH])
+void nextGen(char matrix[HEIGHT][WIDTH], char auxmatrix[HEIGHT][WIDTH])
 {
-	char auxmatrix[HEIGHT][WIDTH];
+
 	int m=1, n=1;
 	int cellstate;
 
@@ -96,11 +101,11 @@ void nextGen(char matrix[HEIGHT][WIDTH])
 	{
 		for(n = 1; n <= ((WIDTH)-(OUTERMATRIXCORRECTION)); n++) //Ignorando la primera columna, hasta la cantidad totales de columnas menos dos.
 		{
-			cellstate=cellStatus(m, n, auxmatrix); //Se fija si la fila m columna n va a estar viva o muerta
+			cellstate=cellStatus(m, n, matrix); //Se fija si la fila m columna n va a estar viva o muerta
 			if (cellstate == DEAD)	    	//Lo escribo en una matrix auxiliar, para no perturbar
-				auxmatrix[m][n] = ' '; 	//el analisis siguiente. 
+				auxmatrix[m][n] = DEAD; 	//el analisis siguiente. 
 			else
-				auxmatrix[m][n] = '*';
+				auxmatrix[m][n] = ALIVE;
 
 		}//columna
 	}//fila
@@ -225,8 +230,8 @@ int readNumber(){
 
 int cellFate(int nalive, int status)
 {
-    int fate = 0;           //Esta variable contiene al destino de la celula analizada en función de la cantidad de vecinos 
-    switch(nalive)
+	int fate;           //Esta variable contiene al destino de la celula analizada en función de la cantidad de vecinos 
+   switch(nalive)
     {				         //Que se decide con este break
         		case 2:             //Se evalúa solo el 2 y el 3 ya que cualquier otro caso implica la muerte.
                 	{	
@@ -271,13 +276,17 @@ void printMatrix(char mat[HEIGHT][WIDTH])
 
 void delay (void)
 {
-	int a, b;
+	int a, b, i, j;
 
-	a=b=TIME;
-	while(a)	//perdiendo el timepo
+	a=b=i=j=TIME;
+	while(a)	//perdiendo el tiempo
 	{
+		for(j=TIME;j>0;j--);
 		while(b)
 		{
+			for (i=TIME;i>0;i--);
+			b--;
+			b++;
 			b--;
 		}
 		a--;
