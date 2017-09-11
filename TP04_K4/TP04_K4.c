@@ -9,8 +9,7 @@
 #define TRUE 1
 #define FALSE 0
 #define IS_ENTER '\n'
-#define BASE_NUM 10
-#define TIME 214483687
+#define TIME 80000000
 #define MIN_INPUT 1
 #define INPUT_ENTER 1
 #define NOT_ENTER 0
@@ -19,6 +18,9 @@
 
 void printMatrix(char mat[HEIGHT][WIDTH]);
 //Printea una matriz
+
+void initMatrix (char mat1[HEIGHT][WIDTH]);
+//Inicializa la matriz en 0
 
 void delay (void);
 //Pierde el tiempo
@@ -60,30 +62,21 @@ int main(void)
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				};
 
-					char auxmatrix[HEIGHT][WIDTH] = {
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				};
-				// Se define auxmatrix con la finalidad de evitar que los bordes, los cuales no se modifican, contengan basura.
+					char auxmatrix[HEIGHT][WIDTH];
 
+	initMatrix(auxmatrix );
+				// Se inicializa  auxmatrix con la finalidad de evitar que los bordes, los cuales no se modifican, contengan basura.
+	printMatrix(auxmatrix);
 
 	welcomeMsg(matrix);
 
 	while ( (num = readNumber()) > INPUT_ERR)	//Mientras que el numero ingresado sea mayor a 0..
 	{					//Si se recibe un enter, eso es igual a un 1
-		while (num>=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
+		while (num-->=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
 		{
 			nextGen(matrix, auxmatrix);		//Calcula proxima generacion
 			printMatrix(matrix);	//La imprime
-			--num;		
+			delay();		
 		}
 	}
 
@@ -149,9 +142,7 @@ int cellStatus (int m, int n, char matrix[HEIGHT][WIDTH])
       int upperrow = m-OFFSET;
       int bottomrow = m+OFFSET;
 
-      current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
-      
-
+/*
 	if (matrix [m-OFFSET] [n-OFFSET] == ALIVE)	//analizo la celula diagonal superior izquierda
 		neighbour_alive++;
 	
@@ -175,7 +166,31 @@ int cellStatus (int m, int n, char matrix[HEIGHT][WIDTH])
 	
 	if (matrix [m+OFFSET] [n+OFFSET] == ALIVE)	//analizo la celula diagonal inferior derecha
 		neighbour_alive++;
-
+	*/
+      current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
+	if (matrix [m-OFFSET] [n-OFFSET] == ALIVE)	//analizo la celula diagonal superior izquierda
+		neighbour_alive++;
+	
+	if (matrix [m-OFFSET] [n] == ALIVE)	//analizo la celula superior central
+		neighbour_alive++;
+	
+	if (matrix [m-OFFSET] [n+OFFSET] == ALIVE)	//analizo la celula diagonal superior derecha 
+		neighbour_alive++;
+	
+	if (matrix [m] [n-OFFSET] == ALIVE)	//analizo la celula izquierda
+		neighbour_alive++;
+	
+	if (matrix [m] [n+OFFSET] == ALIVE)	//analizo la celula derecha
+		neighbour_alive++;
+	
+	if (matrix [m+OFFSET] [n-OFFSET] == ALIVE)	//analizo la celula diagonal inferior izquierda
+		neighbour_alive++;
+	
+	if (matrix [m+OFFSET] [n] == ALIVE)	//analizo la celula inferior central
+		neighbour_alive++;
+	
+	if (matrix [m+OFFSET] [n+OFFSET] == ALIVE)	//analizo la celula diagonal inferior derecha
+		neighbour_alive++;
 	
       destiny = cellFate (neighbour_alive, current_cell);
 
@@ -234,7 +249,6 @@ int cellFate(int nalive, int status)
         		default:
 			{
                 		fate = DEAD;
-                		break;
 			}
     }
     return fate;
@@ -250,24 +264,34 @@ void printMatrix(char mat[HEIGHT][WIDTH])
 		}
 		printf("|\n");
 	}
-	printf ("\n");
+	putchar('\n');
 }
 
 void delay (void)
 {
-	int a, b, i, j;
+	int a, b;
 
-	a=b=i=j=TIME;
+	a=b=TIME;
 	while(a)	//perdiendo el tiempo
 	{
-		for(j=TIME;j>0;j--);
 		while(b)
 		{
-			for (i=TIME;i>0;i--);
-			b--;
-			b++;
 			b--;
 		}
 		a--;
+	}
+}
+
+void initMatrix (char mat1[HEIGHT][WIDTH])
+{
+	int fil_count,col_count;
+	for (fil_count=0; fil_count <= (HEIGHT); fil_count++)
+	{
+		for (col_count=0;col_count<=(WIDTH);col_count++)
+	
+		{
+			mat1 [fil_count][col_count]=DEAD;
+		}
+		(mat1)[fil_count][0]=DEAD;
 	}
 }
