@@ -75,8 +75,8 @@ int main(void)
 		while (num-->=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
 		{
 			nextGen(matrix, auxmatrix);		//Calcula proxima generacion
-			printMatrix(matrix);	//La imprime
-			delay();		
+			printMatrix(matrix);	//La imprime	
+			delay();
 		}
 	}
 
