@@ -219,11 +219,11 @@ void Keyboard(char stringarr[])
 	int counter=0;
 	char c = 0;
 
-	while(( (c = getchar() ) != '\n') && (counter <= MAX_LENGTH))
+	while(( (c = getchar() ) != '\n') && (counter < MAX_LENGTH))
 	{
 		stringarr[counter++]=c;
 	}
-	if(counter >= MAX_LENGTH)
+	if(counter > MAX_LENGTH)
 	{
 		while( (c=getchar())  != '\n') //Loop para vaciar el buffer
 		{
