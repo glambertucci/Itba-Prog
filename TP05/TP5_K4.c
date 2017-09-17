@@ -2,31 +2,37 @@
 #include <stdbool.h>
 
 #define MAX_LENGTH 30
+#define ANSI_COLOR_RED     "\x1b[31m"
+#define ANSI_COLOR_GREEN   "\x1b[32m"
+#define ANSI_COLOR_BLUE    "\x1b[34m"
+#define ANSI_COLOR_RESET   "\x1b[0m"
 
 int compareWords (char*, char*);
-void keyboard(char stringarr[MAX_LENGTH]);
-int kbverif(char stringarr[MAX_LENGTH]);
+void Keyboard(char stringarr[MAX_LENGTH]);
+int KeyboardVerif(char stringarr[MAX_LENGTH]);
 int askConfirmation(char *array, char *invalidpointer);
 void askWord(char*, char*, char*);
+void resetArray(char array[MAX_LENGTH]);
 
 int main (void)
 {
 	char firstword[MAX_LENGTH] = {0}, secondword[MAX_LENGTH] = {0};
-	bool err, answer, conf;
-	char *welcome_msg = "Welcome to progranagram!\nThis program evaluates wether the second word can be formed from the letters of the first word. The program is NOT case-sensitive.\n\n";
+	bool answer, conf;
+	char *welcome_msg = "\n\n\nWelcome to progranagram!\nThis program evaluates whether the second word can be formed from the letters of the first word. The program is NOT case-sensitive.";
 	char *first_ask = "Enter the first word: ";
 	char *second_ask = "Enter the second word: ";
 	char *invalid_input = "The input entered is invalid.\n";
-	char *wish_next = "Process finished.\nDo you wish to evaluate another anagram? (y/n).";
+	char *wish_next = "\nDo you wish to evaluate another anagram? (y/n).";
 	char *instructions = "The valid characters are: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z.\nThe limit amount of letters is: 50 letters.\n\n";
-	char *wish_no = "Ending program...";
+	char *wish_no = "Ending program...\n";
 	char *valid_answer = "The letters of the first word CAN form the second word!";
 	char *invalid_answer = "The letters of the first word CANNOT form the second word.";
 
+	printf(ANSI_COLOR_BLUE"%s\n"ANSI_COLOR_RESET, welcome_msg);
+	
 	do{
-	initArray(firstword);
-	initArray(secondword);
-	printf("%s\n", welcome_msg);
+	resetArray(firstword);
+	resetArray(secondword);
 	printf("%s\n", instructions);
 	askWord(firstword, first_ask, invalid_input);
 	askWord(secondword, second_ask, invalid_input);
@@ -34,9 +40,9 @@ int main (void)
 	answer=compareWords(firstword, secondword);
 	
 	if (answer==true)
-	    printf("%s\n", valid_answer);
+	    printf(ANSI_COLOR_GREEN"%s\n"ANSI_COLOR_RESET, valid_answer);
 	else
-		printf("%s\n", invalid_answer);
+		printf(ANSI_COLOR_RED"%s\n"ANSI_COLOR_RESET, invalid_answer);
 
 	printf("%s\n", wish_next);
 	conf=askConfirmation(firstword, invalid_input);
@@ -60,9 +66,9 @@ void askWord(char *array, char *askpointer, char *invalidpointer)
 	do{
 	    err=true;
 	    printf("%s\n", askpointer);
-	    keyboard(array);
-	    if((err=kbverif(array))==true)
-	      printf("&s\n", invalidpointer);
+	    Keyboard(array);
+	    if((err=KeyboardVerif(array))==true)
+	      printf("%s\n", invalidpointer);
 	  } while (err==true);
 }
 
@@ -79,9 +85,8 @@ int var=false, out;
 	
 	do
 	{
-	
-		initArray(array);
-		keyboard(array);
+		resetArray(array);
+		Keyboard(array);
 		
 		if(array[1] == '\0')
 		{
@@ -89,23 +94,23 @@ int var=false, out;
 			switch(array[0])
 			{
 				case 'y':
-					out = true
+					out = true;
 					break;
 				case 'Y':
-					out = true
+					out = true;
 					break;
 				case 'n':
-					out = false
+					out = false;
 					break;
 				case 'N':
-					out = false
+					out = false;
 					break;
 			}
 		}
 
 		else
 		{
-			var = false
+			var = false;
 			printf("%s\n", invalidpointer);
 		}
 
@@ -179,7 +184,7 @@ int compareWords (char* first_word, char* second_word)
     return exit;
 }
 
-int kbverif(char stringarr[MAX_LENGTH])
+int KeyboardVerif(char stringarr[MAX_LENGTH])
 /*
   Analiza si un arreglo tiene elementos que son letras
   Input:
@@ -201,7 +206,7 @@ int kbverif(char stringarr[MAX_LENGTH])
 	return abort;
 }
 
-void keyboard(char stringarr[])
+void Keyboard(char stringarr[])
 /*
   Toma el input del usuario y lo guarda en un arreglo sin un terminador
   Input:
@@ -213,6 +218,17 @@ void keyboard(char stringarr[])
 
 	while(( (c = getchar() ) != '\n') && (counter <= MAX_LENGTH))
 			stringarr[counter++]=c;
-
-	return 0;
 }	
+
+void resetArray(char array[MAX_LENGTH])
+/*
+  resetea un arreglo con todos los elementos iguals a '\0'
+  Input:
+    -char *array: el arreglo a resetear
+*/
+{
+	int i;
+
+	for(i=0;i<MAX_LENGTH;i++)
+		array[i]='\0';
+}
