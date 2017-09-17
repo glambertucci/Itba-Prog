@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define MAX_LENGTH 30
+#define MAX_LENGTH 50
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_BLUE    "\x1b[34m"
@@ -184,21 +184,19 @@ int compareWords (char* first_word, char* second_word)
     return exit;
 }
 
-int KeyboardVerif(char stringarr[MAX_LENGTH])
+int KeyboardVerif(char stringarr[])
 /*
   Analiza si un arreglo tiene elementos que son letras
   Input:
     -char *stringarr: el arreglo que verifica
 */
 {
-	char c;
-	int abort = false;
 	int counter = 0;
+	char c = stringarr[counter];
+	int abort = false;
 
-	while ((counter <= MAX_LENGTH) && (abort == false) && (c != 0))  //Loopea mientras falten elementos por analizar y no haya errores
-	{
-		c = stringarr[counter];	//C es la variable que usaré para analizar la validez de cada elemento del arreglo.
-		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == ' ')) //Si no es una letra o un espacio, produce un error. Si no, continúa
+	do{
+		if (((c>='A')&&(c<='Z'))||((c>='a')&&(c<='z'))||(c == ' '))
 		{
 			counter++;
 		}
@@ -207,6 +205,7 @@ int KeyboardVerif(char stringarr[MAX_LENGTH])
 			abort = true;
 		}
 	}
+	while ((counter <= MAX_LENGTH) && (abort == false) && (c != 0));  //Loopea mientras falten elementos por analizar y no haya errores
 	return abort;
 }
 
@@ -218,11 +217,18 @@ void Keyboard(char stringarr[])
 */
 {
 	int counter=0;
-	char c;
+	char c = 0;
 
 	while(( (c = getchar() ) != '\n') && (counter <= MAX_LENGTH))
 	{
-			stringarr[counter++]=c;
+		stringarr[counter++]=c;
+	}
+	if(counter >= MAX_LENGTH)
+	{
+		while( (c=getchar())  != '\n') //Loop para vaciar el buffer
+		{
+			c = 0; 
+		}
 	}
 }	
 
