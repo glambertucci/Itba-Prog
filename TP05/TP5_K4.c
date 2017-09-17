@@ -199,9 +199,13 @@ int KeyboardVerif(char stringarr[MAX_LENGTH])
 	{
 		c = stringarr[counter];	//C es la variable que usaré para analizar la validez de cada elemento del arreglo.
 		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == ' ')) //Si no es una letra o un espacio, produce un error. Si no, continúa
+		{
 			counter++;
+		}
 		else
+		{
 			abort = true;
+		}
 	}
 	return abort;
 }
@@ -217,7 +221,9 @@ void Keyboard(char stringarr[])
 	char c;
 
 	while(( (c = getchar() ) != '\n') && (counter <= MAX_LENGTH))
+	{
 			stringarr[counter++]=c;
+	}
 }	
 
 void resetArray(char array[MAX_LENGTH])
