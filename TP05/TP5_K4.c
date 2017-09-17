@@ -196,6 +196,7 @@ int KeyboardVerif(char stringarr[])
 	int abort = false;
 
 	do{
+		c = stringarr[counter];
 		if (((c>='A')&&(c<='Z'))||((c>='a')&&(c<='z'))||(c == ' '))
 		{
 			counter++;
