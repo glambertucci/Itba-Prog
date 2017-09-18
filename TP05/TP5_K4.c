@@ -18,7 +18,7 @@ int main (void)
 {
 	char firstword[MAX_LENGTH] = {0}, secondword[MAX_LENGTH] = {0};
 	bool answer, conf;
-	char *welcome_msg = "\n\n\nWelcome to progranagram!\nThis program evaluates whether the second word can be formed from the letters of the first word. The program is NOT case-sensitive.";
+	char *welcome_msg = "\n\n\nWelcome to progranagram!\nThis program evaluates whether the second word can be formed from the letters of the first word. The program IS case-sensitive.";
 	char *first_ask = "Enter the first word: ";
 	char *second_ask = "Enter the second word: ";
 	char *invalid_input = "The input entered is invalid.\n";
