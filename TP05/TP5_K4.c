@@ -1,3 +1,19 @@
+//TP PRACTICO N°5. Punteros
+
+/*Fecha de creacion 18/9/2017
+Grupo 4
+Integrantes:
+Lambertucci Guido	58009
+Hrubisiuk 	Agustin	58311
+Mechoulam	Alan	58438
+Moriconi	Franco	58495
+
+Este programa recibe dos palabras, palabra 1 y palabra 2. Se fija si la palabra 2 puede ser formada
+a partir de las letras de la primera palabra. Solo se aceptan letras de abecedario ingles y el
+programa es case-sensitive, es decir, si se recibe como palabra 1 "Casa", entonces la palabra 2 "casa"
+NO PODRA SER FORMADA a partir de las letras de la palabra 1.
+*/
+
 #include <stdio.h>
 #include <stdbool.h>
 
