@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 
-#define MAX_LENGTH 50
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_BLUE    "\x1b[34m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
+#define MAX_LENGTH 1000000
 
 int compareWords (char*, char*);
 void Keyboard(char stringarr[MAX_LENGTH]);
@@ -33,7 +33,7 @@ int main (void)
 	do{
 	resetArray(firstword);
 	resetArray(secondword);
-	printf("%s\n", instructions);
+	printf(ANSI_COLOR_BLUE"%s\n"ANSI_COLOR_RESET, instructions);
 	askWord(firstword, first_ask, invalid_input);
 	askWord(secondword, second_ask, invalid_input);
 	
@@ -48,7 +48,7 @@ int main (void)
 	conf=askConfirmation(firstword, invalid_input);
 	} while (conf == true);
 
-	printf("%s\n", wish_no);
+	printf(ANSI_COLOR_RED"%s\n"ANSI_COLOR_RESET, wish_no);
 
 	return 0;          
 }
@@ -184,29 +184,25 @@ int compareWords (char* first_word, char* second_word)
     return exit;
 }
 
-int KeyboardVerif(char stringarr[])
+int KeyboardVerif(char stringarr[MAX_LENGTH])
 /*
   Analiza si un arreglo tiene elementos que son letras
   Input:
     -char *stringarr: el arreglo que verifica
 */
 {
-	int counter = 0;
-	char c = stringarr[counter];
+	char c;
 	int abort = false;
+	int counter = 0;
 
-	do{
-		c = stringarr[counter];
-		if (((c>='A')&&(c<='Z'))||((c>='a')&&(c<='z'))||(c == ' '))
-		{
+	while ((counter <= MAX_LENGTH) && (abort == false) && (c != 0))  //Loopea mientras falten elementos por analizar y no haya errores
+	{
+		c = stringarr[counter];	//C es la variable que usaré para analizar la validez de cada elemento del arreglo.
+		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == ' ')) //Si no es una letra o un espacio, produce un error. Si no, continúa
 			counter++;
-		}
 		else
-		{
 			abort = true;
-		}
 	}
-	while ((counter <= MAX_LENGTH) && (abort == false) && (c != 0));  //Loopea mientras falten elementos por analizar y no haya errores
 	return abort;
 }
 
@@ -218,12 +214,11 @@ void Keyboard(char stringarr[])
 */
 {
 	int counter=0;
-	char c = 0;
+	char c;
 
-	while(( (c = getchar() ) != '\n') && (counter < MAX_LENGTH))
-	{
-		stringarr[counter++]=c;
-	}
+	while(( (c = getchar() ) != '\n') && (counter <= MAX_LENGTH))
+			stringarr[counter++]=c;
+
 	if(counter > MAX_LENGTH)
 	{
 		while( (c=getchar())  != '\n') //Loop para vaciar el buffer
