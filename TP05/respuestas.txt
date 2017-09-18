@@ -1,0 +1,3 @@
+11)b) El caso límite con el que cuenta el programa es que es case-sensitive:
+si las palabras poseen "las mismas letras" pero una en mayúscula y otra en minúscula, 
+se las interpreta como caracteres diferentes. 
