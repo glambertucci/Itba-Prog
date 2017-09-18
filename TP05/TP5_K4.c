@@ -21,7 +21,7 @@ NO PODRA SER FORMADA a partir de las letras de la palabra 1.
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_BLUE    "\x1b[34m"
 #define ANSI_COLOR_RESET   "\x1b[0m"
-#define MAX_LENGTH 1000000
+#define MAX_LENGTH 1000
 
 int compareWords (char*, char*);
 void Keyboard(char stringarr[MAX_LENGTH]);
