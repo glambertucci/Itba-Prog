@@ -1,0 +1,23 @@
+hola
+aloh
+
+Casa
+asaC
+
+CasA
+asaC                   NO deberia funcionar (el programa es case sensitive)
+
+hol4
+4loh                   NO deberia funcionar (no funciona con numeros)
+
+cassa
+casa
+
+casa
+cassa                  NO deberia funcionar (cantidad de letras importa)
+
+ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ etc.
+y                           DEBERIA dar respuesta negativa
+
+
+

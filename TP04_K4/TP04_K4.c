@@ -31,7 +31,7 @@ En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y s
 #define TRUE 1
 #define FALSE 0
 #define IS_ENTER '\n'
-#define TIME 80000000
+#define TIME 8000000
 #define MIN_INPUT 1
 #define INPUT_ENTER 1
 #define NOT_ENTER 0
@@ -75,16 +75,16 @@ int main(void)
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
+				{' ',' ','*','*',' ',' ',' ', ' ',' ', ' '},
+				{' ',' ','*','*','*','*',' ', ' ',' ', ' '},
+				{' ',' ','*','*','*','*',' ', ' ',' ', ' '}, //SEED MATRIX
+				{' ',' ',' ',' ','*','*',' ', ' ',' ', ' '},
 				{' ',' ','*',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ','*',' ',' ',' ',' ', ' ',' ', ' '},
-				{' ',' ',' ','*','*','*',' ', '*','*', ' '},
-				{' ',' ',' ',' ',' ','*',' ', '*','*', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
 				};
-
 					char auxmatrix[HEIGHT][WIDTH];
+				/////////////////////////////////////////////
 
 	initMatrix(auxmatrix );
 				// Se inicializa  auxmatrix con la finalidad de evitar que los bordes, los cuales no se modifican, contengan basura.
