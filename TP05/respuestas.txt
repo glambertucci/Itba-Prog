@@ -1,4 +1,4 @@
-11)a) De trabajos anteriores hemos intentado reutilizar la función  teclado, pero debido a que
+11)a) De trabajos anteriores hemos intentado reutilizar la función  teclado, pero a causa de que
 debíamos realizar excesivas modificaciones, decidimos que lo más viable sería idear
 una nueva función teclado. 
 
