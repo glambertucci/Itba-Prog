@@ -16,7 +16,7 @@ NO PODRA SER FORMADA a partir de las letras de la palabra 1.
 
 #include <stdio.h>
 #include <stdbool.h>
-
+#define TERMINATOR 3
 #define ANSI_COLOR_RED     "\x1b[31m"
 #define ANSI_COLOR_GREEN   "\x1b[32m"
 #define ANSI_COLOR_BLUE    "\x1b[34m"
@@ -39,7 +39,7 @@ int main (void)
 	char *second_ask = "Enter the second word: ";
 	char *invalid_input = "The input entered is invalid.\n";
 	char *wish_next = "\nDo you wish to evaluate another anagram? (y/n).";
-	char *instructions = "The valid characters are: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z.\nThe limit amount of letters is: 50 letters.\n\n";
+	char *instructions = "The valid characters are: a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z.\nThe limit amount of letters is 50 : letters.\n\n";
 	char *wish_no = "Ending program...\n";
 	char *valid_answer = "The letters of the first word CAN form the second word!";
 	char *invalid_answer = "The letters of the first word CANNOT form the second word.";
@@ -78,13 +78,19 @@ void askWord(char *array, char *askpointer, char *invalidpointer)
 	-char *invalidpointer: puntero al string que anuncia que la palabra es invalida.
 */
 {
-	int err;
+	int err=true;
+
 	do{
-	    err=true;
+	    
 	    printf("%s\n", askpointer);
 	    Keyboard(array);
-	    if((err=KeyboardVerif(array))==true)
+	    err=KeyboardVerif(array);
+	    if((err)==true)
 	      printf("%s\n", invalidpointer);
+	  	else if (err==TERMINATOR)
+	  	{
+	  		err=false;
+	  	}
 	  } while (err==true);
 }
 
@@ -207,17 +213,24 @@ int KeyboardVerif(char stringarr[MAX_LENGTH])
     -char *stringarr: el arreglo que verifica
 */
 {
-	char c;
+	char c='b';
 	int abort = false;
 	int counter = 0;
 
-	while ((counter <= MAX_LENGTH) && (abort == false) && (c != 0))  //Loopea mientras falten elementos por analizar y no haya errores
+	while ((counter < MAX_LENGTH) && (abort == false) )  //Loopea mientras falten elementos por analizar y no haya errores
 	{
 		c = stringarr[counter];	//C es la variable que usaré para analizar la validez de cada elemento del arreglo.
-		if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c == ' ')) //Si no es una letra o un espacio, produce un error. Si no, continúa
+		if (((c >= 'A') && (c <= 'Z')) || ((c >= 'a') && (c <= 'z')) || (c == ' ')) //Si no es una letra o un espacio, produce un error. Si no, continúa
 			counter++;
-		else
-			abort = true;
+		else if (c == 0)
+			abort=TERMINATOR;
+		else 	
+			{
+				abort = true;
+				resetArray(stringarr);
+			}
+
+
 	}
 	return abort;
 }
