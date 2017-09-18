@@ -1,3 +1,7 @@
+11)a) De trabajos anteriores intentamos reutilizar la función  teclado, pero debido a que
+debíamos realizar excesivas modificaciones, decidimos que lo más viable sería realizar
+una función de teclado nueva. 
+
 11)b) El caso límite con el que cuenta el programa es que es case-sensitive:
 si las palabras poseen "las mismas letras" pero una en mayúscula y otra en minúscula, 
-se las interpreta como caracteres diferentes. 
+se las interpreta como caracteres diferentes e informa que no se puede formar dicha palabra. 
