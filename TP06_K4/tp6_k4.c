@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define FULL_KBZA 1
-
+#define TURN 2
 enum {MOTOR_IZQ, MOTOR_DER, CANT_MOTORES};
 
 #define MOT_DUTY_MAX_POS  100
@@ -11,6 +11,7 @@ enum {MOTOR_IZQ, MOTOR_DER, CANT_MOTORES};
 void initMotor(void);
 void writeMotorDuty(char motId, int duty);
 void fullcabeza(int motpow);
+ void turning(int motpow);
 
 
 enum {DIST_IZQ, DIST_DER, CANT_DISTS};
@@ -27,7 +28,9 @@ int runRobotFsm(int state);
 int main(void)
 {
     int state = 0; // estado inicial
-
+    initDistance();
+    initMotor();
+    updateDistance();
     printf("** Comienza programa de prueba de FSM para robot **\n\n");
     while (state >= 0)
     {
@@ -36,6 +39,9 @@ int main(void)
     	{
     		fullcabeza(100);
     	}
+    	else if (state==TURN)
+    		turning(50);
+
     }
 
     return 0;
@@ -106,7 +112,34 @@ int getDistanceMm(char sensorId)
 
 int runRobotFsm(int state)
 {
-    return state=FULL_KBZA;
+	int a;
+	int b;
+	int c;
+	if (state==0)
+    state=FULL_KBZA;
+	else if (state==FULL_KBZA)
+	{
+		updateDistance();
+		a=getDistanceMm(DIST_IZQ);
+		if(a<50)
+			state=TURN;
+	}
+
+	if (state==FULL_KBZA)
+	{	
+	c=100;
+    b=100;
+    void writeMotorDuty(char MOTOR_IZQ, int c);
+    void writeMotorDuty(char MOTOR_DER, int b);	
+    }
+    else if (state==TURN)
+    {
+
+     c=100;
+     b=-100;
+    void writeMotorDuty(char MOTOR_IZQ, int c);
+    void writeMotorDuty(char MOTOR_DER, int b);
+    }	
 }
 
 /*
@@ -131,12 +164,13 @@ void Aproaching(void)
 }
 
 */
-void fullcabeza(int motpow)
-{   int state = FULL_KBZA;
-    int c;
-    void writeMotorDuty(char MOTOR_IZQ, int motpow);
-    void writeMotorDuty(char MOTOR_DER, int motpow);
 
-}
               
-    
+ void turning(int motpow)
+{   int state = FULL_KBZA;
+    int c=motpow;
+    int b=-motpow;
+    void writeMotorDuty(char MOTOR_IZQ, int c);
+    void writeMotorDuty(char MOTOR_DER, int b);
+
+}   
