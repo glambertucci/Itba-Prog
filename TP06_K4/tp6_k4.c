@@ -21,6 +21,7 @@ int getDistanceMm(char sensorId);
 
 int runRobotFsm(int state);
 
+#define ROBOT_RADIUS 80
 
 int main(void)
 {
@@ -102,4 +103,24 @@ int getDistanceMm(char sensorId)
 int runRobotFsm(int state)
 {
     return state;
+}
+
+void Aproaching(void)
+{
+
+	int frontdistance;
+	int distance2aproach;
+
+	updateDistance();
+	frontdistance = getDistanceMm(DIST_IZQ);
+	distance2aproach = (frontdistance/2) + ROBOT_RADIUS;
+
+	do{
+
+		fullcabeza(70);
+		updateDistance();
+
+	} while((frontdistance=getDistanceMm(DIST_IZQ) > (distance2aproach + 10));
+
+		fullcabeza(0);
 }
