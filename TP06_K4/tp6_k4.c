@@ -10,6 +10,7 @@ enum {MOTOR_IZQ, MOTOR_DER, CANT_MOTORES};
 
 void initMotor(void);
 void writeMotorDuty(char motId, int duty);
+void fullcabeza(int motpow);
 
 
 enum {DIST_IZQ, DIST_DER, CANT_DISTS};
@@ -29,7 +30,7 @@ int main(void)
     printf("** Comienza programa de prueba de FSM para robot **\n\n");
     while (state >= 0)
     {
-        state = runRobotFsm(state); // se llama a esta función cada 100ms
+        state = runRobotFsm(state); // se llama a esta funciÃ³n cada 100ms
         while(getchar()) {} // simulo delay
     }
 
@@ -103,3 +104,16 @@ int runRobotFsm(int state)
 {
     return state;
 }
+
+void fullcabeza(int motpow)
+{   int state = FULL_KBZA;
+    void writeMotorDuty(char MOTOR_IZQ, int motpow);
+    void writeMotorDuty(char MOTOR_DER, int motpow);
+ 
+    while((c = fsm_handler(int state)) == 1)
+    {
+        printf("Going Full Cabeza...\n")
+    }
+}
+              
+    
