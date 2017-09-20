@@ -107,12 +107,13 @@ int runRobotFsm(int state)
 
 void fullcabeza(int motpow)
 {   int state = FULL_KBZA;
+    int c;
     void writeMotorDuty(char MOTOR_IZQ, int motpow);
     void writeMotorDuty(char MOTOR_DER, int motpow);
  
     while((c = fsm_handler(int state)) == 1)
     {
-        printf("Going Full Cabeza...\n")
+        printf("Going Full Cabeza...\n");
     }
 }
               
