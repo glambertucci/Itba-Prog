@@ -34,13 +34,7 @@ int main(void)
     printf("** Comienza programa de prueba de FSM para robot **\n\n");
     while (state >= 0)
     {
-        state = runRobotFsm(state); // se llama a esta función cada 100ms
-        if (state==FULL_KBZA) // simulo delay
-    	{
-    		fullcabeza(100);
-    	}
-    	else if (state==TURN)
-    		turning(50);
+       getchar();
 
     }
 
