@@ -1,4 +1,4 @@
-#include "JDLV.h"
+#include "GameOfLife.h"
 #include "matrix.h"
 
 void nextGen(char matrix[HEIGHT][WIDTH], char auxmatrix[HEIGHT][WIDTH])
