@@ -2,6 +2,11 @@
 #include "Keyboard.h"
 #include "Standard.h"
 
+#define IS_ENTER 1
+#define NOT_ENTER 0
+#define INPUT_ERR 0
+#define INPUT_ENTER 1
+
 int readNumber(){
 	int ans = 0; // En el caso de que el usuario solo presione enter
 	int abort = FALSE;

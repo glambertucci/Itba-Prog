@@ -2,7 +2,7 @@
 #include "Standard.h"
 #include "GameVisuals.h"
 
-void printMatrix(char mat[HEIGHT][WIDTH])
+void printMatrix(char mat[][WIDTH])
 {
 	int i, j;
 	printf("\n");
@@ -18,7 +18,7 @@ void printMatrix(char mat[HEIGHT][WIDTH])
 	putchar('\n');
 }
 
-void welcomeMsg (char matrix[HEIGHT][WIDTH])
+void welcomeMsg (char matrix[][WIDTH])
 {
 	printf("\n\n\n\n\n\nBienvenido al juego de la vida! \n");
 	printf("Configuracion: " BLUE "%d" COLOR_RESET "x" BLUE "%d" COLOR_RESET "\n",HEIGHT,WIDTH);

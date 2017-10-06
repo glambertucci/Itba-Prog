@@ -1,7 +1,7 @@
 #include "MatrixLogic.h"
 #include "Standard.h"
 
-void transferMat(char copyfrom [HEIGHT][WIDTH], char copyto [HEIGHT][WIDTH])
+void transferMat(char copyfrom [][WIDTH], char copyto [][WIDTH])
 {
 	int m, n;
 
@@ -14,7 +14,7 @@ void transferMat(char copyfrom [HEIGHT][WIDTH], char copyto [HEIGHT][WIDTH])
 	}
 }
 
-void initMatrix (char mat1[HEIGHT][WIDTH])
+void initMatrix (char mat1[][WIDTH])
 {
 	int fil_count,col_count;
 	for (fil_count=0; fil_count <= (HEIGHT); fil_count++)

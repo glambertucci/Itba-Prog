@@ -2,7 +2,7 @@
 #include "MatrixLogic.h"
 #include "Standard.h"
 
-void nextGen(char matrix[HEIGHT][WIDTH], char auxmatrix[HEIGHT][WIDTH])
+void nextGen(char matrix[][WIDTH], char auxmatrix[][WIDTH])
 {
 
 	int m=1, n=1;
@@ -25,7 +25,7 @@ void nextGen(char matrix[HEIGHT][WIDTH], char auxmatrix[HEIGHT][WIDTH])
 }
 
 
-int cellStatus (int m, int n, char matrix[HEIGHT][WIDTH])
+int cellStatus (int m, int n, char matrix[][WIDTH])
 {
       char current_cell = 0;
       int neighbour_alive = 0;
