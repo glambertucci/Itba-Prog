@@ -22,13 +22,8 @@ En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y s
 */
 #include <stdio.h>
 #include "matrix.h"
-#include "GameOfLife.h"
+#include "GameOfLife.h" 
 #include "keyboard.h"
-
-#define DEAD ' '
-#define ALIVE '*'
-
-
 
 int main(void)
 {

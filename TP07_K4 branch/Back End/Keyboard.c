@@ -1,4 +1,6 @@
+#include <stdio.h>
 #include "Keyboard.h"
+#include "Standard.h"
 
 int readNumber(){
 	int ans = 0; // En el caso de que el usuario solo presione enter

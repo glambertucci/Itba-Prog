@@ -20,15 +20,12 @@ Este programa tiene hardcodeado las celulas vivas del juego. Estas pueden ser mo
   Dicha función solo inicializa la primer matriz del juego.
 En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y si ingresa un numero avanza las generaciones ingresadas 
 */
-#include <stdio.h>
-#include "matrix.h"
-#include "GameOfLife.h"
-#include "keyboard.h"
 
-#define DEAD ' '
-#define ALIVE '*'
-
-
+#include "Standard.h"
+#include "GameVisuals.h"
+#include "MatrixLogic.h"
+#include "Keyboard.h"
+#include "GameLogic.h"
 
 int main(void)
 {
@@ -55,15 +52,15 @@ int main(void)
 
 	welcomeMsg(matrix);
 
-	while ( (num = readNumber()) > INPUT_ERR)	//Mientras que el numero ingresado sea mayor a 0..
+	while ( (num = readNumber()) > 0)	//Mientras que el numero ingresado sea mayor a 0..
 	{					//Si se recibe un enter, eso es igual a un 1
-		while (num-->=MIN_INPUT)	//Hasta que el numero deje de ser mayor o igual a 1..
+		while (num-->=1)	//Hasta que el numero deje de ser mayor o igual a 1..
 		{
 			nextGen(matrix, auxmatrix);		//Calcula proxima generacion
 			printMatrix(matrix);	//La imprime	
 		}
 	}
 
-	printf("Terminando programa..\n\n"); //Al recibir algo menor o igual a un 0 se acaba el programa
+	endMessage(); //Al recibir algo menor o igual a un 0 se acaba el programa
 	return 0;	
 }

@@ -1,9 +1,6 @@
 #ifndef MATRIXLOGIC_H
 #define MATRIXLOGIC_H
 
-#include "Definitions.h"
-#include <stdio.h>
-
 /*
  * Este header contiene prototipos de funciones que trabajan con matrices en general.
  * Funciones incluidas:
