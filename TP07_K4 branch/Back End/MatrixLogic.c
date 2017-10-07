@@ -1,5 +1,5 @@
-#include "MatrixLogic.h"
 #include "Standard.h"
+#include "MatrixLogic.h"
 
 void transferMat(char copyfrom [][WIDTH], char copyto [][WIDTH])
 {

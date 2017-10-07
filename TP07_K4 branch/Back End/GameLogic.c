@@ -1,6 +1,9 @@
+#include "Standard.h"
 #include "GameLogic.h"
 #include "MatrixLogic.h"
-#include "Standard.h"
+
+static int cellStatus (int m, int n, char matrix[][WIDTH]);
+static int cellFate(int nalive, int status);
 
 void nextGen(char matrix[][WIDTH], char auxmatrix[][WIDTH])
 {
@@ -25,7 +28,7 @@ void nextGen(char matrix[][WIDTH], char auxmatrix[][WIDTH])
 }
 
 
-int cellStatus (int m, int n, char matrix[][WIDTH])
+static int cellStatus (int m, int n, char matrix[][WIDTH])
 {
       char current_cell = 0;
       int neighbour_alive = 0;
@@ -62,7 +65,7 @@ int cellStatus (int m, int n, char matrix[][WIDTH])
 
 }
 
-int cellFate(int nalive, int status)
+static int cellFate(int nalive, int status)
 {
 	int fate;           //Esta variable contiene al destino de la celula analizada en función de la cantidad de vecinos 
    switch(nalive)

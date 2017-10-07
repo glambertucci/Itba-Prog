@@ -1,6 +1,6 @@
+#include "Standard.h"
 #include <stdio.h>
 #include "Keyboard.h"
-#include "Standard.h"
 
 #define IS_ENTER 1
 #define NOT_ENTER 0
@@ -15,7 +15,7 @@ int readNumber(){
 	char c;
 	while ( (c = getchar()) != '\n'){
 		if (c >= '0' && c <= '9'){
-			ans *= BASE_NUM; // En este caso la base numerica es 10
+			ans *= 10; // estamos en base decimal
 			ans += (c - '0');
 		}else{
 			abort = TRUE; // Seguiremos iterando para vaciar el buffer

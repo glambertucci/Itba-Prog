@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include "Standard.h"
+#include <stdio.h>
 #include "GameVisuals.h"
 
 void printMatrix(char mat[][WIDTH])
