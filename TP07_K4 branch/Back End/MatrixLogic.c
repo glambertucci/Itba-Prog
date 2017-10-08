@@ -13,17 +13,3 @@ void transferMat(char copyfrom [][WIDTH], char copyto [][WIDTH])
 		}
 	}
 }
-
-void initMatrix (char mat1[][WIDTH])
-{
-	int fil_count,col_count;
-	for (fil_count=0; fil_count <= (HEIGHT); fil_count++)
-	{
-		for (col_count=0;col_count<=(WIDTH);col_count++)
-	
-		{
-			mat1 [fil_count][col_count]=DEAD;
-		}
-		(mat1)[fil_count][0]=DEAD;
-	}
-}

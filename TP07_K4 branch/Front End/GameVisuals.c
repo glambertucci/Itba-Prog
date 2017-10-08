@@ -34,5 +34,5 @@ void welcomeMsg (char matrix[][WIDTH])
 
 void endMessage(void)
 {
-	printf(BLUE "Terminando programa..\n\n" COLOR_RESET);
+	printf(BLUE "Terminando programa.." COLOR_RESET);
 }

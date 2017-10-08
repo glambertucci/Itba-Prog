@@ -1,6 +1,6 @@
 #ifndef Keyboard_H
 #define Keyboard_H
 
-int readNumber();
+int readNumber(void);
 
 #endif
