@@ -32,6 +32,10 @@ void welcomeMsg (char matrix[][WIDTH])
 	printf("Si presiona" BLUE " enter" COLOR_RESET" se mostrara una sola generacion.\nSi escribe "BLUE"0"COLOR_RESET" o un "BLUE"numero negativo"COLOR_RESET" se terminara el programa.\n");
 }
 
+void againMessage (void)
+{
+	printf("Numero muy grande, ingrese un numero menor\n");
+}
 void endMessage(void)
 {
 	printf(BLUE "Terminando programa..\n" COLOR_RESET);

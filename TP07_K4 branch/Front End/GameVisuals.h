@@ -9,6 +9,8 @@ void printMatrix(char mat[HEIGHT][WIDTH]);
 
 void welcomeMsg(char matrix[HEIGHT][WIDTH]);
 
+void againMessage (void);
+
 void endMessage(void);
 
 #endif

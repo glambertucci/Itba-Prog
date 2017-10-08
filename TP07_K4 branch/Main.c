@@ -26,7 +26,7 @@ En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y s
 #include "MatrixLogic.h"
 #include "Keyboard.h"
 #include "GameLogic.h"
-
+#define MAX 1000
 
 int main(void)
 {
@@ -54,12 +54,17 @@ int main(void)
 	welcomeMsg(matrix);
 
 	while ( (num = readNumber()))	//Mientras que el numero ingresado sea mayor a 0..
-	{					//Si se recibe un enter, eso es igual a un 1
-		while ((num--)>=1)	//Hasta que el numero deje de ser mayor o igual a 1..
-		{
-			nextGen(matrix, auxmatrix);		//Calcula proxima generacion
-			printMatrix(matrix);	//La imprime	
+	{
+		if (num<MAX)
+		{					//Si se recibe un enter, eso es igual a un 1
+			while ((num--)>=1)	//Hasta que el numero deje de ser mayor o igual a 1..
+			{
+				nextGen(matrix, auxmatrix);		//Calcula proxima generacion
+				printMatrix(matrix);	//La imprime	
+			}
 		}
+		else 
+		againMessage();
 	}
 
 	endMessage(); //Al recibir algo menor o igual a un 0 se acaba el programa
