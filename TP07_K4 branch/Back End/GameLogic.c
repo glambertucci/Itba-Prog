@@ -30,11 +30,22 @@ void nextGen(char matrix[][WIDTH], char auxmatrix[][WIDTH])
 
 static int cellStatus (int m, int n, char matrix[][WIDTH])
 {
-      char current_cell = 0;
-      int neighbour_alive = 0;
-      int destiny = 0;
+    char current_cell = 0;
+    int neighbour_alive = 0;
+    int destiny = 0;
+    int i,j;
 
-      current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
+    for(i=-1 ; i<2 ; i++)   	//Este algoritmo busca en el cuadrado inmediato exterior a la celda
+    {							//si las celulas estan vivas.
+    	for(j=-1 ; j<2 ; j++)
+    	{
+    		if (matrix[m-i][n-j] == ALIVE)
+    			neighbour_alive++;
+    	}
+    }
+
+
+ /*   current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
 	if (matrix [m-1] [n-1] == ALIVE)	//analizo la celula diagonal superior izquierda
 		neighbour_alive++;
 	
@@ -58,8 +69,8 @@ static int cellStatus (int m, int n, char matrix[][WIDTH])
 	
 	if (matrix [m+1] [n+1] == ALIVE)	//analizo la celula diagonal inferior derecha
 		neighbour_alive++;
-	
-      destiny = cellFate (neighbour_alive, current_cell);
+*/	
+    destiny = cellFate (neighbour_alive, current_cell);
 
 	return destiny;
 

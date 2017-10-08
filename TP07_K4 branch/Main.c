@@ -28,11 +28,11 @@ En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y s
 #include "GameLogic.h"
 
 
-void main(void)
+int main(void)
 {
 
 				/////////////////////////////////////////////
-				int num,a;
+				int num;
 
 				char matrix[HEIGHT][WIDTH] = {
 				{' ',' ',' ',' ',' ',' ',' ', ' ',' ', ' '},
