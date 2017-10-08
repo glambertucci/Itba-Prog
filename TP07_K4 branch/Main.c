@@ -26,7 +26,11 @@ En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y s
 #include "MatrixLogic.h"
 #include "Keyboard.h"
 #include "GameLogic.h"
+<<<<<<< HEAD
 #include <unistd.h>
+=======
+#include "TimeKeeper.h"
+>>>>>>> 25f31663789f18bf57c6db683789fc4d1b2d6411
 
 void main(void)
 {
@@ -58,6 +62,7 @@ void main(void)
 		{
 			nextGen(matrix, auxmatrix);		//Calcula proxima generacion
 			printMatrix(matrix);	//La imprime	
+			delay(1);  //delay de un segundo
 		}
 	}
 
