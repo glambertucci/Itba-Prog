@@ -35,17 +35,17 @@ static int cellStatus (int m, int n, char matrix[][WIDTH])
     int destiny = 0;
     int i,j;
 
-    for(i=-1 ; i<2 ; i++)   	//Este algoritmo busca en el cuadrado inmediato exterior a la celda
-    {							//si las celulas estan vivas.
-    	for(j=-1 ; j<2 ; j++)
-    	{
-    		if (matrix[m-i][n-j] == ALIVE)
+    for(i=-1 ; i<2 ; i++)
+    {								//Este algoritmo se fija si las celulas al rededor de la elegida
+    	for(j=-1 ; j<2 ; j++)		//estan vivas o no. Notar que como !((j==i)&&(j==0)) da falso si
+    	{							//la celula a analizar es la elegida, esta queda excluida.
+    		if ( (!((j==i) && (j==0))) && (matrix[m+i][n+j] == ALIVE))
     			neighbour_alive++;
     	}
     }
 
-
- /*   current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
+	current_cell = matrix [m] [n];   //estado actual de la celula, Dead o Alive
+/*
 	if (matrix [m-1] [n-1] == ALIVE)	//analizo la celula diagonal superior izquierda
 		neighbour_alive++;
 	

@@ -27,12 +27,12 @@ void welcomeMsg (char matrix[][WIDTH])
 	printMatrix(matrix);
 
 	printf("\n");
-	printf("Para avanzar a la siguiente generacion escriba el\n");
-	printf(BLUE "numero de generaciones que desea ver y presione enter.\n\n" COLOR_RESET);
-	printf("Si presiona enter se mostrara una sola generacion.\n" BLUE "Si escribe 0 o un numero negativo se terminara el programa.\n" COLOR_RESET);
+	printf("Para avanzar a la siguiente generacion " BLUE "escriba el " COLOR_RESET);
+	printf(BLUE"numero de generaciones que desea ver y presione enter.\n\n"COLOR_RESET);
+	printf("Si presiona" BLUE " enter" COLOR_RESET" se mostrara una sola generacion.\nSi escribe "BLUE"0"COLOR_RESET" o un "BLUE"numero negativo"COLOR_RESET" se terminara el programa.\n");
 }
 
 void endMessage(void)
 {
-	printf(BLUE "Terminando programa.." COLOR_RESET);
+	printf(BLUE "Terminando programa..\n" COLOR_RESET);
 }

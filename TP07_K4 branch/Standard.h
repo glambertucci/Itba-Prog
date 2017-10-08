@@ -3,8 +3,8 @@
 
 #define TRUE 1
 #define FALSE 0
-#define HEIGHT 10
-#define WIDTH 10
+#define HEIGHT 11
+#define WIDTH 11
 #define DEAD ' '
 #define ALIVE '*'
 
