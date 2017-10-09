@@ -19,6 +19,8 @@ Este programa tiene hardcodeado las celulas vivas del juego. Estas pueden ser mo
 eliminadas o agregadas al mapa inicial, siempre y cuando respete la dimensión de la matriz escogida.
 Dicha función solo inicializa la primer matriz del juego.
 En caso de querer finalizar toque ESC y enter, un enter avanza de generacion y si ingresa un numero avanza las generaciones ingresadas 
+
+ADVERTENCIA: Este programa se ejecuta correctamente solamente en sistemas operativos Linux.
 */
 
 #include "Standard.h"
