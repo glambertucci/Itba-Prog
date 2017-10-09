@@ -21,6 +21,7 @@ void printMatrix(char mat[][WIDTH])
 void welcomeMsg (char matrix[][WIDTH])
 {
 	printf("\n\n\n\n\n\nBienvenido al juego de la vida! \n");
+	printf(BLUE"ADVERTENCIA: Este programa se ejecuta correctamente solamente en sistemas operativos Linux.\n" COLOR_RESET);
 	printf("Configuracion: " BLUE "%d" COLOR_RESET "x" BLUE "%d" COLOR_RESET "\n",HEIGHT,WIDTH);
 	printf("\n");
 
