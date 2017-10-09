@@ -11,7 +11,7 @@
 
 /* Gracias a estas definiciones, al ejecutar The Game of Life en un sistema operativo Linux, el usuario visualizará
 * el texto de mayor relevancia en color azul, y las células en verde.
-/*
+*/
 
 void printMatrix(char mat[HEIGHT][WIDTH]);
 // Muestra al usuario el estado actual del tablero de The Game of Life.
