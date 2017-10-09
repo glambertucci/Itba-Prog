@@ -1,9 +1,9 @@
 #ifndef GAMEVISUALS_H
 #define GAMEVISUALS_H
 
-/*
- * Este header contiene las definiciones y prototipos de las funciones que afectarán a la experiencia visual del usuario.
-*/
+
+// Este header contiene las definiciones y prototipos de las funciones que afectarán a la experiencia visual del usuario.
+
 
 #define GREEN   "\x1b[32m"
 #define BLUE    "\x1b[34m"
