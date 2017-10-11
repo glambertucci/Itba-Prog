@@ -30,7 +30,7 @@ void welcomeMsg (char matrix[][WIDTH])
 	printf("\n");
 	printf("Para avanzar a la siguiente generacion " BLUE "escriba el " COLOR_RESET);
 	printf(BLUE"numero de generaciones que desea ver y presione enter.\n\n"COLOR_RESET);
-	printf("Si presiona" BLUE " enter" COLOR_RESET" se mostrara una sola generacion.\nSi escribe "BLUE"0"COLOR_RESET" o un "BLUE"numero negativo"COLOR_RESET" se terminara el programa.\n");
+	printf("Si presiona" BLUE " enter" COLOR_RESET" se mostrara una sola generacion.\nSi escribe  un "BLUE"numero no natural (a menos que sea enter)"COLOR_RESET" se terminara el programa.\n");
 }
 
 void againMessage (void)
