@@ -1,21 +1,52 @@
-/*Operaciones*/
+#include <stdio.h>
+#include <stdlib.h>
+#define GREEN   "\x1b[32m"
+#define BLUE    "\x1b[34m"
+#define COLOR_RESET   "\x1b[0m"
+ double calcres (double num1, double num2, char op);
 
-double sum (double num1, double num2);
-
-double res (double num1, double num2);
-
-double mul (double num1, double num2);
-
-double div (double num1, double num2);
-
-double and (double num1, double num2);
-
-double or (double num1, double num2);
-
-double xor (double num1, double num2);
+char operands[7]={'+','-','*','/','|','&','^'};
+//double (*(functions[7])) (double,double);
 
 
-// Arreglos globales
-double (* actions [MAX_OPERATORS]) (double, double);
-char operator [MAX_OPERATORS];
+int main (void)
+{
+	double num1,num2,result;
+	char arr[1000];
+	char * pnum2;
 
+	printf("Bienvenido a la calculadora \nLas funciones basicas estan habilitadas incluyendo AND OR y XOR \n(siendo estas exclusivas para numeros enteros)\nIngrese Numero Operador Numero y obtendra el resultado\n");
+	while (abort)
+	{
+//		mode();// va a ser funcion que preguntra el modo al inicio  y luego pregunte si quiere mantener, cambiarlo  o q para salir 
+//		initFun();//inicia funciones
+		scanf("%lf%s", (&num1),arr);
+		pnum2 = & arr[1];
+		char op=arr[0];
+						//fijate si op es valido
+		num2= atof(pnum2);
+		//aca te fijas si es valido num2 	
+		result=	calcres(num1,num2,op);
+		printf(""GREEN"Cuenta"COLOR_RESET": %lg %c % lg \n" BLUE"Resultado" COLOR_RESET ": % lg\n",num1,op,num2,result );
+	}
+}
+
+double calcres (double num1, double num2, char op)
+{
+	double result;
+	if (op==operands[0])
+		result = num1+num2;
+	if (op==operands[1])
+		result = num1-num2;
+	if (op==operands[2])
+		result = num1*num2;
+	if (op==operands[3])
+		result = num1/num2;
+	if (op==operands[4])
+		result = (int)num1 | (int)num2;
+	if (op==operands[5])
+		result = (int)num1 & (int)num2;
+	if (op==operands[6])
+		result = (int)num1 ^ (int)num2;	
+	return result;
+}
