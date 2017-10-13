@@ -13,14 +13,10 @@ char operands[7]={'+','-','*','/','|','&','^'};
 int main (void)
 {
 	double num1,num2,result;
-<<<<<<< HEAD
+
 	char arr[1000],trash;
 	char * pnum2, * find;
-=======
-	char arr[1000];
-	char * pnum2;
-	int modo;
->>>>>>> 9b20ac57ed470018bfc3ef1d30380b2987004042
+	int modo; 
 
 	printf("Bienvenido a la calculadora \n");//Funciones
 	printf("Las funciones basicas estan habilitadas incluyendo AND OR y XOR \n");
@@ -30,13 +26,10 @@ int main (void)
 	printf("y se tomaran los dos primeros numeros, el resto será ignorado\n");
 	while (abort)
 	{
-<<<<<<< HEAD
-//		mode();// va a ser funcion que preguntra el modo al inicio  y luego pregunte si quiere mantener, cambiarlo  o q para salir 
-//		addOperation();//inicia funciones
-=======
+
 		modo = modeAsk();
-//		initFun();//inicia funciones
->>>>>>> 9b20ac57ed470018bfc3ef1d30380b2987004042
+//		addOperation();//inicia funciones
+
 		scanf("%lf%s", (&num1),arr);
 		pnum2 = &arr[1];
 		char op=arr[0];
