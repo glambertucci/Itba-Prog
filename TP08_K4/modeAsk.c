@@ -1,9 +1,13 @@
+#include <stdio.h>
 #include <string.h>
+#define GREEN   "\x1b[32m"
+#define BLUE    "\x1b[34m"
+#define COLOR_RESET   "\x1b[0m"
 
-void modeAsk(void)
+int  modeAsk(void)
 {
 	static int modo = 0;
-	static int estado = 0;
+	static int state = 0;
 	char outputString[1000], outputChar;
 	int outputFunction, tryAgain;
 
@@ -14,12 +18,14 @@ void modeAsk(void)
 		do
 		{
 			tryAgain = 0;
-			scanf("%c", outputChar)
+			scanf("%c", &outputChar);
 			switch(outputChar)
+			{
 				case 'c':	outputFunction = modo; break;
-				case 'm':	(modo==1)?(modo=2):(modo=1); break;
+				case 'm':	((modo==1)?(modo=2):(modo=1)); break;
 				case 'e':	outputFunction = 0; break;
 				default:	printf("Caracter invalido, probar nuevamente\n"); tryAgain = 1;
+			}
 		} while (tryAgain);
 	}
 	else
