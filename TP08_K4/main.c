@@ -14,11 +14,12 @@ int main (void)
 	double num1,num2,result;
 	char arr[1000];
 	char * pnum2;
+	int modo;
 
 	printf("Bienvenido a la calculadora \nLas funciones basicas estan habilitadas incluyendo AND OR y XOR \n(siendo estas exclusivas para numeros enteros)\nIngrese Numero Operador Numero y obtendra el resultado\n");
 	while (abort)
 	{
-//		mode();// va a ser funcion que preguntra el modo al inicio  y luego pregunte si quiere mantener, cambiarlo  o q para salir 
+		modo = modeAsk();
 //		initFun();//inicia funciones
 		scanf("%lf%s", (&num1),arr);
 		pnum2 = & arr[1];
