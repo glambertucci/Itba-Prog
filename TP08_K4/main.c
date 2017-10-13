@@ -46,7 +46,7 @@ int main (void)
 			{
 				if (num2==0 && op == operands[3])
 				{
-					printf("Indefinido\n");
+					printf("Indefinido\n"); //Dividir por 0 es malo
 				} 	
 				else 
 				{
