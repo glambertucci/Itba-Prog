@@ -26,12 +26,12 @@ int  modeAsk(void)
 {
 	static int modo = 0;
 	static int state = 0;
-	char outputString[1000], outputChar;
+	char outputString[1000], outputChar, trash;
 	int outputFunction, tryAgain;
 
 	if(state)
 	{
-		printf("\nDesea seguir realizando operaciones en el modo seleccionado, cambiar de modo, o salir?\n");
+		printf("Desea seguir realizando operaciones en el modo seleccionado, cambiar de modo, o salir?\n");
 		printf("Si desea continuar con el seleccionado, escriba "GREEN"'c'"COLOR_RESET"; si desea cambiar de modo, escriba "GREEN"'m'"COLOR_RESET"; si desea salir, escriba "GREEN"'e'\n"COLOR_RESET);
 		do
 		{
@@ -39,10 +39,13 @@ int  modeAsk(void)
 			scanf("%c", &outputChar);
 			switch(outputChar)
 			{
-				case 'c':	outputFunction = modo; printf("Se continuara en el modo actual.\n\n"); break;
-				case 'm':	((modo==1)?(modo=2):(modo=1)); printf("Se cambiara de modo.\n\n"); break;
+				case 'c':	outputFunction = modo; break;
+				case 'm':	((modo==1)?(modo=2):(modo=1)); break;
 				case 'e':	outputFunction = 0; break;
-				default:	printf("Caracter invalido, probar nuevamente\n"); tryAgain = 1;
+
+				default:	printf("Caracter invalido, probar nuevamente\n");
+							tryAgain = 1;
+							cleanbuffer();
 			}
 		} while (tryAgain);
 	}
@@ -57,13 +60,11 @@ int  modeAsk(void)
 				scanf("%s",outputString);
 				if(strcmp(outputString, "m1"))
 				{
-					printf("Se ha elegido el primer modo.\n");
 					outputFunction = 1;
 					modo = 1;
 				}
 				else if(strcmp(outputString, "m2"))
 				{
-					printf("Se ha elegido el segundo modo.\n");
 					outputFunction = 2;
 					modo = 2;
 				}
@@ -71,11 +72,13 @@ int  modeAsk(void)
 				{
 					printf("Caracteres invalidos, probar nuevamente\n");
 					tryAgain = 1;
+					cleanbuffer();
 				}
 			} while (tryAgain);
 	}
 	return outputFunction;
 }
+
 
 int addOperation(int mode )
 {
