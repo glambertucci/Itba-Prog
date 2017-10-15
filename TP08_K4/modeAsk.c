@@ -8,7 +8,7 @@ int  modeAsk(void)
 {
 	static int modo = 0;
 	static int state = 0;
-	char outputString[1000], outputChar;
+	char outputString[1000], outputChar, trash;
 	int outputFunction, tryAgain;
 
 	if(state)
@@ -24,7 +24,10 @@ int  modeAsk(void)
 				case 'c':	outputFunction = modo; break;
 				case 'm':	((modo==1)?(modo=2):(modo=1)); break;
 				case 'e':	outputFunction = 0; break;
-				default:	printf("Caracter invalido, probar nuevamente\n"); tryAgain = 1;
+
+				default:	printf("Caracter invalido, probar nuevamente\n");
+							tryAgain = 1;
+							while(trash=getchar() != '\n');//Limpio el buffer Esto deberia ser una funcion
 			}
 		} while (tryAgain);
 	}
