@@ -1,8 +1,26 @@
 #include <stdio.h>
 #include <string.h>
-#define GREEN   "\x1b[32m"
-#define BLUE    "\x1b[34m"
-#define COLOR_RESET   "\x1b[0m"
+#include "colordefines.h"
+
+double calcRes (double num1, double num2, char op)
+{
+	double result;
+	if (op==operands[0])
+		result = num1+num2;
+	if (op==operands[1])
+		result = num1-num2;
+	if (op==operands[2])
+		result = num1*num2;
+	if (op==operands[3])
+		result = num1/num2;
+	if (op==operands[4])
+		result = (int)num1 | (int)num2;
+	if (op==operands[5])
+		result = (int)num1 & (int)num2;
+	if (op==operands[6])
+		result = (int)num1 ^ (int)num2;	
+	return result;
+}
 
 int  modeAsk(void)
 {

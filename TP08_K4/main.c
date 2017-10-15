@@ -1,12 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "modeAsk.c"
-#define GREEN   "\x1b[32m"
-#define BLUE    "\x1b[34m"
-#define COLOR_RESET   "\x1b[0m"
- double calcRes (double num1, double num2, char op);
- int addOperation(char op, double (*functions) (double num1 ,double num2));
+#include "calcfunc.h"
+#include "keyboard.h"
+#include "colordefines.h"
 char operands[7]={'+','-','*','/','|','&','^'};
 //double (*(functions[7])) (double,double);
 
@@ -15,7 +12,7 @@ int main (void)
 {
 	double num1,num2,result;
 
-	char arr[1000],trash;
+	char arr[1000];
 	char * pnum2, * find;
 	int modo; 
 
@@ -36,7 +33,7 @@ int main (void)
 		char op=arr[0];
 	
 		find =	strchr(operands, op);
-		if (find == NULL)	//ACA VERIFIQUE SI OP ES VALIDO
+		if (find == NULL)	//ACA VERIFIQCA SI EL OPERANDO ES VALIDO
 		{
 			printf("Entrada invalida\n");
 		}
@@ -51,7 +48,7 @@ int main (void)
 			{
 				if (num2==0 && op == operands[3])
 				{
-					printf("Indefinido\n"); //Dividir por 0 es malo
+					printf("Indefinido\n"); //Dividir por 0 es malo, y un conejito muere cada vez que lo intentas.
 				} 	
 				else 
 				{
@@ -60,26 +57,7 @@ int main (void)
 				}
 			}
 		}
-		while(trash=getchar() != '\n');//Limpio el buffer Esto deberia ser una funcion
+		cleanbuffer();//Limpio el buffer
 	}
-}
-
-double calcRes (double num1, double num2, char op)
-{
-	double result;
-	if (op==operands[0])
-		result = num1+num2;
-	if (op==operands[1])
-		result = num1-num2;
-	if (op==operands[2])
-		result = num1*num2;
-	if (op==operands[3])
-		result = num1/num2;
-	if (op==operands[4])
-		result = (int)num1 | (int)num2;
-	if (op==operands[5])
-		result = (int)num1 & (int)num2;
-	if (op==operands[6])
-		result = (int)num1 ^ (int)num2;	
-	return result;
+	return 0;
 }
