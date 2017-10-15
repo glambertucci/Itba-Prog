@@ -5,8 +5,7 @@
 #include "keyboard.h"
 #include "colordefines.h"
 char operands[7]={'+','-','*','/','|','&','^'};
-//double (*(functions[7])) (double,double);
-
+double (* functions [7]) (double, double);
 
 int main (void)
 {
@@ -26,12 +25,13 @@ int main (void)
 	{
 
 		modo = modeAsk();
-//		addOperation();//inicia funciones
-
+		printf("%d\n",modo );
+		addOperation(modo);//inicia funciones
+		printf("%c%c%c%c%c%c%c\n",operands[0],operands[1],operands[2],operands[3],operands[4],operands[5],operands[6] );
 		scanf("%lf%s", (&num1),arr);
 		pnum2 = &arr[1];
 		char op=arr[0];
-	
+		
 		find =	strchr(operands, op);
 		if (find == NULL)	//ACA VERIFIQCA SI EL OPERANDO ES VALIDO
 		{
