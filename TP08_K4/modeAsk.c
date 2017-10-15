@@ -27,7 +27,7 @@ int  modeAsk(void)
 
 				default:	printf("Caracter invalido, probar nuevamente\n");
 							tryAgain = 1;
-							while(trash=getchar() != '\n');//Limpio el buffer Esto deberia ser una funcion
+							cleanbuffer();
 			}
 		} while (tryAgain);
 	}
@@ -54,7 +54,7 @@ int  modeAsk(void)
 				{
 					printf("Caracteres invalidos, probar nuevamente\n");
 					tryAgain = 1;
-					while(trash=getchar() != '\n');//Limpio el buffer Esto deberia ser una funcion
+					cleanbuffer();
 				}
 			} while (tryAgain);
 	}
