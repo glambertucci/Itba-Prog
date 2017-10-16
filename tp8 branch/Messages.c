@@ -8,8 +8,8 @@ void welcomeMessage(void)
 	printf("Las funciones basicas estan habilitadas incluyendo AND OR y XOR \n");
 	printf("(siendo estas exclusivas para numeros enteros)\n");
 	printf("Ingrese Numero Operador Numero y obtendra el resultado\n");
-	printf("Considere que el formato es [NUMERO] [OPERADOR] [NUMERO] (sin los corchetes)\n");
-	printf("y se tomaran los dos primeros numeros, el resto será ignorado\n");
+	printf("Considere que el formato es [NUMERO] [OPERADOR] [NUMERO] (sin los corchetes y SIN ESPACIOS entre numero y operador)\n");
+	printf("y se tomaran los dos primeros numeros, el resto será ignorado. Este programa es visto correctamente solo en Linux.\n");
 }
 
 void invalidMessage(void)

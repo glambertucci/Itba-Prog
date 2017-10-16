@@ -6,27 +6,29 @@
 #include "Messages.h"
 #include "ModeSelection.h"
 
-char operands[7]={'+','-','*','/','|','&','^'};
+#define MAX_SIZE 1000
+
+char operands[7]={'+','-','*','/','|','&','^'};			//Arreglos globales por consigna
 double (* functions [7]) (double,double);
 
 int main (void)
 {
 	double num1,num2,result;
 
-	char arr[1000];
+	char arr[MAX_SIZE];
 	char * pnum2, * find;
 	int modo, abort = 1;
 
-	welcomeMessage();
+	welcomeMessage(); 			//Se muestra el mensaje de bienvenida
 
-	while (abort)
+	while (abort)				//Mientras que no se detecte que el usuario quiera terminar el programa
 	{
-		modo = modeAsk();
-		if ((modo == 0))
+		modo = modeAsk();		//Pregunta al usuario con que operaciones desea realizar cuentas
+		if ((modo == 0))		//Si quiere terminar programa
 			abort = 0;
 		else
 		{
-			addOperation(modo);//inicia funciones
+			addOperation(modo);	//inicia funciones
 			scanf("%lf%s", (&num1),arr);
 			pnum2 = &arr[1];
 			char op=arr[0];
@@ -38,10 +40,10 @@ int main (void)
 			}
 			else 
 			{
-				num2= atof(pnum2); 
+				num2= atof(pnum2); //compone segunda mitad de cuenta
 				if (((arr[1]< '0' ) || (arr[1]>'9') ) && (arr[1] != '.'))
 				{
-					invalidMessage();
+					invalidMessage(); //mas validacion
 				}
 				else
 				{
@@ -51,7 +53,7 @@ int main (void)
 					} 	
 					else 
 					{
-						result=	calcRes(num1,num2,op);
+						result=	calcRes(num1,num2,op);	//finalmente calcula
 						answerMessage(num1, op, num2, result);
 					}
 				}
