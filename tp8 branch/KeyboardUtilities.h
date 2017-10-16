@@ -2,5 +2,6 @@
 #define KEYBOARDUTILITIES_H
 
 void cleanBuffer(void);
+//Util
 
 #endif

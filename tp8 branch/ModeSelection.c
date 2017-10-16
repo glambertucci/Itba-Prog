@@ -11,7 +11,7 @@ int  modeAsk(void)
 	char outputString[1000], outputChar;
 	int outputFunction, tryAgain;
 
-	if(state)
+	if(state) //Se fija si debe preguntar por primera vez o no
 	{
 		printf("\nDesea seguir realizando operaciones en el modo seleccionado, cambiar de modo, o salir?\n");
 		printf("Si desea continuar con el seleccionado, escriba "GREEN"'c'"COLOR_RESET"; si desea cambiar de modo, escriba "GREEN"'m'"COLOR_RESET"; si desea salir, escriba "GREEN"'e'\n"COLOR_RESET);
@@ -22,7 +22,9 @@ int  modeAsk(void)
 			cleanBuffer();
 			switch(outputChar)
 			{
-				case 'c':	outputFunction = modo; printf("Se continuara en el modo actual.\n\n"); break;
+				case 'c':	outputFunction = modo;
+							printf("Se continuara en el modo actual.\n\n");
+							break;
 		
 				case 'm':	if(modo == 1)
 							{
@@ -34,13 +36,16 @@ int  modeAsk(void)
 								modo = 1;
 								outputFunction = 1;
 							}
-							printf("Se cambiara de modo.\n\n"); break;
+							printf("Se cambiara de modo.\n\n");
+							break;
 		
-				case 'e':	outputFunction = 0; break;
+				case 'e':	outputFunction = 0;
+							break;
 		
-				default:	printf("Caracter invalido, probar nuevamente\n"); tryAgain = 1;
+				default:	printf("Caracter invalido, probar nuevamente\n");
+							tryAgain = 1;
 			}
-		} while (tryAgain);
+		} while (tryAgain);		//Solo sale cuando la entrada es valida.
 	}
 	else
 	{
@@ -52,7 +57,7 @@ int  modeAsk(void)
 				tryAgain = 0;
 				scanf("%s", outputString);
 				cleanBuffer();
-				if(!(strcmp(outputString, "m1")))
+				if(!(strcmp(outputString, "m1")))		//Funcion que ve si el primer string contiene el segundo string.
 				{
 					printf("Se ha elegido el primer modo.\n");
 					outputFunction = 1;
@@ -69,7 +74,7 @@ int  modeAsk(void)
 					printf("Caracteres invalidos, probar nuevamente\n");
 					tryAgain = 1;
 				}
-			} while (tryAgain);
+			} while (tryAgain);			//Solo sale cuando la entrada sea valida
 	}
 	return outputFunction;
 }

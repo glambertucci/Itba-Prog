@@ -7,7 +7,7 @@ extern char operands[];
 extern double (* functions []) (double, double);
 
 
-double calcRes (double num1, double num2, char op)
+double calcRes (double num1, double num2, char op)	//realiza las cuentas llamando a funciones
 {
 	double result;
 	if (op==operands[0])
@@ -66,7 +66,7 @@ int addOperation(int mode )
 }
 
 
-double summ (double num1,double num2)
+double summ (double num1,double num2)		//FUNCIONES CALLBACK
 {
 	return num1+num2;
 }

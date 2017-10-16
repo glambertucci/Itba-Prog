@@ -2,7 +2,8 @@
 #define CALCFUNC_H
 
 double calcRes(double, double, char);
-//Realiza las operaciones aritmeticas dependiendo de lo que recibe
+//Dependiendo el modo, llama a la funcion correcta para realizar las cuentas
+//abajo estan las funciones
 
 int addOperation(int);
 double calcRes (double, double, char);
