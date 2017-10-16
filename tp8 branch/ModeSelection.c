@@ -51,13 +51,14 @@ int  modeAsk(void)
 			{
 				tryAgain = 0;
 				scanf("%s", outputString);
-				if(strcmp(outputString, "m2"))
+				cleanBuffer();
+				if(strcmp(outputString, "m1"))
 				{
 					printf("Se ha elegido el primer modo.\n");
 					outputFunction = 1;
 					modo = 1;
 				}
-				else if(strcmp(outputString, "m1"))
+				else if(strcmp(outputString, "m2"))
 				{
 					printf("Se ha elegido el segundo modo.\n");
 					outputFunction = 2;

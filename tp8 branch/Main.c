@@ -24,38 +24,41 @@ int main (void)
 		modo = modeAsk();
 		if ((modo == 0))
 			abort = 0;
-		addOperation(modo);//inicia funciones
-		printf("Operands: %c%c%c%c%c%c%c\n",operands[0],operands[1],operands[2],operands[3],operands[4],operands[5],operands[6] );
-		scanf("%lf%s", (&num1),arr);
-		pnum2 = &arr[1];
-		char op=arr[0];
-		
-		find =	strchr(operands, op);
-		if (find == NULL)	//ACA VERIFIQCA SI EL OPERANDO ES VALIDO
+		else
 		{
-			invalidMessage();
-		}
-		else 
-		{
-			num2= atof(pnum2); 
-			if (((arr[1]< '0' ) || (arr[1]>'9') ) && (arr[1] != '.'))
+			addOperation(modo);//inicia funciones
+			printf("Operands: %c%c%c%c%c%c%c\n",operands[0],operands[1],operands[2],operands[3],operands[4],operands[5],operands[6] );
+			scanf("%lf%s", (&num1),arr);
+			pnum2 = &arr[1];
+			char op=arr[0];
+			
+			find =	strchr(operands, op);
+			if (find == NULL)	//ACA VERIFIQCA SI EL OPERANDO ES VALIDO
 			{
 				invalidMessage();
 			}
-			else
+			else 
 			{
-				if (num2==0 && op == operands[3])
+				num2= atof(pnum2); 
+				if (((arr[1]< '0' ) || (arr[1]>'9') ) && (arr[1] != '.'))
 				{
-					indefiniteMessage(); //Dividir por 0 es malo, y un conejito muere cada vez que lo intentas.
-				} 	
-				else 
+					invalidMessage();
+				}
+				else
 				{
-					result=	calcRes(num1,num2,op);
-					answerMessage(num1, op, num2, result);
+					if (num2==0 && op == operands[3])
+					{
+						indefiniteMessage(); //Dividir por 0 es malo, y un conejito muere cada vez que lo intentas.
+					} 	
+					else 
+					{
+						result=	calcRes(num1,num2,op);
+						answerMessage(num1, op, num2, result);
+					}
 				}
 			}
+			cleanBuffer();
 		}
-		cleanBuffer();//Limpio el buffer
 	}
 	endMessage();
 	return 0;
