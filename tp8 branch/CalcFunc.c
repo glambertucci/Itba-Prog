@@ -11,19 +11,19 @@ double calcRes (double num1, double num2, char op)
 {
 	double result;
 	if (op==operands[0])
-		result = num1+num2;
+		result = functions[0] (num1,num2);
 	if (op==operands[1])
-		result = num1-num2;
+		result = functions[1] (num1,num2);
 	if (op==operands[2])
-		result = num1*num2;
+		result = functions[2] (num1,num2);
 	if (op==operands[3])
-		result = num1/num2;
+		result = functions[3] (num1,num2);
 	if (op==operands[4])
-		result = (int)num1 | (int)num2;
+		result = functions[4] ((int) num1, (int) num2);
 	if (op==operands[5])
-		result = (int)num1 & (int)num2;
+		result = functions[5] ((int) num1,(int) num2);
 	if (op==operands[6])
-		result = (int)num1 ^ (int)num2;	
+		result = functions[6] ((int) num1,(int) num2);	
 	return result;
 }
 
@@ -33,14 +33,14 @@ int addOperation(int mode )
 	char classic[7]={'+','-','*','/','&','|','^'};
 	char letters[7]={'s','r','m','d','a','o','x'};
 	int index;
-	if (mode == 2)
+	if (mode == 1)
 	{
 		for (index=0;index<7;index++)
 		{
 			operands[index]=classic[index];
 		}
 	}
-	else if (mode == 1)
+	else if (mode == 2)
 	{
 		for (index=0;index<7;index++)
 		{
