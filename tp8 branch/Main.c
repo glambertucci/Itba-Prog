@@ -21,11 +21,11 @@ int main (void)
 
 	while (abort)
 	{
-		if ((modo = modeAsk()) == 0)
+		modo = modeAsk();
+		if ((modo == 0))
 			abort = 0;
-		printf("%d\n",modo );
 		addOperation(modo);//inicia funciones
-		printf("%c%c%c%c%c%c%c\n",operands[0],operands[1],operands[2],operands[3],operands[4],operands[5],operands[6] );
+		printf("Operands: %c%c%c%c%c%c%c\n",operands[0],operands[1],operands[2],operands[3],operands[4],operands[5],operands[6] );
 		scanf("%lf%s", (&num1),arr);
 		pnum2 = &arr[1];
 		char op=arr[0];

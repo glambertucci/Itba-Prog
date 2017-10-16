@@ -2,6 +2,7 @@
 #include <string.h>
 #include "Colors.h"
 #include "ModeSelection.h"
+#include "KeyboardUtilities.h"
 
 int  modeAsk(void)
 {
@@ -18,11 +19,25 @@ int  modeAsk(void)
 		{
 			tryAgain = 0;
 			scanf("%c", &outputChar);
+			cleanBuffer();
 			switch(outputChar)
 			{
 				case 'c':	outputFunction = modo; printf("Se continuara en el modo actual.\n\n"); break;
-				case 'm':	((modo==1)?(modo=2):(modo=1)); printf("Se cambiara de modo.\n\n"); break;
+		
+				case 'm':	if(modo == 1)
+							{
+								modo = 2;
+								outputFunction = 2;
+							}
+							else
+							{
+								modo = 1;
+								outputFunction = 1;
+							}
+							printf("Se cambiara de modo.\n\n"); break;
+		
 				case 'e':	outputFunction = 0; break;
+		
 				default:	printf("Caracter invalido, probar nuevamente\n"); tryAgain = 1;
 			}
 		} while (tryAgain);
@@ -35,14 +50,14 @@ int  modeAsk(void)
 			do
 			{
 				tryAgain = 0;
-				scanf("%s",outputString);
-				if(strcmp(outputString, "m1"))
+				scanf("%s", outputString);
+				if(strcmp(outputString, "m2"))
 				{
 					printf("Se ha elegido el primer modo.\n");
 					outputFunction = 1;
 					modo = 1;
 				}
-				else if(strcmp(outputString, "m2"))
+				else if(strcmp(outputString, "m1"))
 				{
 					printf("Se ha elegido el segundo modo.\n");
 					outputFunction = 2;
