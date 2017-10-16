@@ -40,7 +40,7 @@ int addOperation(int mode )
 			operands[index]=classic[index];
 		}
 	}
-	else (mode == 1)
+	else if (mode == 1)
 	{
 		for (index=0;index<7;index++)
 		{
