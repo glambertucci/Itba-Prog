@@ -1,14 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "Main.h"
 #include "CalcFunc.h"
 #include "KeyboardUtilities.h"
 #include "Messages.h"
 #include "ModeSelection.h"
 
 char operands[7]={'+','-','*','/','|','&','^'};
-double (* functions [7]) (double, double);
+double (* functions [7]) (double,double);
 
 int main (void)
 {
@@ -56,7 +55,7 @@ int main (void)
 				}
 			}
 		}
-		cleanbuffer();//Limpio el buffer
+		cleanBuffer();//Limpio el buffer
 	}
 	endMessage();
 	return 0;

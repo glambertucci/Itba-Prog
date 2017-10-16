@@ -2,7 +2,7 @@
 #include "Colors.h"
 #include "Messages.h"
 
-void welcomeMessage(void);
+void welcomeMessage(void)
 {
 	printf("Bienvenido a la calculadora \n");
 	printf("Las funciones basicas estan habilitadas incluyendo AND OR y XOR \n");
@@ -24,10 +24,10 @@ void indefiniteMessage(void)
 
 void answerMessage(double num1, char op, double num2, double result)
 {
-	printf(""GREEN"Cuenta"COLOR_RESET": %lg %c % lg \n" BLUE"Resultado" COLOR_RESET ": % lg\n",num1,op,num2,result );
+	printf(""GREEN"Cuenta"COLOR_RESET": %lg %c % lg \n" BLUE"Resultado" COLOR_RESET ": % lg\n",num1,op,num2,result);
 }
 
-void endMessage
+void endMessage(void)
 {
 	printf("Terminando programa...\n");
 }

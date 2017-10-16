@@ -2,6 +2,11 @@
 #include <string.h>
 #include "CalcFunc.h"
 
+
+extern char operands[];
+extern double (* functions []) (double, double);
+
+
 double calcRes (double num1, double num2, char op)
 {
 	double result;
@@ -42,7 +47,7 @@ int addOperation(int mode )
 		}
 
 	double (* sum_pointer) (double, double)= &summ;
-	double (* res_pointer) (double,` double)=&ress;
+	double (* res_pointer) (double,double)=&ress;
 	double (* mul_pointer) (double, double)=&mull;
  	double (* div_pointer) (double, double)=&divi;
 	double (* and_pointer) (double, double)=&andd;
@@ -75,7 +80,7 @@ double divi (double num1,double num2)
 }
 double andd (double num1,double num2)
 {
-	return (int) num1& (int) num2;CalcFunc.h
+	return (int) num1& (int) num2;
 }
 double orr (double num1,double  num2)
 {
