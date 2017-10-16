@@ -1,84 +1,54 @@
 #include <stdio.h>
 #include <string.h>
-#include "colordefines.h"
+#include "CalcFunc.h"
+
+
+extern char operands[];
+extern double (* functions []) (double, double);
+
 
 double calcRes (double num1, double num2, char op)
-{
-	double result;
-	if (op==operands[0])
-		result = num1+num2;
-	if (op==operands[1])
-		result = num1-num2;
-	if (op==operands[2])
-		result = num1*num2;
-	if (op==operands[3])
-		result = num1/num2;
-	if (op==operands[4])
-		result = (int)num1 | (int)num2;
-	if (op==operands[5])
-		result = (int)num1 & (int)num2;
-	if (op==operands[6])
-		result = (int)num1 ^ (int)num2;	
-	return result;
-}
+{ 
 
-int  modeAsk(void)
-{
-	static int modo = 0;
-	static int state = 0;
-	char outputString[1000], outputChar, trash;
-	int outputFunction, tryAgain;
 
-	if(state)
-	{
-		printf("Desea seguir realizando operaciones en el modo seleccionado, cambiar de modo, o salir?\n");
-		printf("Si desea continuar con el seleccionado, escriba "GREEN"'c'"COLOR_RESET"; si desea cambiar de modo, escriba "GREEN"'m'"COLOR_RESET"; si desea salir, escriba "GREEN"'e'\n"COLOR_RESET);
-		do
-		{
-			tryAgain = 0;
-			scanf("%c", &outputChar);
-			switch(outputChar)
-			{
-				case 'c':	outputFunction = modo; break;
-				case 'm':	((modo==1)?(modo=2):(modo=1)); break;
-				case 'e':	outputFunction = 0; break;
+ 	double result; 
 
-				default:	printf("Caracter invalido, probar nuevamente\n");
-							tryAgain = 1;
-							cleanbuffer();
-			}
-		} while (tryAgain);
-	}
-	else
-	{
-		state = 1;
-		printf("Escriba '"GREEN"m1"COLOR_RESET"' si desea utilizar la calculadora con los operadores clasicos "GREEN"('+', '-','*','/','|','&','^')\n"COLOR_RESET);
-		printf("De no ser asi, el programa admite la utilizacion de operadores alternativos "GREEN"('s','r','m','d','o,'a','x')"COLOR_RESET". Para seleccionar dicho modo escriba '"GREEN"m2'\n"COLOR_RESET);
-			do
-			{
-				tryAgain = 0;
-				scanf("%s",outputString);
-				if(strcmp(outputString, "m1"))
-				{
-					outputFunction = 1;
-					modo = 1;
-				}
-				else if(strcmp(outputString, "m2"))
-				{
-					outputFunction = 2;
-					modo = 2;
-				}
-				else
-				{
-					printf("Caracteres invalidos, probar nuevamente\n");
-					tryAgain = 1;
-					cleanbuffer();
-				}
-			} while (tryAgain);
-	}
-	return outputFunction;
-}
 
+ 	if (op==operands[0]) 
+
+		result = functions[0] (num1,num2); 
+
+
+ 	if (op==operands[1]) 
+
+		result = functions[1] (num1,num2); 
+
+
+ 	if (op==operands[2]) 
+
+		result = functions[2] (num1,num2); 
+
+
+ 	if (op==operands[3]) 
+
+		result = functions[3] (num1,num2); 
+
+
+ 	if (op==operands[4]) 
+
+		result = functions[4] ((int) num1, (int) num2); 
+
+
+ 	if (op==operands[5]) 
+
+		result = functions[5] ((int) num1,(int) num2); 
+
+
+ 	if (op==operands[6]) 
+
+		result = functions[6] ((int) num1,(int) num2);	 
+ 	return result; 
+} 
 
 int addOperation(int mode )
 {
@@ -99,7 +69,7 @@ int addOperation(int mode )
 		}
 
 	double (* sum_pointer) (double, double)= &summ;
-	double (* res_pointer) (double, double)=&ress;
+	double (* res_pointer) (double,double)=&ress;
 	double (* mul_pointer) (double, double)=&mull;
  	double (* div_pointer) (double, double)=&divi;
 	double (* and_pointer) (double, double)=&andd;
