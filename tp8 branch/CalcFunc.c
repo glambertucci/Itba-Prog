@@ -19,11 +19,11 @@ double calcRes (double num1, double num2, char op)
 	if (op==operands[3])
 		result = functions[3] (num1,num2);
 	if (op==operands[4])
-		result = functions[4] ((int) num1, (int) num2);
+		result = functions[4] (num1, num2);
 	if (op==operands[5])
-		result = functions[5] ((int) num1,(int) num2);
+		result = functions[5] (num1, num2);
 	if (op==operands[6])
-		result = functions[6] ((int) num1,(int) num2);	
+		result = functions[6] (num1, num2);	
 	return result;
 }
 
@@ -84,13 +84,13 @@ double divi (double num1,double num2)
 }
 double andd (double num1,double num2)
 {
-	return (int) num1& (int) num2;
+	return ((int)num1) & ((int)num2);
 }
 double orr (double num1,double  num2)
 {
-	return (int)  num1|(int) num2;
+	return ((int)num1) | ((int)num2);
 }
 double xorr (double num1,double  num2)
 {
-	return (int)  num1^ (int) num2;
+	return ((int)num1) ^ ((int) num2);
 }
