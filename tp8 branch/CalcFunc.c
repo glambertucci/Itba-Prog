@@ -40,11 +40,13 @@ int addOperation(int mode )
 			operands[index]=classic[index];
 		}
 	}
-	else 
+	else (mode == 1)
+	{
 		for (index=0;index<7;index++)
 		{
 			operands[index]=letters[index];
 		}
+	}
 
 	double (* sum_pointer) (double, double)= &summ;
 	double (* res_pointer) (double,double)=&ress;
@@ -62,6 +64,8 @@ int addOperation(int mode )
 	functions[5]= or_pointer;
 	functions[6]= xor_pointer;
 }
+
+
 double summ (double num1,double num2)
 {
 	return num1+num2;
