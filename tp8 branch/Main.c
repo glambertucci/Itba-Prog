@@ -27,13 +27,12 @@ int main (void)
 		else
 		{
 			addOperation(modo);//inicia funciones
-			printf("Operands: %c%c%c%c%c%c%c\n",operands[0],operands[1],operands[2],operands[3],operands[4],operands[5],operands[6] );
 			scanf("%lf%s", (&num1),arr);
 			pnum2 = &arr[1];
 			char op=arr[0];
 			
 			find =	strchr(operands, op);
-			if (find == NULL)	//ACA VERIFIQCA SI EL OPERANDO ES VALIDO
+			if (find == NULL)	//ACA VERIFICA SI EL OPERANDO ES VALIDO
 			{
 				invalidMessage();
 			}
