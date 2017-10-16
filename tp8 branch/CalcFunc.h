@@ -4,7 +4,7 @@
 double calcRes(double, double, char);
 //Realiza las operaciones aritmeticas dependiendo de lo que recibe
 
-int addOperation(int);
+void addOperation(int);
 double calcRes (double, double, char);
 double xorr (double, double);
 double summ (double, double);

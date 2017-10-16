@@ -10,25 +10,27 @@ extern double (* functions []) (double, double);
 double calcRes (double num1, double num2, char op)
 {
 	double result;
+	
 	if (op==operands[0])
 		result = functions[0] (num1,num2);
-	if (op==operands[1])
+	else if (op==operands[1])
 		result = functions[1] (num1,num2);
-	if (op==operands[2])
+	else if (op==operands[2])
 		result = functions[2] (num1,num2);
-	if (op==operands[3])
+	else if (op==operands[3])
 		result = functions[3] (num1,num2);
-	if (op==operands[4])
+	else if (op==operands[4])
 		result = functions[4] (num1, num2);
-	if (op==operands[5])
+	else if (op==operands[5])
 		result = functions[5] (num1, num2);
-	if (op==operands[6])
+	else if (op==operands[6])
 		result = functions[6] (num1, num2);	
+
 	return result;
 }
 
 
-int addOperation(int mode )
+void addOperation(int mode )
 {
 	char classic[7]={'+','-','*','/','&','|','^'};
 	char letters[7]={'s','r','m','d','a','o','x'};
