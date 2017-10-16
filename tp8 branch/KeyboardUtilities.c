@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include "KeyboardUtilities.h"
 
-void cleanBuffer(void){
+void cleanBuffer(void)
+{
     char trash;
-    while(trash=getchar() != '\n');
+    while((trash=getchar()) != ('\n'));
 }
