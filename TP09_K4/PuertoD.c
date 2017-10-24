@@ -1,3 +1,11 @@
+/*
+	comentarios: la union esta global con static y las funciones acceden a la union sin referencia por ser global, me
+	parece bien asi, nos joderan por usar variables globales? o sea estoy emulando un objeto como nos dijo jacobi..
+
+	todas las llamadas a funcion se deben de hacer con tipo de dato uint16_t y todos los datos que devuelven lasfucnines
+	son detipo de dato uint32_t y el codigo de error que devuelven es el numero 66666.
+*/
+
 // PAL JEDER!!!
 /*
 		#define ERR_CODE 66666
