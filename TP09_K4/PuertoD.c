@@ -70,8 +70,10 @@ uint32_t getPortValue(int16_t portID) //Devuelve un uint32, porque si fuera un u
 		default: returnValue = ERR_CODE;
 	}
 
-	if(((portID == PORTA)&&(returnValue > 255)) || ((portID == PORTB)&&(returnValue > 255)) || ((portID == PORTD)&&(returnValue > 65535)))
+	if(((portID == PORTA)&&(returnValue > UINT8_MAX)) || ((portID == PORTB)&&(returnValue > UINT8_MAX)) || ((portID == PORTD)&&(returnValue > UINT16_MAX)))
 		returnValue = ERR_CODE; //Validacion extensiva
+	else
+		returnValue = 0;
 
 	return returnValue;
 }
@@ -103,6 +105,8 @@ uint32_t getBitValue(uint16_t bitID)
 
 	if((returnValue != ERR_CODE)||(returnValue != 1)||(returnValue != 0))
 		returnValue = ERR_CODE; //Validacion extensiva
+	else
+		returnValue = 0;
 	
 	return returnValue;
 }
@@ -111,15 +115,15 @@ uint32_t setPortValue (uint16_t portID, uint16_t value)
 {
 	uint32_t returnValue;
 
-	if((((portID == PORTA)&&(value > 255)) || ((portID == PORTB)&&(value > 255)) || ((portID == PORTD)&&(value > 65535))))
+	if((((portID == PORTA)&&(value > UINT8_MAX)) || ((portID == PORTB)&&(value > UINT8_MAX)) || ((portID == PORTD)&&(value > UINT16_MAX))))
 		returnValue = ERR_CODE; //Validacion extensiva
 	else
 	{
 		switch(portID)
 		{
-			case PORTA: EMULATEDPORT.Subport.portA = (uint8_t) value; break;
-			case PORTB: EMULATEDPORT.Subport.portB = (uint8_t) value; break;
-			case PORTD: EMULATEDPORT.Mainport.portD = value; break;
+			case PORTA: EMULATEDPORT.Subport.portA = (uint8_t) value; returnValue = 0; break;
+			case PORTB: EMULATEDPORT.Subport.portB = (uint8_t) value; returnValue = 0; break;
+			case PORTD: EMULATEDPORT.Mainport.portD = value; returnValue = 0; break;
 			default: returnValue = ERR_CODE;
 		}
 
@@ -138,22 +142,22 @@ uint32_t setBitValue (uint16_t bitID, uint16_t value)
 	{
 		switch(bitID)
 		{
-			case b0: EMULATEDPORT.Bits.b0 = value; break;
-			case b1: EMULATEDPORT.Bits.b1 = value; break;
-			case b2: EMULATEDPORT.Bits.b2 = value; break;
-			case b3: EMULATEDPORT.Bits.b3 = value; break;
-			case b4: EMULATEDPORT.Bits.b4 = value; break;
-			case b5: EMULATEDPORT.Bits.b5 = value; break;
-			case b6: EMULATEDPORT.Bits.b6 = value; break;
-			case b7: EMULATEDPORT.Bits.b7 = value; break;
-			case b8: EMULATEDPORT.Bits.b8 = value; break;
-			case b9: EMULATEDPORT.Bits.b9 = value; break;
-			case b10: EMULATEDPORT.Bits.b10 = value; break;
-			case b11: EMULATEDPORT.Bits.b11 = value; break;
-			case b12: EMULATEDPORT.Bits.b12 = value; break;
-			case b13: EMULATEDPORT.Bits.b13 = value; break;
-			case b14: EMULATEDPORT.Bits.b14 = value; break;
-			case b15: EMULATEDPORT.Bits.b15 = value; break;
+			case b0: EMULATEDPORT.Bits.b0 = value; returnValue = 0; break;
+			case b1: EMULATEDPORT.Bits.b1 = value; returnValue = 0; break;
+			case b2: EMULATEDPORT.Bits.b2 = value; returnValue = 0; break;
+			case b3: EMULATEDPORT.Bits.b3 = value; returnValue = 0; break;
+			case b4: EMULATEDPORT.Bits.b4 = value; returnValue = 0; break;
+			case b5: EMULATEDPORT.Bits.b5 = value; returnValue = 0; break;
+			case b6: EMULATEDPORT.Bits.b6 = value; returnValue = 0; break;
+			case b7: EMULATEDPORT.Bits.b7 = value; returnValue = 0; break;
+			case b8: EMULATEDPORT.Bits.b8 = value; returnValue = 0; break;
+			case b9: EMULATEDPORT.Bits.b9 = value; returnValue = 0; break;
+			case b10: EMULATEDPORT.Bits.b10 = value; returnValue = 0; break;
+			case b11: EMULATEDPORT.Bits.b11 = value; returnValue = 0; break;
+			case b12: EMULATEDPORT.Bits.b12 = value; returnValue = 0; break;
+			case b13: EMULATEDPORT.Bits.b13 = value; returnValue = 0; break;
+			case b14: EMULATEDPORT.Bits.b14 = value; returnValue = 0; break;
+			case b15: EMULATEDPORT.Bits.b15 = value; returnValue = 0; break;
 			default: returnValue = ERR_CODE;
 		}
 	}
