@@ -38,15 +38,15 @@ typedef struct
 }bit16_t;
 
 
-union EMULATEDPORT
+static union
 {
 	full16_t Mainport;
 	twobytes_t Subport;
 	bit16_t Bits;
 
-};
+}EMULATEDPORT;
 
-uint32_t getPortValue(int16_t portID) //Devuelve un uint32, porque si fuera un uint16 no dejaria margen para un buen
+uint32_t getPortValue(uint16_t portID) //Devuelve un uint32, porque si fuera un uint16 no dejaria margen para un buen
 {									//sistema de errores. En este caso, si se da un error en la funcion, el valor retornado
 	uint32_t returnValue;			//sera ERR_CODE (66666), valor imposible para un puerto de 16bits. Esto es asi en todas las
 									//funciones, no sera repetido.
@@ -125,7 +125,7 @@ uint32_t setBitValue (uint16_t bitID, uint16_t value)
 	uint32_t returnValue;
 
 	if((value != 0) || (value != 1))
-		returnValue = ERR_CODE	//Validacion extensiva
+		returnValue = ERR_CODE;	//Validacion extensiva
 	else
 	{
 		switch(bitID)

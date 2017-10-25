@@ -25,7 +25,7 @@ uint32_t setBitValue (uint16_t, uint16_t);
 //setea en valor (segundo int) del bit pedido (primer int) y devuelve codigo de error.
 
 #define ERR_CODE 66666
-enum{B0,B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15}
-enum{PORTA, PORTB, PORTD}
+enum{B0,B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15};
+enum{PORTA, PORTB, PORTD};
 
 #endif
