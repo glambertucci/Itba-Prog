@@ -114,35 +114,68 @@ uint32_t setPortValue (uint16_t portID, uint16_t value)
 	return returnValue;
 }
 
-uint32_t setBitValue (uint16_t bitID, uint16_t value)
+#define MASK 0x01
+#define MAXBITID 15
+#define MINBITID 7
+//  Puedo rotarlo bitID veces y usarlo como máscara para modificar el bit deseado.
+uint32_t bitset (uint16_t portID, uint16_t bitID)
 {
 	uint32_t returnValue;
-
-	if((value != 0) || (value != 1))
+	
+	if((bitID > MAXBITID) || ((portID < 2) && (bitID > MINBITID)))
 		returnValue = ERR_CODE;	//Validacion extensiva
 	else
 	{
-		switch(bitID)
+		if(portID == PORTD)
 		{
-			case B0: EMULATEDPORT.Bits.b0 = value; returnValue = 0; break;
-			case B1: EMULATEDPORT.Bits.b1 = value; returnValue = 0; break;
-			case B2: EMULATEDPORT.Bits.b2 = value; returnValue = 0; break;
-			case B3: EMULATEDPORT.Bits.b3 = value; returnValue = 0; break;
-			case B4: EMULATEDPORT.Bits.b4 = value; returnValue = 0; break;
-			case B5: EMULATEDPORT.Bits.b5 = value; returnValue = 0; break;
-			case B6: EMULATEDPORT.Bits.b6 = value; returnValue = 0; break;
-			case B7: EMULATEDPORT.Bits.b7 = value; returnValue = 0; break;
-			case B8: EMULATEDPORT.Bits.b8 = value; returnValue = 0; break;
-			case B9: EMULATEDPORT.Bits.b9 = value; returnValue = 0; break;
-			case B10: EMULATEDPORT.Bits.b10 = value; returnValue = 0; break;
-			case B11: EMULATEDPORT.Bits.b11 = value; returnValue = 0; break;
-			case B12: EMULATEDPORT.Bits.b12 = value; returnValue = 0; break;
-			case B13: EMULATEDPORT.Bits.b13 = value; returnValue = 0; break;
-			case B14: EMULATEDPORT.Bits.b14 = value; returnValue = 0; break;
-			case B15: EMULATEDPORT.Bits.b15 = value; returnValue = 0; break;
-			default: returnValue = ERR_CODE;
+			mask << (bitID);
+			EMULATOR.Mainport.portD = (EMULATOR.Mainport.portD | mask);
 		}
+		else
+		{	
+			mask << (bitID);
+			if(portID==PORTA)
+			{	
+			EMULATOR.Mainport.portD = (EMULATOR.Subport.portA | (uint8_t mask);
+			}
+			else
+			{	
+			EMULATOR.Mainport.portD = (EMULATOR.Subport.portB | (uint8_t mask);
+			}
+		}
+		returnValue = ERR_SUCC;
 	}
-
+	return returnValue;
+}
+	   
+uint32_t bitclear (uint16_t portID, uint16_t bitID)
+{
+	uint32_t returnValue;
+	mask = MASK;
+	mask = ~mask;
+	
+	if((bitID > MAXBITID) || ((portID < 2) && (bitID > MINBITID)))
+		returnValue = ERR_CODE;	//Validacion extensiva
+	else
+	{
+		if(portID == PORTD)
+		{
+			mask << (bitID);
+			EMULATOR.Mainport.portD = (EMULATOR.Mainport.portD & mask);
+		}
+		else
+		{
+			mask << (bitID);
+			if(portID==PORTA)
+			{	
+			EMULATOR.Mainport.portD = (EMULATOR.Subport.portA & (uint8_t mask);
+			}
+			else
+			{	
+			EMULATOR.Mainport.portD = (EMULATOR.Subport.portB & (uint8_t mask);
+			}
+		}
+		returnValue = ERR_SUCC;	
+	}
 	return returnValue;
 }
