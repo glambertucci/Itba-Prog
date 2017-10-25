@@ -71,8 +71,40 @@ uint32_t maskToggle (uint16_t portID, uint16_t mask)
 	return returnValue;
 }
 
+
+#include <time.h>
+#include <stdlib.h>
+#include "nonblock.h"
+
 uint32_t blinkPortOnceWithDelay(uint16_t portID)
 {
 	uint32_t returnValue, tempValue
+	uint32_t x_seconds=0, x_miliseconds=0, time_in_secs=0,safe_print=10,abort=false;
+
+	clock_t x_startTime,x_countTime;
+
+	x_startTime=clock();
+
+	while (!abort)
+	{
+		x_countTime=clock(); //actualizo timer
+		x_miliseconds=x_countTime - x_startTime;
+		x_seconds=(x_miliseconds/(CLOCKS_PER_SEC));
+		if(!(x_seconds%1))
+		{
+			if(!(x_seconds==safe_print))
+			{
+				safe_print=x_seconds
+				frontEndBlink("TODOS PUTOS\n");//aca va lo que imprime osea el puerto ahora imprime el tiempo
+
+			}
+		}
+		nonblock(NB_ENABLE);
+		if (kbhit())
+		{
+			abort=true;
+		}
+		nonblock(NB_DISABLE);
+	}
 
 }
