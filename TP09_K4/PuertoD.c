@@ -1,11 +1,7 @@
 /*
-	comentarios: la union esta global con static y las funciones acceden a la union sin referencia por ser global, me
-	parece bien asi, nos joderan por usar variables globales? o sea estoy emulando un objeto como nos dijo jacobi..
 
-	todas las llamadas a funcion se deben de hacer con tipo de dato uint16_t y todos los datos que devuelven lasfucnines
-	son detipo de dato uint32_t y el codigo de error que devuelven es el numero 66666.
+	LEER EL HEADER PARA INFORMARSE SOBRE LA UTILIZACION DE LOS SERVICIOS PROVISTOS POR EL ARCHIVO.
 
-	POR ALGUNA RAZON DA ERROR LOS TYPEDEF AL COMPILAR, NO SE POR UQE
 */
 
 #include <stdio.h>
@@ -72,23 +68,23 @@ uint32_t getBitValue(uint16_t bitID)
 
 	switch(bitID)
 	{
-		case B0: returnValue = (uint32_t) EMULATEDPORT.Bits.b0; break;
-		case B1: returnValue = (uint32_t) EMULATEDPORT.Bits.b1; break;
-		case B2: returnValue = (uint32_t) EMULATEDPORT.Bits.b2; break;
-		case B3: returnValue = (uint32_t) EMULATEDPORT.Bits.b3; break;
-		case B4: returnValue = (uint32_t) EMULATEDPORT.Bits.b4; break;
-		case B5: returnValue = (uint32_t) EMULATEDPORT.Bits.b5; break;
-		case B6: returnValue = (uint32_t) EMULATEDPORT.Bits.b6; break;
-		case B7: returnValue = (uint32_t) EMULATEDPORT.Bits.b7; break;
-		case B8: returnValue = (uint32_t) EMULATEDPORT.Bits.b8; break;
-		case B9: returnValue = (uint32_t) EMULATEDPORT.Bits.b9; break;
+		case B0:  returnValue = (uint32_t) EMULATEDPORT.Bits.b0; break;
+		case B1:  returnValue = (uint32_t) EMULATEDPORT.Bits.b1; break;
+		case B2:  returnValue = (uint32_t) EMULATEDPORT.Bits.b2; break;
+		case B3:  returnValue = (uint32_t) EMULATEDPORT.Bits.b3; break;
+		case B4:  returnValue = (uint32_t) EMULATEDPORT.Bits.b4; break;
+		case B5:  returnValue = (uint32_t) EMULATEDPORT.Bits.b5; break;
+		case B6:  returnValue = (uint32_t) EMULATEDPORT.Bits.b6; break;
+		case B7:  returnValue = (uint32_t) EMULATEDPORT.Bits.b7; break;
+		case B8:  returnValue = (uint32_t) EMULATEDPORT.Bits.b8; break;
+		case B9:  returnValue = (uint32_t) EMULATEDPORT.Bits.b9; break;
 		case B10: returnValue = (uint32_t) EMULATEDPORT.Bits.b10; break;
 		case B11: returnValue = (uint32_t) EMULATEDPORT.Bits.b11; break;
 		case B12: returnValue = (uint32_t) EMULATEDPORT.Bits.b12; break;
 		case B13: returnValue = (uint32_t) EMULATEDPORT.Bits.b13; break;
 		case B14: returnValue = (uint32_t) EMULATEDPORT.Bits.b14; break;
 		case B15: returnValue = (uint32_t) EMULATEDPORT.Bits.b15; break;
-		default: returnValue = ERR_CODE;
+		default:  returnValue = ERR_CODE;
 	}
 
 	if((returnValue != ERR_CODE)||(returnValue != 1)||(returnValue != 0))

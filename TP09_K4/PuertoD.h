@@ -2,12 +2,47 @@
 #define PUERTOD_H
 
 /*
+	IMPORTANTE: El concepto de este archivo (y consigo por que la union es global y privada al archivo),
+es que el usuario no deberia de tener acceso directo a los datos del puerto, sino primero pasando por
+una validacion extensiva provista por los servicios que brindan el archivo.
+	(IMPORTANTE 2: si quisiera emular mas de un puerto haria la union con un typedef e instanciaria
+un arreglo de uniones.)
+	
 	Este archivo emula (en una arquitectura big endian) un puerto de 16 bits llamado puerto D
 que a su vez contiene al puerto A y B ambos de 8 bits siendo A el high y B el low.
 	Solamente se puede acceder a los datos del emulador mediante las funciones provistas. Estas
 devuelven siempre un tipo de dato uint32_t, cuyo codigo de error es ERR_CODE (66666), y siempre
 reciben un tipo de dato uint16_t. 
-	Las funciones son las siguientes:
+	
+	Las estructuras y uniones usadas son:
+
+		typedef struct {uint16_t portD;} full16_t;
+
+		typedef struct {uint8_t portA; uint8_t portB;} twobytes_t;
+
+		typedef struct
+		{
+		uint16_t b0 :1;
+		uint16_t b1 :1;
+		.
+		.
+		.
+		uint16_t b14 :1;
+		uint16_t b15 :1;		
+
+		}bit16_t;
+
+		static union
+		{
+			full16_t Mainport;
+			twobytes_t Subport;
+			bit16_t Bits;
+
+		}EMULATEDPORT;
+
+
+
+Las funciones son las siguientes:
 */
 
 uint32_t getPortValue (uint16_t);
