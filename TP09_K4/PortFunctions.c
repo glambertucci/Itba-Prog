@@ -64,7 +64,7 @@ uint32_t maskToggle (uint16_t portID, uint16_t mask)
 	tempValue = getPortValue(portID);
 
 	if (tempValue != ERR_CODE)
-		returnValue = setPortValue(portID, ((tempValue^mask));
+		returnValue = setPortValue(portID, (tempValue^mask));
 	else
 		returnValue = ERR_CODE;
 
