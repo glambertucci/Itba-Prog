@@ -6,7 +6,7 @@
 #define EXIT_SUCC 0
 #define ERR_CODE 66666
 
-uint32_t bitToggle (uint16_t bitID) 		//Devuelve ERR_CODE si hay error, y devuelve un 0 si ta todo bien.
+uint32_t bitToggle (uint16_t bitID) 		//Devuelve ERR_CODE si hay error, y devuelve un 0 si está todo bien.
 {
 	uint32_t returnValue, tempValue;
 	
