@@ -136,11 +136,11 @@ uint32_t bitset (uint16_t portID, uint16_t bitID)
 			mask << (bitID);
 			if(portID==PORTA)
 			{	
-			EMULATOR.Mainport.portD = (EMULATOR.Subport.portA | (uint8_t mask);
+			EMULATOR.Subport.portA = (EMULATOR.Subport.portA | (uint8_t mask);
 			}
 			else
 			{	
-			EMULATOR.Mainport.portD = (EMULATOR.Subport.portB | (uint8_t mask);
+			EMULATOR.Subport.portB = (EMULATOR.Subport.portB | (uint8_t mask);
 			}
 		}
 		returnValue = ERR_SUCC;
@@ -168,11 +168,11 @@ uint32_t bitclear (uint16_t portID, uint16_t bitID)
 			mask << (bitID);
 			if(portID==PORTA)
 			{	
-			EMULATOR.Mainport.portD = (EMULATOR.Subport.portA & (uint8_t mask);
+			EMULATOR.Subport.portA = (EMULATOR.Subport.portA & (uint8_t mask);
 			}
 			else
 			{	
-			EMULATOR.Mainport.portD = (EMULATOR.Subport.portB & (uint8_t mask);
+			EMULATOR.Subport.portB = (EMULATOR.Subport.portB & (uint8_t mask);
 			}
 		}
 		returnValue = ERR_SUCC;	
