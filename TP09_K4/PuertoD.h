@@ -57,9 +57,12 @@ uint32_t getBitValue (uint16_t);
 //getea el valor del bit pedido (b0, b1, ..., b14, b15) y devuelve valor pedido o codigo de error.
 
 uint32_t setBitValue (uint16_t, uint16_t);
-//setea en valor (segundo int) del bit pedido (primer int) y devuelve codigo de error.
+//setea en 1 el puerto pedido (primer valor) en tal bit (segundo valor) y devuelve codigo de error.
 
 #define ERR_CODE 66666
+#define MASK 0x01    //  Puedo rotarlo bitID veces y usarlo como máscara para modificar el bit deseado.
+#define MAXBITID 15
+#define MINBITID 7
 enum{B0,B1,B2,B3,B4,B5,B6,B7,B8,B9,B10,B11,B12,B13,B14,B15};
 enum{PORTA, PORTB, PORTD};
 

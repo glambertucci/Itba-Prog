@@ -114,10 +114,8 @@ uint32_t setPortValue (uint16_t portID, uint16_t value)
 	return returnValue;
 }
 
-#define MASK 0x01
-#define MAXBITID 15
-#define MINBITID 7
-//  Puedo rotarlo bitID veces y usarlo como máscara para modificar el bit deseado.
+
+//  Puedo rotar 0x01 bitID veces y usarlo de máscara para modificar el bit deseado.
 uint32_t bitset (uint16_t portID, uint16_t bitID)
 {
 	uint32_t returnValue;
@@ -136,11 +134,11 @@ uint32_t bitset (uint16_t portID, uint16_t bitID)
 			mask << (bitID);
 			if(portID==PORTA)
 			{	
-			EMULATOR.Subport.portA = (EMULATOR.Subport.portA | (uint8_t mask);
+			EMULATOR.Subport.portA = (EMULATOR.Subport.portA | (uint8_t mask));
 			}
 			else
 			{	
-			EMULATOR.Subport.portB = (EMULATOR.Subport.portB | (uint8_t mask);
+			EMULATOR.Subport.portB = (EMULATOR.Subport.portB | (uint8_t mask));
 			}
 		}
 		returnValue = ERR_SUCC;
@@ -150,7 +148,9 @@ uint32_t bitset (uint16_t portID, uint16_t bitID)
 	   
 uint32_t bitclear (uint16_t portID, uint16_t bitID)
 {
+
 	uint32_t returnValue;
+
 	mask = MASK;
 	mask = ~mask;
 	
@@ -168,11 +168,11 @@ uint32_t bitclear (uint16_t portID, uint16_t bitID)
 			mask << (bitID);
 			if(portID==PORTA)
 			{	
-			EMULATOR.Subport.portA = (EMULATOR.Subport.portA & (uint8_t mask);
+			EMULATOR.Subport.portA = (EMULATOR.Subport.portA & (uint8_t mask));
 			}
 			else
 			{	
-			EMULATOR.Subport.portB = (EMULATOR.Subport.portB & (uint8_t mask);
+			EMULATOR.Subport.portB = (EMULATOR.Subport.portB & (uint8_t mask));
 			}
 		}
 		returnValue = ERR_SUCC;	
