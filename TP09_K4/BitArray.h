@@ -4,6 +4,5 @@
 #include <stdint.h>
 uint8_t* bitArrayInit(void);
 //Inicializa el array de bits que utilizamos para guardar los valores del puerto A
-void updateBitArray(*uint8_t array);
-
+void updateBitArray(uint8_t * array);
 #endif

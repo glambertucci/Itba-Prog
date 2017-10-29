@@ -8,10 +8,11 @@ uint8_t* bitArrayInit (void)
 	return (uint8_t*) bitArray;
 }
 
-void updateBitArray (*uint8_t array)
+void updateBitArray (uint8_t * array)
 {
 	uint8_t i;
 
 	for(i = 0; i < 8; i++)
-		(*(array+i) = (getBitValue(PORTA, i)));
+		(*(array+i) = (bitGet(PORTA, i)));
 }
+

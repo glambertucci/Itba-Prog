@@ -5,12 +5,13 @@
 #include "TerminalFront.h"
 #include "termlib.h"
 #include "generaldefs.h"
+#include "BitArray.h"
 
 
 
 int main (void)
 {
-	uint8_t *bitArray = NULL, state = 0, abort = 0, ketTest;
+	uint8_t *bitArray = NULL, state = 0, abort = 0, keyTest;
 	unsigned char userInput;
 
 	bitArray = bitArrayInit();		//Inicializaciones
@@ -18,7 +19,7 @@ int main (void)
 	updateScreen(bitArray, state);
 	state = 1;
 
-	changemode(BUFFERING_OFF);
+	changemode(BUFFERED_OFF);
 	
 	while(!abort)
 	{	
@@ -29,21 +30,25 @@ int main (void)
 
 			switch(userInput)
 			{
-				case 'ESC': abort = 1; break;
-				case 'b': state = 2; blinkFunction(bitArray); state = 1; break;
+				case 27: abort = 1; break;
+				case 'b': state = 2; blinkFunction(bitArray, state); state = 1; break;
+				case 'c': maskOff(PORTA,MASKOFF);
+				case 's': maskOn(PORTA,MASKON);
 				default:
 				{
+					userInput -= ASCIINUMDESP;
 					if((userInput >= 0)&&(userInput < 8))
 					{
-						toggleBit(PORTA, userInput);
+						bitToggle(PORTA, userInput);
 						updateBitArray(bitArray);
 						updateScreen(bitArray, state);
+						break;
 					}
 				}
 			}//switch
 		}//kbhit while
 	}//abort while
 
-	changemode(BUFFERING_ON);
+	changemode(BUFFERED_ON);
 	return 0;
 }
