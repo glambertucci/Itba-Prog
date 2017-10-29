@@ -3,28 +3,6 @@
 #include "termlib.h"
 #include "TerminalFront.h"
 
-int main(void)				//UNA MANERA DE PRINTEAR EL PUERTO
-{
-	uint8_t bit[8] = {1,0,1,0,0,1,0,1};
-	uint8_t bit2[8] = {0,0,0,1,0,1,0,0};
-	uint8_t state = 0;
-
-	clrscr();
-	message(state);
-	printPort(bit);
-
-				getchar();
-
-	clrscr();
-	state = 1;
-	message(state);
-	printPort(bit2);
-
-	getchar();
-
-	return 0;
-}
-
 void printPort(uint8_t bit[8])
 {
 	uint8_t i;
@@ -61,21 +39,6 @@ void message(uint8_t state)
 				break;
 	}
 
-}
-
-uint8_t* bitArrayInit (void)
-{
-	static uint8_t bitArray[8] = {0};
-
-	return (uint8_t*) bitArray;
-}
-
-void updateBitArray (*uint8_t array)
-{
-	uint8_t i;
-
-	for(i = 0; i < 8; i++)
-		(*(array+i) = (getBitValue(PORTA, i)));
 }
 
 void updateScreen(uint8_t bitArray[8], uint8_t state)

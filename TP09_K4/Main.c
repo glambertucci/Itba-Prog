@@ -38,7 +38,6 @@ int main (void)
 						toggleBit(PORTA, userInput);
 						updateBitArray(bitArray);
 						updateScreen(bitArray, state);
-						break;
 					}
 				}
 			}//switch
