@@ -1,17 +1,18 @@
 int main (void)
 {
 	uint8_t *bitArray = NULL, state = 0, abort = 0, ketTest;
-	char userInput;
+	unsigned char userInput;
 
 	bitArray = bitArrayInit();		//Inicializaciones
 	
-	message(state);
+	updateScreen(bitArray, state);
+	state = 1;
 
 	changemode(BUFFERING_OFF);
-	keyTest = kbhit();
 	
 	while(!abort)
 	{	
+		keyTest = kbhit();
 		while(!keyTest)
 		{
 			userInput = getch();
@@ -19,14 +20,14 @@ int main (void)
 			switch(userInput)
 			{
 				case 'ESC': abort = 1; break;
-				case 'b': blinkFunction(bitArray); break;
+				case 'b': state = 2; blinkFunction(bitArray); state = 1; break;
 				default:
 				{
 					if((userInput >= 0)&&(userInput < 8))
 					{
-						toggleBitValue(PORTA, userInput);
+						toggleBit(PORTA, userInput);
 						updateBitArray(bitArray);
-						updateScreen(bitArray);
+						updateScreen(bitArray, state);
 						break;
 					}
 				}
@@ -34,5 +35,6 @@ int main (void)
 		}//kbhit while
 	}//abort while
 
+	changemode(BUFFERING_ON);
 	return 0;
 }
