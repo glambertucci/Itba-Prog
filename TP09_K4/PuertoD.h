@@ -53,13 +53,28 @@ uint32_t setPortValue (uint16_t, uint16_t);
 //setea el valor (segundo int) en el puerto pedido (primer int)
 //devuelve codigo de error
 
-uint32_t getBitValue (uint16_t);
+uint32_t getBitValue (uint16_t, uint16_t);
 //getea el valor del bit pedido (b0, b1, ..., b14, b15) y devuelve valor pedido o codigo de error.
 
-uint32_t setBitValue (uint16_t, uint16_t);
-//setea en 1 el puerto pedido (primer valor) en tal bit (segundo valor) y devuelve codigo de error.
+uint32_t bitSet (uint16_t, uint16_t);
+//setea en 1 el puerto pedido (primer valor) en un bit en específico (segundo valor) y devuelve codigo de error.
 
-#define ERR_CODE 66666
+uint32_t bitClear (uint16_t, uint16_t);
+//setea en 0 el puerto pedido (primer valor) en un bit en específico (segundo valor) y devuelve codigo de error.
+
+uint32_t bitGet (uint16_t, uint16_t);
+//setea en 0 el puerto pedido (primer valor) en un bit en específico (segundo valor) y devuelve codigo de error.
+
+uint32_t bitToggle (uint16_t, uint16_t);
+//Recibe la dirección del puerto y el bit que se busca togglear. Si el bit que se buscó es 1, lo transforma en 0 y viceversa.
+
+uint32_t maskOn (uint16_t, uint16_t);
+
+uint32_t maskOff (uint16_t, uint16_t);
+
+uint32_t maskToggle (uint16_t, uint16_t);
+
+
 #define MASK 0x01    //  Puedo rotarlo bitID veces y usarlo como máscara para modificar el bit deseado.
 #define MAXBITID 15
 #define MINBITID 7

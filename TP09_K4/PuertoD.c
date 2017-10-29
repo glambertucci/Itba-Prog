@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdint.h>
 #include "PuertoD.h"
+#include "generaldefs.h"
 
 typedef struct {uint16_t portD;} full16_t;
 
@@ -48,7 +49,7 @@ uint32_t getPortValue(uint16_t portID) //Devuelve un uint32, porque si fuera un 
 	{
 		case PORTA: returnValue = (uint32_t) EMULATEDPORT.Subport.portA; break;
 		case PORTB: returnValue = (uint32_t) EMULATEDPORT.Subport.portB; break;
-		case PORTD:	returnValue = (uint32_t) EMULATEDPORT.Mainport.portD; break;
+		case PORTD: returnValue = (uint32_t) EMULATEDPORT.Mainport.portD; break;
 		default: returnValue = ERR_CODE;
 	}
 
@@ -60,38 +61,6 @@ uint32_t getPortValue(uint16_t portID) //Devuelve un uint32, porque si fuera un 
 	return returnValue;
 }
 
-uint32_t getBitValue(uint16_t bitID)
-{
-	uint32_t returnValue;
-
-	switch(bitID)
-	{
-		case B0:  returnValue = (uint32_t) EMULATEDPORT.Bits.b0; break;
-		case B1:  returnValue = (uint32_t) EMULATEDPORT.Bits.b1; break;
-		case B2:  returnValue = (uint32_t) EMULATEDPORT.Bits.b2; break;
-		case B3:  returnValue = (uint32_t) EMULATEDPORT.Bits.b3; break;
-		case B4:  returnValue = (uint32_t) EMULATEDPORT.Bits.b4; break;
-		case B5:  returnValue = (uint32_t) EMULATEDPORT.Bits.b5; break;
-		case B6:  returnValue = (uint32_t) EMULATEDPORT.Bits.b6; break;
-		case B7:  returnValue = (uint32_t) EMULATEDPORT.Bits.b7; break;
-		case B8:  returnValue = (uint32_t) EMULATEDPORT.Bits.b8; break;
-		case B9:  returnValue = (uint32_t) EMULATEDPORT.Bits.b9; break;
-		case B10: returnValue = (uint32_t) EMULATEDPORT.Bits.b10; break;
-		case B11: returnValue = (uint32_t) EMULATEDPORT.Bits.b11; break;
-		case B12: returnValue = (uint32_t) EMULATEDPORT.Bits.b12; break;
-		case B13: returnValue = (uint32_t) EMULATEDPORT.Bits.b13; break;
-		case B14: returnValue = (uint32_t) EMULATEDPORT.Bits.b14; break;
-		case B15: returnValue = (uint32_t) EMULATEDPORT.Bits.b15; break;
-		default:  returnValue = ERR_CODE;
-	}
-
-	if((returnValue != ERR_CODE)||(returnValue != 1)||(returnValue != 0))
-		returnValue = ERR_CODE; //Validacion extensiva
-	else
-		returnValue = 0;
-	
-	return returnValue;
-}
 
 uint32_t setPortValue (uint16_t portID, uint16_t value)
 {
@@ -114,34 +83,10 @@ uint32_t setPortValue (uint16_t portID, uint16_t value)
 	return returnValue;
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//CHE FRANKI ESTO ES LO QUE TE FALTA
-//TENES QUE DECLARAR mask
-//y nada compilar y ver que tira error
-//y haceme la funcion toggleBit PARFAVAR
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//  Puedo rotar 0x01 bitID veces y usarlo de máscara para modificar el bit deseado.
-uint32_t bitset (uint16_t portID, uint16_t bitID)
+uint32_t bitSet (uint16_t portID, uint16_t bitID)
 {
 	uint32_t returnValue;
+	uint32_t mask = MASK;
 	
 	if((bitID > MAXBITID) || ((portID < 2) && (bitID > MINBITID)))
 		returnValue = ERR_CODE;	//Validacion extensiva
@@ -149,19 +94,19 @@ uint32_t bitset (uint16_t portID, uint16_t bitID)
 	{
 		if(portID == PORTD)
 		{
-			mask << (bitID);
-			EMULATOR.Mainport.portD = (EMULATOR.Mainport.portD | mask);
+			mask = (mask << bitID); //Seteo el '1' de la máscara al lugar del bit objetivo.
+			EMULATEDPORT.Mainport.portD = (EMULATEDPORT.Mainport.portD | mask); //Con un OR BITWISE, el bit que quiero modificar se enciende obligatoriamente.
 		}
 		else
 		{	
-			mask << (bitID);
+			mask = (mask << bitID);
 			if(portID==PORTA)
 			{	
-			EMULATOR.Subport.portA = (EMULATOR.Subport.portA | (uint8_t mask));
+			EMULATEDPORT.Subport.portA = (EMULATEDPORT.Subport.portA | (uint8_t) mask); //Se repite la misma lógica.
 			}
 			else
 			{	
-			EMULATOR.Subport.portB = (EMULATOR.Subport.portB | (uint8_t mask));
+			EMULATEDPORT.Subport.portB = (EMULATEDPORT.Subport.portB | (uint8_t) mask);
 			}
 		}
 		returnValue = ERR_SUCC;
@@ -169,36 +114,161 @@ uint32_t bitset (uint16_t portID, uint16_t bitID)
 	return returnValue;
 }
 	   
-uint32_t bitclear (uint16_t portID, uint16_t bitID)
+uint32_t bitClr (uint16_t portID, uint16_t bitID)
 {
 
 	uint32_t returnValue;
 
-	mask = MASK;
-	mask = ~mask;
+	uint32_t mask = ~MASK;
 	
-	if((bitID > MAXBITID) || ((portID < 2) && (bitID > MINBITID)))
+	if((bitID > MAXBITID) || ((portID < PORTD) && (bitID > MINBITID)))
 		returnValue = ERR_CODE;	//Validacion extensiva
 	else
 	{
 		if(portID == PORTD)
 		{
-			mask << (bitID);
-			EMULATOR.Mainport.portD = (EMULATOR.Mainport.portD & mask);
+			mask = (mask << bitID); //Seteo el '0' de la mascara al bit correspondiente
+			EMULATEDPORT.Mainport.portD = (EMULATEDPORT.Mainport.portD & mask); //Se modifica unicamente, con un and bitwise, el bit deseado.
 		}
 		else
 		{
-			mask << (bitID);
+			mask = (mask << bitID);
 			if(portID==PORTA)
 			{	
-			EMULATOR.Subport.portA = (EMULATOR.Subport.portA & (uint8_t mask));
+			EMULATEDPORT.Subport.portA = (EMULATEDPORT.Subport.portA & (uint8_t) mask); //Se repite la lógica
 			}
 			else
 			{	
-			EMULATOR.Subport.portB = (EMULATOR.Subport.portB & (uint8_t mask));
+			EMULATEDPORT.Subport.portB = (EMULATEDPORT.Subport.portB & (uint8_t) mask);
 			}
 		}
 		returnValue = ERR_SUCC;	
 	}
+	return returnValue;
+}
+
+uint32_t bitToggle (uint16_t portID, uint16_t bitID)
+{
+
+	uint32_t returnValue;
+	uint32_t mask = MASK;
+	uint32_t bit;
+	
+	if( ((portID==PORTD)&&(bitID > MAXBITID)) || ((portID < PORTD) && (bitID > MINBITID)))
+		returnValue = ERR_CODE;	//Validacion extensiva
+	else
+	{
+		bit = getBitValue(portID,bitID); //Obtengo el valor del bit.
+	
+		if(bit = 0) //Si es 0, debo encenderlo. Uso bitset para encender ese bit en particular.
+		{
+			bitset(portID,bitID);
+		}
+		else //Si es 1, debo apagarlo. Uso bitclr para apagar ese bit en particular.
+		{
+			bitclr(portID,bitID);
+		}
+
+		returnValue = ERR_SUCC;	
+	}
+	return returnValue;
+}
+
+
+
+uint32_t bitGet(uint16_t portID, uint16_t bitID)
+{
+	uint32_t returnvalue;
+	uint32_t mask = MASK;
+	
+	if(bitID < MAXBITID) //Es Unsigned, por lo que solo debo comprobar que no sea mayor al ID máximo.
+	{
+		mask = (mask << bitID); //El '1' de la máscara estará en el mismo lugar del bit  que busco para luego hacer un AND  con el puerto y guardar ese valor.
+
+		if(portID = PORTD)
+		{
+			returnvalue = (EMULATEDPORT.Mainport.portD & mask); //Guardo en el valor de retorno el bit en esa posición.
+		}
+		else if(portID==PORTA)
+		{		
+			returnvalue = (EMULATEDPORT.Subport.portA & (uint8_t) mask);
+		}
+		else
+		{	
+			returnvalue = (EMULATEDPORT.Subport.portB & (uint8_t) mask);
+		}
+	}
+	else
+	{
+		returnvalue = ERR_CODE;
+	}
+	
+	return returnvalue;	
+
+}
+
+uint32_t getBitValue(uint16_t portID,uint16_t bitID)
+{
+	uint32_t returnValue;
+
+
+
+	if( ((portID==PORTD)&&(bitID > MAXBITID)) || ((portID < PORTD) && (bitID > MINBITID)))
+		returnValue = ERR_CODE;	//Validacion extensiva
+
+	else
+	{
+	uint32_t mask = (MASK << bitID); //Inicializo la máscara y coloco el '1' en la posición del bit que busco.
+	uint32_t tempValue = getPortValue(portID); //Obtengo el valor actual de ese puerto para poder trabajarlo.
+
+	tempValue = (tempValue & mask); //Obtengo el valor actual del bit en esa posición.
+	tempValue = (tempValue >> bitID); //Muevo ese bit a la posición menos significativa para que resulte en 0 o 1.
+	returnValue = tempValue;
+	}
+	return returnValue;
+}
+
+uint32_t maskOn (uint16_t portID, uint16_t mask)
+{
+	uint32_t returnValue, tempValue;
+
+	tempValue = getPortValue(portID);
+
+	if (tempValue != ERR_CODE)
+		returnValue = setPortValue(portID, (tempValue|mask));
+
+	else
+		returnValue = ERR_CODE;
+
+	return returnValue;
+}
+
+uint32_t maskOff (uint16_t portID, uint16_t mask)
+{
+	uint32_t returnValue, tempValue;
+
+	tempValue = getPortValue(portID);
+
+	if (tempValue != ERR_CODE)
+	{
+		returnValue = setPortValue(portID, (tempValue & (~mask)));
+	}
+	else
+		returnValue = ERR_CODE;
+
+	return returnValue;
+}
+
+uint32_t maskToggle (uint16_t portID, uint16_t mask)
+{
+	uint32_t returnValue, tempValue;
+
+	tempValue = getPortValue(portID);
+
+	if (tempValue != ERR_CODE)
+		returnValue = setPortValue(portID, (tempValue^mask));
+	else
+		returnValue = ERR_CODE;
+
 	return returnValue;
 }

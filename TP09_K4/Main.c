@@ -1,3 +1,13 @@
+#include <stdio.h>
+#include <stdint.h>
+#include "PortFunctions.h"
+#include "PuertoD.h"
+#include "TerminalFront.h"
+#include "termlib.h"
+#include "generaldefs.h"
+
+
+
 int main (void)
 {
 	uint8_t *bitArray = NULL, state = 0, abort = 0, ketTest;
