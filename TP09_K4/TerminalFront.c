@@ -30,12 +30,9 @@ void message(uint8_t state)
 
 	switch(state)
 	{
-		case 0:	printf("\t\t16 Bit Port Simulator");
-				printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every LED and 'c' to turn them off.");
-				printf("To toggle a bit, press (0-7)." WHITE_TEXT);
+		case 0:	printf("\t\t16 Bit Port Simulator"); printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every LED and 'c' to turn them off."); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
 				break;
-		case 1: printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every LED and 'c' to turn them off.");
-				printf("To toggle a bit, press (0-7)." WHITE_TEXT);
+		case 1: printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every LED and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
 				break;
 		case 2: printf(GREEN_TEXT "\n\n\n\n\n\nYou just entered blinking mode. To exit, press 'ESC'. To set or clear a bit, please exit the mode first.\n" WHITE_TEXT);
 				break;
@@ -60,7 +57,6 @@ void updateBitArray (uint8_t * array)
 
 void updateScreen(uint8_t bitArray[8], uint8_t state)
 {
-	clrscr();
 	printPort(bitArray);
 	message(state);
 }
@@ -68,11 +64,13 @@ void updateScreen(uint8_t bitArray[8], uint8_t state)
 
 void blinkFunction(uint8_t * array, uint8_t state)
 {
+	while(getch() != ESC){
 	uint8_t tempValue = getPortValue(PORTA);
 	maskOff(PORTA, MASKOFF);
 	updateScreen(array, state);
 	//ACA IRIA EL DELAY
 	maskOn(PORTA, MASKON);
-	updateScreen(array,state);		
+	updateScreen(array,state);
+	}		
 
 }

@@ -5,7 +5,7 @@ uint8_t* bitArrayInit (void)
 {
 	static uint8_t bitArray[8] = {0};
 
-	return (uint8_t*) bitArray;
+	return (uint8_t *) bitArray;
 }
 
 void updateBitArray (uint8_t * array)

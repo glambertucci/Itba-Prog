@@ -160,7 +160,7 @@ uint32_t bitToggle (uint16_t portID, uint16_t bitID)
 	{
 		bit = getBitValue(portID,bitID); //Obtengo el valor del bit.
 	
-		if(bit = 0) //Si es 0, debo encenderlo. Uso bitset para encender ese bit en particular.
+		if(bit == 0) //Si es 0, debo encenderlo. Uso bitset para encender ese bit en particular.
 		{
 			bitSet(portID,bitID);
 		}
@@ -185,7 +185,7 @@ uint32_t bitGet(uint16_t portID, uint16_t bitID)
 	{
 		mask = (mask << bitID); //El '1' de la máscara estará en el mismo lugar del bit  que busco para luego hacer un AND  con el puerto y guardar ese valor.
 
-		if(portID = PORTD)
+		if(portID == PORTD)
 		{
 			returnvalue = (EMULATEDPORT.Mainport.portD & mask); //Guardo en el valor de retorno el bit en esa posición.
 		}
