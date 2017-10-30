@@ -149,7 +149,7 @@ uint32_t bitClr (uint16_t portID, uint16_t bitID)
 
 uint32_t bitToggle (uint16_t portID, uint16_t bitID)
 {
-
+	uint32_t error;
 	uint32_t returnValue;
 	uint32_t bit;
 	
@@ -161,14 +161,22 @@ uint32_t bitToggle (uint16_t portID, uint16_t bitID)
 	
 		if(bit == 0) //Si es 0, debo encenderlo. Uso bitset para encender ese bit en particular.
 		{
-			bitSet(portID,bitID);
+			error = bitSet(portID,bitID);
+			returnvalue = ERR_SUCC;
+		}
+		else if(bit == 1)
+		{
+			error = bitclr(portID, bitID);
+			returnvalue = ERR_SUCC;
 		}
 		else //Si es 1, debo apagarlo. Uso bitclr para apagar ese bit en particular.
 		{
-			bitClr(portID,bitID);
+			returnvalue = ERR_CODE;
 		}
 
-		returnValue = ERR_SUCC;	
+		if(error = ERR_CODE)
+			returnvalue = ERR_CODE;
+
 	}
 	return returnValue;
 }
