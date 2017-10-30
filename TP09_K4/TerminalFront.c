@@ -65,9 +65,17 @@ void updateScreen(uint8_t bitArray[8], uint8_t state)
 
 void blinkFunction(uint8_t * array, uint8_t state)
 {
+	//uint8_t ceroArray[8] = {0};
+
 	while(getch() != ESC)
 	{
-	
+	/*
+		updateScreen(ceroArray, state);
+
+		DELAY
+
+		updateScreen(array, state);
+	*/
 		uint8_t tempValue = getPortValue(PORTA);
 		
 		maskOff(PORTA, MASKOFF);
