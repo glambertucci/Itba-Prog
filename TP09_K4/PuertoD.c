@@ -151,7 +151,6 @@ uint32_t bitToggle (uint16_t portID, uint16_t bitID)
 {
 
 	uint32_t returnValue;
-	uint32_t mask = MASK;
 	uint32_t bit;
 	
 	if( ((portID==PORTD)&&(bitID > MAXBITID)) || ((portID < PORTD) && (bitID > MINBITID)))

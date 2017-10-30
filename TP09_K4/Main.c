@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdint.h>
-#include "PortFunctions.h"
 #include "PuertoD.h"
 #include "TerminalFront.h"
 #include "termlib.h"
@@ -47,7 +46,6 @@ int main (void)
 					}
 				}
 			}//switch
-
 		}//kbhit while
 	}//abort while
 
