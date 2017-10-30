@@ -19,17 +19,12 @@ int main (void)
 	state = 1;
 
 	changemode(BUFFERED_OFF);
-	
-	while(!abort)
-	{	
+		
 		keyTest = kbhit();
-		while(keyTest)
+		while((userInput = getch()) != ESC)
 		{
-			userInput = getch();
-
 			switch(userInput)
 			{
-				case ESC: abort = 1; clrscr(); break;
 				case 'b': state = 2; blinkFunction(bitArray, state); state = 1; updateScreen(bitArray, state); break;
 				case 'c': setPortValue(PORTA,0x00); updateBitArray(bitArray); updateScreen(bitArray, state); break;
 				case 's': setPortValue(PORTA,0xFF); updateBitArray(bitArray); updateScreen(bitArray, state); break;
@@ -44,9 +39,8 @@ int main (void)
 						break;
 					}
 				}
-			}//switch
-		}//kbhit while
-	}//abort while
+			}
+		}
 
 	changemode(BUFFERED_ON);
 	return 0;
