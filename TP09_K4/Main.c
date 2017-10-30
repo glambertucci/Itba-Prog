@@ -29,10 +29,10 @@ int main (void)
 
 			switch(userInput)
 			{
-				case ESC: abort = 1; break;
+				case ESC: abort = 1; clrscr(); break;
 				case 'b': state = 2; blinkFunction(bitArray, state); state = 1; updateScreen(bitArray, state); break;
 				case 'c': setPortValue(PORTA,0x00); updateBitArray(bitArray); updateScreen(bitArray, state); break;
-				case 's': setPortValue(PORTA,0x01); updateBitArray(bitArray); updateScreen(bitArray, state); break;
+				case 's': setPortValue(PORTA,0xFF); updateBitArray(bitArray); updateScreen(bitArray, state); break;
 				default:
 				{
 					userInput -= ASCIINUMDESP;
