@@ -16,7 +16,7 @@ void printPort(uint8_t bit[8])
 	for(i = 0; i<8; i++)
 	{
 		gotoxy(31+i,4);
-		printf(BLUE_TEXT "%d" WHITE_TEXT, *(bit+i));
+		printf(BLUE_TEXT "%d" WHITE_TEXT, !(!(*(bit+i)))); //Doble negación para que imprima 1 o 0 según corresponda
 	}
 	gotoxy(39,4);
 	printf(RED_TEXT "|");
@@ -28,9 +28,9 @@ void printPort(uint8_t bit[8])
 void message(uint8_t state)
 {
 
-	switch(state)
+	switch(state) //Elijo los mensajes según el estado actual del programa.
 	{
-		case 0:	printf(WHITE_TEXT"\t\t\tHC11 16 Bit Port Simulator"); printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every bit and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
+		case 0:	printf(WHITE_TEXT"\t\t\t16 Bit Port Simulator"); printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every bit and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
 				break;
 		case 1: printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every bit and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
 				break;
@@ -43,9 +43,9 @@ void message(uint8_t state)
 
 void updateScreen(uint8_t bitArray[8], uint8_t state)
 {
-	clrscr();
-	message(state);
-	printPort(bitArray);
+	clrscr(); //Se limpia la pantalla
+	message(state); //Se imprime el mensaje correspondiente según el estado actual del programa
+	printPort(bitArray); //Se imprime el valor actual del puerto
 }
 
 void blinkFunction(uint8_t * array, uint8_t state)
