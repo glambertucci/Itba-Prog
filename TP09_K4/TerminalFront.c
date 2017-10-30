@@ -57,6 +57,7 @@ void updateBitArray (uint8_t * array)
 
 void updateScreen(uint8_t bitArray[8], uint8_t state)
 {
+	clrscr();
 	printPort(bitArray);
 	message(state);
 }
