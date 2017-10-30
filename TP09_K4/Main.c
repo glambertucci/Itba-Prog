@@ -40,7 +40,7 @@ int main (void)
 				}
 			}
 		}
-
+	clrscr();
 	changemode(BUFFERED_ON);
 	return 0;
 }
