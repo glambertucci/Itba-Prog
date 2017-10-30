@@ -32,19 +32,19 @@ double calcRes (double num1, double num2, char op)
 
 void addOperation(int mode )
 {
-	char classic[7]={'+','-','*','/','&','|','^'};
-	char letters[7]={'s','r','m','d','a','o','x'};
+	char classic[MAX_OP]={'+','-','*','/','&','|','^'};
+	char letters[MAX_OP]={'s','r','m','d','a','o','x'};
 	int index;
 	if (mode == 1)
 	{
-		for (index=0;index<7;index++)
+		for (index=0;index<MAX_OP;index++)
 		{
 			operands[index]=classic[index];
 		}
 	}
 	else if (mode == 2)
 	{
-		for (index=0;index<7;index++)
+		for (index=0;index<MAX_OP;index++)
 		{
 			operands[index]=letters[index];
 		}

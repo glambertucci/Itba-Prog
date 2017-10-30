@@ -1,3 +1,19 @@
+
+/*Fecha de creacion 15/10/2017
+TP8 - ADVANCED POINTERS 
+Grupo 4
+Integrantes:
+Lambertucci Guido	58009
+Hrubisiuk 	Agustin	58311
+Mechoulam	Alan	58438
+Moriconi	Franco	58495 
+El siguiente programa es una calculadora basica, realiza suma resta multiplicacion y division, y aparte cuenta con 3 funciones
+logicas AND OR XOR, se elige en tiempo de ejecucion que formato de input es el deseado, este programa funciona apropiadamente en 
+Linux
+*/
+
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,10 +22,9 @@
 #include "Messages.h"
 #include "ModeSelection.h"
 
-#define MAX_SIZE 1000
 
-char operands[7]={'+','-','*','/','|','&','^'};			//Arreglos globales por consigna
-double (* functions [7]) (double,double);
+char operands[MAX_OP]={'+','-','*','/','|','&','^'};			//Arreglos globales por consigna
+double (* functions [MAX_OP]) (double,double);
 
 int main (void)
 {
