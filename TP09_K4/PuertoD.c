@@ -149,44 +149,21 @@ uint32_t bitClr (uint16_t portID, uint16_t bitID)
 
 uint32_t bitToggle (uint16_t portID, uint16_t bitID)
 {
-	uint32_t error;
-	uint32_t returnValue;
-	uint32_t bit;
+	uint32_t tempValue, returnValue;
 	
-	if( ((portID==PORTD)&&(bitID > MAXBITID)) || ((portID < PORTD) && (bitID > MINBITID)))
+	if(((portID==PORTD)&&(bitID > MAXBITID)) || ((portID < PORTD) && (bitID > MINBITID)))
 		returnValue = ERR_CODE;	//Validacion extensiva
 	else
 	{
-		bit = getBitValue(portID,bitID); //Obtengo el valor del bit.
-	
-		if(bit == 0) //Si es 0, debo encenderlo. Uso bitset para encender ese bit en particular.
-		{
-			error = bitSet(portID,bitID);
-			returnvalue = ERR_SUCC;
-		}
-		else if(bit == 1)
-		{
-			error = bitClr(portID, bitID);
-			returnvalue = ERR_SUCC;
-		}
-		else //Si es 1, debo apagarlo. Uso bitclr para apagar ese bit en particular.
-		{
-			returnvalue = ERR_CODE;
-		}
+		tempValue = getBitValue(portID, bitID);
 
-		if(error = ERR_CODE)
+		switch(tempValue)
 		{
-			returnvalue = ERR_CODE;
-
-			bitSet(portID,bitID);
+			case 0: tempValue = bitSet(portID, bitID); returnValue = ERR_SUCC; break;
+			case 1: tempValue = bitClr(portID, bitID); returnValue = ERR_SUCC; break;
 		}
-		else //Si es 1, debo apagarlo. Uso bitclr para apagar ese bit en particular.
-		{
-			bitClr(portID,bitID);
-		}
-
-		returnValue = ERR_SUCC;	
 	}
+
 	return returnValue;
 }
 

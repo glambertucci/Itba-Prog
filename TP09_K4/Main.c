@@ -10,7 +10,6 @@
 
 int main (void)
 {
-	uint32_t tempValue;
 	uint8_t *bitArray = NULL, state = 0;
 	unsigned char userInput;
 

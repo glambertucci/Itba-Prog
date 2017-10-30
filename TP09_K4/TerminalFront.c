@@ -30,7 +30,7 @@ void message(uint8_t state)
 
 	switch(state)
 	{
-		case 0:	printf(WHITE_TEXT"\t\t\t16 Bit Port Simulator"); printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every bit and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
+		case 0:	printf(WHITE_TEXT"\t\t\tHC11 16 Bit Port Simulator"); printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every bit and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
 				break;
 		case 1: printf(GREEN_TEXT "\n\n\n\n\n\nTo exit press 'ESC', to enter blinking mode press 'b'. Press 's' to turn on every bit and 'c' to turn them off. "); printf("To toggle a bit, press (0-7)." WHITE_TEXT);
 				break;
