@@ -166,7 +166,7 @@ uint32_t bitToggle (uint16_t portID, uint16_t bitID)
 		}
 		else if(bit == 1)
 		{
-			error = bitclr(portID, bitID);
+			error = bitClr(portID, bitID);
 			returnvalue = ERR_SUCC;
 		}
 		else //Si es 1, debo apagarlo. Uso bitclr para apagar ese bit en particular.
