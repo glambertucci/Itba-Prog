@@ -13,6 +13,6 @@ void updateBitArray (uint8_t * array)
 	uint8_t i;
 
 	for(i = 0; i < 8; i++)
-		(*(array+i) = (bitGet(PORTA, i)));
+		(*(array+(7-i)) = (bitGet(PORTA, i)));
 }
 

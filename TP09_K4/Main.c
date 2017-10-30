@@ -22,7 +22,6 @@ int main (void)
 	
 	while(!abort)
 	{	
-		updateScreen(bitArray, state);
 		keyTest = kbhit();
 		while(keyTest)
 		{
@@ -31,9 +30,9 @@ int main (void)
 			switch(userInput)
 			{
 				case ESC: abort = 1; break;
-				case 'b': state = 2; blinkFunction(bitArray, state); state = 1; break;
-				case 'c': maskOff(PORTA,MASKOFF); updateBitArray(bitArray); updateScreen(bitArray, state); break;
-				case 's': maskOn(PORTA,MASKON); updateBitArray(bitArray); updateScreen(bitArray, state); break;
+				case 'b': state = 2; blinkFunction(bitArray, state); state = 1; updateScreen(bitArray, state); break;
+				case 'c': setPortValue(PORTA,0x00); updateBitArray(bitArray); updateScreen(bitArray, state); break;
+				case 's': setPortValue(PORTA,0x01); updateBitArray(bitArray); updateScreen(bitArray, state); break;
 				default:
 				{
 					userInput -= ASCIINUMDESP;
