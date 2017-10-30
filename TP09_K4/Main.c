@@ -10,7 +10,7 @@
 
 int main (void)
 {
-	uint8_t *bitArray = NULL, state = 0, abort = 0, keyTest;
+	uint8_t *bitArray = NULL, state = 0;
 	unsigned char userInput;
 
 	bitArray = bitArrayInit();		//Inicializaciones
@@ -20,12 +20,11 @@ int main (void)
 
 	changemode(BUFFERED_OFF);
 		
-		keyTest = kbhit();
 		while((userInput = getch()) != ESC)
 		{
 			switch(userInput)
 			{
-				case 'b': state = 2; blinkFunction(bitArray, state); state = 1; updateScreen(bitArray, state); break;
+				case 'b': state = 2; updateScreen(bitArray, state); blinkFunction(bitArray, state); state = 1; updateScreen(bitArray, state); break;
 				case 'c': setPortValue(PORTA,0x00); updateBitArray(bitArray); updateScreen(bitArray, state); break;
 				case 's': setPortValue(PORTA,0xFF); updateBitArray(bitArray); updateScreen(bitArray, state); break;
 				default:

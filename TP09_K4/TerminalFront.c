@@ -50,27 +50,29 @@ void updateScreen(uint8_t bitArray[8], uint8_t state)
 
 void blinkFunction(uint8_t * array, uint8_t state)
 {
-	uint8_t ceroArray[8] = {0};
+	uint32_t j;
+	uint8_t ceroArray[8] = {0}, keyTest, abort = 0;
+	char userInput;
 
-	while(getch() != ESC)
+	while(!abort)
 	{
-	
-		updateScreen(ceroArray, state);
+		keyTest = kbhit();
+		if(!keyTest)
+		{
+			userInput = getch();
+			
+			if((userInput = ESC))
+				abort = 1;
+		}
 
-		//DELAY
+		else
+		{
+			updateScreen(ceroArray, state);
 
-		updateScreen(array, state);
+			for(j = 0; j < 0xFFFFFFFF; j++)
+			{}
 
-	/*	uint8_t tempValue = getPortValue(PORTA);
-		
-		maskOff(PORTA, MASKOFF);
-		updateScreen(array, state);
-		
-		//ACA IRIA EL DELAY
-		
-		maskOn(PORTA, MASKON);
-		updateScreen(array,state);
-	*/
+			updateScreen(array, state);
+		}
 	}		
-
 }
