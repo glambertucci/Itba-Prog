@@ -1,11 +1,12 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "Main.h"
+#include "printScreen.h"
+#include "initRandNum.h"
 #include "termlib.h"
 
-enum {INIT, TRYAGAIN, WIN, LOSE};
-#define MAXRANDNUM 9
-#define MAXTIME 10
-#define PENALTY 2
+enum {INIT, TRYAGAIN, WIN, LOSE};  //esto
+#define MAXRANDNUM 9                //esto
+#define MAXTIME 10                      //esto
+#define PENALTY 2                   //y esto van en el main.h AGUUUUUUUUUUUUUUS
 
 int main(void) {
     
@@ -32,6 +33,6 @@ int main(void) {
         printScreen(LOSE, Time);                            //Si el numero es incorrecto
         getchar();
     }
-    return (EXIT_SUCCESS);
+    return 0;
 }
 

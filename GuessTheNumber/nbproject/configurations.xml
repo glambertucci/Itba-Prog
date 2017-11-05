@@ -15,6 +15,7 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Main.c</itemPath>
+      <itemPath>calcTime.c</itemPath>
       <itemPath>printScreen.c</itemPath>
       <itemPath>printText.c</itemPath>
       <itemPath>printTimer.c</itemPath>
@@ -48,6 +49,8 @@
       </compileType>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="calcTime.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="printScreen.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="printText.c" ex="false" tool="0" flavor2="0">
@@ -80,6 +83,8 @@
         </asmTool>
       </compileType>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="calcTime.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="printScreen.c" ex="false" tool="0" flavor2="0">
       </item>

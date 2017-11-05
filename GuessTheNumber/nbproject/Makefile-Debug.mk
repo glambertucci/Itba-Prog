@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/calcTime.o \
 	${OBJECTDIR}/printScreen.o \
 	${OBJECTDIR}/printText.o \
 	${OBJECTDIR}/printTimer.o \
@@ -70,6 +71,11 @@ ${OBJECTDIR}/Main.o: Main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g `pkg-config --cflags allegro-5`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
+
+${OBJECTDIR}/calcTime.o: calcTime.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g `pkg-config --cflags allegro-5`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/calcTime.o calcTime.c
 
 ${OBJECTDIR}/printScreen.o: printScreen.c
 	${MKDIR} -p ${OBJECTDIR}
