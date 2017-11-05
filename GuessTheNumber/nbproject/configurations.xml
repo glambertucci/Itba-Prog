@@ -15,6 +15,9 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>Main.c</itemPath>
+      <itemPath>printScreen.c</itemPath>
+      <itemPath>printText.c</itemPath>
+      <itemPath>printTimer.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -45,6 +48,12 @@
       </compileType>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="printScreen.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="printText.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="printTimer.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="termlib.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="termlib.h" ex="false" tool="3" flavor2="0">
@@ -71,6 +80,12 @@
         </asmTool>
       </compileType>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="printScreen.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="printText.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="printTimer.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="termlib.c" ex="false" tool="0" flavor2="0">
       </item>

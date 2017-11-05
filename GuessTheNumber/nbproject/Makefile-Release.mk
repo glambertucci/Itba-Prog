@@ -36,6 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/printScreen.o \
+	${OBJECTDIR}/printText.o \
+	${OBJECTDIR}/printTimer.o \
 	${OBJECTDIR}/termlib.o
 
 
@@ -67,6 +70,21 @@ ${OBJECTDIR}/Main.o: Main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
+
+${OBJECTDIR}/printScreen.o: printScreen.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/printScreen.o printScreen.c
+
+${OBJECTDIR}/printText.o: printText.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/printText.o printText.c
+
+${OBJECTDIR}/printTimer.o: printTimer.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/printTimer.o printTimer.c
 
 ${OBJECTDIR}/termlib.o: termlib.c
 	${MKDIR} -p ${OBJECTDIR}

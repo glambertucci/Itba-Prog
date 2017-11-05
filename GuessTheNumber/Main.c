@@ -1,34 +1,37 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <termlib.h>
+#include "termlib.h"
 
-enum {INIT, ASKNUM, TRYAGAINLOL, WIN, LOSE}
+enum {INIT, TRYAGAIN, WIN, LOSE};
+#define MAXRANDNUM 9
+#define MAXTIME 10
+#define PENALTY 2
 
 int main(void) {
     
-    int RandomNumber = 0, Guess = -1, Time = 0;             //Guess en -1 por si no se ingreso ningun numero
+    int RandomNumber = 0, Guess, Time = 0, Temp;             
     
-    printScreen(INIT);                                      //Printea la bienvenida
-    RandomNumber = initRandomNumber();                      //Calcula el numero aleatorio
+    printScreen(INIT, Time);                                //Printea la bienvenida
+    RandomNumber = initRandomNumber(MAXRANDNUM);                     //Calcula el numero aleatorio, con maximo 9 hardcodeado.
+    scanf("%d", &Guess);                                    //Bloquea el programa antes de empezar el tiempo
     
-    while ((Time != 30) ||(Guess != RandomNumber)) {
+    while ((Time < MAXTIME) ||(Guess != RandomNumber)) {
         Time = calcTime();                                  //Pregunta cuanto tiempo paso
-        printScreen(ASKNUM);                                //Printea la pantalla pidiendo numero
-        if ((Guess = getch()) != RandomNumber)              //Se fija si lo metido es el numero correcto
-            printScreen(TRYAGAINLOL);                       //Printea la pantalla pidiendo otro numero
+        if ((Guess = getch()) != RandomNumber){             //Se fija si lo metido es el numero correcto
+            printScreen(TRYAGAIN, Time);                    //Printea la pantalla pidiendo otro numero
+            Temp = Time;
+            while ((Temp + PENALTY) != (Time = calcTime())) {//Espera hasta que el tiempo de penalty haya pasado. 
+            }
+        }
     }
-    
     if (Guess = RandomNumber) {                             //Si el numero es correcto
-        printScreen(WIN);
+        printScreen(WIN, Time);
         getchar();
     }
-    
     else {
-        printScreen(LOSE);                                  //Si el numero es incorrecto
+        printScreen(LOSE, Time);                            //Si el numero es incorrecto
         getchar();
     }
-
-    
     return (EXIT_SUCCESS);
 }
 
