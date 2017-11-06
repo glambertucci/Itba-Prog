@@ -22,8 +22,7 @@ int main()
         }
     }
     
-    printf("ahre\n");
-    
+       
     return 0;
 }
 
