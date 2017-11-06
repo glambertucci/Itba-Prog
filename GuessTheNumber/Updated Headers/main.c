@@ -1,13 +1,9 @@
-#include "main.h"
-#include "printScreen.h"
-#include "initRandNum.h"
+#include "general.h"
+#include "frontEnd.h"
+#include "guessNumberFunctions.h"
 #include "termlib.h"
 #include <stdio.h>
 
-
-#define MAXRANDNUM 9                
-#define MAXTIME 10                      
-#define PENALTY 2
 
 
 int main(void) {
@@ -37,4 +33,3 @@ int main(void) {
     }
     return 0;
 }
-

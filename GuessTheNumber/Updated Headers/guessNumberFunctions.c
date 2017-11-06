@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "calcTime.h"
-#include "initRandNum.h"
+#include "guessNumberFunctions.h"
+
 
 int calcTime(void)
 {
@@ -52,4 +52,3 @@ int initRandNum(int maxnum)
             num = rand(); //Asignará valores a num hasta dar con uno menor al máximo. No se evalúa que sea mayor a 0 pues rand solo devuelve positivos.
         }
 }
-

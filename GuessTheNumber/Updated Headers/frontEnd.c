@@ -1,6 +1,6 @@
-#include "printScreen.h"
+#include "frontEnd.h"
 #include "termlib.h"
-#include "main.h"
+#include "general.h"
 #include <stdio.h>
 
 
@@ -14,7 +14,7 @@ void printScreen (int state, int time){
 
 
 void printTimer (int time) {
-    printf("/t/t/t/t/t Time left: %d", time);
+    printf("\t\t\t\t\t Time left: %d", time);
 }
 
 
@@ -30,6 +30,4 @@ void printText (int state) {
         case WIN: printf("YOU WON!!!\nPress any key to exit.."); break;
         case LOSE: printf("You lose, ha-ha.\nPress any key to exit.."); break;
     }
-    
-    
 }
