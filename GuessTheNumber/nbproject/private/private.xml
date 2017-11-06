@@ -7,7 +7,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/alan/NetBeansProjects/Itba-Prog/TP09_K4/GuessTheNumber/Main.c</file>
+            <file>file:/home/guido/Itba-Prog/GuessTheNumber/calcTime.c</file>
+            <file>file:/home/guido/Itba-Prog/GuessTheNumber/printScreen.c</file>
+            <file>file:/home/guido/Itba-Prog/GuessTheNumber/printText.c</file>
+            <file>file:/home/guido/Itba-Prog/GuessTheNumber/Main.c</file>
+            <file>file:/home/guido/Itba-Prog/GuessTheNumber/printTimer.c</file>
+            <file>file:/home/guido/Itba-Prog/GuessTheNumber/termlib.c</file>
         </group>
     </open-files>
 </project-private>
