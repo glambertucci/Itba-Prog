@@ -3,28 +3,6 @@
 #include <time.h>
 #include "calcTime.h"
 
-int main()
-{
-    int x = 0;
-    int y1 = RESETTIME;
-    int y2 = 0;
-    
-    while (y1 != 0)
-    {
-
-        x = calcTime();
-        y1 = RESETTIME - x;
-        
-        if(y1 != y2)
-        {
-            y2 = y1;
-            printf("Pasaron %d segundos\n", x);
-        }
-    }
-    
-       
-    return 0;
-}
 
 int calcTime(void)
 {
