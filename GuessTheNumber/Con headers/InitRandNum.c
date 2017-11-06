@@ -5,21 +5,6 @@
 
 
 
-int main(void)
-{
-    int x;
-    
-    printf("Pensando en un número...\n");
-        
-    x = initRandNum(RANDNUM);
-    
-
-    printf("OK, el número es %d\n",x);
-    
-    return 0;
-}
-
-
 int initRandNum(int maxnum)
 {
     if(maxnum < 0) //Si el número es menor a 0, para simplificar la lógica le hago el módulo....

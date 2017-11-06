@@ -1,4 +1,6 @@
 #include "printText.h"
+#include <stdio.h>
+#include "main.h"
 
 void printText (int state) {
     
