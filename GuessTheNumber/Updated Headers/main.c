@@ -5,6 +5,10 @@
 #include <stdio.h>
 
 
+#define MAXRANDNUM 9                
+#define MAXTIME 10                      
+#define PENALTY 2
+
 
 int main(void) {
     
