@@ -1,38 +1,54 @@
-#include "Main.h"
-#include "printScreen.h"
-#include "initRandNum.h"
-#include "termlib.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <allegro5/allegro.h>
 
-enum {INIT, TRYAGAIN, WIN, LOSE};  //esto
-#define MAXRANDNUM 9                //esto
-#define MAXTIME 10                      //esto
-#define PENALTY 2                   //y esto van en el main.h AGUUUUUUUUUUUUUUS
-
-int main(void) {
+int main(void)
+{
+    ALLEGRO_DISPLAY *display = NULL;
+    ALLEGRO_EVENT_QUEUE *event_queue = NULL;
+    ALLEGRO_TIMER *timer = NULL;
     
-    int RandomNumber = 0, Guess, Time = 0, Temp;             
+    if(!al_init()) {  //Inicializamos allegro
+        fprintf(stderr, "Failed to initialize allegro.");
+        return (EXIT_FAILURE);
+    }
     
-    printScreen(INIT, Time);                                //Printea la bienvenida
-    RandomNumber = initRandomNumber(MAXRANDNUM);                     //Calcula el numero aleatorio, con maximo 9 hardcodeado.
-    scanf("%d", &Guess);                                    //Bloquea el programa antes de empezar el tiempo
+    display = al_create_display(640, 480); //Creamos el display
+    if(!display) {
+        fprintf(stderr, "Failed to create a display.");
+        return (EXIT_FAILURE);
+    }
     
-    while ((Time < MAXTIME) ||(Guess != RandomNumber)) {
-        Time = calcTime();                                  //Pregunta cuanto tiempo paso
-        if ((Guess = getch()) != RandomNumber){             //Se fija si lo metido es el numero correcto
-            printScreen(TRYAGAIN, Time);                    //Printea la pantalla pidiendo otro numero
-            Temp = Time;
-            while ((Temp + PENALTY) != (Time = calcTime())) {//Espera hasta que el tiempo de penalty haya pasado. 
-            }
-        }
-    }
-    if (Guess = RandomNumber) {                             //Si el numero es correcto
-        printScreen(WIN, Time);
-        getchar();
-    }
-    else {
-        printScreen(LOSE, Time);                            //Si el numero es incorrecto
-        getchar();
-    }
-    return 0;
+    
+    /////////////By RUbidio, asi que es probable que tenga errores, pero para que vean la idea///////////
+    
+    //Bueno, manteniendo la idea de ir mostrandole al usuario la cuenta regresiva, me parece que la manera mas
+    //"sencilla" es teniendo una imagen por numero (para una cuenta regresiva de 15 segundos habria que 
+    //tener 15.jpg, 14.jpg, ..., 9.jpg, 8.jpg, etc...).
+    //Para eso hay que crear un timer y setearlo con al_set_timmer_count que arranque desde -15. Yo haria un
+    //if gigante que vaya tomando el valor del timer y vea en que segundo se esta comparandolo con dos int
+    //(por ejemplo, si esta en el segundo 12 daria TRUE el IF correspondiente a 
+    //if((al_get_timer_count() < 13) && (al_get_timer_count() > 11).
+    //Dentro del IF, solamente tendriamos que mostrar la imagen correspondiente al 12. Cuando entre a otro IF,
+    //(en este caso, a el del 11), simplemente se imprimiria la imagen del 11 sobre la del 12, y asi
+    //con todos los siguientes.
+    //
+    
+    timer = al_create_timer(1.0 / FPS); //crea el timer pero NO empieza a correr
+	if(!timer) {
+		fprintf(stderr, "failed to create timer!\n");
+		return -1;
+	}
+ 
+	event_queue = al_create_event_queue();
+	if(!event_queue) {
+		fprintf(stderr, "failed to create event_queue!\n");
+		al_destroy_timer(timer);
+		return -1;
+    
+    
+    
+    
+    return (EXIT_SUCCESS);
 }
 

@@ -1,25 +1,9 @@
-/*
- * 
- * 
- * 
- * 
- * TODO ESTO VA EN CALCTIME.H
- * 
- * 
- * 
- * 
- *  #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "calcTime.h"
+#include "initRandNum.h"
 
-int calcTime(void);
-// Devuelve la cantidad de tiempo transcurrido entre un llamado y otro. Pensado para llamados constantes.
-// No recibe nada. Devuelve 0 el primer llamado y los siguientes serán el tiempo transcurrido desde el primer llamado al actual.
-
-#define ON 1
-#define OFF 0
-#define RESETTIME 30 //Cantidad de segundos luego de la cual el programa bajará el flag.
-*/
 int calcTime(void)
 {
     static long int ctInitFlag = OFF;//Inicializo el flag que usaré para distinguir el primer llamado de los siguientes. Static para persistencia.
@@ -50,3 +34,22 @@ int calcTime(void)
     
     return timeDelta;
 }
+
+int initRandNum(int maxnum)
+{
+    if(maxnum < 0) //Si el número es menor a 0, para simplificar la lógica le hago el módulo....
+    {
+        maxnum *= (-1); //...pues esta función a fin de cuentas debe devoler un número positivo.
+    }
+    
+    int num = (maxnum+1); //Inicializado de esta manera para poder entrar al while.
+    
+    srand(time(NULL));
+
+    
+        while(num > maxnum)
+        {
+            num = rand(); //Asignará valores a num hasta dar con uno menor al máximo. No se evalúa que sea mayor a 0 pues rand solo devuelve positivos.
+        }
+}
+
