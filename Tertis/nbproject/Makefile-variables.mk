@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=empuerto
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/empuerto
+CND_ARTIFACT_NAME_Debug=tertis
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/tertis
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=empuerto.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/empuerto.tar
+CND_PACKAGE_NAME_Debug=tertis.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/tertis.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=empuerto
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/empuerto
+CND_ARTIFACT_NAME_Release=tertis
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/tertis
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=empuerto.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/empuerto.tar
+CND_PACKAGE_NAME_Release=tertis.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/tertis.tar
 #
 # include compiler specific variables
 #
