@@ -1,4 +1,4 @@
-Se debe llamar a ./tp9 
+Se debe llamar a ./tp11 
 Los comandos son 
 -order  x (numero entre 1 y 6) ejemplo: -order 3
 -tol x (tolerancia)

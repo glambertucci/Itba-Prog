@@ -61,11 +61,11 @@ LDLIBSOPTIONS=-lm `pkg-config --libs allegro-5.0` `pkg-config --libs allegro_aco
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp11_k4
+	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp11
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp11_k4: ${OBJECTFILES}
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp11: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp11_k4 ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tp11 ${OBJECTFILES} ${LDLIBSOPTIONS}
 
 ${OBJECTDIR}/front_end.o: front_end.c
 	${MKDIR} -p ${OBJECTDIR}
