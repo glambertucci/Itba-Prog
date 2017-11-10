@@ -4,6 +4,12 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <logicalFolder name="f3" displayName="Back End" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Front Al" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Front Pi" projectFiles="true">
+      </logicalFolder>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
