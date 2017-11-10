@@ -1,0 +1,6 @@
+Se debe llamar a ./tp9 
+Los comandos son 
+-order  x (numero entre 1 y 6) ejemplo: -order 3
+-tol x (tolerancia)
+-color admite un color rgb y su valor ejemplo -color r 255
+-report filename genera un reporte ej -report fun
