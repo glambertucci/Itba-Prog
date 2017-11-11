@@ -9,6 +9,7 @@
       </logicalFolder>
       <logicalFolder name="f1" displayName="Front Al" projectFiles="true">
         <itemPath>front.h</itemPath>
+        <itemPath>init_piece.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Front Pi" projectFiles="true">
       </logicalFolder>
