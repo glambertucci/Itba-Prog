@@ -28,7 +28,8 @@ enum{ESTATICO,CAYENDO};
 //Matriz real
 #define TABLE_FIL 20
 #define TABLE_COL 14
-
+#define CAYENDO 1
+#define ESTATICO 0
 #define SCREEN_W 800
 #define SCREEN_H 800
     
