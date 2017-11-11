@@ -36,6 +36,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/front.o \
 	${OBJECTDIR}/tetrisInit.o
 
 
@@ -67,6 +68,11 @@ ${OBJECTDIR}/Main.o: Main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
+
+${OBJECTDIR}/front.o: front.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/front.o front.c
 
 ${OBJECTDIR}/tetrisInit.o: tetrisInit.C
 	${MKDIR} -p ${OBJECTDIR}

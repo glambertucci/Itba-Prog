@@ -17,10 +17,19 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+    
+enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
 
 #define PIECE_TOTAL 8
+    //Matriz dibujada
 #define MATRIX_WIDTH 10
 #define MATRIX_HEIGHT 16
+//Matriz real
+#define TABLE_FIL 20
+#define TABLE_COL 14
+
+#define SCREEN_W 800
+#define SCREEN_H 800
     
 typedef struct { //Aca declaramos las piezas
     uint8_t type;
