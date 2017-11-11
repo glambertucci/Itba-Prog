@@ -13,7 +13,7 @@
 
 #ifndef CHECK_FALL_H
 #define CHECK_FALL_H
-#include "General.h"
+#include "general.h"
 bool check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]);
 //check_fall Recibe un tablero, devuelve un bool, 0 si no es posible bajar, 1 si es posible
 

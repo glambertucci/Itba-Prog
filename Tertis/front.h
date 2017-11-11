@@ -13,31 +13,16 @@
 
 #ifndef FRONT_H
 #define FRONT_H
-//TAMAÑO DE LA PANTALLA
-#define SCREEN_W 800
-#define SCREEN_H 800
+#include "general.h"
 //SEPARACION ENTRE CUBO Y CUBO
 #define SEPARACION (40.0)
 //TAMAÑO DE NUESTRA MATRIZ
-#define TABLE_FIL 20
-#define TABLE_COL 14
+
 //ALLEGRO
 #include <allegro5/system.h>
 #include <allegro5/color.h>
 #include <allegro5/allegro_primitives.h>
-//STANDAR
-#include <stdbool.h>
-#include <stdio.h>
-#include <stdint.h>
-#include <stdlib.h>
-//ESTRUCTURA DE PIEZAS
-typedef struct { //Aca declaramos las piezas
-    uint8_t type;
-    bool state;
-}PIECE;
-//Piezas enumeradas como en la foto
 
-enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
 
 void  al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL]);
 //al_draw_tablero recibe matriz de PIECE y la imprime por allegro
