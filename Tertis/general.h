@@ -18,10 +18,11 @@
 extern "C" {
 #endif
     
-enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
+enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
+enum{ESTATICO,CAYENDO};
 
 #define PIECE_TOTAL 8
-    //Matriz dibujada
+//Matriz dibujada
 #define MATRIX_WIDTH 10
 #define MATRIX_HEIGHT 16
 //Matriz real

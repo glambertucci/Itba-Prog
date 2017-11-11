@@ -36,7 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
+	${OBJECTDIR}/fall.o \
 	${OBJECTDIR}/front.o \
+	${OBJECTDIR}/init_piece.o \
 	${OBJECTDIR}/tetrisInit.o
 
 
@@ -69,10 +71,20 @@ ${OBJECTDIR}/Main.o: Main.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
 
+${OBJECTDIR}/fall.o: fall.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/fall.o fall.c
+
 ${OBJECTDIR}/front.o: front.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/front.o front.c
+
+${OBJECTDIR}/init_piece.o: init_piece.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/init_piece.o init_piece.c
 
 ${OBJECTDIR}/tetrisInit.o: tetrisInit.C
 	${MKDIR} -p ${OBJECTDIR}
