@@ -13,7 +13,7 @@
 
 #ifndef INIT_PIECE_H
 #define INIT_PIECE_H
-#include "front.h"
+#include "general.h"
 PIECE  init_piece (void);
 #define CAYENDO 1
 #define ESTATICO 0
