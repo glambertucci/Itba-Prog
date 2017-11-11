@@ -7,6 +7,8 @@
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
       </logicalFolder>
       <logicalFolder name="f1" displayName="Front Al" projectFiles="true">
+        <itemPath>front.h</itemPath>
+        <itemPath>init_piece.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Front Pi" projectFiles="true">
       </logicalFolder>
@@ -21,9 +23,11 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
+        <itemPath>init_piece.c</itemPath>
         <itemPath>tetrisInit.C</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Front Al" projectFiles="true">
+        <itemPath>front.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Front Pi" projectFiles="true">
       </logicalFolder>
@@ -55,7 +59,15 @@
       </item>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="front.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="front.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="general.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="init_piece.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tetrisInit.C" ex="false" tool="1" flavor2="0">
       </item>
@@ -84,7 +96,15 @@
       </item>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="front.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="front.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="general.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="init_piece.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tetrisInit.C" ex="false" tool="1" flavor2="0">
       </item>
