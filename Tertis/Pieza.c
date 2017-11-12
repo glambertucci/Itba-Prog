@@ -1,9 +1,10 @@
-//  NO ESTA PROBADO TODAVIA 
+
 #include "general.h"
 
 #include "Pieza.h"
-PIECE * fill_mat_piece (PIECE next_piece_mat [4][3], PIECE pieza)
-{
+void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE pieza)
+{ 
+
     if (pieza.type == STICK)
     {
         next_piece_mat[0][1].type=STICK;
@@ -50,25 +51,25 @@ PIECE * fill_mat_piece (PIECE next_piece_mat [4][3], PIECE pieza)
     }
         else if (pieza.type == ES)
     {
-       next_piece_mat[2][0].type=ES;
-       next_piece_mat[2][0].state=CAYENDO;
        next_piece_mat[2][1].type=ES;
        next_piece_mat[2][1].state=CAYENDO;
-       next_piece_mat[3][2].type=ES;
-       next_piece_mat[3][2].state=CAYENDO;
+       next_piece_mat[2][2].type=ES;
+       next_piece_mat[2][2].state=CAYENDO;
        next_piece_mat[3][1].type=ES;
        next_piece_mat[3][1].state=CAYENDO;
+       next_piece_mat[3][0].type=ES;
+       next_piece_mat[3][0].state=CAYENDO;
     }
         else if (pieza.type == ZED)
     {
        next_piece_mat[2][1].type=ZED;
        next_piece_mat[2][1].state=CAYENDO;
-       next_piece_mat[2][2].type=ZED;
-       next_piece_mat[2][2].state=CAYENDO;
+       next_piece_mat[2][0].type=ZED;
+       next_piece_mat[2][0].state=CAYENDO;
        next_piece_mat[3][1].type=ZED;
        next_piece_mat[3][1].state=CAYENDO;
-       next_piece_mat[3][0].type=ZED;
-       next_piece_mat[3][0].state=CAYENDO;
+       next_piece_mat[3][2].type=ZED;
+       next_piece_mat[3][2].state=CAYENDO;
     }
         else if (pieza.type == TEE)
     {
