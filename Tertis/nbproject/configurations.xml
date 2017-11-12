@@ -5,6 +5,7 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
+        <itemPath>tetrisInit.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="Front Al" projectFiles="true">
         <itemPath>front.h</itemPath>
@@ -25,6 +26,7 @@
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
         <itemPath>Fall.c</itemPath>
         <itemPath>init_piece.c</itemPath>
+        <itemPath>moveLeft.c</itemPath>
         <itemPath>tetrisInit.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Front Al" projectFiles="true">
@@ -73,10 +75,6 @@
       </item>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="check_fall.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="check_fall.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="front.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="front.h" ex="false" tool="3" flavor2="0">
@@ -87,7 +85,11 @@
       </item>
       <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="moveLeft.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tetrisInit.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -116,10 +118,6 @@
       </item>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="check_fall.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="check_fall.h" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="front.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="front.h" ex="false" tool="3" flavor2="0">
@@ -130,7 +128,11 @@
       </item>
       <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="moveLeft.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tetrisInit.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

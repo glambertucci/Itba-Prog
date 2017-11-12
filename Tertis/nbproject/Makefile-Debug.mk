@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/front.o \
 	${OBJECTDIR}/init_piece.o \
+	${OBJECTDIR}/moveLeft.o \
 	${OBJECTDIR}/tetrisInit.o
 
 
@@ -85,6 +86,11 @@ ${OBJECTDIR}/init_piece.o: init_piece.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/init_piece.o init_piece.c
+
+${OBJECTDIR}/moveLeft.o: moveLeft.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/moveLeft.o moveLeft.c
 
 ${OBJECTDIR}/tetrisInit.o: tetrisInit.c
 	${MKDIR} -p ${OBJECTDIR}
