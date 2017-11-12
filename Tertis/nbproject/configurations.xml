@@ -25,7 +25,7 @@
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
         <itemPath>Fall.c</itemPath>
         <itemPath>init_piece.c</itemPath>
-        <itemPath>tetrisInit.C</itemPath>
+        <itemPath>tetrisInit.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="Front Al" projectFiles="true">
         <itemPath>front.c</itemPath>
@@ -87,7 +87,7 @@
       </item>
       <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tetrisInit.C" ex="false" tool="1" flavor2="0">
+      <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -130,7 +130,7 @@
       </item>
       <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="tetrisInit.C" ex="false" tool="1" flavor2="0">
+      <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
       </item>
     </conf>
   </confs>
