@@ -19,7 +19,10 @@ extern "C" {
 #endif
     
 enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
-
+#include <stdint.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <stdbool.h>
 #define PIECE_TOTAL 8
     //Matriz dibujada
 #define MATRIX_WIDTH 10

@@ -8,9 +8,7 @@ int i,j,abort=0 ;
         for (j=2;j<=TABLE_COL-2;j++)//estos dos ciclos recorren la matriz
         {
             if (tablero[i][j].state == CAYENDO)
-            {
-                printf("hola La de abajo es tipo %d \n",tablero [i+1] [j].type);
-                
+            {   
                 if(!(tablero [i+1] [j].type == BLANK ))//si no es estatico el de abajo 
                 {
                     if (!(tablero[i+1][j].state == CAYENDO))
