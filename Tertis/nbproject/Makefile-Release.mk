@@ -35,12 +35,14 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/Fall.o \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/Pieza.o \
+	${OBJECTDIR}/all_static.o \
 	${OBJECTDIR}/check_fall.o \
 	${OBJECTDIR}/copy_piece_to_mat.o \
+	${OBJECTDIR}/fall.o \
 	${OBJECTDIR}/front.o \
+	${OBJECTDIR}/init_mat.o \
 	${OBJECTDIR}/init_piece.o \
 	${OBJECTDIR}/moveLeft.o \
 	${OBJECTDIR}/tetrisInit.o
@@ -70,11 +72,6 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tertis: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tertis ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/Fall.o: Fall.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Fall.o Fall.c
-
 ${OBJECTDIR}/Main.o: Main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -84,6 +81,11 @@ ${OBJECTDIR}/Pieza.o: Pieza.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pieza.o Pieza.c
+
+${OBJECTDIR}/all_static.o: all_static.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/all_static.o all_static.c
 
 ${OBJECTDIR}/check_fall.o: check_fall.c
 	${MKDIR} -p ${OBJECTDIR}
@@ -95,10 +97,20 @@ ${OBJECTDIR}/copy_piece_to_mat.o: copy_piece_to_mat.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/copy_piece_to_mat.o copy_piece_to_mat.c
 
+${OBJECTDIR}/fall.o: fall.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/fall.o fall.c
+
 ${OBJECTDIR}/front.o: front.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/front.o front.c
+
+${OBJECTDIR}/init_mat.o: init_mat.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/init_mat.o init_mat.c
 
 ${OBJECTDIR}/init_piece.o: init_piece.c
 	${MKDIR} -p ${OBJECTDIR}

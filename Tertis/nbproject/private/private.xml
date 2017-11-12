@@ -7,8 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/guido/Itba-Prog/Tertis/general.h</file>
-            <file>file:/home/guido/Itba-Prog/Tertis/front.c</file>
+            <file>file:/home/guido/Itba-Prog/Tertis/init_piece.h</file>
+            <file>file:/home/guido/Itba-Prog/Tertis/Pieza.c</file>
+            <file>file:/home/guido/Itba-Prog/Tertis/front.h</file>
+            <file>file:/home/guido/Itba-Prog/Tertis/init_piece.c</file>
         </group>
     </open-files>
 </project-private>
