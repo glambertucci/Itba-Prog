@@ -37,10 +37,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/Fall.o \
 	${OBJECTDIR}/Main.o \
-	${OBJECTDIR}/check_fall.o \
+	${OBJECTDIR}/checkMove.o \
 	${OBJECTDIR}/front.o \
 	${OBJECTDIR}/init_piece.o \
-	${OBJECTDIR}/moveLeft.o \
 	${OBJECTDIR}/tetrisInit.o
 
 
@@ -78,10 +77,10 @@ ${OBJECTDIR}/Main.o: Main.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
 
-${OBJECTDIR}/check_fall.o: check_fall.c
+${OBJECTDIR}/checkMove.o: checkMove.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/check_fall.o check_fall.c
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/checkMove.o checkMove.c
 
 ${OBJECTDIR}/front.o: front.c
 	${MKDIR} -p ${OBJECTDIR}
@@ -92,11 +91,6 @@ ${OBJECTDIR}/init_piece.o: init_piece.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/init_piece.o init_piece.c
-
-${OBJECTDIR}/moveLeft.o: moveLeft.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/moveLeft.o moveLeft.c
 
 ${OBJECTDIR}/tetrisInit.o: tetrisInit.c
 	${MKDIR} -p ${OBJECTDIR}
