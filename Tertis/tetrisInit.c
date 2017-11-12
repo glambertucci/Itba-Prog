@@ -1,5 +1,5 @@
 #include "general.h"
-
+#include "tetrisInit.h"
 void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL]) 
 {
     uint8_t i, j;
