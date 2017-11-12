@@ -22,8 +22,9 @@ enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
 enum{ESTATICO, CAYENDO};
 #include <stdint.h>
 #include <stdio.h>
-#include <stdint.h>
+#include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 #define PIECE_TOTAL 8
 //Matriz dibujada
 #define MATRIX_WIDTH 10

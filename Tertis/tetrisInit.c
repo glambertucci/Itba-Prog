@@ -7,7 +7,7 @@ void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL])
     //Inicializamos las piezas
     for(i = 0; i < 8; i++) {
         (pieces + i)->type = i;
-        if(i = 7 || i = 0) //Pieza "cemento"
+        if(i == 7 || i == 0) //Pieza "cemento"
             (pieces + i)->state = ESTATICO;
         else
             (pieces + i)->state = CAYENDO;
