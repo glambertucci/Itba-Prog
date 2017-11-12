@@ -13,6 +13,7 @@
       <logicalFolder name="f2" displayName="Front Pi" projectFiles="true">
       </logicalFolder>
       <itemPath>LISTA DE COSAS POR HACER.h</itemPath>
+      <itemPath>check_fall.h</itemPath>
       <itemPath>general.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -24,6 +25,7 @@
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
         <itemPath>Fall.c</itemPath>
+        <itemPath>check_fall.c</itemPath>
         <itemPath>init_piece.c</itemPath>
         <itemPath>tetrisInit.c</itemPath>
       </logicalFolder>
