@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/Pieza.o \
 	${OBJECTDIR}/check_fall.o \
+	${OBJECTDIR}/copy_piece_to_mat.o \
 	${OBJECTDIR}/front.o \
 	${OBJECTDIR}/init_piece.o \
 	${OBJECTDIR}/moveLeft.o \
@@ -88,6 +89,11 @@ ${OBJECTDIR}/check_fall.o: check_fall.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/check_fall.o check_fall.c
+
+${OBJECTDIR}/copy_piece_to_mat.o: copy_piece_to_mat.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/copy_piece_to_mat.o copy_piece_to_mat.c
 
 ${OBJECTDIR}/front.o: front.c
 	${MKDIR} -p ${OBJECTDIR}
