@@ -35,6 +35,9 @@ enum{ESTATICO, CAYENDO};
 #define SCREEN_W 800
 #define SCREEN_H 800
     
+#define MAT_PIECE_FIL 4
+#define MAT_PIECE_COL 3
+
 typedef struct { //Aca declaramos las piezas
     uint8_t type;
     bool state;

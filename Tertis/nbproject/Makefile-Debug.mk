@@ -38,6 +38,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/Fall.o \
 	${OBJECTDIR}/Main.o \
 	${OBJECTDIR}/checkMove.o \
+	${OBJECTDIR}/Pieza.o \
+	${OBJECTDIR}/check_fall.o \
+	${OBJECTDIR}/copy_piece_to_mat.o \
 	${OBJECTDIR}/front.o \
 	${OBJECTDIR}/init_piece.o \
 	${OBJECTDIR}/tetrisInit.o
@@ -77,10 +80,24 @@ ${OBJECTDIR}/Main.o: Main.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
 
+<<<<<<< HEAD
 ${OBJECTDIR}/checkMove.o: checkMove.c
+=======
+${OBJECTDIR}/Pieza.o: Pieza.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Pieza.o Pieza.c
+
+${OBJECTDIR}/check_fall.o: check_fall.c
+>>>>>>> 974028f66beb47b5023c80990d305537f77c3a42
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/checkMove.o checkMove.c
+
+${OBJECTDIR}/copy_piece_to_mat.o: copy_piece_to_mat.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/copy_piece_to_mat.o copy_piece_to_mat.c
 
 ${OBJECTDIR}/front.o: front.c
 	${MKDIR} -p ${OBJECTDIR}

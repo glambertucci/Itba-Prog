@@ -16,7 +16,9 @@
       <logicalFolder name="f2" displayName="Front Pi" projectFiles="true">
       </logicalFolder>
       <itemPath>LISTA DE COSAS POR HACER.h</itemPath>
+      <itemPath>Pieza.h</itemPath>
       <itemPath>check_fall.h</itemPath>
+      <itemPath>copy_piece_to_mat.h</itemPath>
       <itemPath>general.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -28,8 +30,13 @@
                    projectFiles="true">
       <logicalFolder name="f3" displayName="Back End" projectFiles="true">
         <itemPath>Fall.c</itemPath>
+<<<<<<< HEAD
         <itemPath>checkMove.c</itemPath>
+=======
+        <itemPath>Pieza.c</itemPath>
+>>>>>>> 974028f66beb47b5023c80990d305537f77c3a42
         <itemPath>check_fall.c</itemPath>
+        <itemPath>copy_piece_to_mat.c</itemPath>
         <itemPath>init_piece.c</itemPath>
         <itemPath>tetrisInit.c</itemPath>
       </logicalFolder>
@@ -81,9 +88,23 @@
       </item>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
+<<<<<<< HEAD
       <item path="checkMove.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="checkMove.h" ex="false" tool="3" flavor2="0">
+=======
+      <item path="Pieza.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Pieza.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="check_fall.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="check_fall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.h" ex="false" tool="3" flavor2="0">
+>>>>>>> 974028f66beb47b5023c80990d305537f77c3a42
       </item>
       <item path="front.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -96,8 +117,6 @@
       <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="tetrisInit.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -128,9 +147,23 @@
       </item>
       <item path="Main.c" ex="false" tool="0" flavor2="0">
       </item>
+<<<<<<< HEAD
       <item path="checkMove.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="checkMove.h" ex="false" tool="3" flavor2="0">
+=======
+      <item path="Pieza.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Pieza.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="check_fall.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="check_fall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.h" ex="false" tool="3" flavor2="0">
+>>>>>>> 974028f66beb47b5023c80990d305537f77c3a42
       </item>
       <item path="front.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -143,8 +176,6 @@
       <item path="init_piece.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="tetrisInit.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>
