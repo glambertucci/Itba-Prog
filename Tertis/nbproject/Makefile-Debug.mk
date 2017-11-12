@@ -35,8 +35,8 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/Fall.o \
 	${OBJECTDIR}/Main.o \
-	${OBJECTDIR}/check_fall.o \
 	${OBJECTDIR}/front.o \
 	${OBJECTDIR}/init_piece.o \
 	${OBJECTDIR}/tetrisInit.o
@@ -66,15 +66,15 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tertis: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/tertis ${OBJECTFILES} ${LDLIBSOPTIONS}
 
+${OBJECTDIR}/Fall.o: Fall.c
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Fall.o Fall.c
+
 ${OBJECTDIR}/Main.o: Main.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/Main.o Main.c
-
-${OBJECTDIR}/check_fall.o: check_fall.c
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.c) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/check_fall.o check_fall.c
 
 ${OBJECTDIR}/front.o: front.c
 	${MKDIR} -p ${OBJECTDIR}

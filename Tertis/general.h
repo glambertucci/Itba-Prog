@@ -19,19 +19,18 @@ extern "C" {
 #endif
     
 enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
+enum{ESTATICO, CAYENDO};
 #include <stdint.h>
 #include <stdio.h>
 #include <stdint.h>
 #include <stdbool.h>
 #define PIECE_TOTAL 8
-    //Matriz dibujada
+//Matriz dibujada
 #define MATRIX_WIDTH 10
 #define MATRIX_HEIGHT 16
 //Matriz real
 #define TABLE_FIL 20
 #define TABLE_COL 14
-#define CAYENDO 1
-#define ESTATICO 0
 #define SCREEN_W 800
 #define SCREEN_H 800
     
