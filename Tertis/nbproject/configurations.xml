@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="f3" displayName="Back End" projectFiles="true">
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Front Al" projectFiles="true">
+        <itemPath>all_static.h</itemPath>
+        <itemPath>checkMove.h</itemPath>
+        <itemPath>fall.h</itemPath>
+        <itemPath>front.h</itemPath>
+        <itemPath>init_mat.h</itemPath>
+        <itemPath>init_piece.h</itemPath>
+        <itemPath>tetrisInit.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Front Pi" projectFiles="true">
+      </logicalFolder>
+      <itemPath>LISTA DE COSAS POR HACER.h</itemPath>
+      <itemPath>Pieza.h</itemPath>
+      <itemPath>check_fall.h</itemPath>
+      <itemPath>copy_piece_to_mat.h</itemPath>
+      <itemPath>general.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f3" displayName="Back End" projectFiles="true">
+        <itemPath>Pieza.c</itemPath>
+        <itemPath>checkMove.c</itemPath>
+        <itemPath>check_fall.c</itemPath>
+        <itemPath>copy_piece_to_mat.c</itemPath>
+        <itemPath>init_piece.c</itemPath>
+        <itemPath>moveLeft.c</itemPath>
+        <itemPath>tetrisInit.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Front Al" projectFiles="true">
+        <itemPath>front.c</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Front Pi" projectFiles="true">
+      </logicalFolder>
+      <itemPath>Main.c</itemPath>
+      <itemPath>all_static.c</itemPath>
+      <itemPath>fall.c</itemPath>
+      <itemPath>init_mat.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+      </compileType>
+      <item path="LISTA DE COSAS POR HACER.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Pieza.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Pieza.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="all_static.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="all_static.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="checkMove.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="checkMove.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="check_fall.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="check_fall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="fall.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="fall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="front.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="front.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="general.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="init_mat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="init_mat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="init_piece.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="init_piece.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="moveLeft.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tetrisInit.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="LISTA DE COSAS POR HACER.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="Main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Pieza.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Pieza.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="all_static.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="all_static.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="checkMove.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="checkMove.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="check_fall.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="check_fall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="copy_piece_to_mat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="fall.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="fall.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="front.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="front.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="general.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="init_mat.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="init_mat.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="init_piece.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="init_piece.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="moveLeft.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tetrisInit.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tetrisInit.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
