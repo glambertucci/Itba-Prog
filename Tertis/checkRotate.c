@@ -4,11 +4,13 @@ bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     //Rota siempre en sentido horario
     uint8_t pivot_fil, pivot_col, i, j, abort;
     
-    pivot_fil=0;
-    pivot_col=0;
-    while((matrix[pivot_fil][pivot_col].pivot == false)||(matrix[pivot_fil][pivot_col].state = ESTATICO)) {
-        pivot_fil++;//Luego del while, las variables pivot_fil y pivot_col
-        pivot_col++;//quedaran con la fila y columna indice del pivote
+    for(i = 2; i < TABLE_FIL-2; i++){
+        for(j = 2; j < TABLE_COL-2; j++){
+            if((matrix[i][j].pivot == true) && (matrix[i][j].state == CAYENDO)){
+                pivot_fil = i;
+                pivot_col = j; //solamente va a haber UN UNICO pivote cayendo siempre
+            }   
+        }  // Luego de los for, pivot_fil y pivot_col seran las coordenadas del pivote.
     }
     //Paso siguiente chequear si esta vacio o hay algo cayendo en cada lugar
     //a donde tendria que ir cada cuadradito. Esto se hace de la siguiente forma
