@@ -5,17 +5,16 @@
  */
 
 /* 
- * File:   checkMove.h
+ * File:   checkRotate.h
  * Author: alan
  *
- * Created on November 11, 2017, 11:49 PM
+ * Created on November 12, 2017, 5:01 PM
  */
 
-#ifndef CHECKMOVE_H
-#define CHECKMOVE_H
+#ifndef CHECKROTATE_H
+#define CHECKROTATE_H
 
 #include "general.h"
-bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir);
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,9 +22,10 @@ extern "C" {
 
 
 
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* CHECKMOVE_H */
+#endif /* CHECKROTATE_H */
 

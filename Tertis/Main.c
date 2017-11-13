@@ -12,6 +12,9 @@
  */
 
 #include "general.h"
+#include "tetrisInit.h"
+#include "checkMove.h"
+#include "move.h"
 
 int main(void) {
     
@@ -22,10 +25,14 @@ int main(void) {
     tetrisInit(pieces, matrix); //Aca se inicializan las piezas y la matriz.
     
     
-    
-    
-    
-    
+    /*    
+    for(i=0;i<TABLE_FIL;i++) {
+    	printf("\n\n");
+    	for(j=0;j<TABLE_COL;j++) {
+    		printf("%d-%d", matrix[i][j].state, matrix[i][j].type);
+    	}
+    }
+    */
     
 }
 

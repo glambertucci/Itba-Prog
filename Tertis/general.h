@@ -20,6 +20,7 @@ extern "C" {
     
 enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO};
 enum{ESTATICO, CAYENDO};
+enum{LEFT, RIGHT};
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -41,6 +42,7 @@ enum{ESTATICO, CAYENDO};
 typedef struct { //Aca declaramos las piezas
     uint8_t type;
     bool state;
+    bool pivot;
 }PIECE;
 
 #ifdef __cplusplus
