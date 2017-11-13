@@ -13,7 +13,10 @@
 
 #ifndef FALL_H
 #define FALL_H
-void Fall(PIECE matrix[TABLE_FIL][TABLE_COL]);
+
+#include "general.h"
+void fall(PIECE matrix[TABLE_FIL][TABLE_COL]);
+
 #ifdef __cplusplus
 extern "C" {
 #endif

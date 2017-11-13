@@ -5,17 +5,17 @@
  */
 
 /* 
- * File:   checkMove.h
+ * File:   move.h
  * Author: alan
  *
- * Created on November 11, 2017, 11:49 PM
+ * Created on November 12, 2017, 2:01 PM
  */
 
-#ifndef CHECKMOVE_H
-#define CHECKMOVE_H
+#ifndef MOVE_H
+#define MOVE_H
 
 #include "general.h"
-bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir);
+void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir );
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,9 +23,10 @@ extern "C" {
 
 
 
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* CHECKMOVE_H */
+#endif /* MOVE_H */
 

@@ -17,7 +17,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
+    
+#include "general.h"
 void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL]);
 
 

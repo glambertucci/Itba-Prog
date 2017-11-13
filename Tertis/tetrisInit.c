@@ -1,4 +1,3 @@
-#include "general.h"
 #include "tetrisInit.h"
 void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL]) 
 {
@@ -6,11 +5,11 @@ void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL])
     
     //Inicializamos las piezas
     for(i = 0; i < 8; i++) {
-        (pieces + i)->type = i;
+        (pieces+i)->type = i;
         if(i == 7 || i == 0) //Pieza "cemento"
-            (pieces + i)->state = ESTATICO;
+            (pieces+i)->state = ESTATICO;
         else
-            (pieces + i)->state = CAYENDO;
+            (pieces+i)->state = CAYENDO;
     }
     
     //Inicializamos la matriz
@@ -25,6 +24,7 @@ void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL])
             	(matrix[i][j]).state = ESTATICO;
         	}
         }
+    }
     
     //Incializamos la seed
     srand(time(NULL));
