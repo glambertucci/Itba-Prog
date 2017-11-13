@@ -5,17 +5,18 @@
  */
 
 /* 
- * File:   checkRotate.h
+ * File:   rotate.h
  * Author: alan
  *
- * Created on November 12, 2017, 5:01 PM
+ * Created on November 12, 2017, 10:14 PM
  */
 
-#ifndef CHECKROTATE_H
-#define CHECKROTATE_H
+#ifndef ROTATE_H
+#define ROTATE_H
 
 #include "general.h"
-bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]);
+void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]);
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,5 +28,5 @@ extern "C" {
 }
 #endif
 
-#endif /* CHECKROTATE_H */
+#endif /* ROTATE_H */
 
