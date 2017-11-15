@@ -19,8 +19,8 @@ bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     for(i = pivot_fil-2; i < pivot_fil+2; i++){
         for(j = pivot_col-2; j < pivot_col+2; j++){
             if(matrix[i][j].state == CAYENDO){
-                if(!(matrix[(pivot_fil)-(j-pivot_col)][(pivot_col)+(i-pivot_fil)].type == BLANK)){
-                    if(!(matrix[(pivot_fil)-(j-pivot_col)][(pivot_col)+(i-pivot_fil)].state == CAYENDO))
+                if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].type == BLANK)){
+                    if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].state == CAYENDO))
                         abort++;
                 }          
             }

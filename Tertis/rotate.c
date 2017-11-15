@@ -26,13 +26,10 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
                 matrix[i][j].type = BLANK;      //Aca borro
                 matrix[i][j].state = ESTATICO;  //el original
                 k++;
-                matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].type = matrix[i][j].type;
-                matrix[i][j].type = BLANK;      //Aca borro
-                matrix[i][j].state = ESTATICO;  //el original
             }
         }          
     }               
-    for(i = 0; i < 4; i++){
+    for(i = 0; i < 4; i++){     //Aca escribo en la matriz las nuevas posiciones.
         matrix[*(temp_fil + i)][*(temp_col + i)].type = temp_type;
     }
 
