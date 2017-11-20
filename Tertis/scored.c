@@ -6,7 +6,7 @@
 
 //VOY A USAR UN IDENTIFICADOR DE LINEA PARA EL 
 #include "scored.h"
-#define SCORED 9
+
 bool scored (PIECE tablero [TABLE_FIL][TABLE_COL]) 
 {
     int i,j,lleno=0;
@@ -21,7 +21,7 @@ bool scored (PIECE tablero [TABLE_FIL][TABLE_COL])
                 
             }
         }
-        printf("Lleno vale %d\n",lleno);
+        nnnnnnnnnnnnnprintf("Lleno vale %d\n",lleno);
         if (lleno == 11)
         {
             tablero[i] [2].type = SCORED; //pone el tipo scored en la esquina izquierda de la fila que hizo puntos para que la funcion deletefil la mate
