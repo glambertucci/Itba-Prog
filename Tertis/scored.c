@@ -6,7 +6,7 @@
 
 //VOY A USAR UN IDENTIFICADOR DE LINEA PARA EL 
 #include "scored.h"
-
+    static unsigned int score=0;
 bool scored (PIECE tablero [TABLE_FIL][TABLE_COL]) 
 {
     int i,j,lleno=0;
@@ -32,4 +32,22 @@ bool scored (PIECE tablero [TABLE_FIL][TABLE_COL])
             lleno=0;
     }
     return scored!=0; //devuelve 1 si hiciste puntos, 0 si no
+}
+
+
+void add_score (int lines_destoyed)
+{
+
+    switch (lines_destoyed)
+    {
+        case 1 : score++;break;
+        case 2 : score+=2; break;
+        case 3 : score+=3; break;
+        case 4 : score+=4; break;
+    }
+    
+}
+int get_score (void)
+{
+    return score;
 }

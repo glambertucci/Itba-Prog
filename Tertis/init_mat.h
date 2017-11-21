@@ -15,6 +15,8 @@
 #define INIT_MAT_H
 #include "general.h"
 void init_mat (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL]);
+//inicia la matriz chiquita para la siguiente matriz, le pasas la matriz chiquita
+//y te la pone en static y blank
 #ifdef __cplusplus
 extern "C" {
 #endif

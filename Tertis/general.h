@@ -18,7 +18,9 @@
 extern "C" {
 #endif
     
-enum{BLANK, STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED};
+
+enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED};
+
 enum{ESTATICO, CAYENDO};
 enum{LEFT, RIGHT};
 #include <stdint.h>

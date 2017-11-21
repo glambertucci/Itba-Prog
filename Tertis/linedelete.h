@@ -5,17 +5,20 @@
  */
 
 /* 
- * File:   all_static.h
- * Author: guido
+ * File:   linedelete.h
+ * Author: alan
  *
- * Created on November 12, 2017, 12:54 AM
+ * Created on November 19, 2017, 9:06 PM
  */
 
-#ifndef ALL_STATIC_H
-#define ALL_STATIC_H
+#ifndef LINEDELETE_H
+#define LINEDELETE_H
+
 #include "general.h"
-void all_static (PIECE tablero [TABLE_FIL][TABLE_COL] );
-//Pone en static todas las piezas del tablero
+void calculateLines(PIECE matrix[TABLE_FIL][TABLE_COL]);
+void deleteLine(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila);
+
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -27,5 +30,5 @@ extern "C" {
 }
 #endif
 
-#endif /* ALL_STATIC_H */
+#endif /* LINEDELETE_H */
 

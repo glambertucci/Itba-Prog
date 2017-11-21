@@ -15,6 +15,7 @@
 #define INIT_PIECE_H
 #include "general.h"
 PIECE  init_piece (void);
+//define que pieza va a ser
 #define CAYENDO 1
 #define ESTATICO 0
 #ifdef __cplusplus
