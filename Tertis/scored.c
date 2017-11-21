@@ -6,7 +6,7 @@
 
 //VOY A USAR UN IDENTIFICADOR DE LINEA PARA EL 
 #include "scored.h"
-#define SCORED 9
+
 bool scored (PIECE tablero [TABLE_FIL][TABLE_COL]) 
 {
     int i,j,lleno=0;
