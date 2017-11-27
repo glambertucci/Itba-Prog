@@ -9,9 +9,9 @@ void all_static (PIECE tablero [TABLE_FIL][TABLE_COL] )
 {
   
     int i,j;
-    for (j=0;j<=TABLE_FIL;j++)
+    for (i = 2; i < TABLE_FIL-2; i++)
     {
-        for (i=0;i<=TABLE_COL;i++)
+        for (j = 2; j < TABLE_COL-2; j++)
         {
             tablero[i][j].state=ESTATICO;
         } 
