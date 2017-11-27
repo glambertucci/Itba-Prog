@@ -13,6 +13,7 @@ void init_mat (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL])
         {
             next_piece_mat[i][j].state=ESTATICO;
             next_piece_mat[i][j].type=BLANK;
+            next_piece_mat[i][j].pivot=false; 
         } 
     }
 }
