@@ -9,8 +9,8 @@ void copy_piece_to_mat (PIECE tablero [TABLE_FIL][TABLE_COL],PIECE next_piece_ma
         for(j=0;j<MAT_PIECE_COL;j++)
         {
             tablero[i+2][j+6].type = next_piece_mat[i][j].type;
-            printf("%d\n", tablero[i+2][j+6].type);
             tablero[i+2][j+6].state = next_piece_mat[i][j].state;
+            tablero[i+2][j+6].pivot = next_piece_mat[i][j].pivot;
         }
     }
 }
