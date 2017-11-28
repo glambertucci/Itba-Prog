@@ -13,11 +13,7 @@
 
 #ifndef GENERAL_H
 #define GENERAL_H
-
-#ifdef __cplusplus
-extern "C" {
-#endif
-    
+  
 
 enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED};
 
@@ -28,6 +24,7 @@ enum{LEFT, RIGHT};
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
+
 #define PIECE_TOTAL 8
 //Matriz dibujada
 #define MATRIX_WIDTH 10
@@ -52,4 +49,3 @@ typedef struct { //Aca declaramos las piezas
 #endif
 
 #endif /* GENERAL_H */
-
