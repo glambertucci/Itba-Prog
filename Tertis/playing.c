@@ -4,9 +4,7 @@
  * and open the template in the editor.
  */
 
-#include <allegro5/timer.h>
-#include <allegro5/keycodes.h>
-
+#include "general.h"
 #include "checkMove.h"
 #include "move.h"
 #include "checkRotate.h"
@@ -14,8 +12,15 @@
 #include "check_fall.h"
 #include "fall.h"
 #include "fall_instant.h"
+#include "all_static.h"
+#include "init_piece.h"
+#include "init_mat.h"
+#include "Pieza.h"
+#include "scored.h"
+#include "copy_piece_to_mat.h"
+#include "linedelete.h"
 #include "playing.h"
-#include "general.h"
+
 
 void continueplay(AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Se fija si esta parado el timer, si lo esta, lo arranca
 
@@ -31,14 +36,14 @@ void getplayevents(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_
     if(al_get_next_event(al_utils->queue, &event)){
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
-            al_utils->keyboard->pressed = true;
+            al_utils->keyboard->keyboardpress = true;
             al_utils->keyboard->key = event.keyboard.keycode;
         }
 
         if(event.type == ALLEGRO_EVENT_TIMER){         
             gamevars->draw = true;         
-            if(al_utils->keyboard->pressed){               
-                al_utils->keyboard->pressed = false;               
+            if(al_utils->keyboard->keyboardpress){               
+                al_utils->keyboard->keyboardpress = false;               
                 switch(al_utils->keyboard->key){
                     case ALLEGRO_KEY_ESCAPE:
                         gamevars->state = MENU;

@@ -14,6 +14,7 @@
 #ifndef SCORED_H
 #define SCORED_H
 #include "general.h"
+
 bool scored (PIECE tablero [TABLE_FIL][TABLE_COL]);
 // scored recibe la matriz del juego tablero, sirve para avisar si se hizo una linea, pone un identificaor (define) en la linea que hizo punto 
 void add_score (int lines_destoyed);

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 
+#include "general.h"
 #include "fall_instant.h"
 #include "fall.h"
 #include "check_fall.h"

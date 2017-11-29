@@ -11,7 +11,7 @@
 #include "general.h"
 #include "al_custom_init.h"
 
-void al_custom_init (AL_UTILS* al_utils){
+void al_custom_tetris_init (AL_UTILS* al_utils){
     
     int abort = 0;
     
@@ -40,7 +40,7 @@ void al_custom_init (AL_UTILS* al_utils){
         abort = 1;
     }
     
-    if(!(al_utils->timer = al_create_timer(INITIAL))){
+    if(!(al_utils->timer = al_create_timer(INITIAL / 10.0))){
         fprintf(stderr, "Timer failed to load.");
         abort = 1;
         al_destroy_timer(al_utils->timer);
@@ -62,8 +62,8 @@ void al_custom_init (AL_UTILS* al_utils){
     }
 
     al_start_timer(al_utils->timer);
-    al_register_event_source(al_utils->queue, al_get_display_event_source(al_utils.display));
-    al_register_event_source(al_utils->queue, al_get_timer_event_source(al_utils.timer));
+    al_register_event_source(al_utils->queue, al_get_display_event_source(al_utils->display));
+    al_register_event_source(al_utils->queue, al_get_timer_event_source(al_utils->timer));
     al_register_event_source(al_utils->queue, al_get_keyboard_event_source());
     al_register_event_source(al_utils->queue, al_get_mouse_event_source());
 }

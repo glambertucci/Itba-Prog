@@ -17,7 +17,7 @@
 #include "general.h"
 void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]);
 void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila);
-
+void calculate_new_velocity(AL_UTILS* al_utils);
 
 #ifdef __cplusplus
 extern "C" {

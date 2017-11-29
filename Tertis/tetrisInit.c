@@ -1,4 +1,7 @@
 #include "tetrisInit.h"
+#include "init_mat.h"
+#include "init_piece.h"
+#include "Pieza.h"
 void tetrisInit (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS* gamevars) 
 {
     uint8_t i, j;

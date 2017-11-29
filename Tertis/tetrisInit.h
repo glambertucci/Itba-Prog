@@ -19,7 +19,7 @@ extern "C" {
 #endif
     
 #include "general.h"
-void tetrisInit (PIECE pieces[PIECE_TOTAL], PIECE matrix[TABLE_FIL][TABLE_COL]);
+void tetrisInit (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS* gamevars);
 
 
 #ifdef __cplusplus

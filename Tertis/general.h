@@ -18,19 +18,20 @@
 extern "C" {
 #endif
     
-
+enum{INITIAL = 15,VERYEASY = 14,EASY = 13, NORMAL = 12, NORMALHARD = 10, HARD = 8, VERYHARD = 6, IMPOSSIBLE = 3}; //Para el timer
 enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
-enum{INITIAL = 1.5,
-     VERYEASY = 1.4, 
-     EASY = 1.3, 
-     NORMAL = 1.2, 
-     NORMALHARD = 1, 
-     HARD = 0.8, 
-     VERYHARD = 0.6, 
-     IMPOSSIBLE = 0.3}; //Para el timer
 enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
-enum{PLAYING, MENU}; //Para fsm.
+enum{MENU, PLAYING}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
+
+#include <allegro5/allegro.h>
+#include <allegro5/timer.h>
+#include <allegro5/display.h>
+#include <allegro5/keycodes.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
+
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -53,31 +54,31 @@ typedef struct { //Aca declaramos la estructura de cada bloque 1x1
 }PIECE;
 
 typedef struct { //Estructura para manejo de keyboard
-        bool pressed = false;
-        int key = 0;
+        bool keyboardpress;
+        int key;
     }KEYBOARD;
     
 typedef struct { //Estructura para manejo de mouse
-        bool pressed = false;
-        int x = 0;
-        int y = 0;
+        bool mousepress;
+        int x;
+        int y;
     }MOUSE;
 
 typedef struct { //Estructura para manejo de allegro
-    ALLEGRO_TIMER* timer = NULL;
-    ALLEGRO_EVENT_QUEUE* queue = NULL;
-    ALLEGRO_DISPLAY* display = NULL;
-    KEYBOARD* keyboard = NULL;
-    MOUSE* mouse = NULL;
-    double timer_speed = INITIAL;
+    ALLEGRO_TIMER* timer;
+    ALLEGRO_EVENT_QUEUE* queue;
+    ALLEGRO_DISPLAY* display;
+    KEYBOARD* keyboard;
+    MOUSE* mouse;
+    double timer_speed;
 }AL_UTILS;
     
 typedef struct { //Estructura con variables de juego
     PIECE currentpiece;
-    bool lose = false;
-    bool quit = false;
-    bool state = MENU;
-    bool draw = false;
+    bool lose;
+    bool quit;
+    bool state;
+    bool draw;
 }GAME_UTILS;
 
 #ifdef __cplusplus

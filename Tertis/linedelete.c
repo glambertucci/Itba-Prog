@@ -46,19 +46,19 @@ void calculate_new_velocity(AL_UTILS* al_utils){
     int score = get_score();
 
     if(score >= 0)
-        al_utils->timer_speed = INITIAL;
+        al_utils->timer_speed = INITIAL / 10.0;
     else if(score >= 4)
-        al_utils->timer_speed = VERYEASY;
+        al_utils->timer_speed = VERYEASY / 10.0;
     else if(score >= 9)
-        al_utils->timer_speed = EASY;
+        al_utils->timer_speed = EASY / 10.0;
     else if(score >= 15)
-        al_utils->timer_speed = NORMAL;
+        al_utils->timer_speed = NORMAL / 10.0;
     else if(score >= 23)
-        al_utils->timer_speed = NORMALHARD;
+        al_utils->timer_speed = NORMALHARD / 10.0;
     else if(score >= 31)
-        al_utils->timer_speed = HARD;
+        al_utils->timer_speed = HARD / 10.0;
     else if(score >= 40)
-        al_utils->timer_speed = VERYHARD;
+        al_utils->timer_speed = VERYHARD / 10.0;
     else if(score >= 50)
-        al_utils->timer_speed = IMPOSSIBLE;
+        al_utils->timer_speed = IMPOSSIBLE / 10.0;
 }

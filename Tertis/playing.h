@@ -15,7 +15,7 @@
 #define PLAYING_H
 
 void continueplay(AL_UTILS* al_utils, GAME_UTILS* gamevars);
-void getplayevents(AL_UTILS* al_utils, GAME_UTILS* gamevars);
+void getplayevents(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]);
 
 #ifdef __cplusplus
 extern "C" {
