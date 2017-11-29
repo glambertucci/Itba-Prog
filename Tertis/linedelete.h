@@ -15,8 +15,8 @@
 #define LINEDELETE_H
 
 #include "general.h"
-void calculateLines(PIECE matrix[TABLE_FIL][TABLE_COL]);
-void deleteLine(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila);
+void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]);
+void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila);
 
 
 #ifdef __cplusplus

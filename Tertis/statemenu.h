@@ -5,17 +5,17 @@
  */
 
 /* 
- * File:   al_custom_init.h
+ * File:   statemenu.h
  * Author: alan
  *
- * Created on November 28, 2017, 3:06 PM
+ * Created on November 29, 2017, 5:31 PM
  */
 
-#ifndef AL_CUSTOM_INIT_H
-#define AL_CUSTOM_INIT_H
+#ifndef STATEMENU_H
+#define STATEMENU_H
 
-void al_custom_tetris_init(AL_UTILS* al_utils);
-void al_custom_destroy(AL_UTILS* al_utils);
+void pauseplay (AL_UTILS* al_utils, GAME_UTILS* gamevars);
+void getmenuevents (AL_UTILS* al_utils, GAME_UTILS* gamevars);
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,5 +28,5 @@ extern "C" {
 }
 #endif
 
-#endif /* AL_CUSTOM_INIT_H */
+#endif /* STATEMENU_H */
 

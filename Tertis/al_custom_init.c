@@ -68,3 +68,8 @@ void al_custom_init (AL_UTILS* al_utils){
     al_register_event_source(al_utils->queue, al_get_mouse_event_source());
 }
 
+void al_custom_destroy(AL_UTILS* al_utils){
+        al_destroy_display(al_utils->display);
+        al_destroy_event_queue(al_utils->queue);
+        al_destroy_timer(al_utils->timer);
+}

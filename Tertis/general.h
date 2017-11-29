@@ -20,7 +20,6 @@ extern "C" {
     
 
 enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
-
 enum{INITIAL = 1.5,
      VERYEASY = 1.4, 
      EASY = 1.3, 
@@ -29,7 +28,6 @@ enum{INITIAL = 1.5,
      HARD = 0.8, 
      VERYHARD = 0.6, 
      IMPOSSIBLE = 0.3}; //Para el timer
-
 enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
 enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
@@ -54,21 +52,32 @@ typedef struct { //Aca declaramos la estructura de cada bloque 1x1
     bool pivot;
 }PIECE;
 
-typedef struct {
+typedef struct { //Estructura para manejo de keyboard
+        bool pressed = false;
+        int key = 0;
+    }KEYBOARD;
+    
+typedef struct { //Estructura para manejo de mouse
+        bool pressed = false;
+        int x = 0;
+        int y = 0;
+    }MOUSE;
+
+typedef struct { //Estructura para manejo de allegro
     ALLEGRO_TIMER* timer = NULL;
     ALLEGRO_EVENT_QUEUE* queue = NULL;
     ALLEGRO_DISPLAY* display = NULL;
-    bool keyboard = false;
-    bool mouse = false;
+    KEYBOARD* keyboard = NULL;
+    MOUSE* mouse = NULL;
+    double timer_speed = INITIAL;
 }AL_UTILS;
     
-typedef struct {
+typedef struct { //Estructura con variables de juego
     PIECE currentpiece;
     bool lose = false;
     bool quit = false;
     bool state = MENU;
     bool draw = false;
-    double timer_speed = INITIAL;
 }GAME_UTILS;
 
 #ifdef __cplusplus

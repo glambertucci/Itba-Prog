@@ -39,11 +39,20 @@ int main(void) {
         }
         if((gamevars->draw)){
             gamevars->draw = false;
-            al_draw_tablero(matrix);
+    /*
+     * 
+     * 
+     * 
+     *  VER COMO AGREGAR TODO LO QUE ES FRONT PARA PI Y PARA ALLEGRO AFUERA DE TODO LO QUE ES BACKEND
+     * 
+     * 
+     *         
+     *      al_draw_tablero(matrix);
+     */
         }
     }
     
-    al_utils = al_custom_destroy();
+    al_custom_destroy(al_utils);
     return 0;
     
 }
