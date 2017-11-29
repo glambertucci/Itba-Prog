@@ -1,7 +1,6 @@
-
 #include "general.h"
-
 #include "Pieza.h"
+
 void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE pieza)
 { 
 
