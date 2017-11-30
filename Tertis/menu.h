@@ -6,10 +6,10 @@
 
 
 void menu(AL_UTILS * p2al_utils, GAME_UTILS * p2gamevars);
-//Recibe puntero al display, a la cola de eventos y a la estructura con variables del juego.
-//Si el usuario presiona QUIT, pone QUIT en 1.
+//Recibe puntero a la estructura con variables del juego y las de allegro.
+//Si el usuario presiona QUIT, pone quit en TRUE.
 //Si el usuario presiona CONTINUE, pone state en PLAYING.
-//Si el usuario presiona START, pone QUIT y STATE en 1/PLAYING, indicando un reinicio. 
+//Si el usuario presiona START, pone restart en TRUE junto con quit.
 
 enum{START,CONTINUE,QUIT};
 
