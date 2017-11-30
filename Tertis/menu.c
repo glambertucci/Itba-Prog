@@ -12,55 +12,38 @@
 #include "menu.h"
 
 
-int menu (ALLEGRO_DISPLAY * display, ALLEGRO_EVENT_QUEUE *event_queue){
+void menu (AL_UTILS * p2al_utils, GAME_UTILS * p2gamevars){
 
     
   
-   ALLEGRO_BITMAP * image; //PUntero a la imagen del menu
-   int option = -1; //Esta variable va al return, indicando qué se presionó.
-   
- //Registro los eventos de display y de mouse.
+   ALLEGRO_BITMAP * image; //Puntero a la imagen del menu
    
    image = al_load_bitmap("menu.jpg");
    al_draw_bitmap(image,0,0,0);
    al_flip_display();
    
-   while(option == -1)
-   {
-      ALLEGRO_EVENT ev;
-      al_wait_for_event(event_queue, &ev);
-      
-      if(ev.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
-         break;
-      } // Si se cierra el display, se corta el while.
-      
-      
-      /* Estos else if cambian el valor de  la variable opcion cuando 
+      /* Estos else if cambian el valor de quit y state cuando 
        * haga click en las coordenadas de START, CONTINUE o QUIT */
-      
-      else if((ev.mouse.x > MENUMARGIN && ev.mouse.y > (STARTPOSY)) &&
-              (ev.mouse.x < (STARTPOSXEND) && ev.mouse.y < (STARTPOSYEND))){
-          if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-              option = START;}
+     
+      if((p2al_utils->mouse->x > MENUMARGIN && p2al_utils->mouse->y > (STARTPOSY)) &&
+              (p2al_utils->mouse->x < (STARTPOSXEND) && p2al_utils->mouse->y < (STARTPOSYEND))){
+          if(p2al_utils->mouse->mousepress == TRUE) {
+              p2gamevars->restart = TRUE; //Con esto, reinicio el juego.
+              p2gamevars->quit = TRUE; //Con esto, salgo del primer loop.
+          }
       } 
-      
-      else if((ev.mouse.x > MENUMARGIN && ev.mouse.y > (CONTPOSY)) &&
-              (ev.mouse.x < (CONTPOSXEND) && ev.mouse.y < (CONTPOSYEND))){
-          if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-              option = CONTINUE;
+   
+      else if((p2al_utils->mouse->x > MENUMARGIN && p2al_utils->mouse->y > (CONTPOSY)) &&
+              (p2al_utils->mouse->x < (CONTPOSXEND) && p2al_utils->mouse->y < (CONTPOSYEND))){
+          if(p2al_utils->mouse->mousepress == TRUE) {
+              p2gamevars->state = PLAYING;
           }
        }
 
-      else if((ev.mouse.x > MENUMARGIN && ev.mouse.y > QUITPOSY) &&
-          (ev.mouse.x < QUITPOSXEND && ev.mouse.y < QUITPOSYEND))
-          if(ev.type == ALLEGRO_EVENT_MOUSE_BUTTON_UP) {
-              option = QUIT;}
+      else if((p2al_utils->mouse->x > MENUMARGIN && p2al_utils->mouse->y > QUITPOSY) &&
+          (p2al_utils->mouse->x < QUITPOSXEND && p2al_utils->mouse->y < QUITPOSYEND))
+          if(p2al_utils->mouse->mousepress == TRUE) {
+              p2gamevars->quit = TRUE;
+          }
      
    }
- 
-   
-   al_destroy_display(display); //Cierro el display y la cola de eventos.
-   al_destroy_event_queue(event_queue); //Pues estaré cerrando el juego.
-    
- return option;
-}

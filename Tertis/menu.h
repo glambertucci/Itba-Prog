@@ -5,16 +5,17 @@
 #include "general.h"
 
 
-int menu(ALLEGRO_DISPLAY * display, ALLEGRO_EVENT_QUEUE *event_queue);
-//Recibe puntero al display. 
-//Devuelve 2 (QUIT),  1 (CONTINUE), 0 (START).
-//En caso de error, devuelve -1.
+void menu(AL_UTILS * p2al_utils, GAME_UTILS * p2gamevars);
+//Recibe puntero al display, a la cola de eventos y a la estructura con variables del juego.
+//Si el usuario presiona QUIT, pone QUIT en 1.
+//Si el usuario presiona CONTINUE, pone state en PLAYING.
+//Si el usuario presiona START, pone QUIT y STATE en 1/PLAYING, indicando un reinicio. 
 
 enum{START,CONTINUE,QUIT};
 
 
 #define MENUMARGIN 122
-#define LETTERSIZE 24 //Obs: Las letras tienen de altura y ancho 24 pixeles.
+#define LETTERSIZE 24 //Obs: Las letras tienen de altura y anchura 24 pixeles.
 #define STARTPOSY 418
 #define STARTPOSXEND (MENUMARGIN + LETTERSIZE * 4)
 #define STARTPOSYEND (STARTPOSY + LETTERSIZE)

@@ -22,9 +22,5 @@ extern "C" {
 void tetrisInit (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS* gamevars);
 
 
-#ifdef __cplusplus
-}
 #endif
-
-#endif /* TETRISINIT_H */
 

@@ -15,18 +15,9 @@
 #define STATEMENU_H
 
 void pauseplay (AL_UTILS* al_utils, GAME_UTILS* gamevars);
+/* Esta función para el timer al ingresar en el menú*/
+
 void getmenuevents (AL_UTILS* al_utils, GAME_UTILS* gamevars);
 
-#ifdef __cplusplus
-extern "C" {
+
 #endif
-
-
-
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* STATEMENU_H */
-

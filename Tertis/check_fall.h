@@ -17,17 +17,4 @@
 bool check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]);
 //check_fall Recibe un tablero, devuelve un bool, 0 si no es posible bajar, 1 si es posible
 
-
-#ifdef __cplusplus
-extern "C" {
 #endif
-
-
-
-
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* CHECK_FALL_H */
-

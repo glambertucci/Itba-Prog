@@ -17,16 +17,6 @@
 
 void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE pieza);
 //TIENE QUE VENIR INICIALIZADA EN 0 NEXT PIECE MAT ACUERDENSEEEEEEE ONICHAN
-#ifdef __cplusplus
-extern "C" {
-#endif
 
-
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif
-

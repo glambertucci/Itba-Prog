@@ -22,24 +22,24 @@ int main(void) {
     
     PIECE matrix[TABLE_FIL][TABLE_COL]; //Matriz en donde se situan las piezas
     PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL]; //Matriz de 4x3 para cada pieza
-    AL_UTILS* al_utils = {0}; //Punteros a utilizar con allegro
-    GAME_UTILS* gamevars = {0}; //Variables de juego
+    AL_UTILS al_utils = {0}, * p2al_utils = &al_utils; //Punteros a utilizar con allegro
+    GAME_UTILS gamevars = {0}, *p2gamevars = &gamevars; //Variables de juego
     
-    al_custom_tetris_init(al_utils); //Aca se inicializa allegro.
-    tetrisInit(matrix, piece_matrix, gamevars); //Aca se inicializan las matrices y variables de juego.
+    al_custom_tetris_init(p2al_utils); //Aca se inicializa allegro.
     
-    while(!(gamevars->quit)){
+    do{
+    tetrisInit(matrix, piece_matrix, p2gamevars); //Aca se inicializan las matrices y variables de juego.
+    
+    while(!(p2gamevars->quit)){
         
-        while(gamevars->state == PLAYING){
-            continueplay(al_utils, gamevars);
-            getplayevents(al_utils, gamevars, matrix, piece_matrix);
+        if(p2gamevars->state == PLAYING){
+            continueplay(p2al_utils, p2gamevars);
+            getplayevents(p2al_utils, p2gamevars, matrix, piece_matrix);
         }
-        while(gamevars->state == MENU){
-            pauseplay(al_utils, gamevars);
-            getmenuevents(al_utils, gamevars);
+        else if(p2gamevars->state == MENU){
+            pauseplay(p2al_utils, p2gamevars);
+            getmenuevents(p2al_utils, p2gamevars);
         }
-        if((gamevars->draw)){
-            gamevars->draw = false;
     /*
      * 
      * 
@@ -47,14 +47,19 @@ int main(void) {
      *  VER COMO AGREGAR TODO LO QUE ES FRONT PARA PI Y PARA ALLEGRO AFUERA DE TODO LO QUE ES BACKEND
      * 
      * 
-     *         
-     *      al_draw_tablero(matrix);
-     */
+     */       
+        al_draw_tablero(matrix);
+     
         }
-    }
     
-    al_custom_destroy(al_utils);
+    }while(p2gamevars->restart); //Si puse restart, entonces loopeo.
+        
+    al_custom_destroy(p2al_utils);
+    
     return 0;
     
-}
+    }
+    
+    
+    
 

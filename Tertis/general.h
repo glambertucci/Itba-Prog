@@ -46,6 +46,8 @@ enum{LEFT, RIGHT}; //Para funcion mover pieza
 //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
+#define TRUE 1
+#define FALSE 0
 
 typedef struct { //Aca declaramos la estructura de cada bloque 1x1
     uint8_t type;
@@ -65,11 +67,11 @@ typedef struct { //Estructura para manejo de mouse
     }MOUSE;
 
 typedef struct { //Estructura para manejo de allegro
-    ALLEGRO_TIMER* timer;
-    ALLEGRO_EVENT_QUEUE* queue;
-    ALLEGRO_DISPLAY* display;
-    KEYBOARD* keyboard;
-    MOUSE* mouse;
+    ALLEGRO_TIMER * timer;
+    ALLEGRO_EVENT_QUEUE * queue;
+    ALLEGRO_DISPLAY * display;
+    KEYBOARD * keyboard;
+    MOUSE * mouse;
     double timer_speed;
 }AL_UTILS;
     
@@ -78,12 +80,8 @@ typedef struct { //Estructura con variables de juego
     bool lose;
     bool quit;
     bool state;
+    bool restart;
     bool draw;
 }GAME_UTILS;
 
-#ifdef __cplusplus
-}
 #endif
-
-#endif /* GENERAL_H */
-

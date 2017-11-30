@@ -31,7 +31,21 @@ void tetrisInit (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
     
     //Llenamos la matriz de la pieza
     fill_mat_piece(piece_matrix, gamevars->currentpiece);
-}
     
+    
+    if(gamevars->restart){ //Si se presionó START/reiniciar, se espera que se inicie el juego.
+        gamevars->quit = FALSE;
+        gamevars->state= PLAYING;
+    }
+    
+    /*Si nunca se tocó reiniciar pero se llega hasta aquí, es porque
+     *es el primer inicio del juego y entonces debo quedarme en el menu. 
+     */
+    
+    else{  
+        gamevars->state = MENU;
+    }
+    
+} 
 
 
