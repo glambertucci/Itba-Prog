@@ -12,7 +12,7 @@
 #include "menu.h"
 
 
-void menu (AL_UTILS * p2al_utils, GAME_UTILS * p2gamevars){
+void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars){
 
     
   
@@ -25,25 +25,25 @@ void menu (AL_UTILS * p2al_utils, GAME_UTILS * p2gamevars){
       /* Estos else if cambian el valor de quit y state cuando 
        * haga click en las coordenadas de START, CONTINUE o QUIT */
      
-      if((p2al_utils->mouse->x > MENUMARGIN && p2al_utils->mouse->y > (STARTPOSY)) &&
-              (p2al_utils->mouse->x < (STARTPOSXEND) && p2al_utils->mouse->y < (STARTPOSYEND))){
-          if(p2al_utils->mouse->mousepress == TRUE) {
-              p2gamevars->restart = TRUE; //Con esto, reinicio el juego.
-              p2gamevars->quit = TRUE; //Con esto, salgo del primer loop.
+      if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > (STARTPOSY)) &&
+              (al_utils->mouse.x < (STARTPOSXEND) && al_utils->mouse.y < (STARTPOSYEND))){
+          if(al_utils->mouse.mousepress == TRUE) {
+              gamevars->restart = TRUE; //Con esto, reinicio el juego.
+              gamevars->quit = TRUE; //Con esto, salgo del primer loop.
           }
       } 
    
-      else if((p2al_utils->mouse->x > MENUMARGIN && p2al_utils->mouse->y > (CONTPOSY)) &&
-              (p2al_utils->mouse->x < (CONTPOSXEND) && p2al_utils->mouse->y < (CONTPOSYEND))){
-          if(p2al_utils->mouse->mousepress == TRUE) {
-              p2gamevars->state = PLAYING;
+      else if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > (CONTPOSY)) &&
+              (al_utils->mouse.x < (CONTPOSXEND) && al_utils->mouse.y < (CONTPOSYEND))){
+          if(al_utils->mouse.mousepress == TRUE) {
+              gamevars->state = PLAYING;
           }
        }
 
-      else if((p2al_utils->mouse->x > MENUMARGIN && p2al_utils->mouse->y > QUITPOSY) &&
-          (p2al_utils->mouse->x < QUITPOSXEND && p2al_utils->mouse->y < QUITPOSYEND))
-          if(p2al_utils->mouse->mousepress == TRUE) {
-              p2gamevars->quit = TRUE;
+      else if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > QUITPOSY) &&
+          (al_utils->mouse.x < QUITPOSXEND && al_utils->mouse.y < QUITPOSYEND))
+          if(al_utils->mouse.mousepress == TRUE) {
+              gamevars->quit = TRUE;
           }
      
    }

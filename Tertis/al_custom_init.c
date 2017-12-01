@@ -61,6 +61,7 @@ void al_custom_tetris_init (AL_UTILS* al_utils){
         al_destroy_timer(al_utils->timer);
     }
 
+    al_clear_to_color(al_map_rgb(192,192,192));
     al_start_timer(al_utils->timer);
     al_register_event_source(al_utils->queue, al_get_display_event_source(al_utils->display));
     al_register_event_source(al_utils->queue, al_get_timer_event_source(al_utils->timer));

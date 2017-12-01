@@ -11,35 +11,42 @@
  * Created on November 10, 2017, 3:11 PM
  */
 
+//#ifdef AL_TETRIS
+#include "front_al.h"
+//#else
+//#include "front_pi.h"
+//#endif
+
 #include "general.h"
 #include "al_custom_init.h"
 #include "tetrisInit.h"
 #include "playing.h"
 #include "statemenu.h"
-#include "front.h"
+
 
 int main(void) {
     
     PIECE matrix[TABLE_FIL][TABLE_COL]; //Matriz en donde se situan las piezas
     PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL]; //Matriz de 4x3 para cada pieza
-    AL_UTILS al_utils = {0}, * p2al_utils = &al_utils; //Punteros a utilizar con allegro
-    GAME_UTILS gamevars = {0}, *p2gamevars = &gamevars; //Variables de juego
+    AL_UTILS al_utils = {0}; //Punteros a utilizar con allegro
+    GAME_UTILS gamevars = {0}; //Variables de juego
     
-    al_custom_tetris_init(p2al_utils); //Aca se inicializa allegro.
+    gamevars.restart = true;  //DEBUG
     
+    al_custom_tetris_init(&al_utils); //Aca se inicializa allegro.
+
     do{
-    tetrisInit(matrix, piece_matrix, p2gamevars); //Aca se inicializan las matrices y variables de juego.
-    
-    while(!(p2gamevars->quit)){
-        
-        if(p2gamevars->state == PLAYING){
-            continueplay(p2al_utils, p2gamevars);
-            getplayevents(p2al_utils, p2gamevars, matrix, piece_matrix);
-        }
-        else if(p2gamevars->state == MENU){
-            pauseplay(p2al_utils, p2gamevars);
-            getmenuevents(p2al_utils, p2gamevars);
-        }
+    	tetrisInit(matrix, piece_matrix, &gamevars); //Aca se inicializan las matrices y variables de juego.
+    	while(!(gamevars.quit)){
+            gamevars.state = PLAYING;  //DEBUG
+        	if((gamevars.state == PLAYING)){
+        	    continueplay(&al_utils, &gamevars, matrix, piece_matrix);
+        	    getplayevents(&al_utils, &gamevars, matrix, piece_matrix);
+       		}
+       		else if(gamevars.state == MENU){
+            	pauseplay(&al_utils, &gamevars);
+            	getmenuevents(&al_utils, &gamevars);
+        	}
     /*
      * 
      * 
@@ -47,14 +54,16 @@ int main(void) {
      *  VER COMO AGREGAR TODO LO QUE ES FRONT PARA PI Y PARA ALLEGRO AFUERA DE TODO LO QUE ES BACKEND
      * 
      * 
-     */       
-        al_draw_tablero(matrix);
+     */        
+        	al_draw_tablero(matrix);
+        	al_draw_next_piece(gamevars.currentpiece);
+                al_flip_display();
      
         }
     
-    }while(p2gamevars->restart); //Si puse restart, entonces loopeo.
+    }while(gamevars.restart); //Si puse restart, entonces loopeo.
         
-    al_custom_destroy(p2al_utils);
+    al_custom_destroy(&al_utils);
     
     return 0;
     

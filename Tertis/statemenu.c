@@ -21,15 +21,15 @@ void getmenuevents (AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Esta funcion to
     if(al_get_next_event(al_utils->queue, &event)){
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
-            al_utils->keyboard->keyboardpress = true;
-            al_utils->keyboard->key = event.keyboard.keycode;
+            al_utils->keyboard.keyboardpress = true;
+            al_utils->keyboard.key = event.keyboard.keycode;
         }
         if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-            al_utils->mouse->mousepress = true;
-            al_utils->mouse->x = event.mouse.x;
-            al_utils->mouse->y = event.mouse.y;
+            al_utils->mouse.mousepress = true;
+            al_utils->mouse.x = event.mouse.x;
+            al_utils->mouse.y = event.mouse.y;
         }
-        if((al_utils->keyboard->keyboardpress) && (!(al_utils->mouse->mousepress))){
+        if((al_utils->keyboard.keyboardpress) && (!(al_utils->mouse.mousepress))){
             /*
              
              
@@ -41,7 +41,7 @@ void getmenuevents (AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Esta funcion to
              
              */
         }
-        if((!(al_utils->keyboard->keyboardpress)) && (al_utils->mouse->mousepress)){
+        if((!(al_utils->keyboard.keyboardpress)) && (al_utils->mouse.mousepress)){
             /*
              
              

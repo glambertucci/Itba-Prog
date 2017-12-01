@@ -21,7 +21,7 @@ extern "C" {
 enum{INITIAL = 15,VERYEASY = 14,EASY = 13, NORMAL = 12, NORMALHARD = 10, HARD = 8, VERYHARD = 6, IMPOSSIBLE = 3}; //Para el timer
 enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
 enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
-enum{MENU, PLAYING}; //Para fsm.
+enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
 
 #include <allegro5/allegro.h>
@@ -70,8 +70,8 @@ typedef struct { //Estructura para manejo de allegro
     ALLEGRO_TIMER * timer;
     ALLEGRO_EVENT_QUEUE * queue;
     ALLEGRO_DISPLAY * display;
-    KEYBOARD * keyboard;
-    MOUSE * mouse;
+    KEYBOARD keyboard;
+    MOUSE mouse;
     double timer_speed;
 }AL_UTILS;
     

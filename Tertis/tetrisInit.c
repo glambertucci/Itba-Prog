@@ -2,6 +2,7 @@
 #include "init_mat.h"
 #include "init_piece.h"
 #include "Pieza.h"
+#include "copy_piece_to_mat.h"
 void tetrisInit (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS* gamevars) 
 {
     uint8_t i, j;
@@ -36,6 +37,9 @@ void tetrisInit (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
     if(gamevars->restart){ //Si se presionó START/reiniciar, se espera que se inicie el juego.
         gamevars->quit = FALSE;
         gamevars->state= PLAYING;
+        gamevars->restart = false;
+        copy_piece_to_mat(matrix, piece_matrix);
+        
     }
     
     /*Si nunca se tocó reiniciar pero se llega hasta aquí, es porque

@@ -18,6 +18,8 @@ void copy_piece_to_mat (PIECE tablero [TABLE_FIL][TABLE_COL],PIECE next_piece_ma
 //RECIBE TABLERO Y PIEZA  hace lo que el nombre
 bool can_i_copy (PIECE tablero [TABLE_FIL][TABLE_COL]);
 //AVISA SI PODES COPIAR LA MATRIZ DE ARRIBA O NO DEVUELVE 1 SI PUEDE COPIARLA, 0 SI NO
+void clean_piece_mat (PIECE mat [MAT_PIECE_FIL][MAT_PIECE_COL]);
+//Limpia la matriz, pone todo en blank, no pivot, estatico.
 #ifdef __cplusplus
 extern "C" {
 #endif

@@ -30,3 +30,14 @@ bool can_i_copy (PIECE tablero [TABLE_FIL][TABLE_COL])
         }
     return abort==0;
 }
+
+void clean_piece_mat (PIECE mat [MAT_PIECE_FIL][MAT_PIECE_COL]){
+    int i, j;
+    for(i = 0; i < MAT_PIECE_FIL; i++){
+        for(j = 0; j < MAT_PIECE_COL; j++){
+            mat[i][j].type = BLANK;
+            mat[i][j].state = ESTATICO;
+            mat[i][j].pivot = false;
+        }
+    }
+}
