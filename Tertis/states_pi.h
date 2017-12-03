@@ -5,16 +5,14 @@
  */
 
 /* 
- * File:   fall_instant.h
+ * File:   states_pi.h
  * Author: alan
  *
- * Created on November 28, 2017, 2:35 PM
+ * Created on December 3, 2017, 12:23 AM
  */
 
-#ifndef FALL_INSTANT_H
-#define FALL_INSTANT_H
-
-void fall_instant(PIECE matrix[TABLE_FIL][TABLE_COL]);
+#ifndef STATES_PI_H
+#define STATES_PI_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -27,5 +25,5 @@ extern "C" {
 }
 #endif
 
-#endif /* FALL_INSTANT_H */
+#endif /* STATES_PI_H */
 

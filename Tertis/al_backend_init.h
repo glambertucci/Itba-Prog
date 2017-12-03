@@ -5,28 +5,28 @@
  */
 
 /* 
- * File:   rotate.h
+ * File:   al_backend_init.h
  * Author: alan
  *
- * Created on November 12, 2017, 10:14 PM
+ * Created on December 3, 2017, 12:26 AM
  */
 
-#ifndef ROTATE_H
-#define ROTATE_H
-
-#include "general.h"
-void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]);
+#ifndef AL_BACKEND_INIT_H
+#define AL_BACKEND_INIT_H
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
+bool al_backend_init (AL_UTILS* al_utils);
+//
+void al_backend_destroy(AL_UTILS* al_utils);
+//
 
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* ROTATE_H */
+#endif /* AL_BACKEND_INIT_H */
 

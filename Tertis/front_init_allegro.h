@@ -5,27 +5,28 @@
  */
 
 /* 
- * File:   checkRotate.h
+ * File:   front_init_allegro.h
  * Author: alan
  *
- * Created on November 12, 2017, 5:01 PM
+ * Created on December 3, 2017, 12:28 AM
  */
 
-#ifndef CHECKROTATE_H
-#define CHECKROTATE_H
+#ifndef FRONT_INIT_ALLEGRO_H
+#define FRONT_INIT_ALLEGRO_H
 
-#include "general.h"
-bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]);
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-
+void frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils);
+//
+void frontend_destroy(FRONTEND* front_utils);
+//
 
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* CHECKROTATE_H */
+#endif /* FRONT_INIT_ALLEGRO_H */
 

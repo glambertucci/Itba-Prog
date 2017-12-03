@@ -5,17 +5,14 @@
  */
 
 /* 
- * File:   move.h
+ * File:   front_pi.h
  * Author: alan
  *
- * Created on November 12, 2017, 2:01 PM
+ * Created on December 3, 2017, 12:30 AM
  */
 
-#ifndef MOVE_H
-#define MOVE_H
-
-#include "general.h"
-void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir );
+#ifndef FRONT_PI_H
+#define FRONT_PI_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -28,5 +25,5 @@ extern "C" {
 }
 #endif
 
-#endif /* MOVE_H */
+#endif /* FRONT_PI_H */
 

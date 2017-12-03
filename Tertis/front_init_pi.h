@@ -5,17 +5,14 @@
  */
 
 /* 
- * File:   checkMove.h
+ * File:   front_init_pi.h
  * Author: alan
  *
- * Created on November 11, 2017, 11:49 PM
+ * Created on December 3, 2017, 12:24 AM
  */
 
-#ifndef CHECKMOVE_H
-#define CHECKMOVE_H
-
-#include "general.h"
-bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir);
+#ifndef FRONT_INIT_PI_H
+#define FRONT_INIT_PI_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -23,9 +20,10 @@ extern "C" {
 
 
 
+
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* CHECKMOVE_H */
+#endif /* FRONT_INIT_PI_H */
 
