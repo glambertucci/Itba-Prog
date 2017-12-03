@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-#include "front_al.h"
+#include "front_allegro.h"
 
 void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])
 {

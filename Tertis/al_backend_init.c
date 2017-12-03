@@ -1,5 +1,5 @@
 #include "general.h"
-#include "al_custom_init.h"
+#include "al_backend_init.h"
 #include <allegro5/allegro5.h>
 
 bool al_backend_init (AL_UTILS* al_utils){
@@ -26,6 +26,8 @@ bool al_backend_init (AL_UTILS* al_utils){
 
     al_start_timer(al_utils->timer);
     al_register_event_source(al_utils->queue, al_get_timer_event_source(al_utils->timer));
+    
+    return !(abort);
 }
 
 void al_backend_destroy(AL_UTILS* al_utils){

@@ -1,6 +1,7 @@
 #include "general.h"
 #include "game_start.h"
 #include "matrix_manipulation.h"
+#include "misc_functions.h"
 
 void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS* gamevars) 
 {
@@ -45,12 +46,6 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
     }
     
 } 
-
-void next_piece(GAME_UTILS* gamevars) {
-
-    gamevars->currentpiece.type = rand() %7 +1;
-    gamevars->currentpiece.state = CAYENDO;
-}
 
 void init_mat (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL])
 {

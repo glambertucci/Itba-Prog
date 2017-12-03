@@ -42,3 +42,9 @@ void pauseplay (AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Cuando se entra al 
     if(al_get_timer_started(al_utils->timer))
         al_stop_timer(al_utils->timer);
 }
+
+void next_piece(GAME_UTILS* gamevars) {
+
+    gamevars->currentpiece.type = rand() %7 +1;
+    gamevars->currentpiece.state = CAYENDO;
+}

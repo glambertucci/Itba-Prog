@@ -55,23 +55,9 @@ typedef struct { //Aca declaramos la estructura de cada bloque 1x1
     bool pivot;
 }PIECE;
 
-typedef struct { //Estructura para manejo de keyboard
-        bool keyboardpress;
-        int key;
-    }KEYBOARD;
-    
-typedef struct { //Estructura para manejo de mouse
-        bool mousepress;
-        int x;
-        int y;
-    }MOUSE;
-
 typedef struct { //Estructura para manejo de allegro
     ALLEGRO_TIMER * timer;
     ALLEGRO_EVENT_QUEUE * queue;
-    ALLEGRO_DISPLAY * display;
-    KEYBOARD keyboard;
-    MOUSE mouse;
     double timer_speed;
 }AL_UTILS;
     
@@ -83,5 +69,19 @@ typedef struct { //Estructura con variables de juego
     bool restart;
     bool draw;
 }GAME_UTILS;
+
+#ifdef RASP_PI
+typedef struct { //Estructura para front de pi
+    
+}FRONTEND;
+
+#else
+typedef struct { //Estructura para front de allegro
+    ALLEGRO_DISPLAY* display;
+    int key_pressed;
+    int mouse_x;
+    int mouse_y;
+}FRONTEND;
+#endif
 
 #endif

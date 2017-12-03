@@ -4,14 +4,15 @@
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_audio.h>
 
+#include "general.h"
 #include "states_allegro.h"
 #include "matrix_manipulation.h"
 #include "matrix_validation.h"
 #include "misc_functions.h"
-#include "general.h"
+#include "scored.h"
 
 
-void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]){
+void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) {
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
     bool madestatic = false;
@@ -20,8 +21,7 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
 
-            al_utils->keyboard.key = event.keyboard.keycode;
-            switch(al_utils->keyboard.key) {
+            switch(event.keyboard.keycode) {
 
                 case ALLEGRO_KEY_ESCAPE:
                     gamevars->state = MENU;
@@ -95,11 +95,11 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                     }
                 }
             }
-        }   
+        }
     }
 }
 
-void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Esta funcion toma los eventos durante el
+void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
                                                                //estado de menu
     ALLEGRO_EVENT event;
     int key_pressed = 0;
@@ -107,45 +107,27 @@ void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Esta funcion toma
     if(al_get_next_event(al_utils->queue, &event)){
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
-            al_utils->keyboard.keyboardpress = true;
-            al_utils->keyboard.key = event.keyboard.keycode;
+            
+            switch(event.keyboard.keycode) {
+                
+                case ALLEGRO_KEY_UP:
+                    break;
+                case ALLEGRO_KEY_DOWN:
+                    break;
+            }
         }
+        
         if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-            al_utils->mouse.mousepress = true;
-            al_utils->mouse.x = event.mouse.x;
-            al_utils->mouse.y = event.mouse.y;
-        }
-        if((al_utils->keyboard.keyboardpress) && (!(al_utils->mouse.mousepress))){
-            /*
-             
-             
-             
-             ACA PONEMOS QUE PASA CANDO SE APRETA EL TECLADO
-             
-             
-             
-             
-             */
-        }
-        if((!(al_utils->keyboard.keyboardpress)) && (al_utils->mouse.mousepress)){
-            /*
-             
-             
-             
-             ACA PONEMOS QUE PAS CUADO SE APRETA EL MAUSE
-             
-             
-             
-             
-             */
+
         }
     }
-    
 }
 
-void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars){
 
-    
+
+void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars){
+}
+/*
   
    ALLEGRO_BITMAP * image; //Puntero a la imagen del menu
    
@@ -153,8 +135,8 @@ void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars){
    al_draw_bitmap(image,0,0,0);
    al_flip_display();
    
-      /* Estos else if cambian el valor de quit y state cuando 
-       * haga click en las coordenadas de START, CONTINUE o QUIT */
+      //Estos else if cambian el valor de quit y state cuando 
+      //haga click en las coordenadas de START, CONTINUE o QUIT
      
       if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > (STARTPOSY)) &&
               (al_utils->mouse.x < (STARTPOSXEND) && al_utils->mouse.y < (STARTPOSYEND))){
@@ -178,3 +160,5 @@ void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars){
           }
      
    }
+   
+*/

@@ -26,6 +26,8 @@ void continueplay(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_F
 //
 void pauseplay (AL_UTILS* al_utils, GAME_UTILS* gamevars);
 //
+void next_piece(GAME_UTILS* gamevars);
+//
 
 #ifdef __cplusplus
 }

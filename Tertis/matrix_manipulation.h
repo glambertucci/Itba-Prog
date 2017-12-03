@@ -30,7 +30,8 @@ void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]);
 //
 void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila);
 //
-
+void clean_piece_mat (PIECE mat [MAT_PIECE_FIL][MAT_PIECE_COL]);
+//
 void copy_piece_to_mat (PIECE tablero [TABLE_FIL][TABLE_COL],PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL]);
 //
 void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE pieza);
