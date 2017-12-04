@@ -114,7 +114,7 @@ void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars) { //Esta funcion tom
   
     
     int key_pressed = 0;
-    int selected_op = CONTINUE; //Por default que sea continue (1)
+    static int selected_op = CONTINUE; //Por default que sea continue (1). Luego será el valor que haya tomado la vuelta anterior.
     static int lselected_op = CONTINUE; //"Last selected op", para luego evitar imprimir innecesariamente.
     
     if(al_get_next_event(al_utils->queue, &event)){
@@ -145,6 +145,7 @@ void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars) { //Esta funcion tom
                if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
               gamevars->restart = TRUE; //Con esto, reinicio el juego.
               gamevars->quit = TRUE; //Con esto, salgo del primer loop.
+			  selected_op = CONTINUE; Lo paso a CONTINUE para que sea la opción por defecto al pausar la primera vez tras reiniciar.
           }
         }
         else if((event.mouse.x > MENUMARGIN && event.mouse.y > (CONTPOSY)) &&
