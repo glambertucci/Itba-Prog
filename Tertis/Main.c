@@ -24,14 +24,14 @@ int main(void) {
     GAME_UTILS gamevars = {0}; //Variables de juego
     FRONTEND front_utils = {0}; //Variables de front end
     
-    gamevars.restart = true;  //DEBUG
+    //gamevars.quit = true;  //DEBUG
     
     if(al_backend_init(&al_utils)) { //Aca se inicializa el backend de allegro.
         
         do{
             game_start(matrix, piece_matrix, &gamevars); //Aca se inicializan las matrices y variables de juego.
             while(!(gamevars.quit)){
-                gamevars.state = PLAYING;  //DEBUG
+                //gamevars.state = PLAYING;  //DEBUG
                     if((gamevars.state == PLAYING)){
                         continueplay(&al_utils, &gamevars, matrix, piece_matrix);
                         playing_events(&al_utils, &gamevars, matrix, piece_matrix);

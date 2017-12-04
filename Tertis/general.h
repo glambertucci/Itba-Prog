@@ -23,6 +23,7 @@ enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 
 enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
 enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
+enum{START,CONTINUE,QUIT};
 
 #include <allegro5/allegro.h>
 #include <allegro5/timer.h>
@@ -75,6 +76,9 @@ typedef struct { //Estructura para front de pi
     
 }FRONTEND;
 
+#define UPKEY
+#define DOWNKEY
+
 #else
 typedef struct { //Estructura para front de allegro
     ALLEGRO_DISPLAY* display;
@@ -82,6 +86,10 @@ typedef struct { //Estructura para front de allegro
     int mouse_x;
     int mouse_y;
 }FRONTEND;
+
+#define UPKEY   
+#define DOWNKEY
+
 #endif
 
 #endif

@@ -102,7 +102,12 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
 void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
                                                                //estado de menu
     ALLEGRO_EVENT event;
+    ALLEGRO_BITMAP * image; //Puntero a la imagen del menu
+  
+  
+    
     int key_pressed = 0;
+    int selected_op = CONTINUE; //Por default que sea continue (1)
     
     if(al_get_next_event(al_utils->queue, &event)){
         
@@ -111,54 +116,45 @@ void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars) { //Esta funcion tom
             switch(event.keyboard.keycode) {
                 
                 case ALLEGRO_KEY_UP:
+                {
+                    if(selected_op>START){
+                        selected_op -= 1;
+                    }
+                }
                     break;
                 case ALLEGRO_KEY_DOWN:
+                    if(selected_op<QUIT){
+                        selected_op += 1;
+                    }
                     break;
             }
         }
-        
-        if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-
-        }
-    }
-}
-
-
-
-void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars){
-}
-/*
-  
-   ALLEGRO_BITMAP * image; //Puntero a la imagen del menu
-   
-   image = al_load_bitmap("menu.jpg");
-   al_draw_bitmap(image,0,0,0);
-   al_flip_display();
-   
-      //Estos else if cambian el valor de quit y state cuando 
-      //haga click en las coordenadas de START, CONTINUE o QUIT
-     
-      if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > (STARTPOSY)) &&
-              (al_utils->mouse.x < (STARTPOSXEND) && al_utils->mouse.y < (STARTPOSYEND))){
-          if(al_utils->mouse.mousepress == TRUE) {
+            
+        if((event.mouse.x > MENUMARGIN && event.mouse.y > (STARTPOSY)) &&
+        (event.mouse.x < (STARTPOSXEND) && event.mouse.y < (STARTPOSYEND))){
+            selected_op = START;
+               if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
               gamevars->restart = TRUE; //Con esto, reinicio el juego.
               gamevars->quit = TRUE; //Con esto, salgo del primer loop.
           }
-      } 
-   
-      else if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > (CONTPOSY)) &&
-              (al_utils->mouse.x < (CONTPOSXEND) && al_utils->mouse.y < (CONTPOSYEND))){
-          if(al_utils->mouse.mousepress == TRUE) {
+        }
+        else if((event.mouse.x > MENUMARGIN && event.mouse.y > (CONTPOSY)) &&
+              (event.mouse.x < (CONTPOSXEND) && event.mouse.y < (CONTPOSYEND))){
+              selected_op = CONTINUE;
+                 if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
               gamevars->state = PLAYING;
           }
-       }
+        }
 
-      else if((al_utils->mouse.x > MENUMARGIN && al_utils->mouse.y > QUITPOSY) &&
-          (al_utils->mouse.x < QUITPOSXEND && al_utils->mouse.y < QUITPOSYEND))
-          if(al_utils->mouse.mousepress == TRUE) {
-              gamevars->quit = TRUE;
+        else if((event.mouse.x > MENUMARGIN && event.mouse.y > QUITPOSY) &&
+          (event.mouse.x < QUITPOSXEND && event.mouse.y < QUITPOSYEND)){
+            selected_op = QUIT;
+               if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
+              gamevars->quit = TRUE;    
           }
-     
+        }
+    }
+
+
+
    }
-   
-*/
