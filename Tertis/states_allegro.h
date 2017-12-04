@@ -38,6 +38,8 @@ void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars);
 #define QUITPOSYEND (QUITPOSY + LETTERSIZE)
 #define QUITPOSXEND (MENUMARGIN + LETTERSIZE * 4)
    
+#define MOVEUP -1
+#define MOVEDOWN 1
 
 #ifdef __cplusplus
 }
