@@ -76,9 +76,6 @@ typedef struct { //Estructura para front de pi
     
 }FRONTEND;
 
-#define UPKEY
-#define DOWNKEY
-
 #else
 typedef struct { //Estructura para front de allegro
     ALLEGRO_DISPLAY* display;
@@ -86,9 +83,6 @@ typedef struct { //Estructura para front de allegro
     int mouse_x;
     int mouse_y;
 }FRONTEND;
-
-#define UPKEY   
-#define DOWNKEY
 
 #endif
 
