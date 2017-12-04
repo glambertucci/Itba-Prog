@@ -145,7 +145,7 @@ void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars) { //Esta funcion tom
                if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
               gamevars->restart = TRUE; //Con esto, reinicio el juego.
               gamevars->quit = TRUE; //Con esto, salgo del primer loop.
-			  selected_op = CONTINUE; Lo paso a CONTINUE para que sea la opción por defecto al pausar la primera vez tras reiniciar.
+			  selected_op = CONTINUE; //Lo paso a CONTINUE para que sea la opción por defecto al pausar la primera vez tras reiniciar.
           }
         }
         else if((event.mouse.x > MENUMARGIN && event.mouse.y > (CONTPOSY)) &&
