@@ -10,8 +10,16 @@
  *
  * Created on November 10, 2017, 3:11 PM
  */
-
 #include "general.h"
+#ifdef RASP_PI
+#include "front_init_pi.h"
+#include "front_pi.h"
+#include "states_pi.h"
+#else
+#include "front_init_allegro.h"
+#include "front_allegro.h"
+#include "states_allegro.h"
+#endif
 #include "al_backend_init.h"
 #include "game_start.h"
 #include "misc_functions.h"
@@ -24,28 +32,22 @@ int main(void) {
     GAME_UTILS gamevars = {0}; //Variables de juego
     FRONTEND front_utils = {0}; //Variables de front end
     
-    //gamevars.quit = true;  //DEBUG
-    
-    if(al_backend_init(&al_utils)) { //Aca se inicializa el backend de allegro.
+    if((al_backend_init(&al_utils)) && (frontend_init(&front_utils, &al_utils))) { //Aca se inicializa el backend de allegro.
         
         do{
             game_start(matrix, piece_matrix, &gamevars); //Aca se inicializan las matrices y variables de juego.
             while(!(gamevars.quit)){
-                //gamevars.state = PLAYING;  //DEBUG
                     if((gamevars.state == PLAYING)){
                         continueplay(&al_utils, &gamevars, matrix, piece_matrix);
                         playing_events(&al_utils, &gamevars, matrix, piece_matrix);
                     }
                     else if(gamevars.state == MENU){
-                    pauseplay(&al_utils, &gamevars);
-                    menu_events(&al_utils, &gamevars);
+                        pauseplay(&al_utils, &gamevars);
+                        menu_events(&al_utils, &front_utils, &gamevars);
                     }
 
-                    //draw_front();
-                
-                    al_draw_tablero(matrix);                    //DEBUG
-                    al_draw_next_piece(gamevars.currentpiece);  //DEBUG
-                    al_flip_display();                          //DEBUG
+                    draw_front(&al_utils, &front_utils, &gamevars, matrix);
+
             }
 
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
@@ -55,7 +57,7 @@ int main(void) {
         return (EXIT_SUCCESS);
         }
     else
-        return 1;
+        return (EXIT_FAILURE);
     
     }
     

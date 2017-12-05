@@ -17,8 +17,8 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-
-void frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils);
+    
+bool frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils);
 //
 void frontend_destroy(FRONTEND* front_utils);
 //

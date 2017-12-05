@@ -3,7 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+#include "general.h"
 #include "front_allegro.h"
+
+void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
+    
+    switch(gamevars->state) {
+        case PLAYING:
+            al_clear_to_color(al_map_rgb(192,192,192));
+            al_draw_tablero(matrix);
+            al_draw_next_piece(gamevars->currentpiece);
+            al_flip_display();
+            break;
+        case MENU:
+            al_draw_bitmap(front_utils->image[front_utils->selected_op],0,0,0); 
+            al_flip_display();
+            break;
+    }
+}
 
 void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])
 {
@@ -72,4 +90,3 @@ void al_draw_next_piece (PIECE future )
     }
     
 }
-

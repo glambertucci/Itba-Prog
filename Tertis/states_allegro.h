@@ -20,7 +20,7 @@ extern "C" {
 
 void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]);
 //
-void menu_events (AL_UTILS* al_utils, GAME_UTILS* gamevars);
+void menu_events (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars);
 //
 void menu (AL_UTILS * al_utils, GAME_UTILS * gamevars);
 //

@@ -33,8 +33,7 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
     //Llenamos la matriz de la pieza
     fill_mat_piece(piece_matrix, gamevars->currentpiece);
     
-    
-    if(gamevars->restart){                      //Si se presionó START/reiniciar, se espera que se inicie el juego.
+    if(gamevars->restart){ //Si se presionó START/reiniciar, se espera que se inicie el juego.
         gamevars->quit = FALSE;                 //y se copia la primera pieza al tablero.
         gamevars->state= PLAYING;               //Si no se cumple es porque es el primer inicio del juego
         gamevars->restart = false;              //y debo quedarme en el menu.

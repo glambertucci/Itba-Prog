@@ -41,6 +41,15 @@ void fall(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     }
 }
 
+void fall_instant(PIECE matrix[TABLE_FIL][TABLE_COL]){
+    
+    while(check_fall(matrix)){
+        fall(matrix);
+        all_static(matrix);
+    }
+    
+}
+
 void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir ) {
     
     uint8_t i, j;

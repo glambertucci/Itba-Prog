@@ -1,5 +1,7 @@
 #include "general.h"
 #include "scored.h"
+#include "matrix_manipulation.h"
+#include "misc_functions.h"
 
 
 void calculate_new_velocity(AL_UTILS* al_utils){
@@ -32,6 +34,13 @@ void change_velocity(AL_UTILS* al_utils) {
 }
 
 void continueplay(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]){ //Se fija si esta parado el timer, si lo esta, lo arranca
+    if(!(gamevars->is_not_first_time)){
+        copy_piece_to_mat(matrix, piece_mat);
+        next_piece(gamevars);
+        fill_mat_piece(piece_mat, gamevars->currentpiece);
+        gamevars->is_not_first_time = true;
+    }
+    
     if(!(al_get_timer_started(al_utils->timer))){
         al_start_timer(al_utils->timer);
     }
