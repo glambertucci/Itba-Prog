@@ -16,9 +16,13 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
     
-    if(al_get_next_event(al_utils->queue, &event)){
+    if(al_get_next_event(al_utils->queue, &event)) {
         
-        if(event.type == ALLEGRO_EVENT_KEY_DOWN){
+        if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+            gamevars->quit = true;
+        }
+        
+        if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
 
             switch(event.keyboard.keycode) {
 
@@ -56,7 +60,7 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
             }
         }
 
-        if(event.type == ALLEGRO_EVENT_TIMER) {                
+        if(event.type == ALLEGRO_EVENT_TIMER) {
  
             if(check_fall(matrix)) { //Si se puede caer la pieza, cae
                 fall(matrix);
@@ -84,7 +88,8 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                     }
                     else{
                         copy_piece_to_mat(matrix, piece_mat);
-                        gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde                  
+                        gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde   
+                        gamevars->quit = true; // y se sale del juego
                     }
                 }
             }

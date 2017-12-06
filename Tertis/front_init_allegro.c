@@ -37,6 +37,7 @@ bool frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils){
     front_utils->image[0] = al_load_bitmap("menus.jpg");
     front_utils->image[1] = al_load_bitmap("menuc.jpg");
     front_utils->image[2] = al_load_bitmap("menuq.jpg");
+    front_utils->image[3] = al_load_bitmap("lose.jpg");
     
     al_register_event_source(al_utils->queue, al_get_display_event_source(front_utils->display));
     al_register_event_source(al_utils->queue, al_get_keyboard_event_source());

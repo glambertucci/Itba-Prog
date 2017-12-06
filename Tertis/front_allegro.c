@@ -21,6 +21,12 @@ void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars,
             al_flip_display();
             break;
     }
+    if(gamevars->lose) {
+        gamevars->lose = false;
+        al_draw_bitmap(front_utils->image[3],0,0,0);
+        al_flip_display();
+        al_rest(3);
+    }
 }
 
 void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])

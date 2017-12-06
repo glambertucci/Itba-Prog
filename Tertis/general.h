@@ -44,7 +44,7 @@ enum{START,CONTINUE,QUIT};
 //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
-#define TOTAL_BUTTONS 3
+#define TOTAL_IMAGES 4
 //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
@@ -80,7 +80,7 @@ typedef struct { //Estructura para front de pi
 
 #else
 typedef struct { //Estructura para front de allegro
-    ALLEGRO_BITMAP * image[TOTAL_BUTTONS];
+    ALLEGRO_BITMAP * image[TOTAL_IMAGES];
     ALLEGRO_DISPLAY* display;
     int selected_op;
     int key_pressed;
