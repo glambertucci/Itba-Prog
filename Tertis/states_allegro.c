@@ -15,7 +15,6 @@
 void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) {
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
-    bool madestatic = false;
     
     if(al_get_next_event(al_utils->queue, &event)){
         
@@ -59,10 +58,11 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
 
         if(event.type == ALLEGRO_EVENT_TIMER) {                
 
-            if(gamevars->restart) { //Si el juego se habia reiniciado, copia la primera pieza al tablero
-                gamevars->restart == false;
-                copy_piece_to_mat(matrix, piece_mat);
-                clean_piece_mat(piece_mat);
+          if(gamevars->restart) { //Si el juego se habia reiniciado, copia la primera pieza al tablero
+           copy_piece_to_mat(matrix, piece_mat);  
+           clean_piece_mat(piece_mat);
+           next_piece(gamevars);
+           fill_mat_piece(piece_mat, gamevars->currentpiece);
             }
  
             if(check_fall(matrix)) { //Si se puede caer la pieza, cae

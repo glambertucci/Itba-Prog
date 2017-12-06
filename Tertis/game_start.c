@@ -37,7 +37,7 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
         gamevars->quit = FALSE;                 //y se copia la primera pieza al tablero.
         gamevars->state= PLAYING;               //Si no se cumple es porque es el primer inicio del juego
         gamevars->restart = false;              //y debo quedarme en el menu.
-        copy_piece_to_mat(matrix, piece_matrix);     
+        
     }
 
     else {  

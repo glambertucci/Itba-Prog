@@ -190,111 +190,111 @@ void clean_piece_mat (PIECE mat [MAT_PIECE_FIL][MAT_PIECE_COL]){
 
 void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE pieza) { 
 
-	switch(pieza.type) {
-
-		case STICK:
-			next_piece_mat[0][1].type=STICK;
-	        next_piece_mat[0][1].state=CAYENDO;
-	        next_piece_mat[0][1].pivot=false;
-	        next_piece_mat[1][1].type=STICK;
-	        next_piece_mat[1][1].state=CAYENDO;
-	        next_piece_mat[1][1].pivot=false;
-	        next_piece_mat[2][1].type=STICK;
-	        next_piece_mat[2][1].state=CAYENDO;
-	        next_piece_mat[2][1].pivot=true;
-	        next_piece_mat[3][1].type=STICK;
-	        next_piece_mat[3][1].state=CAYENDO;
-	        next_piece_mat[3][1].pivot=false;
-	        break;
-
-	    case EL:
-		   	next_piece_mat[1][1].type=EL;
-	       	next_piece_mat[1][1].state=CAYENDO;
-	       	next_piece_mat[1][1].pivot=false;
-	       	next_piece_mat[2][1].type=EL;
-	       	next_piece_mat[2][1].state=CAYENDO;
-	       	next_piece_mat[2][1].pivot=false;
-	       	next_piece_mat[3][1].type=EL;
-	       	next_piece_mat[3][1].state=CAYENDO;
-	       	next_piece_mat[3][1].pivot=true;
-	       	next_piece_mat[3][2].type=EL;
-	       	next_piece_mat[3][2].state=CAYENDO;
-	       	next_piece_mat[3][2].pivot=false;
-	       	break;
-
-	    case JEY:
-		    next_piece_mat[1][1].type=JEY;
-	     	next_piece_mat[1][1].state=CAYENDO;
-	       	next_piece_mat[1][1].pivot=false;
-	       	next_piece_mat[2][1].type=JEY;
-	       	next_piece_mat[2][1].state=CAYENDO;
-	       	next_piece_mat[2][1].pivot=false;
-	       	next_piece_mat[3][1].type=JEY;
-	       	next_piece_mat[3][1].state=CAYENDO;
-	       	next_piece_mat[3][1].pivot=true;
-	       	next_piece_mat[3][0].type=JEY;
-	       	next_piece_mat[3][0].state=CAYENDO;
-	       	next_piece_mat[3][0].pivot=false;
-
-	    case BLOCK:
-
-		   	next_piece_mat[2][0].type=BLOCK;
-	       	next_piece_mat[2][0].state=CAYENDO;
-	       	next_piece_mat[2][0].pivot=false;
-	       	next_piece_mat[2][1].type=BLOCK;
-	       	next_piece_mat[2][1].state=CAYENDO;
-	       	next_piece_mat[2][1].pivot=false;
-	       	next_piece_mat[3][1].type=BLOCK;
-	       	next_piece_mat[3][1].state=CAYENDO;
-	       	next_piece_mat[3][1].pivot=false;
-	       	next_piece_mat[3][0].type=BLOCK;
-	       	next_piece_mat[3][0].pivot=true;
-	       	next_piece_mat[3][0].state=CAYENDO;
-
-	    case ES:
-
-		   	next_piece_mat[2][1].type=ES;
-	       	next_piece_mat[2][1].state=CAYENDO;
-	       	next_piece_mat[2][1].pivot=false;
-	       	next_piece_mat[2][2].type=ES;
-	       	next_piece_mat[2][2].state=CAYENDO;
-	       	next_piece_mat[2][2].pivot=false;
-	       	next_piece_mat[3][1].type=ES;
-	       	next_piece_mat[3][1].state=CAYENDO;
-	       	next_piece_mat[3][1].pivot=true;
-	       	next_piece_mat[3][0].type=ES;
-	       	next_piece_mat[3][0].state=CAYENDO;
-	       	next_piece_mat[3][0].pivot=false;
-
-	    case ZED:
-
-		    next_piece_mat[2][1].type=ZED;
-	       	next_piece_mat[2][1].state=CAYENDO;
-	       	next_piece_mat[2][1].pivot=false;
-	       	next_piece_mat[2][0].type=ZED;
-	       	next_piece_mat[2][0].state=CAYENDO;
-	       	next_piece_mat[2][0].pivot=false;
-	       	next_piece_mat[3][1].type=ZED;
-	       	next_piece_mat[3][1].state=CAYENDO;
-	       	next_piece_mat[3][1].pivot=true;
-	       	next_piece_mat[3][2].type=ZED;
-	       	next_piece_mat[3][2].state=CAYENDO;
-	       	next_piece_mat[3][2].pivot=false;
-
-	    case TEE:
-
-		   	next_piece_mat[3][2].type=TEE;
-	       	next_piece_mat[3][2].state=CAYENDO;
-	       	next_piece_mat[3][2].pivot=false;       
-	       	next_piece_mat[2][1].type=TEE;
-	       	next_piece_mat[2][1].state=CAYENDO;
-	       	next_piece_mat[2][1].pivot=false;            
-	       	next_piece_mat[3][1].type=TEE;
-	       	next_piece_mat[3][1].state=CAYENDO;
-	       	next_piece_mat[3][1].pivot=true;
-	       	next_piece_mat[3][0].type=TEE;
-	       	next_piece_mat[3][0].state=CAYENDO;
-	       	next_piece_mat[3][0].pivot=false;
-
-	}
+    switch(pieza.type) {
+        
+        case STICK:
+            next_piece_mat[0][1].type=STICK;
+            next_piece_mat[0][1].state=CAYENDO;
+            next_piece_mat[0][1].pivot=false;
+            next_piece_mat[1][1].type=STICK;
+            next_piece_mat[1][1].state=CAYENDO;
+            next_piece_mat[1][1].pivot=false;
+            next_piece_mat[2][1].type=STICK;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=true;
+            next_piece_mat[3][1].type=STICK;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=false;
+            break;
+            
+        case EL:
+            next_piece_mat[1][1].type=EL;
+            next_piece_mat[1][1].state=CAYENDO;
+            next_piece_mat[1][1].pivot=false;
+            next_piece_mat[2][1].type=EL;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=false;
+            next_piece_mat[3][1].type=EL;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=true;
+            next_piece_mat[3][2].type=EL;
+            next_piece_mat[3][2].state=CAYENDO;
+            next_piece_mat[3][2].pivot=false;
+            break;
+            
+        case JEY:
+            next_piece_mat[1][1].type=JEY;
+            next_piece_mat[1][1].state=CAYENDO;
+            next_piece_mat[1][1].pivot=false;
+            next_piece_mat[2][1].type=JEY;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=false;
+            next_piece_mat[3][1].type=JEY;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=true;
+            next_piece_mat[3][0].type=JEY;
+            next_piece_mat[3][0].state=CAYENDO;
+            next_piece_mat[3][0].pivot=false;
+            break;
+            
+        case BLOCK:
+            next_piece_mat[2][0].type=BLOCK;
+            next_piece_mat[2][0].state=CAYENDO;
+            next_piece_mat[2][0].pivot=false;
+            next_piece_mat[2][1].type=BLOCK;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=false;
+            next_piece_mat[3][1].type=BLOCK;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=false;
+            next_piece_mat[3][0].type=BLOCK;
+            next_piece_mat[3][0].pivot=true;
+            next_piece_mat[3][0].state=CAYENDO;
+            break;
+            
+        case ES:
+            next_piece_mat[2][1].type=ES;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=false;
+            next_piece_mat[2][2].type=ES;
+            next_piece_mat[2][2].state=CAYENDO;
+            next_piece_mat[2][2].pivot=false;
+            next_piece_mat[3][1].type=ES;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=true;
+            next_piece_mat[3][0].type=ES;
+            next_piece_mat[3][0].state=CAYENDO;
+            next_piece_mat[3][0].pivot=false;
+            break;
+            
+        case ZED:
+            next_piece_mat[2][1].type=ZED;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=false;
+            next_piece_mat[2][0].type=ZED;
+            next_piece_mat[2][0].state=CAYENDO;
+            next_piece_mat[2][0].pivot=false;
+            next_piece_mat[3][1].type=ZED;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=true;
+            next_piece_mat[3][2].type=ZED;
+            next_piece_mat[3][2].state=CAYENDO;
+            next_piece_mat[3][2].pivot=false;
+            break;
+            
+        case TEE:
+            next_piece_mat[3][2].type=TEE;
+            next_piece_mat[3][2].state=CAYENDO;
+            next_piece_mat[3][2].pivot=false;       
+            next_piece_mat[2][1].type=TEE;
+            next_piece_mat[2][1].state=CAYENDO;
+            next_piece_mat[2][1].pivot=false;            
+            next_piece_mat[3][1].type=TEE;
+            next_piece_mat[3][1].state=CAYENDO;
+            next_piece_mat[3][1].pivot=true;
+            next_piece_mat[3][0].type=TEE;
+            next_piece_mat[3][0].state=CAYENDO;
+            next_piece_mat[3][0].pivot=false;
+            break;
+    }
 }
