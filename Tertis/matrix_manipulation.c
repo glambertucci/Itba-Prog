@@ -2,6 +2,7 @@
 #include "matrix_manipulation.h"
 #include "matrix_validation.h"
 #include "scored.h"
+#include "front_allegro.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////MANEJO DE TABLERO/////
@@ -34,7 +35,7 @@ void fall(PIECE matrix[TABLE_FIL][TABLE_COL]) {
                 matrix[i+1][j].state = matrix[i][j].state;
                 matrix[i+1][j].type = matrix[i][j].type;
                         //Borro la data del espacio original
-                matrix[i][j].state = ESTATICO;
+                matrix[i][j].state = CAYENDO;
                 matrix[i][j].type = BLANK;
             }
         }
@@ -144,23 +145,43 @@ void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]) {
 
 void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     
-    uint8_t i, j;
+    uint8_t i, j,abort=false;
     
-    for(i = 2; i < TABLE_COL-2; i++) {
-        matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
-    }                                 //y ya van a estar estaticos.
 
-    for(i = fila; i >= 2; i--) {
-        for(j = 2; j < TABLE_COL-2; j++) {
-            matrix[i][j].state = CAYENDO;
+    for(i = 2; i < TABLE_FIL-2; i++) 
+    {
+        for(j = 2; j < TABLE_COL-2; j++) 
+        {
+            matrix[i][j].state = CAYENDO;        
         }
     }
-    
-    while(check_fall(matrix)){
-        fall(matrix);
+    for(j = 2; j < TABLE_COL-2; j++) 
+    {
+        matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
+        matrix[fila][j].state=CAYENDO;//y en estatico
+
+
+    }                                 //y ya van a estar estaticos.
+
+    while(!abort)
+    {
+        if (check_fall(matrix))
+        {
+        fall(matrix); 
+        printf("entré\n");
+
+        }
+        else 
+        {
+            abort=true;
+
+        }
     }
-    
+   
+        
     all_static(matrix);
+
+
 
 }
 

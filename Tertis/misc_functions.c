@@ -55,6 +55,6 @@ void pauseplay (AL_UTILS* al_utils, GAME_UTILS* gamevars){ //Cuando se entra al 
 
 void next_piece(GAME_UTILS* gamevars) {
 
-    gamevars->currentpiece.type = rand() %7 +1;
+    gamevars->currentpiece.type =rand() %7 +1;
     gamevars->currentpiece.state = CAYENDO;
 }
