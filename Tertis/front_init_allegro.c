@@ -6,7 +6,7 @@
 
 bool frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils){
 
-    int abort = 0;
+    int abort = 0; 
 
     if(!(al_init_image_addon())){
         fprintf(stderr, "Image addon failed to initialize.");
@@ -51,6 +51,8 @@ bool frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils){
     return !(abort);
 }
 
-void frontend_destroy(FRONTEND* front_utils){
+void frontend_destroy(FRONTEND* front_utils)
+{
 	al_destroy_display(front_utils->display);
+        al_uninstall_audio();
 }

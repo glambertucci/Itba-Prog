@@ -57,6 +57,7 @@ int main(void) {
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
 
         al_backend_destroy(&al_utils);
+        frontend_destroy(&front_utils);
 
         return (EXIT_SUCCESS);
         }
