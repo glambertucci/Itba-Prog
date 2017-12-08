@@ -138,7 +138,7 @@ void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]) {
             score++;
         }
     }
-    
+    printf("vivi hasta aca\n");
     add_score(score);
 }
 
@@ -148,7 +148,7 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     uint8_t i, j,abort=false;
     
 
-    for(i = 2; i < TABLE_FIL-2; i++) 
+    for(i = 2; i < fila; i++) 
     {
         for(j = 2; j < TABLE_COL-2; j++) 
         {
@@ -158,11 +158,9 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     for(j = 2; j < TABLE_COL-2; j++) 
     {
         matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
-        matrix[fila][j].state=CAYENDO;//y en estatico
-
-
+        matrix[fila][j].state=ESTATICO;//y en estatico
     }                                 //y ya van a estar estaticos.
-
+    printf("POr entrar a al punto critico\n");
     while(!abort)
     {
         if (check_fall(matrix))
@@ -174,7 +172,7 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
         else 
         {
             abort=true;
-
+            printf("no entre\n");
         }
     }
    

@@ -2,7 +2,7 @@
 
 
 bool check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]) {
-
+    static int c=0;
 int i,j,abort=0;
 
     for (i=2;i<=TABLE_FIL-2;i++) 
@@ -21,7 +21,7 @@ int i,j,abort=0;
             }
         }
     }
-
+//printf("Abort vale %d entre %d veces\nCheck fall vale %d\n",abort,++c, abort==0 );
 return abort==0;
 }
 

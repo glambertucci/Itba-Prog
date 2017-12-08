@@ -76,6 +76,7 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                     calculate_new_velocity(al_utils);
                     change_velocity(al_utils);
                     gamevars->draw = true;
+                    printf("sigo aqui\n");
                 }
 
                 else {
@@ -103,6 +104,7 @@ void menu_events (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevar
     ALLEGRO_EVENT event;
     
     if(al_get_next_event(al_utils->queue, &event)){
+        
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
             
