@@ -22,6 +22,11 @@ bool frontend_init(FRONTEND* front_utils, AL_UTILS* al_utils){
         fprintf(stderr, "Keyboard failed to initialize.");
         abort = 1;
     }
+    if (!al_install_audio())					//
+    {								
+        fprintf(stderr,"Audio not installed");
+        abort = 1;  
+    }
     
     if(!(al_install_mouse())){
         fprintf(stderr, "Mouse failed to initialize.");

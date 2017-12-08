@@ -24,6 +24,8 @@ enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
 enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
 enum{START,CONTINUE,QUIT};
+enum{NOT_OK,OK,NO_NEW};
+#define PIECENUM 187
 
 #include <allegro5/allegro.h>
 #include <allegro5/timer.h>

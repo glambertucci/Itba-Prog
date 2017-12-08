@@ -31,7 +31,7 @@ void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars,
 
 void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])
 {
-    int i,j ;
+    int i,j;
     for (j=2;j<=TABLE_FIL-2;j++)
     {
         for (i=2;i<=TABLE_COL-2;i++)
@@ -52,6 +52,8 @@ void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])
                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,255,255));
             else if (tablero[j][i].type == TEE)
                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(139,69,19));
+            
+  
         } 
     }
 
@@ -91,8 +93,9 @@ void al_draw_next_piece (PIECE future )
     }
         else if (future.type == TEE)
     {
-        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*3, SCREEN_W-SEPARACION*3, SEPARACION*6 , al_map_rgb(139,69,19));
-        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*5, SCREEN_W-SEPARACION*5, SEPARACION*4 , al_map_rgb(139,69,19));
+        al_draw_filled_rectangle(SCREEN_W-SEPARACION*2, SEPARACION*5 ,SCREEN_W-SEPARACION*5, SEPARACION*6 , al_map_rgb(139,69,19));
+        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*4 , SCREEN_W-SEPARACION*3, SEPARACION*5, al_map_rgb(139,69,19));
+ 
     }
-    
+      
 }

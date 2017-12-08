@@ -15,7 +15,7 @@
 void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) {
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
-    
+  
     if(al_get_next_event(al_utils->queue, &event)) {
         
         if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -24,35 +24,40 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN) {
 
-            switch(event.keyboard.keycode) {
+            switch(event.keyboard.keycode) 
+            {
 
                 case ALLEGRO_KEY_ESCAPE:
                     gamevars->state = MENU;
                     break;
 
                 case ALLEGRO_KEY_LEFT:
-                    if(checkMove(matrix, LEFT)) {
+                    if(checkMove(matrix, LEFT)) 
+                    {
                         move(matrix, LEFT);
                         gamevars->draw = true;
                     }
                     break;
 
                 case ALLEGRO_KEY_RIGHT:
-                    if(checkMove(matrix, RIGHT)) {
+                    if(checkMove(matrix, RIGHT)) 
+                    {
                         move(matrix, RIGHT);
                         gamevars->draw = true;
                     }
                     break;
 
                 case ALLEGRO_KEY_UP:
-                    if(checkRotate(matrix)) {
+                    if(checkRotate(matrix)) 
+                    {
                         rotate(matrix);
                         gamevars->draw = true;
                     }
                     break;
 
                 case ALLEGRO_KEY_DOWN:
-                    while(check_fall(matrix)) {
+                    while(check_fall(matrix)) 
+                    {
                         fall(matrix);
                     }
                     gamevars->draw = true;
@@ -60,23 +65,27 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
             }
         }
 
-        if(event.type == ALLEGRO_EVENT_TIMER) {
- 
-            if(check_fall(matrix)) { //Si se puede caer la pieza, cae
+        if(event.type == ALLEGRO_EVENT_TIMER) 
+        {
+         //   printf("HOLA\n");//DEBUG
+            if(OK == check_fall(matrix)) 
+            {                            //Si se puede caer la pieza, cae
                 fall(matrix);
                 gamevars->draw = true;  
             }
 
-            else { //Si no se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
+            else 
+            {                            //Si no se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
 
                 all_static(matrix);     //y se aumenta la velocidad si es necesario.
 
-                if(scored(matrix)){
+                if(scored(matrix))
+                {
                     calculate_lines(matrix);
                     calculate_new_velocity(al_utils);
                     change_velocity(al_utils);
                     gamevars->draw = true;
-                    printf("sigo aqui\n");
+                   // printf("sigo aqui\n");//DEBUG
                 }
 
                 else {

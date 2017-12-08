@@ -18,7 +18,8 @@
 extern "C" {
 #endif
 
-bool check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]);
+int check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]);
+//devuelve OK NOT_OK o NO_NEW
 //
 bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir);
 //

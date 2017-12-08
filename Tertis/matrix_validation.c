@@ -1,9 +1,10 @@
 #include "general.h"
 
 
-bool check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]) {
-    static int c=0;
-int i,j,abort=0;
+int check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]) {
+ //  static int c=0;//DEBUG
+
+int i,j,abort=OK,count=0;
 
     for (i=2;i<=TABLE_FIL-2;i++) 
     {
@@ -12,17 +13,33 @@ int i,j,abort=0;
             if (tablero[i][j].state == CAYENDO) 
             {   
                 if((tablero [i+1] [j].type != BLANK ) ) 
-                {                                        //si no es estatico el de abajo 
+                {                                          //si no es estatico el de abajo 
                     if ((tablero[i+1][j].state != CAYENDO)) 
                     {
-                        abort++;                        
+                        abort=NOT_OK;                        
                     }
                 }
+                
             }
         }
     }
-//printf("Abort vale %d entre %d veces\nCheck fall vale %d\n",abort,++c, abort==0 );
-return abort==0;
+
+    for (i=2;i<=TABLE_FIL-2;i++) 
+    {
+        for (j=2;j<=TABLE_COL-2;j++) 
+        { 
+            if (tablero[i][j].state != CAYENDO)
+            {
+                count++;
+            }
+        }
+    }
+if (count == PIECENUM)
+{
+    abort = NO_NEW;
+}
+//printf("Abort vale %d entre %d veces\n",abort,++c );//DEBUG
+return abort;
 }
 
 bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir) {

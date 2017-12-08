@@ -17,6 +17,7 @@ void all_static (PIECE tablero [TABLE_FIL][TABLE_COL]) {
         for (j = 2; j < TABLE_COL-2; j++)
         {
             tablero[i][j].state=ESTATICO;
+            tablero[i][j].pivot=false;
         } 
     }
 }
@@ -128,17 +129,22 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
 
 }
 
-void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]) {
+void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
+{
     
     uint8_t i, score;
     
-    for(i = TABLE_FIL-3; i >= 2; i--) {
-        if(matrix[i][2].type == SCORED) {
+    for(i = TABLE_FIL-2; i >= 2; i--) 
+    {
+        if(matrix[i][0].type == SCORED) 
+        {
             delete_line(matrix, i);
+          //  printf("lines scored to delete %d ",i);//DEBUG
             score++;
+            printf("score %d\n",score);//DEBUG
         }
     }
-    printf("vivi hasta aca\n");
+    //printf("vivi hasta aca\n");//DEBUG
     add_score(score);
 }
 
@@ -160,19 +166,19 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
         matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
         matrix[fila][j].state=ESTATICO;//y en estatico
     }                                 //y ya van a estar estaticos.
-    printf("POr entrar a al punto critico\n");
+  //  printf("POr entrar a al punto critico\n");//DEBUG
     while(!abort)
     {
         if (check_fall(matrix))
         {
         fall(matrix); 
-        printf("entré\n");
+     //   printf("entré\n");//DEBUG
 
         }
         else 
         {
             abort=true;
-            printf("no entre\n");
+    //        printf("no entre\n");//DEBUG
         }
     }
    
