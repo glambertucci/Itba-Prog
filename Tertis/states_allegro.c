@@ -104,6 +104,9 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                 }
             }
         }
+         if((event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)){
+            gamevars->quit = TRUE;
+         }
     }
 }
 
@@ -113,7 +116,6 @@ void menu_events (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevar
     ALLEGRO_EVENT event;
     
     if(al_get_next_event(al_utils->queue, &event)){
-        
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
             
@@ -167,13 +169,16 @@ void menu_events (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevar
                     is_not_first_time = true;
             }
         }
-
         else if((event.mouse.x > MENUMARGIN && event.mouse.y > QUITPOSY) &&
           (event.mouse.x < QUITPOSXEND && event.mouse.y < QUITPOSYEND)){
             front_utils->selected_op = QUIT;
                 if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){
-                    gamevars->quit = TRUE;    
+                    gamevars->quit = TRUE; 
+                }
+
             }
+        if((event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)){
+            gamevars->quit = TRUE;
         }
     }
 }

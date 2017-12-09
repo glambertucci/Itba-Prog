@@ -36,14 +36,18 @@ void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])
     {
         for (i=2;i<=TABLE_COL-2;i++)
         {
-            if ((tablero [j] [i]).type == BLANK)
+            if ((tablero [j] [i]).type == BLANK){
                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                if((tablero[j][i]).state == ESTATICO){
+                    al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(255,255,255));
+                }
+            }
             else if (tablero[j][i].type == STICK)
                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(255,0,0));
             else if (tablero[j][i].type == EL)
                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(139,0,139));
             else if (tablero[j][i].type == JEY)
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(255,255,255));
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,200,200));
             else if (tablero[j][i].type == BLOCK)
                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,255));
             else if (tablero[j][i].type == ES)
@@ -74,8 +78,8 @@ void al_draw_next_piece (PIECE future )
     }
         else if (future.type == JEY)
     {
-        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*3, SCREEN_W-SEPARACION*3, SEPARACION*6 , al_map_rgb(255,255,255));
-        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*5, SCREEN_W-SEPARACION*5, SEPARACION*6 , al_map_rgb(255,255,255));
+        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*3, SCREEN_W-SEPARACION*3, SEPARACION*6 , al_map_rgb(0,200,200));
+        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*5, SCREEN_W-SEPARACION*5, SEPARACION*6 , al_map_rgb(0,200,200));
     }
         else if (future.type == BLOCK)
     {

@@ -37,7 +37,7 @@ void fall(PIECE matrix[TABLE_FIL][TABLE_COL]) {
                 matrix[i+1][j].type = matrix[i][j].type;
                 matrix[i+1][j].pivot = matrix[i][j].pivot;
                         //Borro la data del espacio original
-                matrix[i][j].state = CAYENDO;
+                matrix[i][j].state = ESTATICO;
                 matrix[i][j].type = BLANK;
                 matrix[i][j].pivot = false;
             }
@@ -158,21 +158,31 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     
     uint8_t i, j,abort=false;
     
-
-    for(i = 2; i < fila; i++) 
+    /*for(j = 2; j < TABLE_COL-2; j++) 
+    {
+        matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
+        matrix[fila][j].state=ESTATICO;//y en estatico
+    }                                 //y ya van a estar estaticos.
+ */
+    
+  /* for(i = 2; i < fila; i++) 
     {
         for(j = 2; j < TABLE_COL-2; j++) 
         {
             matrix[i][j].state = CAYENDO;        
         }
     }
-    for(j = 2; j < TABLE_COL-2; j++) 
+*/
+    
+   for(i = fila; i > 2 ; i--) //Me paro en la linea borrada...
     {
-        matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
-        matrix[fila][j].state=ESTATICO;//y en estatico
-    }                                 //y ya van a estar estaticos.
-  //  printf("POr entrar a al punto critico\n");//DEBUG
-    while(!abort)
+        for(j = 0; j < TABLE_COL-2; j++) //...y bajo una fila todo lo que esté arriba.
+        {
+            matrix[i][j]=matrix[i-1][j];      
+        }
+    }
+
+  /* while(!abort)
     {
         if (check_fall(matrix))
         {
@@ -186,7 +196,7 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     //        printf("no entre\n");//DEBUG
         }
     }
-   
+ */
         
     all_static(matrix);
 
