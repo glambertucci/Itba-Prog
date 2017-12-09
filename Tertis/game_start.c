@@ -10,6 +10,7 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
     //Inicializamos la matriz
     for(i = 0; i < TABLE_FIL; i++) {
         for(j = 0; j < TABLE_COL; j++) {
+            matrix[i][j].pivot = false;
         	if(i<2||i>=TABLE_FIL-2||j<2||j>=TABLE_COL-2){
         		(matrix[i][j]).type = CEMENTO;
         		(matrix[i][j]).state = ESTATICO;

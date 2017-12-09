@@ -26,18 +26,20 @@ void fall(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     
     uint8_t i, j;
     
-    for(i = TABLE_FIL-1; i != 1; i--) 
+    for(i = TABLE_FIL-2; i >= 2; i--) 
     {
-        for(j = TABLE_COL-1; j != 1; j--) 
+        for(j = TABLE_COL-2; j >= 1; j--) 
         {
             if(matrix[i][j].state == CAYENDO) {
 
                         //Copio data al espacio de abajo
                 matrix[i+1][j].state = matrix[i][j].state;
                 matrix[i+1][j].type = matrix[i][j].type;
+                matrix[i+1][j].pivot = matrix[i][j].pivot;
                         //Borro la data del espacio original
                 matrix[i][j].state = CAYENDO;
                 matrix[i][j].type = BLANK;
+                matrix[i][j].pivot = false;
             }
         }
     }
@@ -64,8 +66,10 @@ void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir ) {
 	                if((matrix[i][j].state == CAYENDO)) { //Si encuentro algo cayendo
 	                    matrix[i][j-1].state = matrix[i][j].state; //Copio data al bloque
 	                    matrix[i][j-1].type = matrix[i][j].type; //de la izquierda
+                            matrix[i][j-1].pivot = matrix[i][j].pivot;
 	                    matrix[i][j].state = ESTATICO; //y borro la data
 	                    matrix[i][j].type = BLANK; //del original
+                            matrix[i][j].pivot = false;
 	                    
 	                }
 	            }
@@ -78,8 +82,10 @@ void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir ) {
 	                if((matrix[i][j].state == CAYENDO)) { //Si encuentro algo cayendo
 	                    matrix[i][j+1].state = matrix[i][j].state; //Copio data al bloque
 	                    matrix[i][j+1].type = matrix[i][j].type; //de la izquierda
+                            matrix[i][j+1].pivot = matrix[i][j].pivot;
 	                    matrix[i][j].state = ESTATICO; //y borro la data
 	                    matrix[i][j].type = BLANK; //del original
+                            matrix[i][j].pivot = false;
 	                    
 	                }
 	            }
@@ -95,7 +101,7 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     
     for(i = 2; i < TABLE_FIL-2; i++){
         for(j = 2; j < TABLE_COL-2; j++){
-            if((matrix[i][j].pivot == true) && (matrix[i][j].state == CAYENDO)){
+            if(matrix[i][j].pivot){
                 temp_type = matrix[i][j].type;
                 pivot_fil = i;
                 pivot_col = j; //solamente va a haber UN UNICO pivote cayendo siempre
@@ -106,9 +112,9 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     //Paso siguiente mover cada cuadradito a su lugar correspondiente borrando
     //el original. Esto se hace pensando al pivote como origen con las coordenadas
     //(x,y) a cada cuadradito a mover. (x,y) pasa a ser (y,-x) luego de la rotacion.
-    for(i = pivot_fil-2; i < pivot_fil+2; i++)
+    for(i = pivot_fil-2; i <= pivot_fil+2; i++)
     {
-        for(j = pivot_col-2; j < pivot_col+2; j++)
+        for(j = pivot_col-2; j <= pivot_col+2; j++)
         {
             if((matrix[i][j].state == CAYENDO) && (matrix[i][j].type == temp_type))
             {  //En la linea de abajo coloco el cuadradito nuevo
@@ -126,7 +132,6 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
         matrix[*(temp_fil + i)][*(temp_col + i)].type = temp_type;
         matrix[*(temp_fil + i)][*(temp_col + i)].state = CAYENDO;
     }
-
 }
 
 void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
@@ -329,3 +334,38 @@ void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE 
             break;
     }
 }
+
+/*
+void rotate (PIECE matrix[TABLE_FIL][TABLE_COL]) {
+    
+    int i, j, m, n, k = 0;
+    int pivot_fil, pivot_col;
+    int new_x_pos[4];
+    int new_y_pos[4];
+    
+    //BUSCO PIVOTE
+    for(i = 2; i < TABLE_FIL-2; i++)   {
+        for(j = 2; j < TABLE_COL-2; j++) {
+            if(matrix[i][j].pivot)         {
+                printf("found pivot at (%d,%d)", j, i);
+                pivot_fil = i;
+                pivot_col = j;
+                for(m = i-2; m <= i+2; m++)  {
+                    for(n = j-2; n <= j+2; n++){
+                        if((matrix[m][n].type == matrix[i][j].type) && (matrix[m][n].state == CAYENDO) && (!(matrix[m][n].pivot))) {
+                            new_x_pos[k] = m-i;
+                            new_y_pos[k] = -(n-j);
+                            k++;
+                            matrix[m][n].type = BLANK;
+                            matrix[m][n].state = ESTATICO;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(k = 0; k < 4; k++){
+                matrix[i+new_y_pos[k]][j+new_x_pos[k]].type = matrix[pivot_fil][pivot_col].type;
+                matrix[i+new_y_pos[k]][j+new_x_pos[k]].state = CAYENDO;
+    }
+} */

@@ -47,17 +47,12 @@ int main(void) {
                     }
 
                     draw_front(&al_utils, &front_utils, &gamevars, matrix);
+
             }
-            
-            if(gamevars.lose) {
-                draw_front(&al_utils, &front_utils, &gamevars, matrix);
-                
-            }
-            
+
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
 
         al_backend_destroy(&al_utils);
-        frontend_destroy(&front_utils);
 
         return (EXIT_SUCCESS);
         }

@@ -62,13 +62,14 @@ bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir) {
         for(i = 2; i < TABLE_FIL-2; i++) {
             for(j = 2; j < TABLE_COL-2; j++) {              
                 if(matrix[i][j].state == CAYENDO) {
-                    if(!((matrix[i][j+1].type == BLANK)||(matrix[i][j+1].state == CAYENDO)))
-                        abort++;                   
+                    if(!((matrix[i][j+1].type == BLANK)||(matrix[i][j+1].state == CAYENDO))){
+                        abort++;  
+                    }
                 }
             }
         }        
     }
-
+    
     return abort == 0;
 }
 
@@ -78,9 +79,9 @@ bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) { //Rota siempre en sentido
     
     for(i = 2; i < TABLE_FIL-2; i++){
         for(j = 2; j < TABLE_COL-2; j++){
-            if((matrix[i][j].pivot == true) && (matrix[i][j].state == CAYENDO)){
+            if(matrix[i][j].pivot){
                 pivot_fil = i;
-                pivot_col = j; //solamente va a haber UN UNICO pivote cayendo siempre
+                pivot_col = j; //solamente va a haber UN UNICO pivote siempre
             }   
         }  // Luego de los for, pivot_fil y pivot_col seran las coordenadas del pivote.
     }
@@ -90,8 +91,8 @@ bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) { //Rota siempre en sentido
     	//rotando un punto en el espacio respecto al pivote representado como (x,y)
     	//(x,y)->(y,-x).
 
-    for(i = pivot_fil-2; i < pivot_fil+2; i++){
-        for(j = pivot_col-2; j < pivot_col+2; j++){
+    for(i = pivot_fil-2; i <= pivot_fil+2; i++){
+        for(j = pivot_col-2; j <= pivot_col+2; j++){
             if(matrix[i][j].state == CAYENDO){
                 if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].type == BLANK)){
                     if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].state == CAYENDO))
@@ -101,7 +102,7 @@ bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) { //Rota siempre en sentido
         }
     }
     
-    return abort == 0;
+    return (!abort);
     
 }
 
@@ -117,5 +118,28 @@ bool can_i_copy (PIECE tablero [TABLE_FIL][TABLE_COL]) {
             }
         }
         
-    return abort==0;
+    return (!abort);
 }
+
+/*
+bool checkRotate (PIECE matrix[TABLE_FIL][TABLE_COL]) {
+    
+    bool abort = 0;
+    int i, j, m, n;
+    
+    for(i = 2; i < TABLE_FIL-2; i++)   {
+        for(j = 2; j < TABLE_COL-2; j++) {
+            if(matrix[i][j].pivot)         {
+                printf("found pivot at (%d,%d)", j, i);
+                for(m = i-2; m <= i+2; m++)  {
+                    for(n = j-2; n <= j+2; n++){
+                        if(matrix[i+(-(n-j))][j+(m-i)].type == CEMENTO) {
+                            abort++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return (!abort);
+} */

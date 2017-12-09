@@ -61,4 +61,5 @@ void next_piece(GAME_UTILS* gamevars) {
 
     gamevars->currentpiece.type =rand() %7 +1;
     gamevars->currentpiece.state = CAYENDO;
+    gamevars->currentpiece.type = EL;
 }
