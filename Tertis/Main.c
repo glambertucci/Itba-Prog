@@ -45,7 +45,7 @@ int main(void)
                         if (prev_state != gamevars.state )
                         {
                         al_stop_samples();
-                        al_play_sample (front_utils . samples[0],2.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+                        al_play_sample (front_utils . samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
                         prev_state = gamevars.state;
                         }
                         continueplay(&al_utils, &gamevars, matrix, piece_matrix);
@@ -57,7 +57,7 @@ int main(void)
                         if (prev_state != gamevars.state )
                         {
                         al_stop_samples();
-                        al_play_sample (front_utils . samples[1],2.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+                        al_play_sample (front_utils . samples[1],1.25,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
                         prev_state = gamevars.state;
                         }
                         pauseplay(&al_utils, &gamevars);

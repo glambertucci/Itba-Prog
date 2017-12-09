@@ -13,7 +13,8 @@
 
 #ifndef FRONT_H
 #define FRONT_H
-#define SEPARACION (40.0)
+#define SEPARACION (38.0)
+#define OUTLINE 2
 #include <allegro5/system.h>
 #include <allegro5/color.h>
 #include <allegro5/allegro_primitives.h>

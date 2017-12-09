@@ -11,7 +11,7 @@ void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars,
     
     switch(gamevars->state) {
         case PLAYING:
-            al_clear_to_color(al_map_rgb(192,192,192));
+            al_draw_bitmap(front_utils->image[4],0,0,0);
             al_draw_tablero(matrix);
             al_draw_next_piece(gamevars->currentpiece);
             al_flip_display();
@@ -37,39 +37,43 @@ void al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL])
         for (i=2;i<=TABLE_COL-2;i++)
         {
             if ((tablero [j] [i]).type == BLANK){
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
-                if((tablero[j][i]).state == ESTATICO){
-                    al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(255,255,255));
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(132,132,132));
                 }
+            else if (tablero[j][i].type == STICK){
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                al_draw_filled_rectangle(SEPARACION*i+OUTLINE , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE ,  al_map_rgb(255,0,0));
             }
-            else if (tablero[j][i].type == STICK)
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(255,0,0));
-            else if (tablero[j][i].type == EL)
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(139,0,139));
-            else if (tablero[j][i].type == JEY)
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,200,200));
-            else if (tablero[j][i].type == BLOCK)
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,255));
-            else if (tablero[j][i].type == ES)
-                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,255,0));
-            else if (tablero[j][i].type == ZED)
-                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,255,255));
-            else if (tablero[j][i].type == TEE)
-               al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(139,69,19));
-            
-  
+            else if (tablero[j][i].type == EL){
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                al_draw_filled_rectangle(SEPARACION*i+OUTLINE , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE , al_map_rgb(139,0,139));}
+                
+            else if (tablero[j][i].type == JEY){
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                al_draw_filled_rectangle(SEPARACION*i+OUTLINE , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE ,  al_map_rgb(0,200,200));}
+            else if (tablero[j][i].type == BLOCK){
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                al_draw_filled_rectangle(SEPARACION*i+1 , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE ,  al_map_rgb(0,0,255));}
+            else if (tablero[j][i].type == ES){
+                 al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                 al_draw_filled_rectangle(SEPARACION*i+1 , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE ,  al_map_rgb(0,255,0));}
+            else if (tablero[j][i].type == ZED){
+                al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+                al_draw_filled_rectangle(SEPARACION*i+1 , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE ,  al_map_rgb(0,255,255));}
+            else if (tablero[j][i].type == TEE){
+               al_draw_filled_rectangle(SEPARACION*i , SEPARACION*j, SEPARACION*i+SEPARACION , SEPARACION*j+SEPARACION ,  al_map_rgb(0,0,0));
+               al_draw_filled_rectangle(SEPARACION*i+1 , SEPARACION*j+OUTLINE, SEPARACION*i+SEPARACION-OUTLINE , SEPARACION*j+SEPARACION-OUTLINE ,  al_map_rgb(139,69,19));}
         } 
     }
-
 }
 
 void al_draw_next_piece (PIECE future )
 {
-    al_draw_filled_rectangle(SCREEN_W-SEPARACION*6 , SEPARACION*2, SCREEN_W-SEPARACION*1 , SEPARACION*8 ,  al_map_rgb(0,0,0));
+    al_draw_filled_rectangle(SCREEN_W-SEPARACION*6 , SEPARACION*2, SCREEN_W-SEPARACION*1 , SEPARACION*8 ,  al_map_rgb(132,132,132));
 
     if (future.type == STICK)
-    {
-        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*3, SCREEN_W-SEPARACION*3, SEPARACION*7 ,  al_map_rgb(255,0,0));
+    {   al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*3, SCREEN_W-SEPARACION*3, SEPARACION*7 ,  al_map_rgb(0,0,0));
+        al_draw_filled_rectangle( SCREEN_W-SEPARACION*4+2, SEPARACION*3+2, SCREEN_W-SEPARACION*3-2, SEPARACION*7-2 ,  al_map_rgb(255,0,0));
+       
     }
     else if (future.type == EL)
     {
@@ -99,7 +103,5 @@ void al_draw_next_piece (PIECE future )
     {
         al_draw_filled_rectangle(SCREEN_W-SEPARACION*2, SEPARACION*5 ,SCREEN_W-SEPARACION*5, SEPARACION*6 , al_map_rgb(139,69,19));
         al_draw_filled_rectangle( SCREEN_W-SEPARACION*4, SEPARACION*4 , SCREEN_W-SEPARACION*3, SEPARACION*5, al_map_rgb(139,69,19));
- 
     }
-      
 }

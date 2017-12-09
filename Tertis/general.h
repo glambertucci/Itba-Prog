@@ -47,7 +47,7 @@ enum{NOT_OK,OK,NO_NEW};
 //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
-#define TOTAL_IMAGES 4
+#define TOTAL_IMAGES 5
 #define TOTAL_MUSICA 3
 //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4

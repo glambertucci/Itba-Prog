@@ -75,6 +75,18 @@ bool frontend_init(FRONTEND * front_utils, AL_UTILS* al_utils){
         al_uninstall_audio();
         abort=1;
     }
+    if(!(front_utils->image[4] = al_load_bitmap("TBG.jpg")))
+    {
+        al_destroy_bitmap(front_utils->image[3]);
+        al_destroy_bitmap(front_utils->image[2]);
+        al_destroy_bitmap(front_utils->image[1]);
+        al_destroy_bitmap(front_utils->image[0]);
+        al_destroy_display(front_utils->display);
+        al_uninstall_audio();
+        abort=1;
+    }
+    
+    
     al_reserve_samples(3);
  
     if (!((front_utils->samples[0]) = al_load_sample( "playing.wav" )))    
@@ -127,6 +139,7 @@ void frontend_destroy(FRONTEND* front_utils)
     //    al_destroy_sample(front_utils->samples[2]); 
         al_destroy_sample(front_utils->samples[1]);       
         al_destroy_sample(front_utils->samples[0]);
+        al_destroy_bitmap(front_utils->image[4]);
         al_destroy_bitmap(front_utils->image[3]);
         al_destroy_bitmap(front_utils->image[2]);
         al_destroy_bitmap(front_utils->image[1]);
