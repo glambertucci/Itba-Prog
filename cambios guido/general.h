@@ -24,6 +24,8 @@ enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
 enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
 enum{START,CONTINUE,QUIT};
+enum{NOT_OK,OK,NO_NEW};
+#define PIECENUM 187
 
 #include <allegro5/allegro.h>
 #include <allegro5/timer.h>
@@ -32,6 +34,7 @@ enum{START,CONTINUE,QUIT};
 #include <allegro5/allegro_color.h>
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
 
 #include <stdint.h>
 #include <stdio.h>
@@ -44,7 +47,8 @@ enum{START,CONTINUE,QUIT};
 //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
-#define TOTAL_BUTTONS 3
+#define TOTAL_IMAGES 4
+#define TOTAL_MUSICA 3
 //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
@@ -80,8 +84,9 @@ typedef struct { //Estructura para front de pi
 
 #else
 typedef struct { //Estructura para front de allegro
-    ALLEGRO_BITMAP * image[TOTAL_BUTTONS];
+    ALLEGRO_BITMAP * image[TOTAL_IMAGES];
     ALLEGRO_DISPLAY* display;
+    ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
     int selected_op;
     int key_pressed;
     int mouse_x;
