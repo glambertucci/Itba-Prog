@@ -71,6 +71,7 @@ typedef struct { //Estructura para manejo de allegro
     
 typedef struct { //Estructura con variables de juego
     PIECE currentpiece;
+    SCORE highscore;
     SCORE score;
     bool is_not_first_time;
     bool lose;
@@ -86,10 +87,15 @@ typedef struct { //Estructura para front de pi
 }FRONTEND;
 
 #else
+
+#include<allegro5/allegro_font.h>
+
 typedef struct { //Estructura para front de allegro
     ALLEGRO_BITMAP * image[TOTAL_IMAGES];
     ALLEGRO_DISPLAY* display;
     ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
+    ALLEGRO_FONT * font1;
+    ALLEGRO_FONT * font2;
     int selected_op;
     int key_pressed;
     int mouse_x;

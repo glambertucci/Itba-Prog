@@ -33,7 +33,9 @@ int main(void)
     GAME_UTILS gamevars = {0}; //Variables de juego
     FRONTEND front_utils = {0}; //Variables de front end
     FILE * highscore;
-    SCORE lasthighscore;
+    
+    highscore = fopen("highscore.txt", "r+");
+    fscanf(highscore, "%d",&(gamevars.highscore));
     
     if((al_backend_init(&al_utils)) && (frontend_init(&front_utils, &al_utils))) { //Aca se inicializa el backend de allegro.
         
@@ -69,17 +71,15 @@ int main(void)
                     
                      if(gamevars.lose) 
                     {
-                        highscore = fopen("highscore.txt", "r+");
-                        fscanf(highscore, "%d",&lasthighscore);
-                
-                        if(lasthighscore <(gamevars.score)){
+                        if(gamevars.highscore < (gamevars.score)){
                             freopen(NULL,"w",highscore);
                             fprintf(highscore, "%05d", gamevars.score);
                         }
-                
-                draw_front(&al_utils, &front_utils, &gamevars, matrix);
-               
-                    }
+                        
+                         al_stop_samples();
+                        al_play_sample (front_utils . samples[2],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+                     }
+                    
                     draw_front(&al_utils, &front_utils, &gamevars, matrix);
             }
             

@@ -9,18 +9,23 @@
 
 void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
     
+
     switch(gamevars->state) {
         case PLAYING:
             al_draw_bitmap(front_utils->image[4],0,0,0);
             al_draw_tablero(matrix);
             al_draw_next_piece(gamevars->currentpiece);
-            al_draw_score(gamevars);
+            al_draw_score(front_utils, gamevars);
             al_flip_display();
             break;
         case MENU:
-            al_draw_bitmap(front_utils->image[front_utils->selected_op],0,0,0); 
-            al_flip_display();
-            break;
+
+        al_draw_bitmap(front_utils->image[front_utils->selected_op],0,0,0);
+        al_draw_text(front_utils->font2, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*6.2, SEPARACION*10.8,ALLEGRO_ALIGN_CENTRE,"CURRENT HIGHSCORE");
+        al_draw_textf(front_utils->font2, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*6.2, SEPARACION*11.8,ALLEGRO_ALIGN_CENTRE,"%05d",gamevars->highscore);
+
+        al_flip_display();
+        break;
     }
     if(gamevars->lose) {
         gamevars->lose = false;
@@ -148,17 +153,14 @@ void al_draw_next_piece (PIECE future )
 }
 
 
-void al_draw_score(GAME_UTILS * gamevars){
+void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars){
     
-    ALLEGRO_FONT *font;
-    
-   if(!(font = al_load_ttf_font("pixelated.ttf",FONTSIZE,0))){
-       printf("Could not load pixelated.ttf.");
-   }
+
+
    
     al_draw_filled_rectangle( SCREEN_W-SEPARACION*5, SEPARACION*9, SCREEN_W-SEPARACION*2, SEPARACION*10 , al_map_rgb(0,0,0));
     al_draw_filled_rectangle( SCREEN_W-SEPARACION*6, SEPARACION*10, SCREEN_W-SEPARACION*1, SEPARACION*12 , al_map_rgb(0,0,0));
-    al_draw_text(font, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*8.9,ALLEGRO_ALIGN_CENTRE,"SCORE");
-    al_draw_textf(font, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*10.5,ALLEGRO_ALIGN_CENTRE,"%05d",gamevars->score);
+    al_draw_text(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*8.9,ALLEGRO_ALIGN_CENTRE,"SCORE");
+    al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*10.5,ALLEGRO_ALIGN_CENTRE,"%05d",gamevars->score);
     
 }

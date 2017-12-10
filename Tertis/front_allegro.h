@@ -15,7 +15,6 @@
 #define FRONT_H
 #define SEPARACION (38.0)
 #define OUTLINE 2
-#define FONTSIZE 40
 #include <allegro5/system.h>
 #include <allegro5/color.h>
 #include <allegro5/allegro_primitives.h>
@@ -35,7 +34,7 @@ void al_draw_next_piece (PIECE future );
 //imprime la proxima ficha en pantalla
 PIECE create_next (PIECE * piece);
 //Creates next
-void al_draw_score(GAME_UTILS * gamevars);
+void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars);
 
 #ifdef __cplusplus
 extern "C" {
