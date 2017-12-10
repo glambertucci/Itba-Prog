@@ -55,6 +55,8 @@ enum{NOT_OK,OK,NO_NEW};
 #define TRUE 1
 #define FALSE 0
 
+typedef int SCORE;
+
 typedef struct { //Aca declaramos la estructura de cada bloque 1x1
     uint8_t type;
     bool state;
@@ -69,6 +71,7 @@ typedef struct { //Estructura para manejo de allegro
     
 typedef struct { //Estructura con variables de juego
     PIECE currentpiece;
+    SCORE score;
     bool is_not_first_time;
     bool lose;
     bool quit;

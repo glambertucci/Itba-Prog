@@ -5,7 +5,8 @@
  */
  
 #include "scored.h"
-static long long unsigned int score=0;
+
+
 bool scored (PIECE tablero [TABLE_FIL][TABLE_COL]) 
 {
     int i,j,lleno=0;
@@ -33,19 +34,16 @@ bool scored (PIECE tablero [TABLE_FIL][TABLE_COL])
 }
 
 
-void add_score (int lines_destoyed)
+void add_score (int lines_destoyed, GAME_UTILS * gamevars)
 {
 
     switch (lines_destoyed)
     {
-        case 1 : score++;break;
-        case 2 : score+=2; break;
-        case 3 : score+=3; break;
-        case 4 : score+=4; break;
+       case 1 : gamevars->score++;break;
+       case 2 : gamevars->score =+ 2;break;
+       case 3 : gamevars->score =+ 3;break;
+       case 4 : gamevars->score =+ 4;break;
+       default: gamevars->score =+4;
     }
-  //  printf("SCORE = %d\n",score); //DEBUG
-}
-int get_score (void)
-{
-    return score;
+    printf("Total score: %d\n", gamevars->score); 
 }

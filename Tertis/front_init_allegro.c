@@ -18,6 +18,22 @@ bool frontend_init(FRONTEND * front_utils, AL_UTILS* al_utils){
         abort = 1;
     }
     
+     if(!(al_init_image_addon())){
+        fprintf(stderr, "Image addon failed to initialize.");
+        abort = 1;
+    }
+    
+    if(!(al_init_font_addon())){
+        fprintf(stderr, "Font addon failed to initialize.");
+        abort = 1;
+    }
+    
+    if(!(al_init_ttf_addon())){
+        fprintf(stderr, "TTF addon failed to initialize.");
+        abort = 1;
+    }
+    
+    
     if(!(al_init_primitives_addon())){
         fprintf(stderr, "Primitives addon failed to initialize.");
         abort = 1;

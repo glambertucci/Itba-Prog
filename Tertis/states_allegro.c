@@ -15,7 +15,8 @@
 void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) {
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
-  
+    SCORE score_counter = 0;
+    
     if(al_get_next_event(al_utils->queue, &event)) {
         
         if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -81,11 +82,12 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
 
                 if(scored(matrix))
                 {
-                    calculate_lines(matrix);
-                    calculate_new_velocity(al_utils);
-                    change_velocity(al_utils);
-                    gamevars->draw = true;
-                   // printf("sigo aqui\n");//DEBUG
+                        score_counter++;
+                        calculate_lines(matrix);
+                        calculate_new_velocity(al_utils, gamevars);
+                        change_velocity(al_utils);
+                        gamevars->draw = true;
+                        add_score(score_counter, gamevars);
                 }
 
                 else {

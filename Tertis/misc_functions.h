@@ -18,7 +18,7 @@
 extern "C" {
 #endif
 
-void calculate_new_velocity(AL_UTILS* al_utils);
+void calculate_new_velocity(AL_UTILS* al_utils, GAME_UTILS * gamevars);
 //
 void change_velocity(AL_UTILS* al_utils);
 //

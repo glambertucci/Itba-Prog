@@ -4,10 +4,10 @@
 #include "misc_functions.h"
 
 
-void calculate_new_velocity(AL_UTILS* al_utils)
+void calculate_new_velocity(AL_UTILS* al_utils, GAME_UTILS * gamevars)
 {
     
-    int score = get_score();
+    SCORE score = gamevars->score;
 
     if(score >= 0)
         al_utils->timer_speed = INITIAL / 10.0;

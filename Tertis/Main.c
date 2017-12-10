@@ -32,6 +32,8 @@ int main(void)
     AL_UTILS al_utils = {0}; //Punteros a utilizar con allegro
     GAME_UTILS gamevars = {0}; //Variables de juego
     FRONTEND front_utils = {0}; //Variables de front end
+    FILE * highscore;
+    SCORE lasthighscore;
     
     if((al_backend_init(&al_utils)) && (frontend_init(&front_utils, &al_utils))) { //Aca se inicializa el backend de allegro.
         
@@ -64,15 +66,24 @@ int main(void)
                         menu_events(&al_utils, &front_utils, &gamevars);
                     }
 
+                    
+                     if(gamevars.lose) 
+                    {
+                        highscore = fopen("highscore.txt", "r+");
+                        fscanf(highscore, "%d",&lasthighscore);
+                
+                        if(lasthighscore <(gamevars.score)){
+                            freopen(NULL,"w",highscore);
+                            fprintf(highscore, "%05d", gamevars.score);
+                        }
+                
+                draw_front(&al_utils, &front_utils, &gamevars, matrix);
+               
+                    }
                     draw_front(&al_utils, &front_utils, &gamevars, matrix);
             }
             
-            if(gamevars.lose) 
-            {
-    
-                       draw_front(&al_utils, &front_utils, &gamevars, matrix);
-               
-            }
+           
             
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
 

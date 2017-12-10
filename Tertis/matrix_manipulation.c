@@ -144,35 +144,15 @@ void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
         if(matrix[i][0].type == SCORED) 
         {
             delete_line(matrix, i);
-          //  printf("lines scored to delete %d ",i);//DEBUG
-            score++;
-            printf("score %d\n",score);//DEBUG
         }
     }
-    //printf("vivi hasta aca\n");//DEBUG
-    add_score(score);
 }
 
 
 void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     
     uint8_t i, j,abort=false;
-    
-    /*for(j = 2; j < TABLE_COL-2; j++) 
-    {
-        matrix[fila][j].type = BLANK; //Pongo en blanco la linea, el pivote no importa
-        matrix[fila][j].state=ESTATICO;//y en estatico
-    }                                 //y ya van a estar estaticos.
- */
-    
-  /* for(i = 2; i < fila; i++) 
-    {
-        for(j = 2; j < TABLE_COL-2; j++) 
-        {
-            matrix[i][j].state = CAYENDO;        
-        }
-    }
-*/
+
     
    for(i = fila; i > 2 ; i--) //Me paro en la linea borrada...
     {
@@ -182,21 +162,6 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
         }
     }
 
-  /* while(!abort)
-    {
-        if (check_fall(matrix))
-        {
-        fall(matrix); 
-     //   printf("entré\n");//DEBUG
-
-        }
-        else 
-        {
-            abort=true;
-    //        printf("no entre\n");//DEBUG
-        }
-    }
- */
         
     all_static(matrix);
 
@@ -345,37 +310,3 @@ void fill_mat_piece (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], PIECE 
     }
 }
 
-/*
-void rotate (PIECE matrix[TABLE_FIL][TABLE_COL]) {
-    
-    int i, j, m, n, k = 0;
-    int pivot_fil, pivot_col;
-    int new_x_pos[4];
-    int new_y_pos[4];
-    
-    //BUSCO PIVOTE
-    for(i = 2; i < TABLE_FIL-2; i++)   {
-        for(j = 2; j < TABLE_COL-2; j++) {
-            if(matrix[i][j].pivot)         {
-                printf("found pivot at (%d,%d)", j, i);
-                pivot_fil = i;
-                pivot_col = j;
-                for(m = i-2; m <= i+2; m++)  {
-                    for(n = j-2; n <= j+2; n++){
-                        if((matrix[m][n].type == matrix[i][j].type) && (matrix[m][n].state == CAYENDO) && (!(matrix[m][n].pivot))) {
-                            new_x_pos[k] = m-i;
-                            new_y_pos[k] = -(n-j);
-                            k++;
-                            matrix[m][n].type = BLANK;
-                            matrix[m][n].state = ESTATICO;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    for(k = 0; k < 4; k++){
-                matrix[i+new_y_pos[k]][j+new_x_pos[k]].type = matrix[pivot_fil][pivot_col].type;
-                matrix[i+new_y_pos[k]][j+new_x_pos[k]].state = CAYENDO;
-    }
-} */

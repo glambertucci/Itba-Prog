@@ -39,6 +39,7 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
         gamevars->state= PLAYING;               //Si no se cumple es porque es el primer inicio del juego
         gamevars->restart = false;              //y debo quedarme en el menu.
         gamevars->is_not_first_time = false;
+        gamevars->score = 0;
     }
 
     else {  
