@@ -137,7 +137,7 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
 void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
 {
     
-    uint8_t i, score;
+    uint8_t i;
     
     for(i = TABLE_FIL-2; i >= 2; i--) 
     {
@@ -151,7 +151,7 @@ void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
 
 void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     
-    uint8_t i, j,abort=false;
+    uint8_t i, j;
 
     
    for(i = fila; i > 2 ; i--) //Me paro en la linea borrada...

@@ -7,10 +7,10 @@
 #include "scored.h"
 
 
-bool scored (PIECE tablero [TABLE_FIL][TABLE_COL]) 
+SCORE scored (PIECE tablero [TABLE_FIL][TABLE_COL]) 
 {
-    int i,j,lleno=0;
-    bool scored=false;
+    int i,j,lleno=0,scored=0;
+    
     for (i=2;i<TABLE_FIL-2;i++)   //recorro la matriz
     {
         for (j=2;j<TABLE_COL-2;j++)
@@ -21,29 +21,28 @@ bool scored (PIECE tablero [TABLE_FIL][TABLE_COL])
                 
             }
         }
+        
         if (lleno == 10)
         {
             tablero[i] [0].type = SCORED; //pone el tipo scored en la esquina izquierda de la fila que hizo puntos para que la funcion deletefil la mate
             lleno=0;
-            scored=true;
+            scored++;
         }
         else 
             lleno=0;
     }
-    return scored!=0; //devuelve 1 si hiciste puntos, 0 si no
+    return scored; //devuelve la cantidad de lineas en las que se hizo puntos
 }
 
 
-void add_score (int lines_destoyed, GAME_UTILS * gamevars)
-{
-
-    switch (lines_destoyed)
+void add_score (int lines_destroyed, GAME_UTILS * gamevars)
+{ 
+    
+    switch (lines_destroyed)
     {
-       case 1 : gamevars->score++;break;
-       case 2 : gamevars->score =+ 2;break;
-       case 3 : gamevars->score =+ 3;break;
-       case 4 : gamevars->score =+ 4;break;
-       default: gamevars->score =+4;
+       case 1 : gamevars->score += 100;break;
+       case 2 : gamevars->score += 250;break;
+       case 3 : gamevars->score += 400;break;
+       case 4 : gamevars->score += 600;break;
     }
-    printf("Total score: %d\n", gamevars->score); 
 }

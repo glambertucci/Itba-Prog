@@ -80,13 +80,12 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
 
                 all_static(matrix);     //y se aumenta la velocidad si es necesario.
 
-                if(scored(matrix))
+                if(score_counter = scored(matrix))
                 {
-                        score_counter++;
                         calculate_lines(matrix);
                         calculate_new_velocity(al_utils, gamevars);
                         change_velocity(al_utils);
-                        gamevars->draw = true;
+                        gamevars->draw = true; 
                         add_score(score_counter, gamevars);
                 }
 
