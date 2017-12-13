@@ -23,7 +23,7 @@ bool al_backend_init (AL_UTILS* al_utils){
         al_destroy_event_queue(al_utils->queue);
         al_destroy_timer(al_utils->timer);
     }
-
+    
     al_start_timer(al_utils->timer);
     al_register_event_source(al_utils->queue, al_get_timer_event_source(al_utils->timer));
     
@@ -31,6 +31,6 @@ bool al_backend_init (AL_UTILS* al_utils){
 }
 
 void al_backend_destroy(AL_UTILS* al_utils){
-        al_destroy_event_queue(al_utils->queue);
-        al_destroy_timer(al_utils->timer);
+    al_destroy_event_queue(al_utils->queue);
+    al_destroy_timer(al_utils->timer);
 }

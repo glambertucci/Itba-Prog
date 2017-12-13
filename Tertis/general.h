@@ -18,17 +18,18 @@
 extern "C" {
 #endif
     
-enum{INITIAL = 15,VERYEASY = 14,EASY = 13, NORMAL = 12, NORMALHARD = 10, HARD = 8, VERYHARD = 6, IMPOSSIBLE = 3}; //Para el timer
-enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
-enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
-enum{PLAYING, MENU}; //Para fsm.
-enum{LEFT, RIGHT}; //Para funcion mover pieza
-enum{START,CONTINUE,QUIT};
-enum{NOT_OK,OK,NO_NEW};
-enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
+    enum{INITIAL = 15,VERYEASY = 12,EASY = 10, NORMAL = 8, NORMALHARD = 7, HARD = 5, VERYHARD = 4, IMPOSSIBLE = 3}; //Para el timer
+    enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
+    enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
+    enum{PLAYING, MENU}; //Para fsm.
+    enum{LEFT, RIGHT}; //Para funcion mover pieza
+    enum{START,CONTINUE,QUIT};
+    enum{NOT_OK,OK};
+    enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
+    
 
 #define PIECENUM 187
-
+    
 #include <allegro5/allegro.h>
 #include <allegro5/timer.h>
 #include <allegro5/display.h>
@@ -37,59 +38,60 @@ enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_audio.h>
-
+    
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
-//Matriz de tablero
+    //Matriz de tablero
 #define TABLE_FIL 20
 #define TABLE_COL 14
-//Para display
+    //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
 #define TOTAL_IMAGES 5
 #define TOTAL_MUSICA 3
-//Para matriz chiquita de cada pieza nueva
+        
+    //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
 #define TRUE 1
 #define FALSE 0
-
-typedef int SCORE;
-
-typedef struct { //Aca declaramos la estructura de cada bloque 1x1
-    uint8_t type;
-    bool state;
-    bool pivot;
-}PIECE;
-
-typedef struct { //Estructura para manejo de allegro
-    ALLEGRO_TIMER * timer;
-    ALLEGRO_EVENT_QUEUE * queue;
-    double timer_speed;
-}AL_UTILS;
     
-typedef struct { //Estructura con variables de juego
-    PIECE currentpiece;
-    SCORE highscore;
-    SCORE score;
-    bool is_not_first_time;
-    bool lose;
-    bool quit;
-    bool state;
-    bool restart;
-    bool draw;
-}GAME_UTILS;
-
+    typedef int SCORE;
+    
+    typedef struct { //Aca declaramos la estructura de cada bloque 1x1
+        uint8_t type;
+        bool state;
+        bool pivot;
+    }PIECE;
+    
+    typedef struct { //Estructura para manejo de allegro
+        ALLEGRO_TIMER * timer;
+        ALLEGRO_EVENT_QUEUE * queue;
+        double timer_speed;
+    }AL_UTILS;
+    
+    typedef struct { //Estructura con variables de juego
+        PIECE currentpiece;
+        SCORE highscore;
+        SCORE score;
+        bool is_not_first_time;
+        bool lose;
+        bool quit;
+        bool state;
+        bool restart;
+        bool draw;
+    }GAME_UTILS;
+    
 #ifdef RASP_PI
-typedef struct { //Estructura para front de pi
+    typedef struct { //Estructura para front de pi
+        
+    }FRONTEND;
     
-}FRONTEND;
-
 #else
-
+    
 #include<allegro5/allegro_font.h>
 
 typedef struct { //Estructura para front de allegro
@@ -106,5 +108,5 @@ typedef struct { //Estructura para front de allegro
 }FRONTEND;
 
 #endif
-
+    
 #endif

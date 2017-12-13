@@ -4,7 +4,9 @@
 int check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]) {
  //  static int c=0;//DEBUG
 
-int i,j,abort=OK,count=0;
+
+int i,j,abort=OK;
+
 bool fullstatic = true;
 
     for (i=2;i<=TABLE_FIL-2;i++) 
@@ -14,6 +16,8 @@ bool fullstatic = true;
             if (tablero[i][j].state == CAYENDO) 
             {   
                 fullstatic = false;
+
+                
                 if((tablero [i+1] [j].type != BLANK ) ) 
                 {                                          //si no es estatico el de abajo 
                     if ((tablero[i+1][j].state != CAYENDO)) 
@@ -26,22 +30,7 @@ bool fullstatic = true;
         }
     }
 
-    for (i=2;i<=TABLE_FIL-2;i++) 
-    {
-        for (j=2;j<=TABLE_COL-2;j++) 
-        { 
-            if (tablero[i][j].state != CAYENDO)
-            {
-                count++;
-            }
-        }
-    }
 
-    if (count == PIECENUM)
-    {
-        abort = NO_NEW;
-    }
-    
     if(fullstatic)
     {
         abort = NOT_OK;
