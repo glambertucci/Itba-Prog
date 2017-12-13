@@ -16,6 +16,7 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
     SCORE score_counter = 0;
+    bool still_score;
     
     if(al_get_next_event(al_utils->queue, &event)) {
         
@@ -77,21 +78,23 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
 
             else 
             {                            //Si no se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
-
-                all_static(matrix);     //y se aumenta la velocidad si es necesario.
+                all_static(matrix);             //y se aumenta la velocidad si es necesario.
 
                 if(score_counter = scored(matrix))
                 {
-                        calculate_lines(matrix);
+                    while(still_score = scored(matrix)) //still_score es un bool por lo que se repetirá hasta que ya no haya filas
+                    {
+                        calculate_lines(matrix);   //...que eliminar, logrando eliminar todas simultáneamente.
                         calculate_new_velocity(al_utils, gamevars);
                         change_velocity(al_utils);
-                        gamevars->draw = true; 
-                        add_score(score_counter, gamevars);
+                    }
+                    gamevars->draw = true; 
+                    add_score(score_counter, gamevars);
                 }
 
                 else {
             
-                    if(can_i_copy(matrix)){ //Se fija si se puede copiar una nueva pieza a la matriz
+                    if(can_i_copy(matrix)){ //Se fija si se puede copiar una nueva pieza a la matriz    
                         copy_piece_to_mat(matrix, piece_mat); //copiamos la pieza a la matriz
                         clean_piece_mat(piece_mat);
                         next_piece(gamevars); //calculamos la proxima pieza

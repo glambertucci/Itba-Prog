@@ -25,6 +25,8 @@ enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
 enum{START,CONTINUE,QUIT};
 enum{NOT_OK,OK,NO_NEW};
+enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
+
 #define PIECENUM 187
 
 #include <allegro5/allegro.h>
