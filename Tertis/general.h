@@ -38,6 +38,7 @@ extern "C" {
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_audio.h>
+#include<allegro5/allegro_font.h>
     
 #include <stdint.h>
 #include <stdio.h>
@@ -86,13 +87,19 @@ extern "C" {
     }GAME_UTILS;
     
 #ifdef RASP_PI
-    typedef struct { //Estructura para front de pi
-        
-    }FRONTEND;
+typedef struct { //Estructura para front de pi
+	pthread_t timer;
+	void* event_routine(void*);
+	struct {
+        	int x;
+        	int y;
+       		bool pressed;
+    	}joystick;
+    	int option;
+    	bool menu_drawed;
+}FRONTEND;
     
 #else
-    
-#include<allegro5/allegro_font.h>
 
 typedef struct { //Estructura para front de allegro
     ALLEGRO_BITMAP * image[TOTAL_IMAGES];
