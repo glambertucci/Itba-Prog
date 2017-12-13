@@ -25,6 +25,8 @@ enum{PLAYING, MENU}; //Para fsm.
 enum{LEFT, RIGHT}; //Para funcion mover pieza
 enum{START,CONTINUE,QUIT};
 enum{NOT_OK,OK,NO_NEW};
+enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
+
 #define PIECENUM 187
 
 #include <allegro5/allegro.h>
@@ -96,6 +98,7 @@ typedef struct { //Estructura para front de allegro
     ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
     ALLEGRO_FONT * font1;
     ALLEGRO_FONT * font2;
+    ALLEGRO_FONT * font3;    
     int selected_op;
     int key_pressed;
     int mouse_x;

@@ -112,25 +112,31 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
     //Paso siguiente mover cada cuadradito a su lugar correspondiente borrando
     //el original. Esto se hace pensando al pivote como origen con las coordenadas
     //(x,y) a cada cuadradito a mover. (x,y) pasa a ser (y,-x) luego de la rotacion.
-    for(i = pivot_fil-2; i <= pivot_fil+2; i++)
-    {
-        for(j = pivot_col-2; j <= pivot_col+2; j++)
+    
+    if((pivot_fil < (TABLE_FIL - 2)) && (pivot_col < (TABLE_COL-2))) {
+        for(i = pivot_fil-2; i <= pivot_fil+2; i++)
         {
-            if((matrix[i][j].state == CAYENDO) && (matrix[i][j].type == temp_type))
-            {  //En la linea de abajo coloco el cuadradito nuevo
-                *(temp_fil + k) = ((pivot_fil)+(j-pivot_col));
-                *(temp_col + k) = ((pivot_col)-(i-pivot_fil));
+            for(j = pivot_col-2; j <= pivot_col+2; j++)
+            {
+                if((matrix[i][j].state == CAYENDO) && (matrix[i][j].type == temp_type))
+                {  //En la linea de abajo coloco el cuadradito nuevo
+                    *(temp_fil + k) = ((pivot_fil)+(j-pivot_col));
+                    *(temp_col + k) = ((pivot_col)-(i-pivot_fil));
                 
-                matrix[i][j].type = BLANK;      //Aca borro
-                matrix[i][j].state = ESTATICO;  //el original
+                    matrix[i][j].type = BLANK;      //Aca borro
+                    matrix[i][j].state = ESTATICO;  //el original
                 k++;
-            }
-        }          
-    }               
-    for(i = 0; i < 4; i++)
-    {     //Aca escribo en la matriz las nuevas posiciones.
-        matrix[*(temp_fil + i)][*(temp_col + i)].type = temp_type;
-        matrix[*(temp_fil + i)][*(temp_col + i)].state = CAYENDO;
+                }
+            }          
+        }        
+    }
+    
+    if((pivot_fil < (TABLE_FIL - 2)) && (pivot_col < (TABLE_COL-2))) { // Condición para no tocar memoria fuera de la matriz.
+        for(i = 0; i < 4; i++)
+        {     //Aca escribo en la matriz las nuevas posiciones.
+            matrix[*(temp_fil + i)][*(temp_col + i)].type = temp_type;
+            matrix[*(temp_fil + i)][*(temp_col + i)].state = CAYENDO;
+        }
     }
 }
 

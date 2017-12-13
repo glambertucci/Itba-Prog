@@ -11,19 +11,19 @@ void calculate_new_velocity(AL_UTILS* al_utils, GAME_UTILS * gamevars)
 
     if(score >= 0)
         al_utils->timer_speed = INITIAL / 10.0;
-    if(score >= 4)
+    if(score >= 4*SCORE1)
         al_utils->timer_speed = VERYEASY / 10.0;
-    if(score >= 9)
+    if(score >= 9*SCORE1)
         al_utils->timer_speed = EASY / 10.0;
-    if(score >= 15)
+    if(score >= 15*SCORE1)
         al_utils->timer_speed = NORMAL / 10.0;
-    if(score >= 23)
+    if(score >= 23*SCORE1)
         al_utils->timer_speed = NORMALHARD / 10.0;
-    if(score >= 31)
+    if(score >= 31*SCORE1)
         al_utils->timer_speed = HARD / 10.0;
-    if(score >= 40)
+    if(score >= 40*SCORE1)
         al_utils->timer_speed = VERYHARD / 10.0;
-    if(score >= 50)
+    if(score >= 50*SCORE1)
         al_utils->timer_speed = IMPOSSIBLE / 10.0;
 }
 

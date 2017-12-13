@@ -5,6 +5,7 @@ int check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]) {
  //  static int c=0;//DEBUG
 
 int i,j,abort=OK,count=0;
+bool fullstatic = true;
 
     for (i=2;i<=TABLE_FIL-2;i++) 
     {
@@ -12,6 +13,7 @@ int i,j,abort=OK,count=0;
         {                                                       //estos dos ciclos recorren la matriz
             if (tablero[i][j].state == CAYENDO) 
             {   
+                fullstatic = false;
                 if((tablero [i+1] [j].type != BLANK ) ) 
                 {                                          //si no es estatico el de abajo 
                     if ((tablero[i+1][j].state != CAYENDO)) 
@@ -34,10 +36,17 @@ int i,j,abort=OK,count=0;
             }
         }
     }
-if (count == PIECENUM)
-{
-    abort = NO_NEW;
-}
+
+    if (count == PIECENUM)
+    {
+        abort = NO_NEW;
+    }
+    
+    if(fullstatic)
+    {
+        abort = NOT_OK;
+    }
+
 //printf("Abort vale %d entre %d veces\n",abort,++c );//DEBUG
 return abort;
 }
@@ -75,7 +84,8 @@ bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir) {
 
 bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) { //Rota siempre en sentido horario
 
-    uint8_t pivot_fil, pivot_col, i, j, abort;
+    uint8_t pivot_fil, pivot_col, i, j, abort=0;
+    
     
     for(i = 2; i < TABLE_FIL-2; i++){
         for(j = 2; j < TABLE_COL-2; j++){
@@ -85,23 +95,25 @@ bool checkRotate(PIECE matrix[TABLE_FIL][TABLE_COL]) { //Rota siempre en sentido
             }   
         }  // Luego de los for, pivot_fil y pivot_col seran las coordenadas del pivote.
     }
-
+     
     	//Paso siguiente chequear si esta vacio o hay algo cayendo en cada lugar
     	//a donde tendria que ir cada cuadradito. Esto se hace de la siguiente forma
     	//rotando un punto en el espacio respecto al pivote representado como (x,y)
     	//(x,y)->(y,-x).
-
-    for(i = pivot_fil-2; i <= pivot_fil+2; i++){
-        for(j = pivot_col-2; j <= pivot_col+2; j++){
-            if(matrix[i][j].state == CAYENDO){
-                if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].type == BLANK)){
-                    if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].state == CAYENDO))
+      
+    if((pivot_fil < (TABLE_FIL - 2)) && (pivot_col < (TABLE_COL-2))) { //Condición para no tocar memoria fuera de la matriz.
+        for(i = pivot_fil-2; i <= pivot_fil+2; i++){
+            for(j = pivot_col-2; j <= pivot_col+2; j++){
+                if(matrix[i][j].state == CAYENDO){
+                    if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].type == BLANK)){
+                        if(!(matrix[(pivot_fil)+(j-pivot_col)][(pivot_col)-(i-pivot_fil)].state == CAYENDO))
                         abort++;
-                }          
+                    }          
+                }
             }
         }
     }
-    
+ 
     return (!abort);
     
 }

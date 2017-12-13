@@ -144,7 +144,16 @@ bool frontend_init(FRONTEND * front_utils, AL_UTILS* al_utils){
      al_init_ttf_addon();
     
      if(!(front_utils->font1 = al_load_font("pixelated.ttf", FONTSIZE, 0))){
-        fprintf(stderr, "Font 1failed to initialize.");
+        fprintf(stderr, "Font 1 failed to initialize");
+        al_destroy_sample(front_utils->samples[1]);      
+        al_destroy_sample(front_utils->samples[0]);
+        al_destroy_bitmap(front_utils->image[3]);        
+        al_destroy_bitmap(front_utils->image[3]);
+        al_destroy_bitmap(front_utils->image[2]);
+        al_destroy_bitmap(front_utils->image[1]);
+        al_destroy_bitmap(front_utils->image[0]);
+        al_destroy_display(front_utils->display);
+        al_uninstall_audio();
         abort = 1;
     }
      
@@ -162,6 +171,23 @@ bool frontend_init(FRONTEND * front_utils, AL_UTILS* al_utils){
         al_uninstall_audio();
         abort = 1;
     } 
+     
+ if(!(front_utils->font3 = al_load_font("pixelated.ttf", FONTSIZE-20, 0))){
+        fprintf(stderr, "Font 3 failed to initialize");
+        al_destroy_font(front_utils->font2);    
+        al_destroy_font(front_utils->font1);
+        al_destroy_sample(front_utils->samples[1]);      
+        al_destroy_sample(front_utils->samples[0]);
+        al_destroy_bitmap(front_utils->image[3]);        
+        al_destroy_bitmap(front_utils->image[3]);
+        al_destroy_bitmap(front_utils->image[2]);
+        al_destroy_bitmap(front_utils->image[1]);
+        al_destroy_bitmap(front_utils->image[0]);
+        al_destroy_display(front_utils->display);
+        al_uninstall_audio();
+        abort = 1;
+    }      
+     
     
     al_register_event_source(al_utils->queue, al_get_display_event_source(front_utils->display));
     al_register_event_source(al_utils->queue, al_get_keyboard_event_source());

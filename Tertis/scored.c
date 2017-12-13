@@ -40,9 +40,9 @@ void add_score (int lines_destroyed, GAME_UTILS * gamevars)
     
     switch (lines_destroyed)
     {
-       case 1 : gamevars->score += 100;break;
-       case 2 : gamevars->score += 250;break;
-       case 3 : gamevars->score += 400;break;
-       case 4 : gamevars->score += 600;break;
+       case 1 : gamevars->score += SCORE1;break;
+       case 2 : gamevars->score += SCORE2;break;
+       case 3 : gamevars->score += SCORE3;break;
+       case 4 : gamevars->score += SCORE4;break;
     }
 }
