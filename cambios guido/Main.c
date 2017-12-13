@@ -12,6 +12,8 @@
  */
 #include "general.h"
 #ifdef RASP_PI
+#include "disdrv.h"
+#include "joydrv.h"
 #include "front_init_pi.h"
 #include "front_pi.h"
 #include "states_pi.h"
@@ -32,6 +34,10 @@ int main(void)
     AL_UTILS al_utils = {0}; //Punteros a utilizar con allegro
     GAME_UTILS gamevars = {0}; //Variables de juego
     FRONTEND front_utils = {0}; //Variables de front end
+    FILE * highscore;
+    
+    highscore = fopen("highscore.txt", "r+");
+    fscanf(highscore, "%d",&(gamevars.highscore));
     
     if((al_backend_init(&al_utils)) && (frontend_init(&front_utils, &al_utils))) { //Aca se inicializa el backend de allegro.
         
@@ -45,7 +51,7 @@ int main(void)
                         if (prev_state != gamevars.state )
                         {
                         al_stop_samples();
-                        al_play_sample (front_utils . samples[0],2.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+                        al_play_sample (front_utils . samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
                         prev_state = gamevars.state;
                         }
                         continueplay(&al_utils, &gamevars, matrix, piece_matrix);
@@ -57,22 +63,29 @@ int main(void)
                         if (prev_state != gamevars.state )
                         {
                         al_stop_samples();
-                        al_play_sample (front_utils . samples[1],2.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+                        al_play_sample (front_utils . samples[1],1.25,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
                         prev_state = gamevars.state;
                         }
                         pauseplay(&al_utils, &gamevars);
                         menu_events(&al_utils, &front_utils, &gamevars);
                     }
 
+                    
+                     if(gamevars.lose) 
+                    {
+                        if(gamevars.highscore < (gamevars.score)){
+                            freopen(NULL,"w",highscore);
+                            fprintf(highscore, "%05d", gamevars.score);
+                        }
+                        
+                         al_stop_samples();
+                        al_play_sample (front_utils . samples[2],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+                     }
+                    
                     draw_front(&al_utils, &front_utils, &gamevars, matrix);
             }
             
-            if(gamevars.lose) 
-            {
-    
-                       draw_front(&al_utils, &front_utils, &gamevars, matrix);
-               
-            }
+           
             
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
 

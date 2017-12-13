@@ -47,13 +47,15 @@ enum{NOT_OK,OK,NO_NEW};
 //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
-#define TOTAL_IMAGES 4
+#define TOTAL_IMAGES 5
 #define TOTAL_MUSICA 3
 //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
 #define TRUE 1
 #define FALSE 0
+
+typedef int SCORE;
 
 typedef struct { //Aca declaramos la estructura de cada bloque 1x1
     uint8_t type;
@@ -69,6 +71,8 @@ typedef struct { //Estructura para manejo de allegro
     
 typedef struct { //Estructura con variables de juego
     PIECE currentpiece;
+    SCORE highscore;
+    SCORE score;
     bool is_not_first_time;
     bool lose;
     bool quit;
@@ -79,14 +83,24 @@ typedef struct { //Estructura con variables de juego
 
 #ifdef RASP_PI
 typedef struct { //Estructura para front de pi
-    
+    struct joystick {
+        int x;
+        int y;
+        bool pressed;
+    };
+    int option;
 }FRONTEND;
 
 #else
+
+#include<allegro5/allegro_font.h>
+
 typedef struct { //Estructura para front de allegro
     ALLEGRO_BITMAP * image[TOTAL_IMAGES];
     ALLEGRO_DISPLAY* display;
     ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
+    ALLEGRO_FONT * font1;
+    ALLEGRO_FONT * font2;
     int selected_op;
     int key_pressed;
     int mouse_x;
