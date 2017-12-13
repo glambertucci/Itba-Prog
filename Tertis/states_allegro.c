@@ -104,6 +104,7 @@ void playing_events(AL_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                         copy_piece_to_mat(matrix, piece_mat);
                         gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde   
                         gamevars->quit = true; // y se sale del juego
+                        gamevars->restart = true;
                     }
                 }
             }

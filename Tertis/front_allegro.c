@@ -22,15 +22,26 @@ void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars,
 
         al_draw_bitmap(front_utils->image[front_utils->selected_op],0,0,0);
         al_draw_text(front_utils->font2, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*6.2, SEPARACION*10.8,ALLEGRO_ALIGN_CENTRE,"CURRENT HIGHSCORE");
-        al_draw_textf(front_utils->font2, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*6.2, SEPARACION*11.8,ALLEGRO_ALIGN_CENTRE,"%05d",gamevars->highscore);
+        al_draw_textf(front_utils->font2, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*6.2, SEPARACION*11.8,ALLEGRO_ALIGN_CENTRE,"%06d",gamevars->highscore);
 
         al_flip_display();
         break;
     }
     if(gamevars->lose) {
-        gamevars->lose = false;
         al_draw_bitmap(front_utils->image[3],0,0,0);
+        al_draw_filled_rectangle( SCREEN_W-SCREEN_W/2-SEPARACION*6, SEPARACION, SCREEN_W-SCREEN_W/2+SEPARACION*6, SEPARACION*3 , al_map_rgb(0,0,0));
+        al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SCREEN_W/2, SEPARACION*2-SEPARACION/2,ALLEGRO_ALIGN_CENTRE,"YOUR SCORE: %06d", gamevars->score);
+
+        
+        if(gamevars->highscore < gamevars->score){
+        al_draw_text(front_utils->font3, al_map_rgb(255,255,255),SCREEN_W-SCREEN_W/2.75, SEPARACION*3-SEPARACION/1.5,ALLEGRO_ALIGN_CENTRE,"New highscore!");
+        }
+        
         al_flip_display();
+        
+        al_stop_samples();
+        al_play_sample (front_utils->samples[2],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+        
         al_rest(3);
     }
 }
@@ -155,9 +166,6 @@ void al_draw_next_piece (PIECE future )
 
 void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars){
     
-
-
-   
     al_draw_filled_rectangle( SCREEN_W-SEPARACION*5, SEPARACION*9, SCREEN_W-SEPARACION*2, SEPARACION*10 , al_map_rgb(0,0,0));
     al_draw_filled_rectangle( SCREEN_W-SEPARACION*6, SEPARACION*10, SCREEN_W-SEPARACION*1, SEPARACION*12 , al_map_rgb(0,0,0));
     al_draw_text(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*8.9,ALLEGRO_ALIGN_CENTRE,"SCORE");

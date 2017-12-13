@@ -98,6 +98,7 @@ typedef struct { //Estructura para front de allegro
     ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
     ALLEGRO_FONT * font1;
     ALLEGRO_FONT * font2;
+    ALLEGRO_FONT * font3;    
     int selected_op;
     int key_pressed;
     int mouse_x;
