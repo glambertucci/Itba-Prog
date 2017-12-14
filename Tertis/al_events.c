@@ -1,5 +1,5 @@
 #include "general.h"
-#include "al_events_init.h"
+#include "al_events.h"
 #include <allegro5/allegro5.h>
 
 bool events_init (EV_UTILS* al_utils){

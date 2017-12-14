@@ -28,20 +28,18 @@ void calculate_new_velocity(EV_UTILS* ev_utils, GAME_UTILS * gamevars)
 }
 
 
-//Change_velocity es evento-dependiente, entonces compilará según plataforma. Caso excepcional.
-
 void continueplay(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL])
 {   //Se fija si esta parado el timer, si lo esta, lo arranca
     if(!(gamevars->is_not_first_time))
     {
-        copy_piece_to_mat(matrix, piece_mat, gamevars);
-        clean_piece_mat(piece_mat);
-        next_piece(gamevars);
-        fill_mat_piece(piece_mat, gamevars->nextpiece);
+        copy_piece_to_mat(matrix, piece_mat, gamevars); //Pasamos la siguiente pieza al tablero
+        clean_piece_mat(piece_mat); //La borramos del espacio de la siguiente pieza
+        next_piece(gamevars); // Generamos la nueva siguiente pieza
+        fill_mat_piece(piece_mat, gamevars->nextpiece); //Y la dibujamos
         gamevars->is_not_first_time = true;
     }
     
-    if(!(al_get_timer_started(al_utils->timer))){
+    if(!(al_get_timer_started(al_utils->timer))){ //Tambien iniciamos el timer si estaba apagado.
         al_start_timer(al_utils->timer);
     }
 }
@@ -54,6 +52,6 @@ void pauseplay (EV_UTILS* al_utils, GAME_UTILS* gamevars){ //Cuando se entra al 
 
 void next_piece(GAME_UTILS* gamevars) {
 
-    gamevars->nextpiece.type =rand() %7 +1;
-    gamevars->nextpiece.state = CAYENDO;
+    gamevars->nextpiece.type =rand() %7 +1; //Generamos la nueva pieza de forma random.
+    gamevars->nextpiece.state = CAYENDO; 
 }

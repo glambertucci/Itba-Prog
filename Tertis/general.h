@@ -49,7 +49,7 @@ extern "C" {
 #define SCREEN_H 800
 #define TOTAL_IMAGES 5
 #define TOTAL_MUSICA 3
-        
+    
     //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
@@ -64,14 +64,10 @@ extern "C" {
         bool pivot;
     }PIECE;
     
-    typedef struct { //Estructura para manejo de allegro
-        ALLEGRO_TIMER * timer;
-        ALLEGRO_EVENT_QUEUE * queue;
-        double timer_speed;
-    }EV_UTILS;
+    
     
     typedef struct { //Estructura con variables de juego
-  
+        
         PIECE nextpiece;
         PIECE currentpiece;
         SCORE highscore;
@@ -85,29 +81,48 @@ extern "C" {
         bool draw;
     }GAME_UTILS;
     
+    
 #ifdef RASP_PI
-    typedef struct { //Estructura para front de pi
+    
+        typedef struct { //Estructura para manejo de eventos en pi
+            bool timer_event
+            bool pause;        
+            PI_EVENT_QUEUE * queue;
+            double timer_speed;
+        }EV_UTILS;
+    
+    typedef struct {  //Estructura para front de allegro
+        EV_UTILS ev_utils;  
+        int selected_op;
+        int key_pressed;
+        int mouse_x;
+        int mouse_y;
         
-    }FRONTEND;
-    
+        
 #else
-    
+        
 #include<allegro5/allegro_font.h>
-
-typedef struct { //Estructura para front de allegro
-    EV_UTILS ev_utils;
-    ALLEGRO_BITMAP * image[TOTAL_IMAGES];
-    ALLEGRO_DISPLAY* display;
-    ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
-    ALLEGRO_FONT * font1;
-    ALLEGRO_FONT * font2;
-    ALLEGRO_FONT * font3;    
-    int selected_op;
-    int key_pressed;
-    int mouse_x;
-    int mouse_y;
-}FRONTEND;
-
+        
+        typedef struct { //Estructura para manejo de allegro
+            ALLEGRO_TIMER * timer;
+            ALLEGRO_EVENT_QUEUE * queue;
+            double timer_speed;
+        }EV_UTILS;    
+        
+        typedef struct { //Estructura para front de allegro
+            EV_UTILS ev_utils;
+            ALLEGRO_BITMAP * image[TOTAL_IMAGES];
+            ALLEGRO_DISPLAY* display;
+            ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);
+            ALLEGRO_FONT * font1;
+            ALLEGRO_FONT * font2;
+            ALLEGRO_FONT * font3;    
+            int selected_op;
+            int key_pressed;
+            int mouse_x;
+            int mouse_y;
+        }FRONTEND;
+        
 #endif
-    
+        
 #endif

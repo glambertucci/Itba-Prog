@@ -3,6 +3,7 @@
 #include <allegro5/allegro_image.h> 
 #include <allegro5/allegro_acodec.h>
 #include <allegro5/allegro_audio.h>
+#include "al_events.h"
 
 #include "general.h"
 #include "states_allegro.h"
@@ -16,20 +17,20 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
     SCORE score_counter = 0;
-    bool still_score;
+    bool quickset = false;
     
     
     
-    if (gamevars->prev_state != gamevars->state ){
+    if (gamevars->prev_state != gamevars->state ){ //Cambiamos la música si estabamos en el menu
         
         al_stop_samples();
         al_play_sample (front_utils->samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
         gamevars->prev_state = gamevars->state;
     }
     
-    if(al_get_next_event(front_utils->ev_utils.queue, &event)) {
+    if(al_get_next_event(front_utils->ev_utils.queue, &event)) { 
         
-        if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
+        if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) { //Si se cierra la ventana, termina el juego.
             gamevars->quit = true;
         }
         
@@ -38,11 +39,11 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
             switch(event.keyboard.keycode) 
             {
                 
-                case ALLEGRO_KEY_ESCAPE:
+                case ALLEGRO_KEY_ESCAPE: // ESC es el botón de pausa.
                     gamevars->state = MENU;
                     break;
                     
-                case ALLEGRO_KEY_LEFT:
+                case ALLEGRO_KEY_LEFT: //La flecha derecha y la flecha izquierda mueven las piezas horizontalmente.
                     if(checkMove(matrix, LEFT)) 
                     {
                         move(matrix, LEFT);
@@ -58,24 +59,36 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                     }
                     break;
                     
-                case ALLEGRO_KEY_UP:
+                case ALLEGRO_KEY_UP: //La flecha arriba rota la pieza.
                     
-                    if(checkRotate(matrix)) 
+                    if(checkRotate(matrix)) //Si se puede rotar sin más, lo hará.
                     {
                         rotate(matrix);
                         gamevars->draw = true;
                     }
                     
+                    /*En caso de no poder rotar, se evalúa si es por estar cerca de una pared o bloque y se trabaja acorde.
+                     NOTA: Se diferencia el stick por sufrir de un caso particular debido a su forma. */
+                    
                     else if(gamevars->currentpiece.type != STICK){
-                        if(OK == rotateWall(matrix, gamevars, LEFT)){}
-                        else if(OK == rotateWall(matrix,gamevars,RIGHT)){}
+                        if(OK == rotateWall(matrix, gamevars, LEFT)){} //Caso pared izquierda
+                        else if(OK == rotateWall(matrix,gamevars,RIGHT)){} //Caso pared derecha
                     }
                     
                     else{ //Caso particular, si se tratase del STICK.
                         
-                        if(checkMove(matrix,LEFT)){ //Es la única que pieza que no puede rotar
-                            move(matrix,LEFT); //Aun estando separada de la pared.
-                            if(checkRotate(matrix)){ //Por eso, si se puede mover para la izquierda
+                        /* La lógica de RotateWall se ve superada por el stick,
+                         pues esta es la única pieza que no puede rotar aún estando 
+                         * totalmente separada de una pared o conjunto de bloques. 
+                         * La solución, sencilla, es manualmente detectar si no se 
+                         * puede rotar pero si se puede mover exactamente una vez 
+                         * para la izquierda, y luego trabajar la pieza para
+                         *acomodarla en el espacio y rotarla en caso de ser posible.*/
+                        
+                        
+                        if(checkMove(matrix,LEFT)){ 
+                            move(matrix,LEFT); 
+                            if(checkRotate(matrix)){ //Si se puede mover para la izquierda
                                 rotate(matrix); //Pero no puede rotar....
                                 gamevars->draw = true;
                             }
@@ -101,73 +114,78 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                                 rotateWall(matrix,gamevars,RIGHT);
                             }    
                         }
-                        rotateWall(matrix,gamevars,RIGHT);
+                        else{
+                            rotateWall(matrix,gamevars,RIGHT);
+                        }
                     }
                     break;
                     
-                case ALLEGRO_KEY_DOWN:
+                case ALLEGRO_KEY_DOWN: //La flecha abajo hará caer la pieza.
                     
                     if(check_fall(matrix)){
-                        al_stop_timer(front_utils->ev_utils.timer);                      
-                        while(check_fall(matrix)) 
+                        al_stop_timer(front_utils->ev_utils.timer); //Se frena el timer para que se reinicie.                     
+                        while(check_fall(matrix)) //De lo contrario comparte el tiempo restante hasta bajar que tenía antes de caer.
                         {
-                            fall(matrix);
+                            fall(matrix); //Caerá mientras pueda.
                         }
                         gamevars->draw = true;
                         al_start_timer(front_utils->ev_utils.timer);
                     }
                     
                     else{
-                        all_static(matrix);
-                    }
+                        quickset = true; //Fija la pieza si ya no puede caer.
+                    } 
+                    
                     break;
             }
         }
+    }
+    
+    if(event.type == ALLEGRO_EVENT_TIMER || quickset == true ) 
+    {
+        //   printf("HOLA\n");//DEBUG
+        if(OK == check_fall(matrix)) 
+        {                            //Si se puede caer la pieza, cae
+            fall(matrix);
+            gamevars->draw = true;  
+        }
         
-        if(event.type == ALLEGRO_EVENT_TIMER) 
-        {
-            //   printf("HOLA\n");//DEBUG
-            if(OK == check_fall(matrix)) 
-            {                            //Si se puede caer la pieza, cae
-                fall(matrix);
-                gamevars->draw = true;  
+        else 
+        {                            //Si no, se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
+            all_static(matrix);             //y se aumenta la velocidad si es necesario.
+
+            if(score_counter = scored(matrix))
+            {
+                while(scored(matrix)) //still_score es un bool por lo que se repetirá hasta que ya no haya filas
+                {
+                    calculate_lines(matrix);   //...que eliminar, logrando eliminar todas simultáneamente.
+                    calculate_new_velocity(&front_utils->ev_utils, gamevars);
+                    change_velocity(&front_utils->ev_utils);
+                }
+                gamevars->draw = true; 
+                add_score(score_counter, gamevars);
             }
             
-            else 
-            {                            //Si no se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
-                all_static(matrix);             //y se aumenta la velocidad si es necesario.
+            else {
                 
-                if(score_counter = scored(matrix))
-                {
-                    while(still_score = scored(matrix)) //still_score es un bool por lo que se repetirá hasta que ya no haya filas
-                    {
-                        calculate_lines(matrix);   //...que eliminar, logrando eliminar todas simultáneamente.
-                        calculate_new_velocity(&front_utils->ev_utils, gamevars);
-                        change_velocity(&front_utils->ev_utils);
-                    }
-                    gamevars->draw = true; 
-                    add_score(score_counter, gamevars);
+                if(can_i_copy(matrix)){ //Se fija si se puede copiar una nueva pieza a la matriz    
+                    copy_piece_to_mat(matrix, piece_mat,gamevars); //copiamos la pieza a la matriz
+                    clean_piece_mat(piece_mat);
+                    next_piece(gamevars); //calculamos la proxima pieza
+                    fill_mat_piece(piece_mat, gamevars->nextpiece); //llenamos la matriz de pieza con la nueva
                 }
-                
-                else {
-                    
-                    if(can_i_copy(matrix)){ //Se fija si se puede copiar una nueva pieza a la matriz    
-                        copy_piece_to_mat(matrix, piece_mat,gamevars); //copiamos la pieza a la matriz
-                        clean_piece_mat(piece_mat);
-                        next_piece(gamevars); //calculamos la proxima pieza
-                        fill_mat_piece(piece_mat, gamevars->nextpiece); //llenamos la matriz de pieza con la nueva
-                    }
-                    else{
-                        copy_piece_to_mat(matrix, piece_mat, gamevars);
-                        gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde   
-                        gamevars->quit = true; // y se sale del juego
-                        gamevars->restart = true;
-                    }
+                else{
+                    copy_piece_to_mat(matrix, piece_mat, gamevars);
+                    gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde   
+                    gamevars->quit = true; // y se sale del juego
+                    gamevars->restart = true;
                 }
             }
         }
-        if((event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)){
-            gamevars->quit = TRUE;
+        
+        if(quickset){
+            al_stop_timer(front_utils->ev_utils.timer);
+            al_start_timer(front_utils->ev_utils.timer); //Evitamos que la nueva pieza arrastre el tiempo de la fijada.
         }
     }
 }
@@ -182,7 +200,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
     
     if (gamevars->prev_state != gamevars->state )
     {
-        al_stop_samples();
+        al_stop_samples(); //Seteamos la música del menu
         al_play_sample (front_utils->samples[1],1.25,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
         gamevars->prev_state = gamevars->state;
     }
@@ -196,7 +214,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
             switch(event.keyboard.keycode) {
                 
                 case ALLEGRO_KEY_UP:
-                    if(front_utils->selected_op>START){
+                    if(front_utils->selected_op>START){ //Selección de opción del menu
                         front_utils->selected_op += MOVEUP;
                     }
                     break;
@@ -225,7 +243,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
             }
         }
         
-        if((event.mouse.x > MENUMARGIN && event.mouse.y > (STARTPOSY)) &&
+        if((event.mouse.x > MENUMARGIN && event.mouse.y > (STARTPOSY)) && //Selecciona la opción por el mouse
                 (event.mouse.x < (STARTPOSXEND) && event.mouse.y < (STARTPOSYEND))){
             front_utils->selected_op = START;
             if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN){

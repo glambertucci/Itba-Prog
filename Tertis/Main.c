@@ -50,42 +50,42 @@ int main(void)
             
             while(!(gamevars.quit))
             {
-                if((gamevars.state == PLAYING))
+                if((gamevars.state == PLAYING)) //Funciones del propio juego
                 {
-                    continueplay(&front_utils.ev_utils, &gamevars, matrix, piece_matrix);
+                    continueplay(&front_utils.ev_utils, &gamevars, matrix, piece_matrix); 
                     playing_events(&front_utils, &gamevars, matrix, piece_matrix);
                 }
-                else if(gamevars.state == MENU)
+                else if(gamevars.state == MENU) //Funciones del menú
                 {
                     pauseplay(&front_utils.ev_utils, &gamevars);
                     menu_events(&front_utils, &gamevars);
                 }
                 
                 
-                if(gamevars.lose) 
-                {
-                    if(gamevars.highscore < (gamevars.score)){
+                if(gamevars.lose){ //gg ez
+                    
+                    if((gamevars.highscore) < (gamevars.score)){ //Si hay una nueva puntuación más alta...
                         
-                        highscore = fopen("highscore.txt", "w");
+                        highscore = fopen("highscore.txt", "w"); //...se guarda en highscore.txt.
                         fprintf(highscore, "%06d", gamevars.score);
                         fclose(highscore);
                     }
                 }
                 
-                draw_front(&front_utils, &gamevars, matrix);
+                draw_front(&front_utils, &gamevars, matrix); //Actualización del front.
             }
             
             
             
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
         
-        events_destroy(&front_utils.ev_utils);
+        events_destroy(&front_utils.ev_utils); //Cerramos eventos y front end antes de terminar el programa.
         frontend_destroy(&front_utils);
         
         return (EXIT_SUCCESS);
     }
     else
-        return (EXIT_FAILURE);
+        return (EXIT_FAILURE); //Si algo no se puedo inicializar bien, el programa se cierra e indica el error.
     
 }
 

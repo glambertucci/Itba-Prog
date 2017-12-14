@@ -14,21 +14,14 @@
 #ifndef AL_BACKEND_INIT_H
 #define AL_BACKEND_INIT_H
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "general.h"
 
-bool events_init (EV_UTILS* al_utils);
+bool events_init (EV_UTILS* ev_utils);
 //
-void events_destroy(EV_UTILS* al_utils);
+void events_destroy(EV_UTILS* ev_utils);
 //
-void change_velocity(EV_UTILS* al_utils);
+void change_velocity(EV_UTILS* ev_utils);
 //
-
-
-#ifdef __cplusplus
-}
-#endif
 
 #endif /* AL_BACKEND_INIT_H */
 
