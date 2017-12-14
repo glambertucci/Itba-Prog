@@ -18,9 +18,9 @@
 extern "C" {
 #endif
 
-bool al_backend_init (AL_UTILS* al_utils);
+bool al_backend_init (EV_UTILS* al_utils);
 //
-void al_backend_destroy(AL_UTILS* al_utils);
+void al_backend_destroy(EV_UTILS* al_utils);
 //
 
 

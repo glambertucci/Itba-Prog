@@ -179,10 +179,12 @@ void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
 ////////////////////////////////////////////////////////MANEJO DE MATRIZ DE PIEZA NUEVA////
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-void copy_piece_to_mat (PIECE tablero [TABLE_FIL][TABLE_COL],PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL]) {
+void copy_piece_to_mat (PIECE tablero [TABLE_FIL][TABLE_COL],PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS * gamevars) {
 
     int i,j;
 
+    gamevars->currentpiece.type = gamevars->nextpiece.type;
+    
     for (i=0;i<MAT_PIECE_FIL;i++) {
 
         for(j=0;j<MAT_PIECE_COL;j++) {

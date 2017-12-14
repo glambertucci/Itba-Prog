@@ -7,14 +7,14 @@
 #include "general.h"
 #include "front_allegro.h"
 
-void draw_front(AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
+void draw_front(EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
     
 
     switch(gamevars->state) {
         case PLAYING:
             al_draw_bitmap(front_utils->image[4],0,0,0);
             al_draw_tablero(matrix);
-            al_draw_next_piece(gamevars->currentpiece);
+            al_draw_next_piece(gamevars->nextpiece);
             al_draw_score(front_utils, gamevars);
             al_flip_display();
             break;

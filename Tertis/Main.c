@@ -20,6 +20,7 @@
 #include "front_allegro.h"
 #include "states_allegro.h"
 #endif
+
 #include "al_backend_init.h"
 #include "game_start.h"
 #include "misc_functions.h"
@@ -29,13 +30,12 @@ int main(void)
     int prev_state;
     PIECE matrix[TABLE_FIL][TABLE_COL]; //Matriz en donde se situan las piezas
     PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL]; //Matriz de 4x3 para cada pieza
-    AL_UTILS al_utils = {0}; //Punteros a utilizar con allegro
     GAME_UTILS gamevars = {0}; //Variables de juego
-    FRONTEND front_utils = {0}; //Variables de front end
+    FRONTEND front_utils = {0}; //Variables de front end y de Allegro
     FILE * highscore;
     
   
-    if((al_backend_init(&al_utils)) && (frontend_init(&front_utils, &al_utils))) { //Aca se inicializa el backend de allegro.
+    if((al_backend_init(&front_utils.ev_utils)) && (frontend_init(&front_utils, &front_utils.ev_utils))) { //Aca se inicializa el backend de allegro.
        
     
         do{
@@ -56,8 +56,8 @@ int main(void)
                         al_play_sample (front_utils . samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
                         prev_state = gamevars.state;
                         }
-                        continueplay(&al_utils, &gamevars, matrix, piece_matrix);
-                        playing_events(&al_utils, &gamevars, matrix, piece_matrix);
+                        continueplay(&front_utils.ev_utils, &gamevars, matrix, piece_matrix);
+                        playing_events(&front_utils.ev_utils, &gamevars, matrix, piece_matrix);
                     }
                     else if(gamevars.state == MENU)
                     {
@@ -68,8 +68,8 @@ int main(void)
                         al_play_sample (front_utils . samples[1],1.25,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
                         prev_state = gamevars.state;
                         }
-                        pauseplay(&al_utils, &gamevars);
-                        menu_events(&al_utils, &front_utils, &gamevars);
+                        pauseplay(&front_utils.ev_utils, &gamevars);
+                        menu_events(&front_utils.ev_utils, &front_utils, &gamevars);
                     }
 
                     
@@ -83,14 +83,14 @@ int main(void)
                         }
                      }
                     
-                    draw_front(&al_utils, &front_utils, &gamevars, matrix);
+                    draw_front(&front_utils.ev_utils, &front_utils, &gamevars, matrix);
             }
             
            
             
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
 
-        al_backend_destroy(&al_utils);
+        al_backend_destroy(&front_utils.ev_utils);
         frontend_destroy(&front_utils);
 
         return (EXIT_SUCCESS);

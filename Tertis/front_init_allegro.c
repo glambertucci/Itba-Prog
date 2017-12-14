@@ -6,7 +6,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
-bool frontend_init(FRONTEND * front_utils, AL_UTILS* al_utils){
+bool frontend_init(FRONTEND * front_utils, EV_UTILS* al_utils){
 
     int abort = 0; 
 

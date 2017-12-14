@@ -19,7 +19,7 @@ extern "C" {
 #endif
 
 int check_fall(PIECE tablero [TABLE_FIL][TABLE_COL]);
-//devuelve OK NOT_OK o NO_NEW
+//devuelve OK NOT_OK
 //
 bool checkMove (PIECE matrix[TABLE_FIL][TABLE_COL], bool dir);
 //

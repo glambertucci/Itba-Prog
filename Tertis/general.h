@@ -38,7 +38,6 @@ extern "C" {
 #include <allegro5/allegro_primitives.h>
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_audio.h>
-#include<allegro5/allegro_font.h>
     
 #include <stdint.h>
 #include <stdio.h>
@@ -72,9 +71,11 @@ extern "C" {
         ALLEGRO_TIMER * timer;
         ALLEGRO_EVENT_QUEUE * queue;
         double timer_speed;
-    }AL_UTILS;
+    }EV_UTILS;
     
     typedef struct { //Estructura con variables de juego
+  
+        PIECE nextpiece;
         PIECE currentpiece;
         SCORE highscore;
         SCORE score;
@@ -87,21 +88,16 @@ extern "C" {
     }GAME_UTILS;
     
 #ifdef RASP_PI
-typedef struct { //Estructura para front de pi
-	pthread_t timer;
-	void* event_routine(void*);
-	struct {
-        	int x;
-        	int y;
-       		bool pressed;
-    	}joystick;
-    	int option;
-    	bool menu_drawed;
-}FRONTEND;
+    typedef struct { //Estructura para front de pi
+        
+    }FRONTEND;
     
 #else
+    
+#include<allegro5/allegro_font.h>
 
 typedef struct { //Estructura para front de allegro
+    EV_UTILS ev_utils;
     ALLEGRO_BITMAP * image[TOTAL_IMAGES];
     ALLEGRO_DISPLAY* display;
     ALLEGRO_SAMPLE * (samples[TOTAL_MUSICA]);

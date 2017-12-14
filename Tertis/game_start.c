@@ -33,7 +33,7 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
     init_mat(piece_matrix);
     
     //Llenamos la matriz de la pieza
-    fill_mat_piece(piece_matrix, gamevars->currentpiece);
+    fill_mat_piece(piece_matrix, gamevars->nextpiece);
     
       
     if(gamevars->restart && !(gamevars->lose)){ //Si se presionó START/reiniciar, se espera que se inicie el juego.

@@ -2,7 +2,7 @@
 #include "al_backend_init.h"
 #include <allegro5/allegro5.h>
 
-bool al_backend_init (AL_UTILS* al_utils){
+bool al_backend_init (EV_UTILS* al_utils){
     
     bool abort = false;
     
@@ -30,7 +30,7 @@ bool al_backend_init (AL_UTILS* al_utils){
     return !(abort);
 }
 
-void al_backend_destroy(AL_UTILS* al_utils){
+void al_backend_destroy(EV_UTILS* al_utils){
     al_destroy_event_queue(al_utils->queue);
     al_destroy_timer(al_utils->timer);
 }
