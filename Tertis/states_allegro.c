@@ -22,7 +22,6 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
     
     
     if (gamevars->prev_state != gamevars->state ){ //Cambiamos la música si estabamos en el menu
-        
         al_stop_samples();
         al_play_sample (front_utils->samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
         gamevars->prev_state = gamevars->state;
@@ -153,17 +152,17 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
         else 
         {                            //Si no, se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
             all_static(matrix);             //y se aumenta la velocidad si es necesario.
-
+            
             if(score_counter = scored(matrix))
             {
                 while(scored(matrix)) //still_score es un bool por lo que se repetirá hasta que ya no haya filas
                 {
                     calculate_lines(matrix);   //...que eliminar, logrando eliminar todas simultáneamente.
-                    calculate_new_velocity(&front_utils->ev_utils, gamevars);
-                    change_velocity(&front_utils->ev_utils);
                 }
                 gamevars->draw = true; 
                 add_score(score_counter, gamevars);
+                calculate_new_velocity(&front_utils->ev_utils, gamevars);
+                change_velocity(&front_utils->ev_utils);
             }
             
             else {
@@ -224,6 +223,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
                         front_utils->selected_op += MOVEDOWN;
                     }
                     break;
+                    
                 case ALLEGRO_KEY_ENTER:
                     switch(front_utils->selected_op) {
                         case START:

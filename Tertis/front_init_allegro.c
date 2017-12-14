@@ -8,7 +8,7 @@
 
 bool frontend_init(FRONTEND * front_utils){
 
-    int abort = 0; 
+    int abort = false; 
 
       if (!al_init_acodec_addon())				// 
     {											
@@ -20,12 +20,6 @@ bool frontend_init(FRONTEND * front_utils){
         fprintf(stderr, "Image addon failed to initialize.");
         abort = 1;
     }
-    
-     if(!(al_init_image_addon())){
-        fprintf(stderr, "Image addon failed to initialize.");
-        abort = 1;
-    }
-    
     
     if(!(al_init_primitives_addon())){
         fprintf(stderr, "Primitives addon failed to initialize.");
@@ -126,7 +120,7 @@ bool frontend_init(FRONTEND * front_utils){
    }
     
    if(!(front_utils->samples[2] = al_load_sample("lost.wav"))){
-        fprintf(stderr,"sample 3 not loaded\n");
+        fprintf(stderr,"sample 3 not loaded\n");    
         al_destroy_sample(front_utils->samples[1]);      
         al_destroy_sample(front_utils->samples[0]);
         al_destroy_bitmap(front_utils->image[3]);        
@@ -145,6 +139,7 @@ bool frontend_init(FRONTEND * front_utils){
     
      if(!(front_utils->font1 = al_load_font("pixelated.ttf", FONTSIZE, 0))){
         fprintf(stderr, "Font 1 failed to initialize");
+        al_destroy_sample(front_utils->samples[2]);  
         al_destroy_sample(front_utils->samples[1]);      
         al_destroy_sample(front_utils->samples[0]);
         al_destroy_bitmap(front_utils->image[3]);        
@@ -155,40 +150,42 @@ bool frontend_init(FRONTEND * front_utils){
         al_destroy_display(front_utils->display);
         al_uninstall_audio();
         abort = 1;
-    }
+     }
      
-    if(!(front_utils->font2 = al_load_font("pixelated.ttf", FONTSIZE-10, 0))){
-        fprintf(stderr, "Font 2 failed to initialize");
-        al_destroy_font(front_utils->font1);
-        al_destroy_sample(front_utils->samples[1]);      
-        al_destroy_sample(front_utils->samples[0]);
-        al_destroy_bitmap(front_utils->image[3]);        
-        al_destroy_bitmap(front_utils->image[3]);
-        al_destroy_bitmap(front_utils->image[2]);
-        al_destroy_bitmap(front_utils->image[1]);
-        al_destroy_bitmap(front_utils->image[0]);
-        al_destroy_display(front_utils->display);
-        al_uninstall_audio();
-        abort = 1;
-    } 
+     if(!(front_utils->font2 = al_load_font("pixelated.ttf", FONTSIZE-10, 0))){
+         fprintf(stderr, "Font 2 failed to initialize");
+         al_destroy_font(front_utils->font1);
+         al_destroy_sample(front_utils->samples[2]);
+         al_destroy_sample(front_utils->samples[1]);      
+         al_destroy_sample(front_utils->samples[0]);
+         al_destroy_bitmap(front_utils->image[3]);        
+         al_destroy_bitmap(front_utils->image[3]);
+         al_destroy_bitmap(front_utils->image[2]);
+         al_destroy_bitmap(front_utils->image[1]);
+         al_destroy_bitmap(front_utils->image[0]);
+         al_destroy_display(front_utils->display);
+         al_uninstall_audio();
+         abort = 1;
+     } 
      
- if(!(front_utils->font3 = al_load_font("pixelated.ttf", FONTSIZE-20, 0))){
-        fprintf(stderr, "Font 3 failed to initialize");
-        al_destroy_font(front_utils->font2);    
-        al_destroy_font(front_utils->font1);
-        al_destroy_sample(front_utils->samples[1]);      
-        al_destroy_sample(front_utils->samples[0]);
-        al_destroy_bitmap(front_utils->image[3]);        
-        al_destroy_bitmap(front_utils->image[3]);
-        al_destroy_bitmap(front_utils->image[2]);
-        al_destroy_bitmap(front_utils->image[1]);
-        al_destroy_bitmap(front_utils->image[0]);
-        al_destroy_display(front_utils->display);
-        al_uninstall_audio();
-        abort = 1;
-    }      
+     if(!(front_utils->font3 = al_load_font("pixelated.ttf", FONTSIZE-20, 0))){
+         fprintf(stderr, "Font 3 failed to initialize");
+         al_destroy_font(front_utils->font2);    
+         al_destroy_font(front_utils->font1);
+         al_destroy_sample(front_utils->samples[2]);         
+         al_destroy_sample(front_utils->samples[1]);      
+         al_destroy_sample(front_utils->samples[0]);
+         al_destroy_bitmap(front_utils->image[3]);        
+         al_destroy_bitmap(front_utils->image[3]);
+         al_destroy_bitmap(front_utils->image[2]);
+         al_destroy_bitmap(front_utils->image[1]);
+         al_destroy_bitmap(front_utils->image[0]);
+         al_destroy_display(front_utils->display);
+         al_uninstall_audio();
+         abort = 1;
+     }      
      
-    
+     
     al_register_event_source(front_utils->ev_utils.queue, al_get_display_event_source(front_utils->display));
     al_register_event_source(front_utils->ev_utils.queue, al_get_keyboard_event_source());
     al_register_event_source(front_utils->ev_utils.queue, al_get_mouse_event_source());

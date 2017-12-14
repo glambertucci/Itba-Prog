@@ -2,7 +2,7 @@
 #include "general.h"
 
 
-void event_routine(EV_UTILS * ev_utils){
+/* void event_routine(EV_UTILS * ev_utils){
     
     while(!(ev_utils->ev_end)){
         static clock_t timezero;
@@ -20,4 +20,4 @@ void event_routine(EV_UTILS * ev_utils){
             } 
         }    
     }
-}
+}*/

@@ -44,12 +44,7 @@ extern "C" {
     //Matriz de tablero
 #define TABLE_FIL 20
 #define TABLE_COL 14
-    //Para display
-#define SCREEN_W 800
-#define SCREEN_H 800
-#define TOTAL_IMAGES 5
-#define TOTAL_MUSICA 3
-    
+  
     //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
@@ -102,6 +97,13 @@ extern "C" {
 #else
         
 #include<allegro5/allegro_font.h>
+        
+          //Para display
+#define SCREEN_W 800
+#define SCREEN_H 800
+#define TOTAL_IMAGES 6
+#define TOTAL_MUSICA 3
+    
         
         typedef struct { //Estructura para manejo de allegro
             ALLEGRO_TIMER * timer;

@@ -18,6 +18,8 @@ void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE
             al_draw_score(front_utils, gamevars);
             al_flip_display();
             break;
+            
+            
         case MENU:
 
         al_draw_bitmap(front_utils->image[front_utils->selected_op],0,0,0);
@@ -169,6 +171,6 @@ void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars){
     al_draw_filled_rectangle( SCREEN_W-SEPARACION*5, SEPARACION*9, SCREEN_W-SEPARACION*2, SEPARACION*10 , al_map_rgb(0,0,0));
     al_draw_filled_rectangle( SCREEN_W-SEPARACION*6, SEPARACION*10, SCREEN_W-SEPARACION*1, SEPARACION*12 , al_map_rgb(0,0,0));
     al_draw_text(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*8.9,ALLEGRO_ALIGN_CENTRE,"SCORE");
-    al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*10.5,ALLEGRO_ALIGN_CENTRE,"%05d",gamevars->score);
+    al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*10.5,ALLEGRO_ALIGN_CENTRE,"%06d",gamevars->score);
     
 }

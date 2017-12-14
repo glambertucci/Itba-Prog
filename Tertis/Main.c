@@ -27,7 +27,6 @@
 
 int main(void) 
 {
-    int prev_state;
     PIECE matrix[TABLE_FIL][TABLE_COL]; //Matriz en donde se situan las piezas
     PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL]; //Matriz de 4x3 para cada pieza
     GAME_UTILS gamevars = {0}; //Variables de logica juego
