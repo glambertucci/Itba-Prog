@@ -4,39 +4,34 @@
 #include "misc_functions.h"
 
 
-void calculate_new_velocity(EV_UTILS* al_utils, GAME_UTILS * gamevars)
+void calculate_new_velocity(EV_UTILS* ev_utils, GAME_UTILS * gamevars)
 {
     
     SCORE score = gamevars->score;
 
     if(score >= 0)
-        al_utils->timer_speed = INITIAL / 10.0;
+        ev_utils->timer_speed = INITIAL / 10.0;
     if(score >= 4*SCORE1)
-        al_utils->timer_speed = VERYEASY / 10.0;
+        ev_utils->timer_speed = VERYEASY / 10.0;
     if(score >= 9*SCORE1)
-        al_utils->timer_speed = EASY / 10.0;
+        ev_utils->timer_speed = EASY / 10.0;
     if(score >= 15*SCORE1)
-        al_utils->timer_speed = NORMAL / 10.0;
+        ev_utils->timer_speed = NORMAL / 10.0;
     if(score >= 23*SCORE1)
-        al_utils->timer_speed = NORMALHARD / 10.0;
+        ev_utils->timer_speed = NORMALHARD / 10.0;
     if(score >= 31*SCORE1)
-        al_utils->timer_speed = HARD / 10.0;
+        ev_utils->timer_speed = HARD / 10.0;
     if(score >= 40*SCORE1)
-        al_utils->timer_speed = VERYHARD / 10.0;
+        ev_utils->timer_speed = VERYHARD / 10.0;
     if(score >= 50*SCORE1)
-        al_utils->timer_speed = IMPOSSIBLE / 10.0;
+        ev_utils->timer_speed = IMPOSSIBLE / 10.0;
 }
 
-void change_velocity(EV_UTILS* al_utils) {
 
-    if((al_get_timer_speed(al_utils->timer)) != (al_utils->timer_speed))
-    {
-        al_set_timer_speed(al_utils->timer, al_utils->timer_speed);
-    }
-}
+//Change_velocity es evento-dependiente, entonces compilará según plataforma. Caso excepcional.
 
 void continueplay(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL])
-{                                                    //Se fija si esta parado el timer, si lo esta, lo arranca
+{   //Se fija si esta parado el timer, si lo esta, lo arranca
     if(!(gamevars->is_not_first_time))
     {
         copy_piece_to_mat(matrix, piece_mat, gamevars);

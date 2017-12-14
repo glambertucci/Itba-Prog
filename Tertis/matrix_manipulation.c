@@ -89,8 +89,8 @@ void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir ) {
 	                    
 	                }
 	            }
-	        }
-        	break;
+                        }
+                        break;
     }
 }
 
@@ -108,7 +108,7 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
             }   
         }  // Luego de los for, pivot_fil y pivot_col seran las coordenadas del pivote.
     }
-
+    
     //Paso siguiente mover cada cuadradito a su lugar correspondiente borrando
     //el original. Esto se hace pensando al pivote como origen con las coordenadas
     //(x,y) a cada cuadradito a mover. (x,y) pasa a ser (y,-x) luego de la rotacion.
@@ -122,10 +122,10 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
                 {  //En la linea de abajo coloco el cuadradito nuevo
                     *(temp_fil + k) = ((pivot_fil)+(j-pivot_col));
                     *(temp_col + k) = ((pivot_col)-(i-pivot_fil));
-                
+                    
                     matrix[i][j].type = BLANK;      //Aca borro
                     matrix[i][j].state = ESTATICO;  //el original
-                k++;
+                    k++;
                 }
             }          
         }        
@@ -138,6 +138,37 @@ void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]) {
             matrix[*(temp_fil + i)][*(temp_col + i)].state = CAYENDO;
         }
     }
+}
+
+bool rotateWall(PIECE matrix[TABLE_FIL][TABLE_COL], GAME_UTILS * gamevars, bool dir){
+    
+    bool abort = NOT_OK;
+    
+    if(checkMove(matrix,dir)){
+        move(matrix,dir);
+        if(checkRotate(matrix)){
+            rotate(matrix);
+            gamevars->draw = true;
+            abort = OK;
+        }
+        else if(checkMove(matrix,dir)){
+            move(matrix,dir);
+            if(checkRotate(matrix)){
+                rotate(matrix);
+                gamevars->draw = true;
+                abort = OK;
+            }
+            else{
+                move(matrix,!(dir));
+                move(matrix,!(dir));
+            }
+        }
+        else{
+            move(matrix,!(dir));
+        }
+    }
+    
+    return abort;
 }
 
 void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
@@ -158,7 +189,7 @@ void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL])
 void delete_line(PIECE matrix[TABLE_FIL][TABLE_COL], uint8_t fila) {
     
     uint8_t i, j;
-
+    
     
    for(i = fila; i > 2 ; i--) //Me paro en la linea borrada...
     {

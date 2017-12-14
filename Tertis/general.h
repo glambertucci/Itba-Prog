@@ -27,9 +27,6 @@ extern "C" {
     enum{NOT_OK,OK};
     enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
     
-
-#define PIECENUM 187
-    
 #include <allegro5/allegro.h>
 #include <allegro5/timer.h>
 #include <allegro5/display.h>
@@ -82,6 +79,7 @@ extern "C" {
         bool is_not_first_time;
         bool lose;
         bool quit;
+        bool prev_state;
         bool state;
         bool restart;
         bool draw;

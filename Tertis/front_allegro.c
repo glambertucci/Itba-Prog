@@ -7,7 +7,7 @@
 #include "general.h"
 #include "front_allegro.h"
 
-void draw_front(EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
+void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
     
 
     switch(gamevars->state) {

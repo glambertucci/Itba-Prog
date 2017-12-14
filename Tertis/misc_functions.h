@@ -18,13 +18,12 @@
 extern "C" {
 #endif
 
-void calculate_new_velocity(EV_UTILS* al_utils, GAME_UTILS * gamevars);
+void calculate_new_velocity(EV_UTILS* ev_utils, GAME_UTILS * gamevars);
 //
-void change_velocity(EV_UTILS* al_utils);
+
+void continueplay(EV_UTILS* ev_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]);
 //
-void continueplay(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]);
-//
-void pauseplay (EV_UTILS* al_utils, GAME_UTILS* gamevars);
+void pauseplay (EV_UTILS* ev_utils, GAME_UTILS* gamevars);
 //
 void next_piece(GAME_UTILS* gamevars);
 //

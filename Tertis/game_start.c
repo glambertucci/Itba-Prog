@@ -53,8 +53,9 @@ void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIEC
         gamevars->score = 0;
         gamevars->lose = 0;
     }
-    
 } 
+
+
 
 void init_mat (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL])
 {

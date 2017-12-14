@@ -16,7 +16,7 @@
 
 #define FONTSIZE 40
     
-bool frontend_init(FRONTEND* front_utils, EV_UTILS * al_utils);
+bool frontend_init(FRONTEND* front_utils);
 //
 void frontend_destroy(FRONTEND* front_utils);
 

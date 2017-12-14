@@ -26,7 +26,7 @@
 #include <stdlib.h>
 #include "general.h"
 
-void draw_front(EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]);
+void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]);
 //
 void  al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL]);
 //al_draw_tablero recibe matriz de PIECE y la imprime por allegro

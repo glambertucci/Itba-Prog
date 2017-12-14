@@ -26,7 +26,7 @@ void move(PIECE matrix[TABLE_FIL][TABLE_COL], bool dir );
 //
 void rotate(PIECE matrix[TABLE_FIL][TABLE_COL]);
 //
-void rotateWall(PIECE matrix[TABLE_FIL][TABLE_COL], GAME_UTILS * gamevars);
+bool rotateWall(PIECE matrix[TABLE_FIL][TABLE_COL], GAME_UTILS * gamevars, bool dir);
 
 void calculate_lines(PIECE matrix[TABLE_FIL][TABLE_COL]);
 //

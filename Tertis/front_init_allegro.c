@@ -6,7 +6,7 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_ttf.h>
 
-bool frontend_init(FRONTEND * front_utils, EV_UTILS* al_utils){
+bool frontend_init(FRONTEND * front_utils){
 
     int abort = 0; 
 
@@ -189,9 +189,9 @@ bool frontend_init(FRONTEND * front_utils, EV_UTILS* al_utils){
     }      
      
     
-    al_register_event_source(al_utils->queue, al_get_display_event_source(front_utils->display));
-    al_register_event_source(al_utils->queue, al_get_keyboard_event_source());
-    al_register_event_source(al_utils->queue, al_get_mouse_event_source());
+    al_register_event_source(front_utils->ev_utils.queue, al_get_display_event_source(front_utils->display));
+    al_register_event_source(front_utils->ev_utils.queue, al_get_keyboard_event_source());
+    al_register_event_source(front_utils->ev_utils.queue, al_get_mouse_event_source());
     
     return !(abort);
 }

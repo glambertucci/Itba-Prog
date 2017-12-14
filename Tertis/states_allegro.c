@@ -12,13 +12,22 @@
 #include "scored.h"
 
 
-void playing_events(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) {
+void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) {
     
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
     SCORE score_counter = 0;
     bool still_score;
     
-    if(al_get_next_event(al_utils->queue, &event)) {
+    
+    
+    if (gamevars->prev_state != gamevars->state ){
+        
+        al_stop_samples();
+        al_play_sample (front_utils->samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+        gamevars->prev_state = gamevars->state;
+    }
+    
+    if(al_get_next_event(front_utils->ev_utils.queue, &event)) {
         
         if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
             gamevars->quit = true;
@@ -58,60 +67,18 @@ void playing_events(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                     }
                     
                     else if(gamevars->currentpiece.type != STICK){
-                        if(checkMove(matrix,LEFT)){
-                            move(matrix,LEFT);
-                            if(checkRotate(matrix)){
-                                rotate(matrix);
-                                gamevars->draw = true;
-                            }
-                            else if(checkMove(matrix,LEFT)){
-                                move(matrix,LEFT);
-                                if(checkRotate(matrix)){
-                                    rotate(matrix);
-                                    gamevars->draw = true;
-                                }
-                                else{
-                                    move(matrix,RIGHT);
-                                    move(matrix,RIGHT);
-                                }
-                            }
-                            else{
-                                move(matrix,RIGHT);
-                            }
-                        }
-                        
-                        else if(checkMove(matrix,RIGHT)){
-                            move(matrix,RIGHT);
-                            
-                            if(checkRotate(matrix)){
-                                rotate(matrix);
-                                gamevars->draw = true; 
-                            }
-                            
-                            else if(checkMove(matrix,RIGHT)){
-                                move(matrix,RIGHT);
-                                if(checkRotate(matrix)){
-                                    rotate(matrix);
-                                    gamevars->draw = true; 
-                                }
-                                else{
-                                    move(matrix,LEFT);
-                                    move(matrix,LEFT);
-                                }
-                            }
-                            else{
-                                move(matrix,LEFT);
-                            }
-                        }
+                        if(OK == rotateWall(matrix, gamevars, LEFT)){}
+                        else if(OK == rotateWall(matrix,gamevars,RIGHT)){}
                     }
                     
-                    else{
-                        if(checkMove(matrix,LEFT)){
-                            move(matrix,LEFT);
-                            if(checkRotate(matrix)){
-                                    rotate(matrix);
-                                    gamevars->draw = true;
-                                }
+                    else{ //Caso particular, si se tratase del STICK.
+                        
+                        if(checkMove(matrix,LEFT)){ //Es la única que pieza que no puede rotar
+                            move(matrix,LEFT); //Aun estando separada de la pared.
+                            if(checkRotate(matrix)){ //Por eso, si se puede mover para la izquierda
+                                rotate(matrix); //Pero no puede rotar....
+                                gamevars->draw = true;
+                            }
                             else if(checkMove(matrix,LEFT)){
                                 if(checkRotate(matrix)){
                                     rotate(matrix);
@@ -129,69 +96,25 @@ void playing_events(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                                     }
                                 }
                             }
-                            else{
+                            else{ //...Vendra aqui, donde regresará a su posición e intentará moverse a la izquierda.
                                 move(matrix,RIGHT);
-                                if(checkMove(matrix,RIGHT)){
-                                    move(matrix,RIGHT);
-                                    
-                                    if(checkRotate(matrix)){
-                                        rotate(matrix);
-                                        gamevars->draw = true; 
-                                    }
-                                    
-                                    else if(checkMove(matrix,RIGHT)){
-                                        move(matrix,RIGHT);
-                                        if(checkRotate(matrix)){
-                                            rotate(matrix);
-                                            gamevars->draw = true; 
-                                        }
-                                        else{
-                                            move(matrix,LEFT);
-                                            move(matrix,LEFT);
-                                        }
-                                    }
-                                    else{
-                                        move(matrix,LEFT);
-                                    }
-                                }
-                            }
+                                rotateWall(matrix,gamevars,RIGHT);
+                            }    
                         }
-                        else if(checkMove(matrix,RIGHT)){
-                            move(matrix,RIGHT);
-                            
-                            if(checkRotate(matrix)){
-                                rotate(matrix);
-                                gamevars->draw = true; 
-                            }
-                            
-                            else if(checkMove(matrix,RIGHT)){
-                                move(matrix,RIGHT);
-                                if(checkRotate(matrix)){
-                                    rotate(matrix);
-                                    gamevars->draw = true; 
-                                }
-                                else{
-                                    move(matrix,LEFT);
-                                    move(matrix,LEFT);
-                                }
-                            }
-                            else{
-                                move(matrix,LEFT);
-                            }
-                        }  
+                        rotateWall(matrix,gamevars,RIGHT);
                     }
                     break;
                     
                 case ALLEGRO_KEY_DOWN:
                     
                     if(check_fall(matrix)){
-                        al_stop_timer(al_utils -> timer);                      
+                        al_stop_timer(front_utils->ev_utils.timer);                      
                         while(check_fall(matrix)) 
                         {
                             fall(matrix);
                         }
                         gamevars->draw = true;
-                        al_start_timer(al_utils->timer);
+                        al_start_timer(front_utils->ev_utils.timer);
                     }
                     
                     else{
@@ -200,61 +123,73 @@ void playing_events(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE
                     break;
             }
         }
-    
-    if(event.type == ALLEGRO_EVENT_TIMER) 
-    {
-        //   printf("HOLA\n");//DEBUG
-        if(OK == check_fall(matrix)) 
-        {                            //Si se puede caer la pieza, cae
-            fall(matrix);
-            gamevars->draw = true;  
-        }
         
-        else 
-        {                            //Si no se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
-            all_static(matrix);             //y se aumenta la velocidad si es necesario.
-            
-            if(score_counter = scored(matrix))
-            {
-                while(still_score = scored(matrix)) //still_score es un bool por lo que se repetirá hasta que ya no haya filas
-                {
-                    calculate_lines(matrix);   //...que eliminar, logrando eliminar todas simultáneamente.
-                    calculate_new_velocity(al_utils, gamevars);
-                    change_velocity(al_utils);
-                }
-                gamevars->draw = true; 
-                add_score(score_counter, gamevars);
+        if(event.type == ALLEGRO_EVENT_TIMER) 
+        {
+            //   printf("HOLA\n");//DEBUG
+            if(OK == check_fall(matrix)) 
+            {                            //Si se puede caer la pieza, cae
+                fall(matrix);
+                gamevars->draw = true;  
             }
             
-            else {
+            else 
+            {                            //Si no se congela todo, se ve si hay linea completa y si la hay se borra, se suma score
+                all_static(matrix);             //y se aumenta la velocidad si es necesario.
                 
-                if(can_i_copy(matrix)){ //Se fija si se puede copiar una nueva pieza a la matriz    
-                    copy_piece_to_mat(matrix, piece_mat,gamevars); //copiamos la pieza a la matriz
-                    clean_piece_mat(piece_mat);
-                    next_piece(gamevars); //calculamos la proxima pieza
-                    fill_mat_piece(piece_mat, gamevars->nextpiece); //llenamos la matriz de pieza con la nueva
+                if(score_counter = scored(matrix))
+                {
+                    while(still_score = scored(matrix)) //still_score es un bool por lo que se repetirá hasta que ya no haya filas
+                    {
+                        calculate_lines(matrix);   //...que eliminar, logrando eliminar todas simultáneamente.
+                        calculate_new_velocity(&front_utils->ev_utils, gamevars);
+                        change_velocity(&front_utils->ev_utils);
+                    }
+                    gamevars->draw = true; 
+                    add_score(score_counter, gamevars);
                 }
-                else{
-                    copy_piece_to_mat(matrix, piece_mat, gamevars);
-                    gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde   
-                    gamevars->quit = true; // y se sale del juego
-                    gamevars->restart = true;
+                
+                else {
+                    
+                    if(can_i_copy(matrix)){ //Se fija si se puede copiar una nueva pieza a la matriz    
+                        copy_piece_to_mat(matrix, piece_mat,gamevars); //copiamos la pieza a la matriz
+                        clean_piece_mat(piece_mat);
+                        next_piece(gamevars); //calculamos la proxima pieza
+                        fill_mat_piece(piece_mat, gamevars->nextpiece); //llenamos la matriz de pieza con la nueva
+                    }
+                    else{
+                        copy_piece_to_mat(matrix, piece_mat, gamevars);
+                        gamevars->lose = true; //Si no se puede caer, ni copiar una nueva pieza, se pierde   
+                        gamevars->quit = true; // y se sale del juego
+                        gamevars->restart = true;
+                    }
                 }
             }
         }
+        if((event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)){
+            gamevars->quit = TRUE;
+        }
     }
-    if((event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)){
-        gamevars->quit = TRUE;
-    }
-}
 }
 
-void menu_events (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
+void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
     //estado de menu   
     static bool is_not_first_time = true; //para saber si es la primera vez que se empieza y el continue sirva como start
     ALLEGRO_EVENT event;
     
-    if(al_get_next_event(al_utils->queue, &event)){
+    
+    
+    
+    if (gamevars->prev_state != gamevars->state )
+    {
+        al_stop_samples();
+        al_play_sample (front_utils->samples[1],1.25,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
+        gamevars->prev_state = gamevars->state;
+    }
+    
+    
+    
+    if(al_get_next_event(front_utils->ev_utils.queue, &event)){
         
         if(event.type == ALLEGRO_EVENT_KEY_DOWN){
             

@@ -21,7 +21,7 @@
 #include "states_allegro.h"
 #endif
 
-#include "al_backend_init.h"
+#include "al_events.h"
 #include "game_start.h"
 #include "misc_functions.h"
 
@@ -30,76 +30,65 @@ int main(void)
     int prev_state;
     PIECE matrix[TABLE_FIL][TABLE_COL]; //Matriz en donde se situan las piezas
     PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL]; //Matriz de 4x3 para cada pieza
-    GAME_UTILS gamevars = {0}; //Variables de juego
-    FRONTEND front_utils = {0}; //Variables de front end y de Allegro
+    GAME_UTILS gamevars = {0}; //Variables de logica juego
+    FRONTEND front_utils = {0}; //Variables de front end y de eventos.
     FILE * highscore;
     
-  
-    if((al_backend_init(&front_utils.ev_utils)) && (frontend_init(&front_utils, &front_utils.ev_utils))) { //Aca se inicializa el backend de allegro.
-       
     
+    if((events_init(&front_utils.ev_utils)) && (frontend_init(&front_utils))) { //Aca se inicializan los eventos y frontend según corresponde a la plataforma.
+        
+        
         do{
             game_start(matrix, piece_matrix, &gamevars); //Aca se inicializan las matrices y variables de juego.
+            calculate_new_velocity(&front_utils.ev_utils, &gamevars); //Es importante que si se reinicia el juego...
+            change_velocity(&front_utils.ev_utils);//...se resetee la velocidad del timer.
             
-            highscore = fopen("highscore.txt", "r");
-            fscanf(highscore, "%d",&(gamevars.highscore));
+            
+            highscore = fopen("highscore.txt", "r"); //Accedemos al archivo donde se almacena el highscore...
+            fscanf(highscore, "%d",&(gamevars.highscore)); //...y extraemos el mismo.
             fclose(highscore);
             
             while(!(gamevars.quit))
             {
-                    if((gamevars.state == PLAYING))
-                    {
-
-                        if (prev_state != gamevars.state )
-                        {
-                        al_stop_samples();
-                        al_play_sample (front_utils . samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
-                        prev_state = gamevars.state;
-                        }
-                        continueplay(&front_utils.ev_utils, &gamevars, matrix, piece_matrix);
-                        playing_events(&front_utils.ev_utils, &gamevars, matrix, piece_matrix);
-                    }
-                    else if(gamevars.state == MENU)
-                    {
+                if((gamevars.state == PLAYING))
+                {
+                    continueplay(&front_utils.ev_utils, &gamevars, matrix, piece_matrix);
+                    playing_events(&front_utils, &gamevars, matrix, piece_matrix);
+                }
+                else if(gamevars.state == MENU)
+                {
+                    pauseplay(&front_utils.ev_utils, &gamevars);
+                    menu_events(&front_utils, &gamevars);
+                }
+                
+                
+                if(gamevars.lose) 
+                {
+                    if(gamevars.highscore < (gamevars.score)){
                         
-                        if (prev_state != gamevars.state )
-                        {
-                        al_stop_samples();
-                        al_play_sample (front_utils . samples[1],1.25,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
-                        prev_state = gamevars.state;
-                        }
-                        pauseplay(&front_utils.ev_utils, &gamevars);
-                        menu_events(&front_utils.ev_utils, &front_utils, &gamevars);
+                        highscore = fopen("highscore.txt", "w");
+                        fprintf(highscore, "%06d", gamevars.score);
+                        fclose(highscore);
                     }
-
-                    
-                     if(gamevars.lose) 
-                    {
-                        if(gamevars.highscore < (gamevars.score)){
-                            
-                            highscore = fopen("highscore.txt", "w");
-                            fprintf(highscore, "%06d", gamevars.score);
-                            fclose(highscore);
-                        }
-                     }
-                    
-                    draw_front(&front_utils.ev_utils, &front_utils, &gamevars, matrix);
+                }
+                
+                draw_front(&front_utils, &gamevars, matrix);
             }
             
-           
+            
             
         } while(gamevars.restart); //Si puse restart, entonces loopeo.
-
-        al_backend_destroy(&front_utils.ev_utils);
+        
+        events_destroy(&front_utils.ev_utils);
         frontend_destroy(&front_utils);
-
+        
         return (EXIT_SUCCESS);
-        }
+    }
     else
         return (EXIT_FAILURE);
     
-    }
-    
-    
-    
+}
+
+
+
 

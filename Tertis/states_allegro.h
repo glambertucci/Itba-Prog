@@ -18,13 +18,10 @@
 extern "C" {
 #endif
 
-void playing_events(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]);
+void playing_events(FRONTEND * front_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]);
 //
-void menu_events (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars);
+void menu_events (FRONTEND * front_utils, GAME_UTILS* gamevars);
 //
-void menu (EV_UTILS * al_utils, GAME_UTILS * gamevars);
-//
-
 
 #define MENUMARGIN 122
 #define LETTERSIZE 24
