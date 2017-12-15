@@ -1,5 +1,11 @@
+
+/*#include "general.h"
+#include "front_pi.h"
+#include "disdrv.h"
+=======
 #include "general.h"
 #include "front_pi.h"
+>>>>>>> 9a1c03b7cede12b2710cb4c35d2402c0a2f8d0cc
 #include "matrix_manipulation.h"
 
 void draw_front (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
@@ -90,9 +96,18 @@ void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
 void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
     
     if(!(front_utils->menu_drawed)){
+<<<<<<< HEAD
+ //   draw_s();
+        printf("Estado start"); //DEBUG
+ //   draw_c();
+        printf("Estado cONTINUE"); //DEBUG
+ //   draw_q();
+        printf("Estado quit"); //DEBUG
+=======
     draw_s();
     draw_c();
     draw_q();
+>>>>>>> 9a1c03b7cede12b2710cb4c35d2402c0a2f8d0cc
     draw_score(gamevars);
     front_utils->menu_drawed = true;
     }
@@ -162,4 +177,6 @@ void draw_score(GAME_UTILS* gamevars) {
 
 void* event_routine(void*) {
     
-}
+<<<<<<< HEAD
+}*/
+

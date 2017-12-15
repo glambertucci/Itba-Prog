@@ -10,10 +10,18 @@
  *
  * Created on December 3, 2017, 12:23 AM
  */
-
+/*
 #ifndef STATES_PI_H
 #define STATES_PI_H
 
+
+// Esta funcion indica en que direccion se esta moviendo el joystick
+//
+// jcoord_t * joy : Es un puntero a una estructura que contiene la inclinacion en X y en Y del joystick.
+int8_t what_direction ( jcoord_t * joy);
+#define TILT (80)
+void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) ;
+#include "general.h"
 #ifdef __cplusplus
 extern "C" {
 #endif
