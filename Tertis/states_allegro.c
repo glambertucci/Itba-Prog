@@ -1,3 +1,5 @@
+#include "general.h"
+#ifdef ALLEGRO
 #include <allegro5/allegro5.h>  
 #include <allegro5/allegro_color.h> 
 #include <allegro5/allegro_image.h> 
@@ -5,7 +7,6 @@
 #include <allegro5/allegro_audio.h>
 #include "al_events.h"
 
-#include "general.h"
 #include "states_allegro.h"
 #include "matrix_manipulation.h"
 #include "matrix_validation.h"
@@ -274,3 +275,4 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
         }
     }
 }
+#endif

@@ -10,7 +10,7 @@
  *
  * Created on December 3, 2017, 12:28 AM
  */
-
+#ifdef ALLEGRO  
 #ifndef FRONT_INIT_ALLEGRO_H
 #define FRONT_INIT_ALLEGRO_H
 
@@ -23,3 +23,4 @@ void frontend_destroy(FRONTEND* front_utils);
 
 #endif /* FRONT_INIT_ALLEGRO_H */
 
+#endif

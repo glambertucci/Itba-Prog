@@ -1,3 +1,4 @@
+#ifdef RASP_PI
 #ifndef joydrv_h
 #define joydrv_h
 
@@ -30,3 +31,4 @@ void set_joy_direction(int8_t dir_x,int8_t dir_y);
 
 
 #endif // End of driver definitions
+#endif

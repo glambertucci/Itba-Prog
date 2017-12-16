@@ -1,9 +1,7 @@
 #ifndef disdrv_h
 #define disdrv_h
 
-
 typedef enum {NORMALL ,ROTATE} daxis_t;
-
 
 typedef enum {D_OFF, D_ON} dlevel_t;
 

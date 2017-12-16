@@ -10,7 +10,9 @@
  *
  * Created on November 10, 2017, 4:30 PM
  */
-//#define RASP_PI
+#define RASP_PI
+
+//#define ALLEGRO
 #ifndef GENERAL_H
 #define GENERAL_H
 
@@ -22,7 +24,6 @@ extern "C" {
     enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
     enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
     enum{PLAYING, MENU}; //Para fsm.
-
     enum{LEFT, RIGHT,UP,DOWN}; //Para funcion mover pieza
     enum{START,CONTINUE,QUIT};
     enum{NOT_OK,OK};
@@ -77,7 +78,6 @@ extern "C" {
         bool draw;
     }GAME_UTILS;
     
-<<<<<<< HEAD
 
 #ifdef RASP_PI
     
@@ -89,35 +89,17 @@ extern "C" {
     
     typedef struct 
     {                     //Estructura para front de allegro
-=======
-    
-#ifdef RASP_PI
-    
-        typedef struct { //Estructura para manejo de eventos en pi
-            bool timer_event
-            bool pause;        
-            PI_EVENT_QUEUE * queue;
-            double timer_speed;
-        }EV_UTILS;
-    
-    typedef struct {  //Estructura para front de allegro
->>>>>>> 9a1c03b7cede12b2710cb4c35d2402c0a2f8d0cc
         EV_UTILS ev_utils;  
         int selected_op;
         int key_pressed;
         int mouse_x;
         int mouse_y;
-<<<<<<< HEAD
     } FRONTEND;
         
 
+#endif
 
-
-=======
-        
-        
->>>>>>> 9a1c03b7cede12b2710cb4c35d2402c0a2f8d0cc
-#else
+#ifdef ALLEGRO
         
 #include<allegro5/allegro_font.h>
         

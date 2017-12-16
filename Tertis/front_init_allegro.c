@@ -1,4 +1,5 @@
 #include "general.h"
+#ifdef ALLEGRO
 #include "front_init_allegro.h"
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
@@ -208,3 +209,4 @@ void frontend_destroy(FRONTEND* front_utils)
         al_destroy_display(front_utils->display);
         al_uninstall_audio();
 }
+#endif

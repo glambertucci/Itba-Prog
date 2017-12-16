@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 #include "general.h"
+#ifdef ALLEGRO
 #include "front_allegro.h"
 
 void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
@@ -174,3 +174,4 @@ void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars){
     al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*10.5,ALLEGRO_ALIGN_CENTRE,"%06d",gamevars->score);
     
 }
+#endif

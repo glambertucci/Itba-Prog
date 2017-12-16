@@ -1,6 +1,5 @@
-
-/*
 #include "general.h"
+#ifdef RASP_PI
 #include "states_pi.h"
 void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) 
 {
@@ -8,8 +7,9 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
     ALLEGRO_EVENT event; //Esta funcion toma los eventos durante el estado playing
     SCORE score_counter = 0;
     bool quickset = false;
-    jswitch_t switchval; 
+
     al_get_next_event(front_utils->ev_utils.queue, &event); 
+    jswitch_t switchval; 
     joystick_update();
     jcoord_t joy_coord= joystick_get_coord(void);
     jcoord_t * joy=joy_coord;
@@ -192,5 +192,49 @@ int8_t what_direction ( jcoord_t * joy )//Te dice para que lado estas tocando el
         printf("\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n hola \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     
     return direction;
-}*/
-
+}
+void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
+    //estado de menu   
+    static bool is_not_first_time = true; //para saber si es la primera vez que se empieza y el continue sirva como start
+    ALLEGRO_EVENT event;    
+        jswitch_t switchval; 
+    joystick_update();
+    jcoord_t joy_coord= joystick_get_coord(void);
+    jcoord_t * joy=joy_coord;
+    
+            switch(what_direction(joy)) {
+                
+                case UP:
+                    if(front_utils->selected_op>START){ //Selección de opción del menu
+                        front_utils->selected_op += MOVEUP;
+                    }
+                    break;
+                    
+                case DOWN:
+                    if(front_utils->selected_op<QUIT){
+                        front_utils->selected_op += MOVEDOWN;
+                    }
+                    break;
+            }
+        if ( switchval=joystick_get_switch_value())
+        {
+            switch(front_utils->selected_op) 
+            {
+                case START:
+                    gamevars->restart = TRUE;
+                    gamevars->quit = TRUE;
+                    front_utils->selected_op = CONTINUE; //Default
+                    is_not_first_time = true;
+                break;
+                case CONTINUE:
+                    gamevars->state = PLAYING;
+                    is_not_first_time = true;
+                break;
+                case QUIT:
+                    gamevars->quit = TRUE;
+                break;
+            }
+        }
+    
+}
+#endif
