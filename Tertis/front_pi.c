@@ -144,24 +144,24 @@ void draw_highscore(GAME_UTILS* gamevars) {
         }
     }
     
-    display_write(0, 14, D_ON);
-    display_write(0, 13, D_ON);
-    display_write(0, 12, D_ON);
-    display_write(1, 13, D_ON);
-    display_write(2, 14, D_ON);
-    display_write(2, 13, D_ON);
-    display_write(2, 12, D_ON);
-    display_write(3, 15, D_ON);
-    display_write(3, 13, D_ON);
-    display_write(3, 12, D_ON);
-    display_write(3, 11, D_ON);
-    display_write(4, 15, D_ON);
-    display_write(4, 13, D_ON);
-    display_write(4, 11, D_ON);
-    display_write(5, 15, D_ON);
-    display_write(5, 14, D_ON);
-    display_write(5, 13, D_ON);
-    display_write(5, 11, D_ON);
+    display_write(13, 0, D_ON);
+    display_write(14, 0, D_ON);
+    display_write(15, 0, D_ON);
+    display_write(13, 1, D_ON);
+    display_write(13, 2, D_ON);
+    display_write(14, 2, D_ON);
+    display_write(15, 2, D_ON);
+	display_write(15, 3, D_ON(;
+    display_write(15, 4, D_ON);
+    display_write(15, 5, D_ON);
+    display_write(14, 5, D_ON);
+    display_write(13, 5, D_ON);
+    display_write(13, 4, D_ON);
+    display_write(13, 3, D_ON);
+    display_write(12, 3, D_ON);
+    display_write(11, 3, D_ON);
+    display_write(11, 4, D_ON);
+    display_write(11, 5, D_ON);
 }
 
 void draw_s(void)
