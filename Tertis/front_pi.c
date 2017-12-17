@@ -104,11 +104,14 @@ void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
     switch(front_utils->option) {
         case START:
             display_write(6, 1, D_ON);
+			break;
         case CONTINUE:
             display_write(6, 7, D_ON);
             display_write(6, 8, D_ON);
+			break;
         case QUIT:
             display_write(6, 14, D_ON);
+			break;
     }
 }
 
