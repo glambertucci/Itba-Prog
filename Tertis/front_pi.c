@@ -1,15 +1,14 @@
-
 #include "front_pi.h"
 #ifdef RASP_PI
 #include "disdrv.h"
 #include "joydrv.h"
-void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
-    switch(gamevars->state) 
+void draw_front (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
+    switch(gamevars->state)
     {
         case PLAYING:
             draw_tablero(matrix);
             draw_next_piece(gamevars->currentpiece);
-            //draw_score(front_utils, gamevars);
+            draw_score(front_utils, gamevars);
             display_update();
             break;
         case MENU:
@@ -20,7 +19,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
     
     if(gamevars->lose) {
         gamevars->lose = false;
-        draw_gameover();
+ //       draw_gameover();
         display_update();
     }
 }
@@ -29,12 +28,12 @@ void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]) {
     
     int i, j;
     
-    for(i = 2; i < TABLE_FIL-2; i++) {
-        for(j = 2; j < TABLE_COL-2; j++) {
-            if((matrix[i][j].type) != 0)
-                display_write(i-2, j-2, D_ON);
+    for(i = 0; i < 16; i++) {
+        for(j = 0; j < 16; j++) {
+            if((matrix[i+2][j+2].type) != 0)
+                display_write(i, j, D_ON);
             else
-                display_write(i-2, j-2, D_OFF);
+                display_write(i, j, D_OFF);
         }
     }
 }
@@ -49,9 +48,9 @@ void draw_next_piece (PIECE next_piece) {
     for(i = 0; i < MAT_PIECE_FIL; i++) {
         for(j = 0; j < MAT_PIECE_COL; j++) {
             if((temp[i][j].type) != 0)
-                display_write(12+i, j, D_ON);
+                display_write(i, 12+j, D_ON);
             else
-                display_write(12+i, j, D_OFF);
+                display_write(i, 12+j, D_OFF);
         }
     }
 }
@@ -63,28 +62,28 @@ void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
     for(i = 0; i < 5; i++) { //para cada centena, decena, etc
         switch(i) {          // obtengo del numero la decena, centena, etc
             case 0:
-                temp[i] = (gamevars->score) % 10000;
+                temp[i] = (gamevars->score) / 100000;
                 break;
             case 1:
-                temp[i] = ((gamevars->score) % 1000) - ((temp[i-1])*10);
+                temp[i] = ((gamevars->score) / 10000) - ((temp[i-1])*10);
                 break;
             case 2:
-                temp[i] = ((gamevars->score) % 100) - ((temp[i-1])*10) - ((temp[i-2])*100);
+                temp[i] = ((gamevars->score) / 1000) - ((temp[i-1])*10) - ((temp[i-2])*100);
                 break;
             case 3:
-                temp[i] = ((gamevars->score) % 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000);
+                temp[i] = ((gamevars->score) / 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000);
                 break;
             case 4:
-                temp[i] = ((gamevars->score) % 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000) - ((temp[i-4]*10000));
+                temp[i] = ((gamevars->score) / 10) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000) - ((temp[i-4]*10000));
         }
     }
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
         for(j = 0; j < temp[i]; j++) {
-            display_write(11+j, 15-i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+            display_write(15-j, 10+i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
         }
-        for(j = temp[i]; j< 9; j++) {
-            display_write(11+j, 15-i, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+        for(j = temp[i]; j<9; j++) {
+            display_write(8+j,10+i , D_OFF);   //apaga todo desde el numero correspondiente hasta 9
         }
     }
 }
@@ -120,28 +119,28 @@ void draw_highscore(GAME_UTILS* gamevars) {
     for(i = 0; i < 5; i++) { //para cada centena, decena, etc
         switch(i) {          // obtengo del numero la decena, centena, etc
             case 0:
-                temp[i] = (gamevars->score) % 10000;
+                temp[i] = (gamevars->score) / 100000;
                 break;
             case 1:
-                temp[i] = ((gamevars->score) % 1000) - ((temp[i-1])*10);
+                temp[i] = ((gamevars->score) / 10000) - ((temp[i-1])*10);
                 break;
             case 2:
-                temp[i] = ((gamevars->score) % 100) - ((temp[i-1])*10) - ((temp[i-2])*100);
+                temp[i] = ((gamevars->score) / 1000) - ((temp[i-1])*10) - ((temp[i-2])*100);
                 break;
             case 3:
-                temp[i] = ((gamevars->score) % 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000);
+                temp[i] = ((gamevars->score) / 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000);
                 break;
             case 4:
-                temp[i] = ((gamevars->score) % 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000) - ((temp[i-4]*10000));
+                temp[i] = ((gamevars->score) / 10) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000) - ((temp[i-4]*10000));
         }
     }
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
         for(j = 0; j < temp[i]; j++) {
-            display_write(7+(2*j), 15-i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+            display_write(15-j,7+(2*i), D_ON);    //prende todo desde 0 hasta el numero correspondiente
         }
         for(j = temp[i]; j< 9; j++) {
-            display_write(7+(2*j), 15-i, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+            display_write(15-j,7+(2*i), D_OFF);   //apaga todo desde el numero correspondiente hasta 9
         }
     }
     
@@ -269,112 +268,5 @@ void draw_tetris (void)
     display_write(15,13, D_ON);
     display_write(15,14, D_ON);
     display_write(15,15, D_ON);
-}
-void draw_gameover (void)
-{
-display_clear();
-
-//----------G----------//
-display_write(2,0, D_ON);
-display_write(2,1, D_ON);
-display_write(2,2, D_ON);
-display_write(3,0, D_ON);
-display_write(4,0, D_ON);
-display_write(4,1, D_ON);
-display_write(4,2, D_ON);
-display_write(5,0, D_ON);
-display_write(5,2, D_ON);
-display_write(6,0, D_ON);
-display_write(6,1, D_ON);
-display_write(6,2, D_ON);
-
-//----------A----------//
-display_write(2,4, D_ON);
-display_write(2,5, D_ON);
-display_write(2,6, D_ON);
-display_write(3,4, D_ON);
-display_write(3,6, D_ON);
-display_write(4,4, D_ON);
-display_write(4,6, D_ON);
-display_write(5,4, D_ON);
-display_write(5,5, D_ON);
-display_write(5,6, D_ON);
-display_write(6,4, D_ON);
-display_write(6,6, D_ON);
-
-//----------M----------//
-display_write(2,8, D_ON);
-display_write(2,10, D_ON);
-display_write(3,8, D_ON);
-display_write(3,9, D_ON);
-display_write(3,10, D_ON);
-display_write(4,8, D_ON);
-display_write(4,10, D_ON);
-display_write(5,8, D_ON);
-display_write(5,10, D_ON);
-display_write(6,8, D_ON);
-display_write(6,10, D_ON);
-
-//----------E----------//
-display_write(2,12, D_ON);
-display_write(2,13, D_ON);
-display_write(2,14, D_ON);
-display_write(3,12, D_ON);
-display_write(4,12, D_ON);
-display_write(4,13, D_ON);
-display_write(5,12, D_ON);
-display_write(6,12, D_ON);
-display_write(6,13, D_ON);
-display_write(6,14, D_ON);
-
-//----------O----------//
-display_write(9,0, D_ON);
-display_write(9,1, D_ON);
-display_write(9,2, D_ON);
-display_write(10,0, D_ON);
-display_write(10,2, D_ON);
-display_write(11,0, D_ON);
-display_write(11,2, D_ON);
-display_write(12,0, D_ON);
-display_write(12,2, D_ON);
-display_write(13,0, D_ON);
-display_write(13,1, D_ON);
-display_write(13,2, D_ON);
-
-//----------V----------//
-display_write(9,4, D_ON);
-display_write(9,6, D_ON);
-display_write(10,4, D_ON);
-display_write(10,6, D_ON);
-display_write(11,4, D_ON);
-display_write(11,6, D_ON);
-display_write(12,4, D_ON);
-display_write(12,6, D_ON);
-display_write(13,5, D_ON);
-
-//----------E----------//
-display_write(9,8, D_ON);
-display_write(9,9, D_ON);
-display_write(9,10, D_ON);
-display_write(10,8, D_ON);
-display_write(11,8, D_ON); 
-display_write(11,9, D_ON);
-display_write(12,8, D_ON);
-display_write(13,8, D_ON);
-display_write(13,9, D_ON);
-display_write(13,10, D_ON);
-
-//----------R----------//
-display_write(9,12, D_ON);
-display_write(9,13, D_ON);
-display_write(9,14, D_ON);
-display_write(10,12, D_ON);
-display_write(10,14, D_ON);
-display_write(11,12, D_ON);
-display_write(11,14, D_ON);
-display_write(12,12, D_ON);
-display_write(12,13, D_ON);
-display_write(13,12, D_ON);
-display_write(13,14, D_ON);
 }
 #endif

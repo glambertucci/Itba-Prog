@@ -6,13 +6,21 @@
 void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
     //estado de menu   
     static bool is_not_first_time = true; //para saber si es la primera vez que se empieza y el continue sirva como start
+    static bool is_first_tetris = true;
+   
     ALLEGRO_EVENT event;    
-        jswitch_t switchval; 
+    jswitch_t switchval; 
     joystick_update();
     jcoord_t joy_coord= joystick_get_coord();
     jcoord_t * joy;
     joy =&joy_coord;
     
+    if(is_first_tetris = true) {
+        is_first_tetris = false;
+        draw_tetris();
+        al_rest (3);
+    }
+
             switch(what_direction(joy)) {
                 
                 case LEFT:
