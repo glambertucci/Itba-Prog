@@ -28,6 +28,7 @@ void draw_s(void);
 void draw_c(void);
 void draw_q(void);
 void draw_tetris (void);
+void draw_gameover (void);
 
 #ifdef __cplusplus
 extern "C" {
