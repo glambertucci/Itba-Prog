@@ -10,9 +10,9 @@
  *
  * Created on November 10, 2017, 4:30 PM
  */
-#define RASP_PI
+//#define RASP_PI
 
-//#define ALLEGRO
+#define ALLEGRO
 #ifndef GENERAL_H
 #define GENERAL_H
 
@@ -30,13 +30,7 @@ extern "C" {
     enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};
     
 #include <allegro5/allegro.h>
-#include <allegro5/timer.h>
-#include <allegro5/display.h>
-#include <allegro5/keycodes.h>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_image.h>
-#include <allegro5/allegro_audio.h>
+
     
 #include <stdint.h>
 #include <stdio.h>
@@ -104,7 +98,14 @@ extern "C" {
 #ifdef ALLEGRO
         
 #include<allegro5/allegro_font.h>
-        
+#include <allegro5/timer.h>
+#include <allegro5/display.h>
+#include <allegro5/keycodes.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
+    
           //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800

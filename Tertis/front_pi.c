@@ -4,7 +4,8 @@
 #include "disdrv.h"
 #include "joydrv.h"
 void draw_front (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
-    switch(gamevars->state) {
+    switch(gamevars->state) 
+    {
         case PLAYING:
             draw_tablero(matrix);
             draw_next_piece(gamevars->currentpiece);
