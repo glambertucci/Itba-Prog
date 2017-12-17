@@ -14,7 +14,7 @@
 #ifndef FRONT_INIT_PI_H
 #define FRONT_INIT_PI_H
 void frontend_destroy(FRONTEND* front_utils);
-void frontend_init(FRONTEND* front_utils);
+int frontend_init(FRONTEND* front_utils);
 #ifdef __cplusplus
 extern "C" {
 #endif

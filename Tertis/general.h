@@ -10,9 +10,9 @@
  *
  * Created on November 10, 2017, 4:30 PM
  */
-//#define RASP_PI
+#define RASP_PI
 
-#define ALLEGRO
+//#define ALLEGRO
 #ifndef GENERAL_H
 #define GENERAL_H
 
