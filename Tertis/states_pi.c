@@ -2,6 +2,7 @@
 #ifdef RASP_PI
 #include "states_pi.h"
 #include "joydrv.h"
+#include "disdrv.h"
 
 void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
     //estado de menu   
@@ -19,17 +20,18 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
         is_first_tetris = false;
         draw_tetris();
         al_rest (3);
+	display_clear();
     }
 
             switch(what_direction(joy)) {
                 
-                case LEFT:
+                case UP:
                     if(front_utils->selected_op>START){ //Selección de opción del menu
                         front_utils->selected_op += MOVEUP;
                     }
                     break;
                     
-                case RIGHT:
+                case DOWN:
                     if(front_utils->selected_op<QUIT){
                         front_utils->selected_op += MOVEDOWN;
                     }
@@ -76,7 +78,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                 
               //EN EL DEFAULT HAY QUE FIJARSE KEY PRESSED
                     
-                case LEFT: //La flecha derecha y la flecha izquierda mueven las piezas horizontalmente.
+                case UP: //La flecha derecha y la flecha izquierda mueven las piezas horizontalmente.
                     if(checkMove(matrix, LEFT)) 
                     {
                         move(matrix, LEFT);
@@ -84,7 +86,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                     }
                     break;
                     
-                case RIGHT:
+                case DOWN:
                     if(checkMove(matrix, RIGHT)) 
                     {
                         move(matrix, RIGHT);
@@ -92,7 +94,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                     }
                     break;
                     
-                case UP: //La flecha arriba rota la pieza.
+                case LEFT: //La flecha arriba rota la pieza.
                     
                     if(checkRotate(matrix)) //Si se puede rotar sin más, lo hará.
                     {
@@ -153,7 +155,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                     }
                     break;
                     
-                case DOWN: //La flecha abajo hará caer la pieza.
+                case RIGHT: //La flecha abajo hará caer la pieza.
                     
                     if(check_fall(matrix)){
                         al_stop_timer(front_utils->ev_utils.timer); //Se frena el timer para que se reinicie.                     
