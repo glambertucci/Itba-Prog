@@ -15,7 +15,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
     jcoord_t * joy;
     joy =&joy_coord;
     
-    if(is_first_tetris = true) {
+    if(is_first_tetris == true) {
         is_first_tetris = false;
         draw_tetris();
         al_rest (3);
