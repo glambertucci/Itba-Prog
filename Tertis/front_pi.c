@@ -270,4 +270,8 @@ void draw_tetris (void)
     display_write(15,14, D_ON);
     display_write(15,15, D_ON);
 }
+void draw_gameover (void)
+{
+
+}
 #endif
