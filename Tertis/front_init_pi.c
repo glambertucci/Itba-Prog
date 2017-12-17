@@ -7,7 +7,7 @@ int frontend_init(FRONTEND* front_utils){
    joy_init(); //conservar nombres y lo que reciben para el dual platform
    display_init();
    set_joy_axis(NORMALL);
-   set_joy_display(NORMALL);
+   //set_joy_display(NORMALL);
    return 1;
 }
 

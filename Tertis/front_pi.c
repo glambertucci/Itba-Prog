@@ -2,7 +2,7 @@
 #ifdef RASP_PI
 #include "disdrv.h"
 #include "joydrv.h"
-void draw_front (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
+void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
     switch(gamevars->state)
     {
         case PLAYING:
@@ -19,7 +19,7 @@ void draw_front (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars
     
     if(gamevars->lose) {
         gamevars->lose = false;
- //       draw_gameover();
+        draw_gameover();
         display_update();
     }
 }
