@@ -20,7 +20,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
     
     if(gamevars->lose) {
         gamevars->lose = false;
- //       draw_gameover();
+        draw_gameover();
         display_update();
     }
 }
@@ -272,6 +272,109 @@ void draw_tetris (void)
 }
 void draw_gameover (void)
 {
+display_clear();
 
+//----------G----------//
+display_write(2,0, D_ON);
+display_write(2,1, D_ON);
+display_write(2,2, D_ON);
+display_write(3,0, D_ON);
+display_write(4,0, D_ON);
+display_write(4,1, D_ON);
+display_write(4,2, D_ON);
+display_write(5,0, D_ON);
+display_write(5,2, D_ON);
+display_write(6,0, D_ON);
+display_write(6,1, D_ON);
+display_write(6,2, D_ON);
+
+//----------A----------//
+display_write(2,4, D_ON);
+display_write(2,5, D_ON);
+display_write(2,6, D_ON);
+display_write(3,4, D_ON);
+display_write(3,6, D_ON);
+display_write(4,4, D_ON);
+display_write(4,6, D_ON);
+display_write(5,4, D_ON);
+display_write(5,5, D_ON);
+display_write(5,6, D_ON);
+display_write(6,4, D_ON);
+display_write(6,6, D_ON);
+
+//----------M----------//
+display_write(2,8, D_ON);
+display_write(2,10, D_ON);
+display_write(3,8, D_ON);
+display_write(3,9, D_ON);
+display_write(3,10, D_ON);
+display_write(4,8, D_ON);
+display_write(4,10, D_ON);
+display_write(5,8, D_ON);
+display_write(5,10, D_ON);
+display_write(6,8, D_ON);
+display_write(6,10, D_ON);
+
+//----------E----------//
+display_write(2,12, D_ON);
+display_write(2,13, D_ON);
+display_write(2,14, D_ON);
+display_write(3,12, D_ON);
+display_write(4,12, D_ON);
+display_write(4,13, D_ON);
+display_write(5,12, D_ON);
+display_write(6,12, D_ON);
+display_write(6,13, D_ON);
+display_write(6,14, D_ON);
+
+//----------O----------//
+display_write(9,0, D_ON);
+display_write(9,1, D_ON);
+display_write(9,2, D_ON);
+display_write(10,0, D_ON);
+display_write(10,2, D_ON);
+display_write(11,0, D_ON);
+display_write(11,2, D_ON);
+display_write(12,0, D_ON);
+display_write(12,2, D_ON);
+display_write(13,0, D_ON);
+display_write(13,1, D_ON);
+display_write(13,2, D_ON);
+
+//----------V----------//
+display_write(9,4, D_ON);
+display_write(9,6, D_ON);
+display_write(10,4, D_ON);
+display_write(10,6, D_ON);
+display_write(11,4, D_ON);
+display_write(11,6, D_ON);
+display_write(12,4, D_ON);
+display_write(12,6, D_ON);
+display_write(13,5, D_ON);
+
+//----------E----------//
+display_write(9,8, D_ON);
+display_write(9,9, D_ON);
+display_write(9,10, D_ON);
+display_write(10,8, D_ON);
+display_write(11,8, D_ON); 
+display_write(11,9, D_ON);
+display_write(12,8, D_ON);
+display_write(13,8, D_ON);
+display_write(13,9, D_ON);
+display_write(13,10, D_ON);
+
+//----------R----------//
+display_write(9,12, D_ON);
+display_write(9,13, D_ON);
+display_write(9,14, D_ON);
+display_write(10,12, D_ON);
+display_write(10,14, D_ON);
+display_write(11,12, D_ON);
+display_write(11,14, D_ON);
+display_write(12,12, D_ON);
+display_write(12,13, D_ON);
+display_write(13,12, D_ON);
+display_write(13,14, D_ON);
 }
 #endif
