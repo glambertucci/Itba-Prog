@@ -271,6 +271,8 @@ void draw_tetris (void)
     display_write(15,13, D_ON);
     display_write(15,14, D_ON);
     display_write(15,15, D_ON);
+	
+	display_update();
 }
 
 void draw_gameover (void)
