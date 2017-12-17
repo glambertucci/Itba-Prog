@@ -9,7 +9,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
         case PLAYING:
             draw_tablero(matrix);
             draw_next_piece(gamevars->currentpiece);
-            draw_score(front_utils, gamevars);
+            //draw_score(front_utils, gamevars);
             display_update();
             break;
         case MENU:
@@ -32,9 +32,9 @@ void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]) {
     for(i = 2; i < TABLE_FIL-2; i++) {
         for(j = 2; j < TABLE_COL-2; j++) {
             if((matrix[i][j].type) != 0)
-                display_write(j-2, i-2, D_ON);
+                display_write(i-2, j-2, D_ON);
             else
-                display_write(j-2, i-2, D_OFF);
+                display_write(i-2, j-2, D_OFF);
         }
     }
 }
@@ -49,9 +49,9 @@ void draw_next_piece (PIECE next_piece) {
     for(i = 0; i < MAT_PIECE_FIL; i++) {
         for(j = 0; j < MAT_PIECE_COL; j++) {
             if((temp[i][j].type) != 0)
-                display_write(12+j, i, D_ON);
+                display_write(12+i, j, D_ON);
             else
-                display_write(12+j, i, D_OFF);
+                display_write(12+i, j, D_OFF);
         }
     }
 }
@@ -81,10 +81,10 @@ void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
         for(j = 0; j < temp[i]; j++) {
-            display_write(11+i, 15-j, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+            display_write(11+j, 15-i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
         }
         for(j = temp[i]; j< 9; j++) {
-            display_write(11+i, 15-j, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+            display_write(11+j, 15-i, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
         }
     }
 }
@@ -104,12 +104,12 @@ void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
     
     switch(front_utils->option) {
         case START:
-            display_write(1, 6, D_ON);
+            display_write(6, 1, D_ON);
         case CONTINUE:
-            display_write(7, 6, D_ON);
-            display_write(8, 6, D_ON);
+            display_write(6, 7, D_ON);
+            display_write(6, 8, D_ON);
         case QUIT:
-            display_write(14, 6, D_ON);
+            display_write(6, 14, D_ON);
     }
 }
 
@@ -138,10 +138,10 @@ void draw_highscore(GAME_UTILS* gamevars) {
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
         for(j = 0; j < temp[i]; j++) {
-            display_write(7+(2*i), 15-j, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+            display_write(7+(2*j), 15-i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
         }
         for(j = temp[i]; j< 9; j++) {
-            display_write(7+(2*i), 15-j, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+            display_write(7+(2*j), 15-i, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
         }
     }
     
