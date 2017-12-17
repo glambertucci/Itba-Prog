@@ -66,6 +66,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
     SCORE score_counter = 0;
     bool quickset = false;
 
+    front_utils->menu_drawed = false;
     al_get_next_event(front_utils->ev_utils.queue, &event); 
     jswitch_t switchval; 
     joystick_update();

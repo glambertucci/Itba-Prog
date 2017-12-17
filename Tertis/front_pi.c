@@ -6,14 +6,13 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
     switch(gamevars->state)
     {
         case PLAYING:
-			
+			display_clear();
             draw_tablero(matrix);
-           // draw_next_piece(gamevars->currentpiece);
-          //  draw_score(front_utils, gamevars);
+           	draw_next_piece(gamevars->currentpiece);
+          	draw_score(front_utils, gamevars);
             display_update();
             break;
         case MENU:
-			
             draw_options_and_highscore(front_utils, gamevars);
             display_update();
         break;
@@ -34,8 +33,6 @@ void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]) {
         for(j = 0; j < 11; j++) {
             if((matrix[i+2][j+2].type) != 0)
                 display_write(i, j, D_ON);
-            else
-                display_write(i, j, D_OFF);
         }
     }
 }
@@ -103,6 +100,12 @@ void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
     front_utils->menu_drawed = true;
     }
     
+    //borro puntito anterior
+    display_write(6, 1, D_OFF);
+    display_write(6, 7, D_OFF);
+    display_write(6, 8, D_OFF);
+    display_write(6, 14, D_OFF);
+
     switch(front_utils->selected_op) {
         case START:
             display_write(6, 1, D_ON);
