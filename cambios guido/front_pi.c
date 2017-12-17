@@ -81,10 +81,10 @@ void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
         for(j = 0; j < temp[i]; j++) {
-            display_write(11+j, 15-i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+            display_write(15-j, 10+i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
         }
-        for(j = temp[i]; j< 9; j++) {
-            display_write(11+j, 15-i, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+        for(j = temp[i]; j<9; j++) {
+            display_write(8+j,10+i , D_OFF);   //apaga todo desde el numero correspondiente hasta 9
         }
     }
 }
@@ -138,10 +138,10 @@ void draw_highscore(GAME_UTILS* gamevars) {
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
         for(j = 0; j < temp[i]; j++) {
-            display_write(7+(2*j), 15-i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+            display_write(15-j,7+(2*i), D_ON);    //prende todo desde 0 hasta el numero correspondiente
         }
         for(j = temp[i]; j< 9; j++) {
-            display_write(7+(2*j), 15-i, D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+            display_write(15-j,7+(2*i), D_OFF);   //apaga todo desde el numero correspondiente hasta 9
         }
     }
     
