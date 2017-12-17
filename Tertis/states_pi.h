@@ -32,6 +32,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
 #include "scored.h"
 #include "joydrv.h"
 int8_t what_direction ( jcoord_t * joy);
+void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars);
 #define MOVEUP -1
 #define MOVEDOWN 1
 #ifdef __cplusplus

@@ -164,9 +164,6 @@ void draw_highscore(GAME_UTILS* gamevars) {
     display_write(5, 11, D_ON);
 }
 
-//void* event_routine(void*) {
-    
-//}
 void draw_s(void)
 {
     display_write(0,0, D_ON);
@@ -211,7 +208,7 @@ void draw_c(void)
 }
 void draw_tetris (void)
 {
- //   clear_display; //funcion fantasma
+    display_clear(); //funcion fantasma
 
     //----------T---------//
     display_write(0,0, D_ON);

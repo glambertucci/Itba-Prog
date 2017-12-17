@@ -15,13 +15,13 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
     
             switch(what_direction(joy)) {
                 
-                case UP:
+                case LEFT:
                     if(front_utils->selected_op>START){ //Selección de opción del menu
                         front_utils->selected_op += MOVEUP;
                     }
                     break;
                     
-                case DOWN:
+                case RIGHT:
                     if(front_utils->selected_op<QUIT){
                         front_utils->selected_op += MOVEDOWN;
                     }
