@@ -1,0 +1,37 @@
+#Para crear ejecutable para allegro, ejecutar make file con el target: atetris
+
+atetris: Main.o al_backend_init.o al_events.o front_allegro.o front_init_allegro.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_allegro.o allegroconfig.o
+	gcc Main.o al_backend_init.o al_events.o front_allegro.o front_init_allegro.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_allegro.o allegroconfig.o `pkg-config --libsallegro-5.0` `pkg-config --libs allegro_color-5.0` `pkg-config --libs allegro_font-5.0` `pkg-config --libs allegro_ttf-5.0` `pkg-config --libs allegro_acodec-5.0` `pkg-config --libs allegro_audio-5.0`   -o tetris
+
+#Para crear ejecutable para la Raspberry pi, ejecutar el makefile con el target: ptetris
+
+ptetris: Main.o al_backend_init.o al_events.o front_pi.o front_init_pi.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_pi.o joydrv.o disdrv.o piconfig.o
+	gcc Main.o al_backend_init.o al_events.o front_pi.o front_init_pi.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_pi.o joydrv.o disdrv.o piconfig.o `pkg-config --libs allegro-5.0` `pkg-config --libs allegro_color-5.0` `pkg-config --libs allegro_font-5.0` `pkg-config --libs allegro_ttf-5.0` `pkg-config --libs allegro_acodec-5.0` `pkg-config --libs allegro_audio-5.0`   -o tetris
+
+#Archivos a compilar, solo archivos objeto (sin linkeditar)
+
+#Comunes a Allegro y Pi
+
+common.o: Main.c al_backend_init.c al_events.c   game_start.c matrix_manipulation.c matrix_validation.c misc_functions.c scored.c al_backend_init.h al_events.h game_start.h matrix_manipulation.h matrix_validation.h misc_functions.h scored.h general.h   
+	gcc -c  Main.c al_backend_init.c al_events.c   game_start.c matrix_manipulation.c matrix_validation.c misc_functions.c scored.c 
+
+
+#Interfaz Allegro
+
+allegro.o: front_allegro.c front_init_allegro.c states_allegro.c allegroconfig.c front_allegro.h front_init_allegro.h states_allegro.h allegroconfig.h
+	gcc -c front_allegro.c front_init_allegro.c states_allegro.c allegroconfig.c 
+
+
+
+#Interfaz pi
+
+Pi.o: front_pi.c front_init_pi.c states_pi.c piconfig.c front_pi.h front_init_pi.h states_pi.h piconfig.h
+	gcc -c front_pi.c front_init_pi.c states_pi.c piconfig.c
+
+
+
+
+
+clean:
+	rm *.o
+
