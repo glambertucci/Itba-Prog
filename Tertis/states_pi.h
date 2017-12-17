@@ -20,7 +20,7 @@
 // jcoord_t * joy : Es un puntero a una estructura que contiene la inclinacion en X y en Y del joystick.
 
 
-#define TILT (80)
+#define TILT (120)
 void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) ;
 #include "general.h"
 #include "disdrv.h"

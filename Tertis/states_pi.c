@@ -28,7 +28,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
                     break;
             }
         if ( switchval=joystick_get_switch_value())
-        {
+        { while (joystick_get_switch_value()){joystick_update();}
             switch(front_utils->selected_op) 
             {
                 case START:
@@ -164,12 +164,12 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                     break;
                 default:
                     if ( switchval=joystick_get_switch_value())
-                    {
+                    {while(joystick_get_switch_value()){joystick_update();}//espero a que suelte
                         gamevars->state = MENU;
                     }
                             
             }
-        
+
     
     
     if(event.type == ALLEGRO_EVENT_TIMER || quickset == true ) 
@@ -223,7 +223,8 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
 
 int8_t what_direction ( jcoord_t * joy )//Te dice para que lado estas tocando el joystick
 {
-    int8_t direction = 0;
+    int8_t direction = 9;
+	static int8_t prev_dir=12;
 
     if (joy->x > TILT)
        direction = LEFT;      
@@ -233,12 +234,15 @@ int8_t what_direction ( jcoord_t * joy )//Te dice para que lado estas tocando el
         direction =UP; 
     else if (joy->y < -TILT)
         direction = DOWN;
-        
-    else 
-        printf("WHY\n");
-    if (direction == 0)
-        printf("\n\n\\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n hola \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    
+       
+    if (prev_dir == direction)
+	{
+		direction=9;	
+	}
+	else
+	{
+		prev_dir= direction;		
+	}
     return direction;
 }
 #endif

@@ -6,7 +6,7 @@ atetris: Main.o al_backend_init.o al_events.o front_allegro.o front_init_allegro
 #Para crear ejecutable para la Raspberry pi, ejecutar el makefile con el target: ptetris
 
 ptetris: Main.o al_backend_init.o al_events.o front_pi.o front_init_pi.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_pi.o joydrv.o disdrv.o piconfig.o
-	gcc Main.o al_backend_init.o al_events.o front_pi.o front_init_pi.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_pi.o joydrv.o disdrv.o piconfig.o `pkg-config --libs allegro-5.0` `pkg-config --libs allegro_color-5.0` `pkg-config --libs allegro_font-5.0` `pkg-config --libs allegro_ttf-5.0` `pkg-config --libs allegro_acodec-5.0` `pkg-config --libs allegro_audio-5.0`   -o tetris
+	gcc Main.c al_backend_init.c al_events.c front_pi.c front_init_pi.c game_start.c termlib.c matrix_manipulation.c matrix_validation.c misc_functions.c scored.c states_pi.c joydrv.o disdrv.o piconfig.c  `pkg-config --libs allegro-5` -o tetris
 
 #Archivos a compilar, solo archivos objeto (sin linkeditar)
 
