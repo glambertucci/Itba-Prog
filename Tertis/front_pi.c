@@ -1,8 +1,9 @@
 
 #include "front_pi.h"
 #ifdef RASP_PI
-
-void draw_front (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
+#include "disdrv.h"
+#include "joydrv.h"
+void draw_front (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
     switch(gamevars->state) {
         case PLAYING:
             draw_tablero(matrix);
@@ -11,14 +12,14 @@ void draw_front (AL_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars
             display_update();
             break;
         case MENU:
-            draw_options_and_highscore(frontend, gamevars);
+            draw_options_and_highscore(front_utils, gamevars);
             display_update();
         break;
     }
     
     if(gamevars->lose) {
         gamevars->lose = false;
-        draw_gameover();
+ //       draw_gameover();
         display_update();
     }
 }
@@ -29,7 +30,7 @@ void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]) {
     
     for(i = 2; i < TABLE_FIL-2; i++) {
         for(j = 2; j < TABLE_COL-2; j++) {
-            if((matrix->type) != 0)
+            if((matrix[i][j].type) != 0)
                 display_write(j-2, i-2, D_ON);
             else
                 display_write(j-2, i-2, D_OFF);
@@ -46,7 +47,7 @@ void draw_next_piece (PIECE next_piece) {
     
     for(i = 0; i < MAT_PIECE_FIL; i++) {
         for(j = 0; j < MAT_PIECE_COL; j++) {
-            if((temp->type) != 0)
+            if((temp[i][j].type) != 0)
                 display_write(12+j, i, D_ON);
             else
                 display_write(12+j, i, D_OFF);
@@ -96,7 +97,7 @@ void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
  //       printf("Estado cONTINUE"); //DEBUG
     draw_q();
 //        printf("Estado quit"); //DEBUG
-    draw_score(gamevars);
+    draw_highscore(gamevars);
     front_utils->menu_drawed = true;
     }
     
@@ -111,7 +112,7 @@ void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
     }
 }
 
-void draw_score(GAME_UTILS* gamevars) {
+void draw_highscore(GAME_UTILS* gamevars) {
     
     int temp[5] = {0}, i, j;
     
@@ -215,7 +216,7 @@ void draw_tetris (void)
     //----------T---------//
     display_write(0,0, D_ON);
     display_write(0,1, D_ON);
-    display_write(0,2 D_ON);
+    display_write(0,2, D_ON);
     display_write(1,1, D_ON);
     display_write(2,1, D_ON);
     display_write(3,1, D_ON);

@@ -16,13 +16,14 @@
 #include "general.h"
 #ifdef RASP_PI
 #include "disdrv.h"
+#include "joydrv.h"
 #include "matrix_manipulation.h"
 void draw_front (EV_UTILS* al_utils, FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]);
 void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]);//uNA ESTA MAL
 void draw_next_piece (PIECE next_piece);
 void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars);
 void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars);
-void draw_score(GAME_UTILS* gamevars);
+void draw_highscore(GAME_UTILS* gamevars);
 void draw_s(void);
 void draw_c(void);
 void draw_q(void);

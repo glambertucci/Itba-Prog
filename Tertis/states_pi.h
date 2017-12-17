@@ -18,10 +18,20 @@
 // Esta funcion indica en que direccion se esta moviendo el joystick
 //
 // jcoord_t * joy : Es un puntero a una estructura que contiene la inclinacion en X y en Y del joystick.
-int8_t what_direction ( jcoord_t * joy);
+
+
 #define TILT (80)
 void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_mat[MAT_PIECE_FIL][MAT_PIECE_COL]) ;
 #include "general.h"
+#include "disdrv.h"
+#include "matrix_manipulation.h"
+#include "matrix_validation.h"
+#include "al_events.h"
+//#include ""
+#include "misc_functions.h"
+#include "scored.h"
+#include "joydrv.h"
+int8_t what_direction ( jcoord_t * joy);
 #define MOVEUP -1
 #define MOVEDOWN 1
 #ifdef __cplusplus

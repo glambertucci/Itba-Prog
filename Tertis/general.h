@@ -93,6 +93,8 @@ extern "C" {
         int selected_op;
         int key_pressed;
         int mouse_x;
+        bool option;
+        bool menu_drawed;
         int mouse_y;
     } FRONTEND;
         
