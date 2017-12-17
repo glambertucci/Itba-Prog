@@ -147,7 +147,7 @@ void draw_highscore(GAME_UTILS* gamevars) {
     display_write(13, 0, D_ON);
     display_write(14, 0, D_ON);
     display_write(15, 0, D_ON);
-    display_write(13, 1, D_ON);
+    display_write(14, 1, D_ON);
     display_write(13, 2, D_ON);
     display_write(14, 2, D_ON);
     display_write(15, 2, D_ON);
