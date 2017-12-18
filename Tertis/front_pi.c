@@ -18,10 +18,6 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
             display_update();
             break;
         case MENU:
-		if(gamevars->prev_state != gamevars->state){
-			display_clear();
-			gamevars->prev_state = gamevars->state;
-		}
             draw_options_and_highscore(front_utils, gamevars);
             display_update();
         break;
