@@ -46,13 +46,16 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
                     gamevars->quit = TRUE;
                     front_utils->selected_op = CONTINUE; //Default
                     is_not_first_time = true;
+                    display_clear();
                 break;
                 case CONTINUE:
                     gamevars->state = PLAYING;
                     is_not_first_time = true;
+                    display_clear();
                 break;
                 case QUIT:
                     gamevars->quit = TRUE;
+                    display_clear();
                 break;
             }
         }
@@ -174,9 +177,12 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
                     
                     break;
                 default:
-                    if ( switchval=joystick_get_switch_value())
-                    {while(joystick_get_switch_value()){joystick_update();}//espero a que suelte
-                        gamevars->state = MENU;
+                    if ( switchval=joystick_get_switch_value()) {
+                        while(joystick_get_switch_value())
+                        {
+                            joystick_update();
+                            gamevars->state = MENU;
+                        }//espero a que suelte
                     }
                             
             }

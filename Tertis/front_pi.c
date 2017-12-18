@@ -21,6 +21,8 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
         gamevars->lose = false;
         draw_gameover();
         display_update();
+        al_rest(3);
+        gamevars->state = MENU;
     }
 }
 
@@ -49,9 +51,9 @@ void draw_next_piece (PIECE next_piece) {
     for(i = 0; i < MAT_PIECE_FIL; i++) {
         for(j = 0; j < MAT_PIECE_COL; j++) {
             if((temp[i][j].type) != 0)
-                display_write(i, 11+j, D_ON);
+                display_write(i, 12+j, D_ON);
             else
-                display_write(i, 11+j, D_OFF);
+                display_write(i, 12+j, D_OFF);
         }
     }
 }
@@ -92,14 +94,15 @@ void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
 void draw_options_and_highscore(FRONTEND* front_utils, GAME_UTILS* gamevars) {
     
     if(!(front_utils->menu_drawed)){
-    draw_s();
+    	display_clear();
+    	draw_s();
  //       printf("Estado start"); //DEBUG
-    draw_c();
+    	draw_c();
  //       printf("Estado cONTINUE"); //DEBUG
-    draw_q();
+    	draw_q();
 //        printf("Estado quit"); //DEBUG
-    draw_highscore(gamevars);
-    front_utils->menu_drawed = true;
+    	draw_highscore(gamevars);
+    	front_utils->menu_drawed = true;
     }
     
     //borro puntito anterior
