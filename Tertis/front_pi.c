@@ -6,12 +6,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
     switch(gamevars->state)
     {
         case PLAYING:
-		
-		if(gamevars->draw == TRUE){
-			display_clear();
-			gamevars->draw = FALSE
 		}
-		
             draw_tablero(matrix);
            	draw_next_piece(gamevars->currentpiece);
           	//draw_score(front_utils, gamevars);
@@ -38,6 +33,8 @@ void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]) {
         for(j = 0; j < 11; j++) {
             if((matrix[i+2][j+2].type) != 0)
                 display_write(i, j, D_ON);
+            else
+            	display_write(i, j, D_OFF);
         }
     }
 }
@@ -47,14 +44,15 @@ void draw_next_piece (PIECE next_piece) {
     PIECE temp [MAT_PIECE_FIL][MAT_PIECE_FIL] = {0};
     int i, j;
     
+    clean_piece_mat(temp);
     fill_mat_piece(temp, next_piece);
     
     for(i = 0; i < MAT_PIECE_FIL; i++) {
         for(j = 0; j < MAT_PIECE_COL; j++) {
             if((temp[i][j].type) != 0)
-                display_write(i, 12+j, D_ON);
+                display_write(i, 11+j, D_ON);
             else
-                display_write(i, 12+j, D_OFF);
+                display_write(i, 11+j, D_OFF);
         }
     }
 }
