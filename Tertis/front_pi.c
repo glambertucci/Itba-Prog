@@ -43,22 +43,61 @@ void draw_tablero (PIECE matrix [TABLE_FIL][TABLE_COL]) {
 
 void draw_next_piece (PIECE next_piece) {
     
-    PIECE temp [MAT_PIECE_FIL][MAT_PIECE_FIL] = {0};
-    int i, j;
-    
-    clean_piece_mat(temp);
-    fill_mat_piece(temp, next_piece);
-    
-    for(i = 0; i < MAT_PIECE_FIL; i++) {
-        for(j = 0; j < MAT_PIECE_COL; j++) {
-            if((temp[i][j].type) != 0)
-                display_write(i, 12+j, D_ON);
-            else
-                display_write(i, 12+j, D_OFF);
-        }
-    }
+	int i,j;
+	
+	for(i=12;i<15;i++){
+		for(j=1;j<5;j++){
+			display_write(j,i, D_OFF)
+		}
+	} //Este for limpia los espacios de la siguiente pieza.
+	
+    switch(next_piece.type){
+		case STICK:
+					display_write(2, 13, D_ON);
+					display_write(3, 13, D_ON);
+					display_write(4, 13, D_ON);
+					display_write(5, 13, D_ON);
+		break;
+		case JAY:
+					display_write(3, 13, D_ON);
+					display_write(4, 13, D_ON);
+					display_write(5, 13, D_ON);
+					display_write(5, 12, D_ON);
+		break;
+		case EL:	
+					display_write(3, 13, D_ON);
+					display_write(4, 13, D_ON);
+					display_write(5, 13, D_ON);
+					display_write(5, 14, D_ON);
+		break;
+		case BLOCK:
+					display_write(4, 13, D_ON);
+					display_write(4, 14, D_ON);
+					display_write(5, 13, D_ON);
+					display_write(5, 15, D_ON);
+		break;
+		case ES:
+					display_write(3, 14, D_ON);
+					display_write(3, 13, D_ON);
+					display_write(4, 13, D_ON);
+					display_write(4, 12, D_ON);
+		break;
+		case ZED:
+					display_write(3, 12, D_ON);
+					display_write(3, 13, D_ON);
+					display_write(4, 13, D_ON);
+					display_write(4, 14, D_ON);
+		break;
+		case TEE:
+					display_write(3, 13, D_ON);
+					display_write(4, 12, D_ON);
+					display_write(4, 13, D_ON);
+					display_write(4, 14, D_ON);
+		break;
+	}
+		
+					
 }
-
 void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
     
     int temp[5] = {0}, i, j;
