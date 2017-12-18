@@ -22,6 +22,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
         draw_gameover();
         display_update();
         al_rest(3);
+        display_clear();
         gamevars->state = MENU;
     }
 }
