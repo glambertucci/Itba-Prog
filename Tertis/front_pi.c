@@ -7,7 +7,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
     {
         case PLAYING:
             draw_tablero(matrix);
-           	draw_next_piece(gamevars->currentpiece);
+           	draw_next_piece(gamevars->nextpiece);
           	//draw_score(front_utils, gamevars);
             display_update();
             break;
@@ -46,7 +46,7 @@ void draw_next_piece (PIECE next_piece) {
 	int i,j;
 	
 	for(i=12;i<15;i++){
-		for(j=1;j<5;j++){
+		for(j=1;j<6;j++){
 			display_write(j,i, D_OFF);
 		}
 	} //Este for limpia los espacios de la siguiente pieza.
