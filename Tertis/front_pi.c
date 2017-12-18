@@ -8,7 +8,7 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
         case PLAYING:
             draw_tablero(matrix);
            	draw_next_piece(gamevars->nextpiece);
-          	//draw_score(front_utils, gamevars);
+          	draw_score(front_utils, gamevars);
             display_update();
             break;
         case MENU:
@@ -72,7 +72,7 @@ void draw_next_piece (PIECE next_piece) {
 					display_write(4, 13, D_ON);
 					display_write(4, 14, D_ON);
 					display_write(5, 13, D_ON);
-					display_write(5, 15, D_ON);
+					display_write(5, 14, D_ON);
 		break;
 		case ES:
 					display_write(3, 14, D_ON);
@@ -120,12 +120,12 @@ void draw_score (FRONTEND* front_utils, GAME_UTILS* gamevars) {
     }
     
     for(i = 0; i < 5; i++) {                    //para cada decena, centena etc
-        for(j = 0; j < temp[i]; j++) {
-            display_write(15-j, 10+i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
-        }
-        for(j = temp[i]; j<9; j++) {
-            display_write(8+j,10+i , D_OFF);   //apaga todo desde el numero correspondiente hasta 9
-        }
+      for(j = 0; j < temp[i]; j++) {
+            display_write(15-j, 11+i, D_ON);    //prende todo desde 0 hasta el numero correspondiente
+     }
+     for(j = temp[i]; j<9; j++) {
+       display_write(15-j,11+i , D_OFF);   //apaga todo desde el numero correspondiente hasta 9
+     }
     }
 }
 
@@ -170,19 +170,19 @@ void draw_highscore(GAME_UTILS* gamevars) {
     for(i = 0; i < 5; i++) { //para cada centena, decena, etc
         switch(i) {          // obtengo del numero la decena, centena, etc
             case 0:
-                temp[i] = (gamevars->score) / 100000;
+                temp[i] = (gamevars->highscore) / 100000;
                 break;
             case 1:
-                temp[i] = ((gamevars->score) / 10000) - ((temp[i-1])*10);
+                temp[i] = ((gamevars->highscore) / 10000) - ((temp[i-1])*10);
                 break;
             case 2:
-                temp[i] = ((gamevars->score) / 1000) - ((temp[i-1])*10) - ((temp[i-2])*100);
+                temp[i] = ((gamevars->highscore) / 1000) - ((temp[i-1])*10) - ((temp[i-2])*100);
                 break;
             case 3:
-                temp[i] = ((gamevars->score) / 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000);
+                temp[i] = ((gamevars->highscore) / 100) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000);
                 break;
             case 4:
-                temp[i] = ((gamevars->score) / 10) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000) - ((temp[i-4]*10000));
+                temp[i] = ((gamevars->highscore) / 10) - ((temp[i-1])*10) - ((temp[i-2])*100) - ((temp[i-3])*1000) - ((temp[i-4]*10000));
         }
     }
     

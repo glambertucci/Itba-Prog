@@ -12,7 +12,7 @@
  */
 #define RASP_PI
 
-//#define ALLEGRO
+#define ALLEGRO
 #ifndef GENERAL_H
 #define GENERAL_H
 
@@ -73,29 +73,7 @@ extern "C" {
     }GAME_UTILS;
     
 
-#ifdef RASP_PI
-    
-        typedef struct { //Estructura para manejo de eventos en pi
-            ALLEGRO_TIMER * timer;
-            ALLEGRO_EVENT_QUEUE * queue;      
-            double timer_speed;
-        }EV_UTILS;
-    
-    typedef struct 
-    {                     //Estructura para front de allegro
-        EV_UTILS ev_utils;  
-        int selected_op;
-        int key_pressed;
-        int mouse_x;
-        bool option;
-        bool menu_drawed;
-        int mouse_y;
-    } FRONTEND;
-        
 
-#endif
-
-#ifdef ALLEGRO
         
 #include<allegro5/allegro_font.h>
 #include <allegro5/timer.h>
@@ -128,11 +106,11 @@ extern "C" {
             ALLEGRO_FONT * font2;
             ALLEGRO_FONT * font3;    
             int selected_op;
+     	    bool menu_drawed;
             int key_pressed;
             int mouse_x;
             int mouse_y;
         }FRONTEND;
-        
-#endif
+
         
 #endif

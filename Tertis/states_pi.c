@@ -55,6 +55,7 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
                 break;
                 case QUIT:
                     gamevars->quit = TRUE;
+                    display_clear();
                 break;
             }
         }

@@ -12,6 +12,8 @@ int frontend_init(FRONTEND* front_utils){
 }
 
 void frontend_destroy(FRONTEND* front_utils){
-    //Nothing to do here
+    	//Omae Wa Mou Shindeiru
+	display_clear();
+	//Nani?!
 }
 #endif

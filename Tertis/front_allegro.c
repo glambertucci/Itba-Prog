@@ -6,7 +6,15 @@
 #include "general.h"
 #ifdef ALLEGRO
 #include "front_allegro.h"
-
+#include <allegro5/system.h>
+#include <allegro5/color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_ttf.h>
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdint.h>
+#include <stdlib.h>
 void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
     
 
