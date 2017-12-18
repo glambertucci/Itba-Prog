@@ -47,7 +47,7 @@ void draw_next_piece (PIECE next_piece) {
 	
 	for(i=12;i<15;i++){
 		for(j=1;j<5;j++){
-			display_write(j,i, D_OFF)
+			display_write(j,i, D_OFF);
 		}
 	} //Este for limpia los espacios de la siguiente pieza.
 	
@@ -58,7 +58,7 @@ void draw_next_piece (PIECE next_piece) {
 					display_write(4, 13, D_ON);
 					display_write(5, 13, D_ON);
 		break;
-		case JAY:
+		case JEY:
 					display_write(3, 13, D_ON);
 					display_write(4, 13, D_ON);
 					display_write(5, 13, D_ON);
