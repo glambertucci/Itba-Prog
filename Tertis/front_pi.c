@@ -6,7 +6,6 @@ void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TAB
     switch(gamevars->state)
     {
         case PLAYING:
-		}
             draw_tablero(matrix);
            	draw_next_piece(gamevars->currentpiece);
           	//draw_score(front_utils, gamevars);
