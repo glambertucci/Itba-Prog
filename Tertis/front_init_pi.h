@@ -10,7 +10,7 @@
  *
  * Created on December 3, 2017, 12:24 AM
  */
-#ifdef RASP_PI
+
 #ifndef FRONT_INIT_PI_H
 #define FRONT_INIT_PI_H
 void frontend_destroy(FRONTEND* front_utils);
@@ -28,4 +28,4 @@ extern "C" {
 
 #endif /* FRONT_INIT_PI_H */
 
-#endif
+

@@ -10,7 +10,7 @@
  *
  * Created on November 10, 2017, 10:27 PM
  */
-#ifdef ALLEGRO
+
 #ifndef FRONT_H
 #define FRONT_H
 #define SEPARACION (38.0)
@@ -44,4 +44,3 @@ extern "C" {
 
 #endif /* FRONT_H */
 
-#endif

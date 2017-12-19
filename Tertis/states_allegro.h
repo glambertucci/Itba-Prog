@@ -10,7 +10,7 @@
  *
  * Created on December 3, 2017, 12:30 AM
  */
-#ifdef ALLEGRO
+
 #ifndef STATES_ALLEGRO_H
 #define STATES_ALLEGRO_H
 
@@ -44,4 +44,4 @@ void menu_events (FRONTEND * front_utils, GAME_UTILS* gamevars);
 
 #endif /* STATES_ALLEGRO_H */
 
-#endif
+

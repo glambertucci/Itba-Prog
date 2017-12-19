@@ -9,7 +9,16 @@
  * Author: alan
  *
  * Created on November 10, 2017, 3:11 PM
- */
+ *
+
+                 (__) 
+                 (oo) 
+           /------\/ 
+          / |    ||   
+         *  /\---/\ 
+            ~~   ~~   
+..."Have you mooed today?"...*/
+
 #include "general.h" 
 #ifdef RASP_PI
 #include "front_init_pi.h"

@@ -1,5 +1,5 @@
 #include "general.h"
-#ifdef RASP_PI
+
 #include "front_init_pi.h"
 #include "disdrv.h"
 #include "joydrv.h"

@@ -14,7 +14,7 @@
 #ifndef FRONT_PI_H
 #define FRONT_PI_H
 #include "general.h"
-#ifdef RASP_PI
+
 #include "disdrv.h"
 #include "joydrv.h"
 #include "matrix_manipulation.h"
@@ -39,7 +39,7 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
+
 
 #endif /* FRONT_PI_H */
 

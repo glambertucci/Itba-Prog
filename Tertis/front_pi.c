@@ -1,5 +1,5 @@
 #include "front_pi.h"
-#ifdef RASP_PI
+
 #include "disdrv.h"
 #include "joydrv.h"
 void draw_front ( FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]) {
@@ -430,4 +430,4 @@ display_write(12,13, D_ON);
 display_write(13,12, D_ON);
 display_write(13,14, D_ON);
 }
-#endif
+
