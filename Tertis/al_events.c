@@ -19,16 +19,39 @@ bool events_init (EV_UTILS* al_utils)
         al_destroy_timer(al_utils->timer);
     }
     
+    if(!(al_utils->rythm = al_create_timer(RYTHM))){
+        fprintf(stderr, "Timer failed to load.");
+        abort = true;
+        al_destroy_timer(al_utils->rythm);
+        al_destroy_timer(al_utils->timer);
+    }
+        
+    
     if(!(al_utils->queue = al_create_event_queue()))
     {
         fprintf(stderr, "Event queue failed to load.");
         abort = true;
         al_destroy_event_queue(al_utils->queue);
         al_destroy_timer(al_utils->timer);
+        al_destroy_timer(al_utils->rythm);
+    }
+    
+    if(!(al_utils->rythmq = al_create_event_queue()))
+    {
+        fprintf(stderr, "Event queue failed to load.");
+        abort = true;
+        al_destroy_event_queue(al_utils->rythmq);
+        al_destroy_event_queue(al_utils->queue);
+        al_destroy_timer(al_utils->timer);
+        al_destroy_timer(al_utils->rythm);
     }
     
     al_start_timer(al_utils->timer);
     al_register_event_source(al_utils->queue, al_get_timer_event_source(al_utils->timer));
+    
+    al_start_timer(al_utils->rythm);
+    al_register_event_source(al_utils->rythmq, al_get_timer_event_source(al_utils->rythm));
+    
     
     return !(abort);
 }
@@ -36,6 +59,8 @@ bool events_init (EV_UTILS* al_utils)
 void events_destroy(EV_UTILS* al_utils)
 {
     al_destroy_event_queue(al_utils->queue);
+    al_destroy_event_queue(al_utils->rythmq);
+    al_destroy_timer(al_utils->rythm);
     al_destroy_timer(al_utils->timer);
 }
 

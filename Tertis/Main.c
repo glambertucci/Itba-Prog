@@ -69,6 +69,7 @@ int main(void)
                         fprintf(highscore, "%06d", gamevars.score);
                         fclose(highscore);
                     }
+
                 }
                 
                 draw_front(&front_utils, &gamevars, matrix); //Actualización del front.

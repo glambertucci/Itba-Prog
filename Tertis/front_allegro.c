@@ -24,6 +24,7 @@ void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE
             al_draw_tablero(matrix);
             al_draw_next_piece(gamevars->nextpiece);
             al_draw_score(front_utils, gamevars);
+            al_draw_dance(front_utils);
             al_flip_display();
             break;
             
@@ -38,7 +39,17 @@ void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE
         break;
     }
     if(gamevars->lose) {
-        al_draw_bitmap(front_utils->image[3],0,0,0);
+        if(gamevars->highscore > gamevars->score){
+            al_draw_bitmap(front_utils->image[3],0,0,0); //Imágenes diferentes según se haya hecho highscore nuevo o no.
+            al_stop_samples();
+            al_play_sample (front_utils->samples[2],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
+        }
+        else{
+            al_draw_bitmap(front_utils->image[5],0,0,0);
+            al_stop_samples();
+            al_play_sample (front_utils->samples[3],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);           
+        }
+        
         al_draw_filled_rectangle( SCREEN_W-SCREEN_W/2-SEPARACION*6, SEPARACION, SCREEN_W-SCREEN_W/2+SEPARACION*6, SEPARACION*3 , al_map_rgb(0,0,0));
         al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SCREEN_W/2, SEPARACION*2-SEPARACION/2,ALLEGRO_ALIGN_CENTRE,"YOUR SCORE: %06d", gamevars->score);
 
@@ -49,10 +60,9 @@ void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE
         
         al_flip_display();
         
-        al_stop_samples();
-        al_play_sample (front_utils->samples[2],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL);
-        
-        al_rest(3);
+
+        if(gamevars->highscore > gamevars->score){ al_rest(3); }
+        else{ al_rest(5);}
     }
 }
 
@@ -182,4 +192,31 @@ void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars){
     al_draw_textf(front_utils->font1, al_map_rgb(255,255,255),SCREEN_W-SEPARACION*3.5, SEPARACION*10.5,ALLEGRO_ALIGN_CENTRE,"%06d",gamevars->score);
     
 }
+
+
+void al_draw_dance(FRONTEND * front_utils){
+    
+    static bool first_time = true;
+    static char parswitch = 0;
+    ALLEGRO_EVENT event;
+
+    
+    if(parswitch>99){
+        parswitch = 0; //Reiniciamos parswitch cada tanto solo para estar seguros.
+    }
+    
+    
+    if(al_get_next_event(front_utils->ev_utils.rythmq, &event)){ parswitch++; }
+    //Cambio la paridad -> Cambia la imagen    
+
+    if((parswitch%2)){
+        al_draw_bitmap(front_utils->image[6],574,497,0);
+    }
+    else{
+        al_draw_bitmap(front_utils->image[7],574,497,0);
+    }
+}
+    
+    
+    
 #endif

@@ -42,12 +42,20 @@ void continueplay(EV_UTILS* al_utils, GAME_UTILS* gamevars, PIECE matrix[TABLE_F
     if(!(al_get_timer_started(al_utils->timer))){ //Tambien iniciamos el timer si estaba apagado.
         al_start_timer(al_utils->timer);
     }
+    
+    if(!(al_get_timer_started(al_utils->rythm))){ //Tambien iniciamos el timer si estaba apagado.
+        al_start_timer(al_utils->rythm);
+    }
 }
 
 void pauseplay (EV_UTILS* al_utils, GAME_UTILS* gamevars){ //Cuando se entra al estado menu, se para el timer
     
     if(al_get_timer_started(al_utils->timer))
         al_stop_timer(al_utils->timer);
+    
+    if(al_get_timer_started(al_utils->rythm))
+        al_stop_timer(al_utils->rythm);
+    
 }
 
 void next_piece(GAME_UTILS* gamevars) {

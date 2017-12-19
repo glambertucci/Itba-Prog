@@ -87,13 +87,15 @@ extern "C" {
           //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
-#define TOTAL_IMAGES 6
-#define TOTAL_MUSICA 3
-    
+#define TOTAL_IMAGES 8
+#define TOTAL_MUSICA 4
+#define RYTHM 0.6    
         
         typedef struct { //Estructura para manejo de allegro
             ALLEGRO_TIMER * timer;
+            ALLEGRO_TIMER * rythm;
             ALLEGRO_EVENT_QUEUE * queue;
+            ALLEGRO_EVENT_QUEUE * rythmq;
             double timer_speed;
         }EV_UTILS;    
         

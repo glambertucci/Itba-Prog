@@ -27,6 +27,9 @@ void al_draw_next_piece (PIECE future );
 PIECE create_next (PIECE * piece);
 //Creates next
 void al_draw_score(FRONTEND * front_utils, GAME_UTILS * gamevars);
+//Dibuja la puntuación en pantalla
+void al_draw_dance(FRONTEND * front_utils);
+//Dibuja dos imagenes alternandolas entre si para simular un baile
 
 #ifdef __cplusplus
 extern "C" {
