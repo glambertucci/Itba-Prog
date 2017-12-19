@@ -86,7 +86,7 @@ extern "C" {
     
           //Para display
 #define SCREEN_W 800
-#define SCREEN_H 800
+#define SCREEN_H 700
 #define TOTAL_IMAGES 8
 #define TOTAL_MUSICA 4
 #define RYTHM 0.6    
