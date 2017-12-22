@@ -19,9 +19,9 @@ extern "C" {
 #endif
 
 void game_start (PIECE matrix[TABLE_FIL][TABLE_COL], PIECE piece_matrix[MAT_PIECE_FIL][MAT_PIECE_COL], GAME_UTILS* gamevars);
-//
+//Inicializa o reinicia todas las variables de juego
 void init_mat (PIECE next_piece_mat [MAT_PIECE_FIL][MAT_PIECE_COL]);
-//
+//inicializa la matriz pequena para las piezas individuales
 
 
 #ifdef __cplusplus

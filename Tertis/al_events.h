@@ -17,11 +17,11 @@
 #include "general.h"
 
 bool events_init (EV_UTILS* ev_utils);
-//
+//Inicializa los eventos
 void events_destroy(EV_UTILS* ev_utils);
-//
+//los destruye
 void change_velocity(EV_UTILS* ev_utils);
-//
+//cambia la velocidad de tickeo del timer
 
 #endif /* AL_BACKEND_INIT_H */
 

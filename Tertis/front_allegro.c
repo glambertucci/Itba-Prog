@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 #include "general.h"
-
+#ifdef ALLEGRO
 #include "front_allegro.h"
 #include <allegro5/system.h>
 #include <allegro5/color.h>
@@ -218,4 +218,5 @@ void al_draw_dance(FRONTEND * front_utils){
 }
     
     
-  
+    
+#endif

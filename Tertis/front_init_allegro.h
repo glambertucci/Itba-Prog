@@ -10,17 +10,17 @@
  *
  * Created on December 3, 2017, 12:28 AM
  */
- 
+#ifdef ALLEGRO  
 #ifndef FRONT_INIT_ALLEGRO_H
 #define FRONT_INIT_ALLEGRO_H
 
 #define FONTSIZE 40
     
 bool frontend_init(FRONTEND* front_utils);
-//
+//inicializa el front para PC
 void frontend_destroy(FRONTEND* front_utils);
-
+//lo destruye
 
 #endif /* FRONT_INIT_ALLEGRO_H */
 
-
+#endif

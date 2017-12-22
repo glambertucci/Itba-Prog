@@ -10,7 +10,7 @@
  *
  * Created on November 10, 2017, 10:27 PM
  */
-
+#ifdef ALLEGRO
 #ifndef FRONT_H
 #define FRONT_H
 #define SEPARACION (38.0)
@@ -19,7 +19,7 @@
 #include "general.h"
 
 void draw_front(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix [TABLE_FIL][TABLE_COL]);
-//
+//funcion principal de dibujo en pantalla, dibuja en relacion al estado y  variables de juego
 void  al_draw_tablero(PIECE tablero [TABLE_FIL][TABLE_COL]);
 //al_draw_tablero recibe matriz de PIECE y la imprime por allegro
 void al_draw_next_piece (PIECE future );
@@ -44,3 +44,4 @@ extern "C" {
 
 #endif /* FRONT_H */
 
+#endif

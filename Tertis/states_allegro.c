@@ -1,5 +1,12 @@
 #include "general.h"
+#ifdef ALLEGRO
+#include <allegro5/allegro5.h>  
+#include <allegro5/allegro_color.h> 
+#include <allegro5/allegro_image.h> 
+#include <allegro5/allegro_acodec.h>
+#include <allegro5/allegro_audio.h>
 #include "al_events.h"
+
 #include "states_allegro.h"
 #include "matrix_manipulation.h"
 #include "matrix_validation.h"
@@ -13,7 +20,9 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
     SCORE score_counter = 0;
     bool quickset = false;
     
-    if (gamevars->prev_state != gamevars->state ) { //Cambiamos la música si estabamos en el menu  
+    
+    
+    if (gamevars->prev_state != gamevars->state ){ //Cambiamos la música si estabamos en el menu
         al_stop_samples();
         al_play_sample (front_utils->samples[0],0.75,0,1.0,ALLEGRO_PLAYMODE_LOOP,NULL); 
         gamevars->prev_state = gamevars->state;
@@ -134,6 +143,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
     
     if(event.type == ALLEGRO_EVENT_TIMER || quickset == true ) 
     {
+        //   printf("HOLA\n");//DEBUG
         if(OK == check_fall(matrix)) 
         {                            //Si se puede caer la pieza, cae
             fall(matrix);
@@ -181,7 +191,7 @@ void playing_events(FRONTEND* front_utils, GAME_UTILS* gamevars, PIECE matrix[TA
 }
 
 void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion toma los eventos durante el
-    								//estado de menu   
+    //estado de menu   
     static bool is_not_first_time = true; //para saber si es la primera vez que se empieza y el continue sirva como start
     ALLEGRO_EVENT event;
     
@@ -233,9 +243,10 @@ void menu_events (FRONTEND* front_utils, GAME_UTILS* gamevars) { //Esta funcion 
                     }
             }
         }
+      
         if((event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)){
             gamevars->quit = TRUE;
         }
     }
 }
-
+#endif

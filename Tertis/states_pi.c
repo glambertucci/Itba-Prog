@@ -1,5 +1,5 @@
 #include "general.h"
-
+#ifdef RASP_PI
 #include "states_pi.h"
 #include "joydrv.h"
 #include "disdrv.h"
@@ -262,4 +262,4 @@ int8_t what_direction ( jcoord_t * joy )//Te dice para que lado estas tocando el
 	}
     return direction;
 }
-
+#endif

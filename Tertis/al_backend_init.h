@@ -19,9 +19,9 @@ extern "C" {
 #endif
 
 bool al_backend_init (EV_UTILS* al_utils);
-//
+//inicializa el back end, eventqueue, timers, etc.
 void al_backend_destroy(EV_UTILS* al_utils);
-//
+//los destruye
 
 
 #ifdef __cplusplus

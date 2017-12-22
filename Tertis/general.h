@@ -10,7 +10,8 @@
  *
  * Created on November 10, 2017, 4:30 PM
  */
-
+#define RASP_PI
+#define ALLEGRO
 #ifndef GENERAL_H
 #define GENERAL_H
 
@@ -18,31 +19,23 @@
 extern "C" {
 #endif
     
-    enum{INITIAL = 15,VERYEASY = 12,EASY = 10, NORMAL = 8, NORMALHARD = 7, HARD = 5, VERYHARD = 4, IMPOSSIBLE = 3}; //Para el timer
-    enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};//Para cuando se hacen lineas
-    enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento para calcular, scored para linea llena
-    enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
-    enum{PLAYING, MENU}; //Para fsm.
-    enum{LEFT, RIGHT,UP,DOWN}; //Para funcion mover pieza
-    enum{START,CONTINUE,QUIT};//Opciones de menu
-    enum{NOT_OK,OK};//Validation purposes
+enum{INITIAL = 15,VERYEASY = 12,EASY = 10, NORMAL = 8, NORMALHARD = 7, HARD = 5, VERYHARD = 4, IMPOSSIBLE = 3}; //Para el timer
+enum{SCORE1 = 100, SCORE2 = 250, SCORE3 = 400, SCORE4 = 600};   
+enum{BLANK,STICK,EL,JEY,BLOCK,ES,ZED,TEE,CEMENTO,SCORED}; //Cada tipo de bloque 1x1. Cemento nunca se mueve, gralmente para calcuar cosas. Scored es indicador de linea llena.
+enum{START,CONTINUE,QUIT}; //opciones de menu
+enum{LEFT, RIGHT,UP,DOWN}; //Para funcion mover pieza
+enum{ESTATICO, CAYENDO}; //Estado de cada bloque 1x1
+enum{PLAYING, MENU}; //Para fsm.
+enum{NOT_OK,OK}; //validacion para check_fall
+    
+#include <allegro5/allegro.h>
+
     
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include <time.h>
-#include <allegro5/allegro.h>
-#include <allegro5/allegro_font.h>
-#include <allegro5/timer.h>
-#include <allegro5/display.h>
-#include <allegro5/keycodes.h>
-#include <allegro5/allegro_color.h>
-#include <allegro5/allegro_primitives.h>
-#include <allegro5/allegro_image.h>
-#include <allegro5/allegro_audio.h>
-#include <allegro5/allegro_acodec.h>
-
     //Matriz de tablero
 #define TABLE_FIL 20
 #define TABLE_COL 14
@@ -50,8 +43,6 @@ extern "C" {
     //Para matriz chiquita de cada pieza nueva
 #define MAT_PIECE_FIL 4
 #define MAT_PIECE_COL 3
-
-    //MISC
 #define TRUE 1
 #define FALSE 0
     
@@ -62,6 +53,8 @@ extern "C" {
         bool state;
         bool pivot;
     }PIECE;
+    
+    
     
     typedef struct { //Estructura con variables de juego
         
@@ -78,6 +71,18 @@ extern "C" {
         bool draw;
     }GAME_UTILS;
     
+
+
+        
+#include<allegro5/allegro_font.h>
+#include <allegro5/timer.h>
+#include <allegro5/display.h>
+#include <allegro5/keycodes.h>
+#include <allegro5/allegro_color.h>
+#include <allegro5/allegro_primitives.h>
+#include <allegro5/allegro_image.h>
+#include <allegro5/allegro_audio.h>
+    
           //Para display
 #define SCREEN_W 800
 #define SCREEN_H 800
@@ -93,7 +98,7 @@ extern "C" {
             double timer_speed;
         }EV_UTILS;    
         
-        typedef struct { //Estructura para frontend
+        typedef struct { //Estructura para front de allegro
             EV_UTILS ev_utils;
             ALLEGRO_BITMAP * image[TOTAL_IMAGES];
             ALLEGRO_DISPLAY* display;

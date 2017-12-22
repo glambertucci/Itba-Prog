@@ -47,3 +47,5 @@ states_pi.o : states_pi.c states_pi.h
 
 front_init_pi.o : front_init_pi.c front_init_pi.h
 	gcc -c front_init_pi.c -o front_init_pi.o
+clean :
+	rm Main.o al_backend_init.o al_events.o front_allegro.o front_init_allegro.o game_start.o matrix_manipulation.o matrix_validation.o misc_functions.o scored.o states_allegro.o

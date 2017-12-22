@@ -10,7 +10,7 @@
  *
  * Created on December 3, 2017, 12:23 AM
  */
-
+#ifdef RASP_PI
 #ifndef STATES_PI_H
 #define STATES_PI_H
 
@@ -48,4 +48,4 @@ extern "C" {
 
 #endif /* STATES_PI_H */
 
-
+#endif

@@ -10,11 +10,13 @@
  *
  * Created on December 3, 2017, 12:24 AM
  */
-
+#ifdef RASP_PI
 #ifndef FRONT_INIT_PI_H
 #define FRONT_INIT_PI_H
 void frontend_destroy(FRONTEND* front_utils);
+//destruye front end de pi
 int frontend_init(FRONTEND* front_utils);
+//inicializa el front de la pi
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -28,4 +30,4 @@ extern "C" {
 
 #endif /* FRONT_INIT_PI_H */
 
-
+#endif
