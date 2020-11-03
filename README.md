@@ -1,2 +1,2 @@
 # Itba-Prog
-Tps Programación 1 Itba
+Buenos Aires Institute of Techology assignments for the Programming course (22.07)
